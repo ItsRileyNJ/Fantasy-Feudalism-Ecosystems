@@ -1,0 +1,2374 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "Server and both clients track one finalized horse spawn group",
+      "passed": true,
+      "herd": [
+        {
+          "id": 8,
+          "uuid": "88ad5f55-9e6d-4403-940c-2f0b65e60d38",
+          "type": "minecraft:horse",
+          "position": [
+            2.0,
+            64.0,
+            2.0
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 53.0,
+          "maxHealth": 21.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "baby": false,
+          "tamed": false,
+          "grazing": false,
+          "eatAnim": 0.0,
+          "age": 0,
+          "nextBreed": 413914,
+          "herd": "db678b4c-bc7b-40d4-a1f8-819580a3b302"
+        },
+        {
+          "id": 9,
+          "uuid": "e17c2e37-a311-4412-9475-83a01e3240be",
+          "type": "minecraft:horse",
+          "position": [
+            4.0,
+            64.0,
+            2.0
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 53.0,
+          "maxHealth": 24.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "baby": false,
+          "tamed": false,
+          "grazing": false,
+          "eatAnim": 0.0,
+          "age": 0,
+          "nextBreed": 413914,
+          "herd": "db678b4c-bc7b-40d4-a1f8-819580a3b302"
+        },
+        {
+          "id": 10,
+          "uuid": "7461e810-a3e6-4959-af42-b2b72283fb12",
+          "type": "minecraft:horse",
+          "position": [
+            6.0,
+            64.0,
+            2.0
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 53.0,
+          "maxHealth": 27.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "baby": false,
+          "tamed": false,
+          "grazing": false,
+          "eatAnim": 0.0,
+          "age": 0,
+          "nextBreed": 413914,
+          "herd": "db678b4c-bc7b-40d4-a1f8-819580a3b302"
+        }
+      ]
+    },
+    {
+      "name": "A separated horse walks back to its own herd",
+      "passed": true,
+      "leader": {
+        "id": 8,
+        "uuid": "88ad5f55-9e6d-4403-940c-2f0b65e60d38",
+        "type": "minecraft:horse",
+        "position": [
+          3.5,
+          64.0,
+          3.5
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 21.0,
+        "maxHealth": 21.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "NATURAL",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "baby": false,
+        "tamed": false,
+        "grazing": false,
+        "eatAnim": 0.0,
+        "age": 0,
+        "nextBreed": 413914,
+        "herd": "db678b4c-bc7b-40d4-a1f8-819580a3b302"
+      },
+      "follower": {
+        "id": 9,
+        "uuid": "e17c2e37-a311-4412-9475-83a01e3240be",
+        "type": "minecraft:horse",
+        "position": [
+          7.4245322834375065,
+          64.0,
+          3.996905805344802
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 24.0,
+        "maxHealth": 24.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "NATURAL",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "baby": false,
+        "tamed": false,
+        "grazing": false,
+        "eatAnim": 0.0,
+        "age": 0,
+        "nextBreed": 413914,
+        "herd": "db678b4c-bc7b-40d4-a1f8-819580a3b302"
+      }
+    },
+    {
+      "name": "Both graphical clients render the native grazing head pose",
+      "passed": true,
+      "entity": 8,
+      "server": {
+        "id": 8,
+        "uuid": "88ad5f55-9e6d-4403-940c-2f0b65e60d38",
+        "type": "minecraft:horse",
+        "position": [
+          2.1754647723946676,
+          64.0,
+          2.693943405837897
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 21.0,
+        "maxHealth": 21.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "NATURAL",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "baby": false,
+        "tamed": false,
+        "grazing": true,
+        "eatAnim": 0.9792,
+        "age": 0,
+        "nextBreed": 0,
+        "herd": "db678b4c-bc7b-40d4-a1f8-819580a3b302"
+      },
+      "clients": {
+        "owner": {
+          "grazing": true,
+          "headX": 1.8195862,
+          "eatAnim": 0.882,
+          "headY": 9.312161
+        },
+        "guest": {
+          "headX": 1.664357,
+          "grazing": true,
+          "headY": 8.926554,
+          "eatAnim": 0.72
+        }
+      }
+    },
+    {
+      "name": "Grass-triggered natural breeding creates exactly one synchronized foal and resets both timers",
+      "passed": true,
+      "foal": {
+        "id": 11,
+        "uuid": "d2f00670-e73d-4211-9adb-1aa0a3c42851",
+        "type": "minecraft:horse",
+        "position": [
+          3.3271997063079706,
+          64.0,
+          2.227549118125639
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 23.58392,
+        "maxHealth": 23.58392,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "baby": true,
+        "tamed": false,
+        "grazing": false,
+        "eatAnim": 0.0,
+        "age": -23999,
+        "nextBreed": 414197,
+        "herd": "db678b4c-bc7b-40d4-a1f8-819580a3b302"
+      },
+      "parents": [
+        {
+          "id": 8,
+          "uuid": "88ad5f55-9e6d-4403-940c-2f0b65e60d38",
+          "type": "minecraft:horse",
+          "position": [
+            3.369699532588584,
+            64.0,
+            3.449258882537761
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 21.0,
+          "maxHealth": 21.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "baby": false,
+          "tamed": false,
+          "grazing": false,
+          "eatAnim": 0.0,
+          "age": 5836,
+          "nextBreed": 414197,
+          "herd": "db678b4c-bc7b-40d4-a1f8-819580a3b302"
+        },
+        {
+          "id": 9,
+          "uuid": "e17c2e37-a311-4412-9475-83a01e3240be",
+          "type": "minecraft:horse",
+          "position": [
+            6.603704247252045,
+            64.0,
+            8.399489700088944
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 24.0,
+          "maxHealth": 24.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "baby": false,
+          "tamed": false,
+          "grazing": false,
+          "eatAnim": 0.0,
+          "age": 5835,
+          "nextBreed": 414197,
+          "herd": "db678b4c-bc7b-40d4-a1f8-819580a3b302"
+        }
+      ]
+    },
+    {
+      "name": "Both clients load the original raw and cooked horse meat sprites",
+      "passed": true,
+      "models": {
+        "owner": {
+          "fantasy_feudalism_mobs:raw_horse": {
+            "sprite": "fantasy_feudalism_mobs:item/raw_horse",
+            "missing": false
+          },
+          "fantasy_feudalism_mobs:cooked_horse": {
+            "sprite": "fantasy_feudalism_mobs:item/cooked_horse",
+            "missing": false
+          }
+        },
+        "guest": {
+          "fantasy_feudalism_mobs:raw_horse": {
+            "missing": false,
+            "sprite": "fantasy_feudalism_mobs:item/raw_horse"
+          },
+          "fantasy_feudalism_mobs:cooked_horse": {
+            "missing": false,
+            "sprite": "fantasy_feudalism_mobs:item/cooked_horse"
+          }
+        }
+      }
+    },
+    {
+      "name": "An adult horse drops one or two raw horse in the live server",
+      "passed": true,
+      "drops": [
+        {
+          "id": 14,
+          "uuid": "10881167-0775-40e7-b9ac-12ea17e0b49d",
+          "type": "minecraft:item",
+          "position": [
+            6.968950269208993,
+            64.3765539456,
+            2.2892411736891667
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "item": {
+            "item": "fantasy_feudalism_mobs:raw_horse",
+            "count": 1,
+            "damage": 0
+          },
+          "stack": {
+            "item": "fantasy_feudalism_mobs:raw_horse",
+            "count": 1,
+            "damage": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "Eating cooked horse consumes one item and synchronizes cooked-mutton hunger/saturation",
+      "passed": true,
+      "serverPlayer": {
+        "id": 1,
+        "uuid": "52d3a8c5-c3b6-391c-93f6-861ad99dcec8",
+        "type": "minecraft:player",
+        "position": [
+          4.0,
+          64.0,
+          -6.0
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 20.0,
+        "maxHealth": 20.0,
+        "effects": [
+          "minecraft:night_vision"
+        ],
+        "effectDetails": [
+          {
+            "duration": -1,
+            "particle": {
+              "type": "minecraft:entity_effect",
+              "rgb": 12779366,
+              "alpha": 1.0
+            },
+            "effect": "minecraft:night_vision",
+            "ambient": false,
+            "visible": false,
+            "amplifier": 0
+          }
+        ],
+        "effectParticles": [],
+        "name": "FFMOwner",
+        "food": 16,
+        "saturation": 9.6,
+        "selected": 1,
+        "inventory": [
+          {
+            "item": "fantasy_feudalism_mobs:raw_horse",
+            "count": 3,
+            "damage": 0
+          },
+          {
+            "item": "fantasy_feudalism_mobs:cooked_horse",
+            "count": 2,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          }
+        ],
+        "cursor": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "menu": {
+          "type": "InventoryMenu",
+          "id": 0,
+          "state": 4,
+          "slots": [
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "fantasy_feudalism_mobs:raw_horse",
+              "count": 3,
+              "damage": 0
+            },
+            {
+              "item": "fantasy_feudalism_mobs:cooked_horse",
+              "count": 2,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            }
+          ]
+        }
+      },
+      "clientPlayer": {
+        "id": 1,
+        "uuid": "52d3a8c5-c3b6-391c-93f6-861ad99dcec8",
+        "type": "minecraft:player",
+        "position": [
+          4.0,
+          64.0,
+          -6.0
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 20.0,
+        "maxHealth": 20.0,
+        "effects": [
+          "minecraft:night_vision"
+        ],
+        "effectDetails": [
+          {
+            "duration": -1,
+            "amplifier": 0,
+            "visible": false,
+            "ambient": false,
+            "effect": "minecraft:night_vision",
+            "particle": {
+              "type": "minecraft:entity_effect",
+              "rgb": 12779366,
+              "alpha": 1.0
+            }
+          }
+        ],
+        "effectParticles": [],
+        "name": "FFMOwner",
+        "food": 16,
+        "saturation": 9.6,
+        "selected": 1,
+        "inventory": [
+          {
+            "item": "fantasy_feudalism_mobs:raw_horse",
+            "count": 3,
+            "damage": 0
+          },
+          {
+            "item": "fantasy_feudalism_mobs:cooked_horse",
+            "count": 2,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          }
+        ],
+        "cursor": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "menu": {
+          "type": "InventoryMenu",
+          "id": 0,
+          "state": 4,
+          "slots": [
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "fantasy_feudalism_mobs:raw_horse",
+              "count": 3,
+              "damage": 0
+            },
+            {
+              "item": "fantasy_feudalism_mobs:cooked_horse",
+              "count": 2,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Two viewers share the smoker output without a duplicated or ghost item",
+      "passed": true,
+      "players": [
+        {
+          "id": 1,
+          "uuid": "52d3a8c5-c3b6-391c-93f6-861ad99dcec8",
+          "type": "minecraft:player",
+          "position": [
+            8.0,
+            64.0,
+            1.0
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 20.0,
+          "maxHealth": 20.0,
+          "effects": [
+            "minecraft:night_vision"
+          ],
+          "effectDetails": [
+            {
+              "duration": -1,
+              "particle": {
+                "type": "minecraft:entity_effect",
+                "rgb": 12779366,
+                "alpha": 1.0
+              },
+              "effect": "minecraft:night_vision",
+              "ambient": false,
+              "visible": false,
+              "amplifier": 0
+            }
+          ],
+          "effectParticles": [],
+          "name": "FFMOwner",
+          "food": 16,
+          "saturation": 9.6,
+          "selected": 8,
+          "inventory": [
+            {
+              "item": "fantasy_feudalism_mobs:raw_horse",
+              "count": 4,
+              "damage": 0
+            },
+            {
+              "item": "fantasy_feudalism_mobs:cooked_horse",
+              "count": 3,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            }
+          ],
+          "cursor": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "menu": {
+            "type": "InventoryMenu",
+            "id": 0,
+            "state": 6,
+            "slots": [
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "fantasy_feudalism_mobs:raw_horse",
+                "count": 4,
+                "damage": 0
+              },
+              {
+                "item": "fantasy_feudalism_mobs:cooked_horse",
+                "count": 3,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": 2,
+          "uuid": "1f039e49-cc58-30d0-a564-dac0d0b0d263",
+          "type": "minecraft:player",
+          "position": [
+            9.0,
+            64.0,
+            1.0
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 20.0,
+          "maxHealth": 20.0,
+          "effects": [
+            "minecraft:night_vision"
+          ],
+          "effectDetails": [
+            {
+              "duration": -1,
+              "particle": {
+                "type": "minecraft:entity_effect",
+                "rgb": 12779366,
+                "alpha": 1.0
+              },
+              "effect": "minecraft:night_vision",
+              "ambient": false,
+              "visible": false,
+              "amplifier": 0
+            }
+          ],
+          "effectParticles": [],
+          "name": "FFMGuest",
+          "food": 20,
+          "saturation": 5.0,
+          "selected": 8,
+          "inventory": [
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            }
+          ],
+          "cursor": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "menu": {
+            "type": "InventoryMenu",
+            "id": 0,
+            "state": 1,
+            "slots": [
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Both clients remain connected with no recorded model-render errors",
+      "passed": true,
+      "clients": {
+        "owner": {
+          "connected": true,
+          "renderErrors": []
+        },
+        "guest": {
+          "connected": true,
+          "renderErrors": []
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_raw_horse": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "fantasy_feudalism_mobs:raw_horse"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "fantasy_feudalism_mobs:cooked_horse_from_smoking"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_horse",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "fantasy_feudalism_mobs:cooked_horse_from_smoking"
+    ]
+  }
+}

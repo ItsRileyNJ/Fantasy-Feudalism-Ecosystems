@@ -113,6 +113,23 @@ public final class ServerHarness {
                 }
                 p.containerMenu.broadcastChanges(); p.inventoryMenu.broadcastChanges(); return true;
             }
+            case "horseHerd": {
+                net.minecraft.world.entity.SpawnGroupData group=null;
+                var herd=new ArrayList<Map<String,Object>>();
+                for(int i=0;i<q.get("count").getAsInt();i++) {
+                    var horse=EntityType.HORSE.create(level);
+                    horse.moveTo(number(q,"x",2)+i*2,number(q,"y",64),number(q,"z",2),0,0);
+                    group=horse.finalizeSpawn(level,level.getCurrentDifficultyAt(horse.blockPosition()),net.minecraft.world.entity.MobSpawnType.NATURAL,group);
+                    horse.setAge(0);horse.setPersistenceRequired();level.addFreshEntity(horse);
+                    herd.add(ControlFiles.entity(horse));
+                }
+                return herd;
+            }
+            case "food": {
+                var p=server.getPlayerList().getPlayerByName(q.get("player").getAsString());
+                p.getFoodData().setFoodLevel(q.get("level").getAsInt());
+                p.getFoodData().setSaturation((float)number(q,"saturation",0));return true;
+            }
             case "spawn": {
                 EntityType<?> type=BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.parse(q.get("type").getAsString()));
                 Entity e=type.create(level); if(e==null)throw new IllegalArgumentException("Cannot create entity");

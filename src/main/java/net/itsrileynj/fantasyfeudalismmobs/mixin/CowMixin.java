@@ -1,7 +1,7 @@
 package net.itsrileynj.fantasyfeudalismmobs.mixin;
 
 import java.util.List;
-import net.itsrileynj.fantasyfeudalismmobs.CowHerd;
+import net.itsrileynj.fantasyfeudalismmobs.SpawnHerd;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.animal.Animal;
@@ -26,6 +26,6 @@ public abstract class CowMixin extends Animal {
                 goalSelector.addGoal(6, goal.getGoal());
             }
         }
-        goalSelector.addGoal(5, new CowHerd.FollowHerdGoal((Cow)(Object)this));
+        goalSelector.addGoal(5, new SpawnHerd.FollowHerdGoal((Cow)(Object)this));
     }
 }

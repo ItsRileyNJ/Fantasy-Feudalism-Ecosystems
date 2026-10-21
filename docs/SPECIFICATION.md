@@ -307,3 +307,9 @@ Chickens flee when a player comes within three blocks. Fleeing speed is 5% below
 ## Cow follow-up
 
 Cows that spawn together stay together as a herd. Spawn-group identity persists across saves and reloads. A separated cow uses ordinary navigation to regroup, without teleporting or forcing chunks to load. Vanilla panic, breeding, food temptation, calf following and leashes take priority.
+
+## Horse follow-up
+
+The user requested horse spawn-group herds; sheep-style grass consumption using the horse’s existing eating animation; automatic breeding every fourteen Minecraft days, initiated by one horse eating grass with another nearby horse producing a foal; and adult-only drops of one to two Raw Horse. Raw Horse cooks in furnaces and smokers into Cooked Horse with cooked mutton food properties.
+
+The user confirmed: “Automatic breeding only; keep manual breeding unchanged.” The implementation uses 336,000 elapsed world ticks per horse, persists the deadline through saves, and resets both parents after a successful birth. New horses wait one full interval, and foals begin their own interval at birth. Ordinary golden apple/carrot breeding retains vanilla behavior.

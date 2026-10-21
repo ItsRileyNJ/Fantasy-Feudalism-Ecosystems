@@ -6,7 +6,16 @@ This repository contains only the Fantasy Feudal Mobs project, its build tools, 
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_mobs-0.1.5.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_mobs-0.1.6.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.6 changes
+
+- Horses spawning together keep persistent herds, using the same regrouping rules as cows. Foals join a parent’s herd.
+- Horses eat short grass or turn grass blocks to dirt using their native grazing animation, respecting `mobGriefing`.
+- After 14 Minecraft days (336,000 elapsed world ticks), an adult’s successful grazing can start automatic breeding with one nearby eligible horse, including wild horses. Both parents receive a fresh 14-day cycle after a birth. The first cycle starts when a horse is added; foals start their own timer at birth. Golden apple/carrot breeding remains unchanged.
+- Adult horses drop 1–2 **Raw Horse**, in addition to normal loot. Foals drop no horse meat. Raw Horse cooks into **Cooked Horse** in a furnace (200 ticks) or smoker (100 ticks). Cooked Horse matches cooked mutton: six hunger points and 9.6 saturation. Both foods have their own sprites and appear in the mod creative tab.
+
+See [the validation report](docs/RELEASE_0.1.6.md).
 
 ## Version 0.1.5 changes
 
@@ -37,7 +46,7 @@ The six-second level I companion effects and their approved family exclusions ar
 
 ## Mercenaries compatibility
 
-Version **0.1.1** includes optional compatibility with the supplied **Fantasy Feudalism: Mercenaries 1.15.7** (`villagerscontract`). Install Mobs 0.1.5 and Mercenaries 1.15.7 on the server and every client, replacing the older Mobs JAR. Mercenaries remains optional when using Mobs alone.
+Version **0.1.1** includes optional compatibility with the supplied **Fantasy Feudalism: Mercenaries 1.15.7** (`villagerscontract`). Install Mobs 0.1.6 and Mercenaries 1.15.7 on the server and every client, replacing the older Mobs JAR. Mercenaries remains optional when using Mobs alone.
 
 Guards recognize tamed spiders as allies, companions respect guard alliances, and mercenary combat spacing follows a skeleton's equipped weapon. Faster skeleton arrows retain the requested 40% speed increase with a corrected gravity arc and vanilla spread. Rejected or losing guard-menu transfers explicitly correct the hidden player inventory so two viewers cannot retain predicted ghost items.
 
@@ -72,6 +81,7 @@ Choose a fresh test directory for each combined run: Mercenaries' built-in villa
 
 | Mob | Changes |
 | --- | --- |
+| Horses | Persistent spawn-group herds, sheep-style grazing, automatic grass-triggered breeding every 14 days, and adult-only horse meat drops. Manual breeding stays vanilla. |
 | Cows | Newly spawned groups stay together as persistent herds, walking back when separated. |
 | Chickens | Flee Survival/Adventure players within three blocks, at 95% of normal player ground sprint speed. |
 | Creepers | Natural spawn weights reduced by 60%; explosions retain entity damage but do not destroy blocks. They convert applicable blocks to mossy variants and plant vegetation with 75% eligible-position coverage, biased 50/35/15 toward moss carpet / ferns / tall grass. Vanilla survival rules restrict which plants fit each position. Killed creepers additionally drop 1–2 moss blocks. |

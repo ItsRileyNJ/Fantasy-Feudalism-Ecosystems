@@ -1,0 +1,26 @@
+{
+  "artifact": {
+    "file": "fantasy_feudalism_mobs-0.1.6.jar",
+    "bytes": 103556,
+    "sha256": "d8587c3c0ad979524f35ac725af03eb93c727a579365dc8afab172e384634211"
+  },
+  "minecraft": "1.21.1",
+  "neoforge": "21.1.262",
+  "java": 21,
+  "standalone_required_tests": 87,
+  "compatibility_mod": {
+    "file": "fantasyfeudalism-mercenaries-1.15.7.jar",
+    "sha256": "32fba122dde2819abdd64a46ee350dc3e6f2533e34c8b7360700e2a8239d0a65"
+  },
+  "packaging_checks": "All packaged classes match compiled output; test code, harness and nested third-party jars absent.",
+  "mobs_mercenaries_required_tests": 97,
+  "multiplayer": {
+    "passed_checks": 9,
+    "dedicated_server": true,
+    "graphical_clients": 2,
+    "both_with_mercenaries": "1.15.7",
+    "resolution": "960x540",
+    "renderer": "Linux Mesa software rendering",
+    "same_artifact_sha256_all_instances": "d8587c3c0ad979524f35ac725af03eb93c727a579365dc8afab172e384634211"
+  }
+}

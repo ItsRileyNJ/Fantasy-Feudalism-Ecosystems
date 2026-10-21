@@ -6,6 +6,9 @@
   "mixins": [
     "ChickenMixin",
     "CowMixin",
+    "HorseMixin",
+    "HorseMatingMixin",
+    "AnimalBreedingMixin",
     "SpiderMixin",
     "WalkNodeEvaluatorMixin",
     "MobMixin",

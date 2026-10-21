@@ -32,6 +32,7 @@ import net.neoforged.neoforge.client.event.*;
 
 @EventBusSubscriber(modid="ffm_multiplayer_test", value=Dist.CLIENT)
 public final class ClientHarness {
+    private static final Map<Integer,Map<String,Object>> HORSE_POSES=new HashMap<>();
     private static long frames, skeletonFrames, crossbowFrames, guardFrames;
     private static final List<String> RENDER_ERRORS=new ArrayList<>();
     private static final Map<Integer,Entity> OBSERVED_ENTITIES=new HashMap<>();
@@ -51,6 +52,15 @@ public final class ClientHarness {
                 model.root().getAllParts().forEach(part->{
                     if(!Float.isFinite(part.xRot)||!Float.isFinite(part.yRot)||!Float.isFinite(part.zRot))RENDER_ERRORS.add("Non-finite guard model rotation");
                 });
+        }
+        if(event.getEntity() instanceof net.minecraft.world.entity.animal.horse.Horse horse
+                && event.getRenderer().getModel() instanceof net.minecraft.client.model.HorseModel<?> horseModel) {
+            try {
+                var field=net.minecraft.client.model.HorseModel.class.getDeclaredField("headParts");field.setAccessible(true);
+                var head=(net.minecraft.client.model.geom.ModelPart)field.get(horseModel);
+                if(!Float.isFinite(head.xRot)||!Float.isFinite(head.yRot))RENDER_ERRORS.add("Non-finite horse head rotation");
+                HORSE_POSES.put(horse.getId(),Map.of("grazing",horse.isEating(),"eatAnim",horse.getEatAnim(1),"headX",head.xRot,"headY",head.y));
+            } catch(ReflectiveOperationException error) {RENDER_ERRORS.add(error.toString());}
         }
         if(!(event.getEntity() instanceof AbstractSkeleton skeleton))return;
         skeletonFrames++;
@@ -91,6 +101,12 @@ public final class ClientHarness {
             }
             case "disconnect":if(mc.level!=null)mc.level.disconnect();mc.disconnect();mc.setScreen(new TitleScreen());return true;
             case "select":mc.player.getInventory().selected=q.get("slot").getAsInt();return true;
+            case "use":mc.options.keyUse.setDown(q.get("value").getAsBoolean());return true;
+            case "useBlock": {
+                var pos=new net.minecraft.core.BlockPos(q.get("x").getAsInt(),q.get("y").getAsInt(),q.get("z").getAsInt());
+                return mc.gameMode.useItemOn(mc.player,InteractionHand.MAIN_HAND,
+                        new net.minecraft.world.phys.BlockHitResult(net.minecraft.world.phys.Vec3.atCenterOf(pos),net.minecraft.core.Direction.UP,pos,false)).toString();
+            }
             case "walk":mc.options.keyUp.setDown(q.get("value").getAsBoolean());return true;
             case "shift": {
                 boolean value=q.get("value").getAsBoolean();mc.options.keyShift.setDown(value);mc.player.setShiftKeyDown(value);
@@ -137,6 +153,7 @@ public final class ClientHarness {
         result.put("guardFrames",guardFrames);
         result.put("crossbowPoses",new HashMap<>(CROSSBOW_POSES));
         result.put("spiderPoses",new HashMap<>(SPIDER_POSES));
+        result.put("horsePoses",new HashMap<>(HORSE_POSES));
         if(mc.screen instanceof CreativeModeInventoryScreen creative) {
             result.put("creativeTabs",creative.getCurrentPage().getVisibleTabs().stream().map(tab->Map.of(
                     "title",tab.getDisplayName().getString(),"top",creative.getCurrentPage().isTop(tab),
@@ -158,6 +175,13 @@ public final class ClientHarness {
                 if(MercenaryHarness.isGuard(e))info.put("privateHighlight",Class.forName("dev.villagerscontract.ClientGuardHighlights").getMethod("highlighted",Entity.class).invoke(null,e));
                 entities.add(info);OBSERVED_ENTITIES.put(e.getId(),e);
             }result.put("entities",entities);
+            var meatModels=new LinkedHashMap<String,Object>();
+            for(var item:List.of(FantasyFeudalismMobs.RAW_HORSE.get(),FantasyFeudalismMobs.COOKED_HORSE.get())) {
+                var meatModel=mc.getItemRenderer().getModel(new ItemStack(item),mc.level,mc.player,0);
+                meatModels.put(net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(item).toString(),Map.of(
+                        "missing",meatModel==mc.getModelManager().getMissingModel(),"sprite",meatModel.getParticleIcon().contents().name().toString()));
+            }
+            result.put("horseMeatModels",meatModels);
             ItemStack bottle=new ItemStack(FantasyFeudalismMobs.BEE_BOTTLE.get());
             var model=mc.getItemRenderer().getModel(bottle,mc.level,mc.player,0);
             result.put("beeBottleModelMissing",model==mc.getModelManager().getMissingModel());

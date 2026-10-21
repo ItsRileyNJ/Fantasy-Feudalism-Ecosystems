@@ -13,6 +13,7 @@ import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Bee;
+import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.player.Player;
@@ -58,6 +59,10 @@ public final class FeudalEvents {
             MobRules.initialize(mob, event.loadedFromDisk());
         }
         if (event.getEntity() instanceof Silverfish fish) SilverfishBurrowing.restore(fish);
+        if (event.getEntity() instanceof Horse horse) {
+            HorseLife.initialize(horse);
+            horse.setEating(false); // An interrupted saved grazing goal must not leave a horse immobile.
+        }
         if (event.getEntity() instanceof AbstractArrow arrow && arrow.getOwner() instanceof AbstractSkeleton skeleton
                 && !event.loadedFromDisk() && !arrow.getPersistentData().getBoolean("ffm_faster")) {
             SkeletonBallistics.accelerate(arrow, skeleton);
@@ -214,6 +219,9 @@ public final class FeudalEvents {
     public static void drops(LivingDropsEvent event) {
         LivingEntity mob = event.getEntity();
         if (!mob.level().getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) return;
+        if (mob instanceof Horse horse && !horse.isBaby())
+            event.getDrops().add(new ItemEntity(mob.level(), mob.getX(), mob.getY(), mob.getZ(),
+                    new ItemStack(FantasyFeudalismMobs.RAW_HORSE.get(), 1 + mob.getRandom().nextInt(2))));
         if (mob instanceof Creeper) event.getDrops().add(new ItemEntity(mob.level(), mob.getX(), mob.getY(), mob.getZ(),
                 new ItemStack(Items.MOSS_BLOCK, 1 + mob.getRandom().nextInt(2))));
         if (mob instanceof Ghast) {

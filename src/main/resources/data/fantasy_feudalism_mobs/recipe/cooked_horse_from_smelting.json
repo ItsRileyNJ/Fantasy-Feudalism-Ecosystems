@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "ingredient": {
+    "item": "fantasy_feudalism_mobs:raw_horse"
+  },
+  "result": {
+    "id": "fantasy_feudalism_mobs:cooked_horse",
+    "count": 1
+  },
+  "experience": 0.35,
+  "cookingtime": 200
+}

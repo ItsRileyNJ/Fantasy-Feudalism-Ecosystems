@@ -2,7 +2,7 @@ package net.itsrileynj.fantasyfeudalismmobs.gametest;
 
 import java.util.Comparator;
 import java.util.List;
-import net.itsrileynj.fantasyfeudalismmobs.CowHerd;
+import net.itsrileynj.fantasyfeudalismmobs.SpawnHerd;
 import net.itsrileynj.fantasyfeudalismmobs.FantasyFeudalismMobs;
 import net.minecraft.gametest.framework.*;
 import net.minecraft.nbt.CompoundTag;
@@ -30,11 +30,11 @@ public final class CowHerdTests {
         var first=h.spawn(EntityType.COW,4,2,4);var second=h.spawn(EntityType.COW,6,2,4);
         var separate=h.spawn(EntityType.COW,8,2,4);
         var group=spawnGroup(h,first,null);spawnGroup(h,second,group);spawnGroup(h,separate,null);
-        h.assertTrue(CowHerd.together(first,second),"Cows finalized in one spawn group share a herd");
-        h.assertFalse(CowHerd.together(first,separate),"Nearby cows from different spawn groups do not merge herds");
+        h.assertTrue(SpawnHerd.together(first,second),"Cows finalized in one spawn group share a herd");
+        h.assertFalse(SpawnHerd.together(first,separate),"Nearby cows from different spawn groups do not merge herds");
         CompoundTag saved=second.saveWithoutId(new CompoundTag());second.discard();
         var loaded=EntityType.COW.create(h.getLevel());loaded.load(saved);h.getLevel().addFreshEntity(loaded);
-        h.assertTrue(CowHerd.together(first,loaded),"Herd membership survives entity save/load");
+        h.assertTrue(SpawnHerd.together(first,loaded),"Herd membership survives entity save/load");
         h.succeed();
     }
 
@@ -65,12 +65,12 @@ public final class CowHerdTests {
         leader.moveTo(h.absoluteVec(new net.minecraft.world.phys.Vec3(3,2,8)));
         follower.moveTo(h.absoluteVec(new net.minecraft.world.phys.Vec3(14,2,8)));
         follower.setOnGround(true);
-        var goal=new CowHerd.FollowHerdGoal(follower);
+        var goal=new SpawnHerd.FollowHerdGoal(follower);
         h.assertTrue(goal.canUse(),"Surviving cows choose a replacement herd leader");
         goal.start();goal.tick();h.assertFalse(follower.getNavigation().isDone(),"The survivor paths to the new leader");
         follower.setLeashedTo(leader,false);
         h.assertFalse(goal.canContinueToUse(),"Herd behavior yields to a leash");goal.stop();
-        h.assertFalse(new CowHerd.FollowHerdGoal(follower).canUse(),"A leashed cow cannot start herd following");
+        h.assertFalse(new SpawnHerd.FollowHerdGoal(follower).canUse(),"A leashed cow cannot start herd following");
         h.succeed();
     }
 }

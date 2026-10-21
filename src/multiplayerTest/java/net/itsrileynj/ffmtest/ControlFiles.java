@@ -78,6 +78,7 @@ public final class ControlFiles {
     public static Map<String,Object> player(Player player) {
         var info = entity(player);
         info.put("name", player.getName().getString()); info.put("health", player.getHealth());
+        info.put("food",player.getFoodData().getFoodLevel());info.put("saturation",player.getFoodData().getSaturationLevel());
         info.put("selected", player.getInventory().selected);
         var inventory = new ArrayList<Map<String,Object>>();
         for (int i = 0; i < player.getInventory().getContainerSize(); i++) inventory.add(stack(player.getInventory().getItem(i)));
@@ -91,6 +92,7 @@ public final class ControlFiles {
         info.put("position", List.of(entity.getX(),entity.getY(),entity.getZ()));
         info.put("alive", entity.isAlive()); info.put("removed", entity.isRemoved());
         info.put("invisible",entity.isInvisible());info.put("silent",entity.isSilent());
+        if(entity instanceof net.minecraft.world.entity.item.ItemEntity item) info.put("item",stack(item.getItem()));
         if(entity instanceof LivingEntity living) {
             info.put("health",living.getHealth());info.put("maxHealth",living.getMaxHealth());
             info.put("effects",living.getActiveEffects().stream().map(e->e.getEffect().getRegisteredName()).toList());
@@ -103,6 +105,14 @@ public final class ControlFiles {
             info.put("spawnType",mob.getSpawnType()==null?"":mob.getSpawnType().name());
             info.put("target",mob.getTarget()==null?-1:mob.getTarget().getId());info.put("noAi",mob.isNoAi());
             info.put("mainHand",stack(mob.getMainHandItem()));
+        }
+        if (entity instanceof net.minecraft.world.entity.animal.horse.Horse horse) {
+            info.put("baby",horse.isBaby());info.put("tamed",horse.isTamed());
+            info.put("grazing",horse.isEating());info.put("eatAnim",horse.getEatAnim(1));
+            if (!horse.level().isClientSide) {
+                info.put("age",horse.getAge());info.put("nextBreed",HorseLife.nextBreed(horse));
+                info.put("herd",horse.getPersistentData().hasUUID("ffm_horse_herd") ? horse.getPersistentData().getUUID("ffm_horse_herd").toString() : "");
+            }
         }
         if (entity instanceof net.minecraft.world.entity.monster.Silverfish fish && !entity.level().isClientSide) {
             info.put("mineshaft",FeudalEvents.inMineshaft((net.minecraft.server.level.ServerLevel)entity.level(),entity.blockPosition()));
