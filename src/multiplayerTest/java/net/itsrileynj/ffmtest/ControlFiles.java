@@ -106,6 +106,18 @@ public final class ControlFiles {
             info.put("target",mob.getTarget()==null?-1:mob.getTarget().getId());info.put("noAi",mob.isNoAi());
             info.put("mainHand",stack(mob.getMainHandItem()));
         }
+        if (entity instanceof net.minecraft.world.entity.animal.Wolf wolf) {
+            info.put("tamed",wolf.isTame());info.put("sitting",wolf.isInSittingPose());
+            info.put("stalking",((WolfState)wolf).ffm$stalking());
+            info.put("crouch",((WolfState)wolf).ffm$crouch(1));
+            if(!wolf.level().isClientSide) { info.put("pack",WolfPacks.pack(wolf).toString());info.put("mealUntil",WolfPacks.deadline(wolf)); }
+        }
+        if(entity instanceof net.minecraft.world.entity.npc.Villager villager) {
+            info.put("baby",villager.isBaby());
+            if(!villager.level().isClientSide) {
+                var state=(VillagerPlayState)villager;info.put("playCat",state.ffm$playCat()==null?"":state.ffm$playCat().toString());info.put("playUntil",state.ffm$playUntil());
+            }
+        }
         if (entity instanceof net.minecraft.world.entity.animal.horse.Horse horse) {
             info.put("baby",horse.isBaby());info.put("tamed",horse.isTamed());
             info.put("grazing",horse.isEating());info.put("eatAnim",horse.getEatAnim(1));

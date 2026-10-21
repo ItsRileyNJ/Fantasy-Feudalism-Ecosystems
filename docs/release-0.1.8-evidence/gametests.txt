@@ -1,0 +1,7 @@
+STANDALONE
+[21:06:45] [Server thread/INFO] [minecraft/GameTestServer]: All 101 required tests passed :)
+BUILD SUCCESSFUL in 37s
+
+COMBINED
+[21:07:43] [Server thread/INFO] [minecraft/GameTestServer]: All 111 required tests passed :)
+BUILD SUCCESSFUL in 37s

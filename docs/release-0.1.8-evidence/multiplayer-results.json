@@ -1,0 +1,1020 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "Wild pack shares one sheep and stalks without hitting from range",
+      "passed": true,
+      "wolves": [
+        {
+          "id": 16,
+          "uuid": "25cfa8f2-2989-4f28-abf8-249424071ee6",
+          "type": "minecraft:wolf",
+          "position": [
+            2.039698797880242,
+            64.0,
+            3.0396964855996806
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": 14,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "tamed": false,
+          "sitting": false,
+          "stalking": true,
+          "crouch": 0.0,
+          "pack": "accb4ebd-77fe-4830-a783-5ec3537b9164",
+          "mealUntil": 0
+        },
+        {
+          "id": 17,
+          "uuid": "cb9f6eaf-cab6-4579-9938-21b8d6919a98",
+          "type": "minecraft:wolf",
+          "position": [
+            2.068452161151117,
+            64.0,
+            5.068449402992183
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": 14,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "tamed": false,
+          "sitting": false,
+          "stalking": true,
+          "crouch": 0.0,
+          "pack": "accb4ebd-77fe-4830-a783-5ec3537b9164",
+          "mealUntil": 0
+        },
+        {
+          "id": 18,
+          "uuid": "ebc52eb3-34ed-4d68-b3c8-20f382f3cc93",
+          "type": "minecraft:wolf",
+          "position": [
+            2.039698797880242,
+            64.0,
+            7.039696485599681
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": 14,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "tamed": false,
+          "sitting": false,
+          "stalking": true,
+          "crouch": 0.0,
+          "pack": "accb4ebd-77fe-4830-a783-5ec3537b9164",
+          "mealUntil": 0
+        }
+      ]
+    },
+    {
+      "name": "Both clients render low body, head/tail down and animated crouched steps",
+      "passed": true,
+      "poses": {
+        "owner": {
+          "16": {
+            "tamed": false,
+            "sitting": false,
+            "stalking": true,
+            "head": {
+              "xRot": 0.35,
+              "y": 16.972046,
+              "scaleY": 1.0
+            },
+            "body": {
+              "xRot": 1.5707964,
+              "y": 16.472046,
+              "scaleY": 1.0
+            },
+            "upperBody": {
+              "xRot": 1.5707964,
+              "y": 16.472046,
+              "scaleY": 1.0
+            },
+            "tail": {
+              "xRot": 0.14999998,
+              "y": 14.5,
+              "scaleY": 1.0
+            },
+            "rightFrontLeg": {
+              "xRot": 0.13456926,
+              "y": 18.0,
+              "scaleY": 0.75
+            },
+            "leftFrontLeg": {
+              "xRot": -0.13456926,
+              "y": 18.0,
+              "scaleY": 0.75
+            }
+          },
+          "17": {
+            "tamed": false,
+            "sitting": false,
+            "stalking": true,
+            "head": {
+              "xRot": 0.35,
+              "y": 16.975433,
+              "scaleY": 1.0
+            },
+            "body": {
+              "xRot": 1.5707964,
+              "y": 16.475433,
+              "scaleY": 1.0
+            },
+            "upperBody": {
+              "xRot": 1.5707964,
+              "y": 16.475433,
+              "scaleY": 1.0
+            },
+            "tail": {
+              "xRot": 0.14999998,
+              "y": 14.5,
+              "scaleY": 1.0
+            },
+            "rightFrontLeg": {
+              "xRot": 0.14576736,
+              "y": 18.0,
+              "scaleY": 0.75
+            },
+            "leftFrontLeg": {
+              "xRot": -0.14576736,
+              "y": 18.0,
+              "scaleY": 0.75
+            }
+          },
+          "18": {
+            "tamed": false,
+            "sitting": false,
+            "stalking": true,
+            "head": {
+              "xRot": 0.35,
+              "y": 16.972046,
+              "scaleY": 1.0
+            },
+            "body": {
+              "xRot": 1.5707964,
+              "y": 16.472046,
+              "scaleY": 1.0
+            },
+            "upperBody": {
+              "xRot": 1.5707964,
+              "y": 16.472046,
+              "scaleY": 1.0
+            },
+            "tail": {
+              "xRot": 0.14999998,
+              "y": 14.5,
+              "scaleY": 1.0
+            },
+            "rightFrontLeg": {
+              "xRot": 0.13456926,
+              "y": 18.0,
+              "scaleY": 0.75
+            },
+            "leftFrontLeg": {
+              "xRot": -0.13456926,
+              "y": 18.0,
+              "scaleY": 0.75
+            }
+          }
+        },
+        "guest": {
+          "16": {
+            "tamed": false,
+            "sitting": false,
+            "stalking": true,
+            "head": {
+              "scaleY": 1.0,
+              "y": 16.984438,
+              "xRot": 0.35
+            },
+            "body": {
+              "scaleY": 1.0,
+              "y": 16.484438,
+              "xRot": 1.5707964
+            },
+            "upperBody": {
+              "scaleY": 1.0,
+              "y": 16.484438,
+              "xRot": 1.5707964
+            },
+            "tail": {
+              "scaleY": 1.0,
+              "y": 14.5,
+              "xRot": 0.14999998
+            },
+            "rightFrontLeg": {
+              "scaleY": 0.75,
+              "y": 18.0,
+              "xRot": 0.14560041
+            },
+            "leftFrontLeg": {
+              "scaleY": 0.75,
+              "y": 18.0,
+              "xRot": -0.14560041
+            }
+          },
+          "17": {
+            "tamed": false,
+            "sitting": false,
+            "stalking": true,
+            "head": {
+              "scaleY": 1.0,
+              "y": 16.990696,
+              "xRot": 0.35
+            },
+            "body": {
+              "scaleY": 1.0,
+              "y": 16.490696,
+              "xRot": 1.5707964
+            },
+            "upperBody": {
+              "scaleY": 1.0,
+              "y": 16.490696,
+              "xRot": 1.5707964
+            },
+            "tail": {
+              "scaleY": 1.0,
+              "y": 14.5,
+              "xRot": 0.14999998
+            },
+            "rightFrontLeg": {
+              "scaleY": 0.75,
+              "y": 18.0,
+              "xRot": 0.1500489
+            },
+            "leftFrontLeg": {
+              "scaleY": 0.75,
+              "y": 18.0,
+              "xRot": -0.1500489
+            }
+          },
+          "18": {
+            "tamed": false,
+            "sitting": false,
+            "stalking": true,
+            "head": {
+              "scaleY": 1.0,
+              "y": 16.984438,
+              "xRot": 0.35
+            },
+            "body": {
+              "scaleY": 1.0,
+              "y": 16.484438,
+              "xRot": 1.5707964
+            },
+            "upperBody": {
+              "scaleY": 1.0,
+              "y": 16.484438,
+              "xRot": 1.5707964
+            },
+            "tail": {
+              "scaleY": 1.0,
+              "y": 14.5,
+              "xRot": 0.14999998
+            },
+            "rightFrontLeg": {
+              "scaleY": 0.75,
+              "y": 18.0,
+              "xRot": 0.14560041
+            },
+            "leftFrontLeg": {
+              "scaleY": 0.75,
+              "y": 18.0,
+              "xRot": -0.14560041
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Nearby tamed wolves retain vanilla model pose while wild wolves crouch",
+      "passed": true,
+      "poses": {
+        "owner": {
+          "tamed": true,
+          "sitting": false,
+          "stalking": false,
+          "head": {
+            "xRot": 0.0,
+            "y": 13.5,
+            "scaleY": 1.0
+          },
+          "body": {
+            "xRot": 1.5707964,
+            "y": 14.0,
+            "scaleY": 1.0
+          },
+          "upperBody": {
+            "xRot": 1.5707964,
+            "y": 14.0,
+            "scaleY": 1.0
+          },
+          "tail": {
+            "xRot": 1.7278761,
+            "y": 12.0,
+            "scaleY": 1.0
+          },
+          "rightFrontLeg": {
+            "xRot": -0.3705906,
+            "y": 16.0,
+            "scaleY": 1.0
+          },
+          "leftFrontLeg": {
+            "xRot": 0.3705906,
+            "y": 16.0,
+            "scaleY": 1.0
+          }
+        },
+        "guest": {
+          "tamed": true,
+          "sitting": false,
+          "stalking": false,
+          "head": {
+            "scaleY": 1.0,
+            "y": 13.5,
+            "xRot": 0.0
+          },
+          "body": {
+            "scaleY": 1.0,
+            "y": 14.0,
+            "xRot": 1.5707964
+          },
+          "upperBody": {
+            "scaleY": 1.0,
+            "y": 14.0,
+            "xRot": 1.5707964
+          },
+          "tail": {
+            "scaleY": 1.0,
+            "y": 12.0,
+            "xRot": 1.7278761
+          },
+          "rightFrontLeg": {
+            "scaleY": 1.0,
+            "y": 16.0,
+            "xRot": 0.358419
+          },
+          "leftFrontLeg": {
+            "scaleY": 1.0,
+            "y": 16.0,
+            "xRot": -0.358419
+          }
+        }
+      }
+    },
+    {
+      "name": "The pack changes from stalking to charging together near seven blocks",
+      "passed": true,
+      "wolves": [
+        {
+          "id": 16,
+          "uuid": "25cfa8f2-2989-4f28-abf8-249424071ee6",
+          "type": "minecraft:wolf",
+          "position": [
+            8.70119154772818,
+            64.0,
+            3.499138416840839
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": 14,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "tamed": false,
+          "sitting": false,
+          "stalking": false,
+          "crouch": 0.0,
+          "pack": "accb4ebd-77fe-4830-a783-5ec3537b9164",
+          "mealUntil": 0
+        },
+        {
+          "id": 17,
+          "uuid": "cb9f6eaf-cab6-4579-9938-21b8d6919a98",
+          "type": "minecraft:wolf",
+          "position": [
+            10.419273063773026,
+            64.0,
+            5.498396725005564
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": 14,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "tamed": false,
+          "sitting": false,
+          "stalking": false,
+          "crouch": 0.0,
+          "pack": "accb4ebd-77fe-4830-a783-5ec3537b9164",
+          "mealUntil": 0
+        },
+        {
+          "id": 18,
+          "uuid": "ebc52eb3-34ed-4d68-b3c8-20f382f3cc93",
+          "type": "minecraft:wolf",
+          "position": [
+            10.35290442232592,
+            64.0,
+            7.444934666849587
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": 14,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "tamed": false,
+          "sitting": false,
+          "stalking": false,
+          "crouch": 0.0,
+          "pack": "accb4ebd-77fe-4830-a783-5ec3537b9164",
+          "mealUntil": 0
+        }
+      ]
+    },
+    {
+      "name": "One sheep kill feeds every pack member and leaves the next sheep unharmed",
+      "passed": true,
+      "until": 111673,
+      "wolves": [
+        {
+          "id": 16,
+          "uuid": "25cfa8f2-2989-4f28-abf8-249424071ee6",
+          "type": "minecraft:wolf",
+          "position": [
+            16.122620034014037,
+            64.0,
+            5.75585636062031
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "tamed": false,
+          "sitting": false,
+          "stalking": false,
+          "crouch": 0.0,
+          "pack": "accb4ebd-77fe-4830-a783-5ec3537b9164",
+          "mealUntil": 111673
+        },
+        {
+          "id": 17,
+          "uuid": "cb9f6eaf-cab6-4579-9938-21b8d6919a98",
+          "type": "minecraft:wolf",
+          "position": [
+            17.32897480495303,
+            64.0,
+            5.817065981089258
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "tamed": false,
+          "sitting": false,
+          "stalking": false,
+          "crouch": 0.0,
+          "pack": "accb4ebd-77fe-4830-a783-5ec3537b9164",
+          "mealUntil": 111673
+        },
+        {
+          "id": 18,
+          "uuid": "ebc52eb3-34ed-4d68-b3c8-20f382f3cc93",
+          "type": "minecraft:wolf",
+          "position": [
+            16.689113690208213,
+            64.0,
+            6.56264820320196
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "tamed": false,
+          "sitting": false,
+          "stalking": false,
+          "crouch": 0.0,
+          "pack": "accb4ebd-77fe-4830-a783-5ec3537b9164",
+          "mealUntil": 111673
+        }
+      ],
+      "spare": {
+        "id": 15,
+        "uuid": "d7da2abb-46d5-4772-a36b-0d25b79968eb",
+        "type": "minecraft:sheep",
+        "position": [
+          18.0,
+          64.0,
+          10.0
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        }
+      }
+    },
+    {
+      "name": "Both clients return to the standing pose after the hunt",
+      "passed": true,
+      "wolves": {
+        "owner": [
+          {
+            "id": 16,
+            "uuid": "25cfa8f2-2989-4f28-abf8-249424071ee6",
+            "type": "minecraft:wolf",
+            "position": [
+              16.12255859375,
+              64.0,
+              5.755859375
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "health": 8.0,
+            "maxHealth": 8.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "tamed": false,
+            "sitting": false,
+            "stalking": false,
+            "crouch": 0.0
+          },
+          {
+            "id": 17,
+            "uuid": "cb9f6eaf-cab6-4579-9938-21b8d6919a98",
+            "type": "minecraft:wolf",
+            "position": [
+              17.328857421875,
+              64.0,
+              5.817138671875
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "health": 8.0,
+            "maxHealth": 8.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "tamed": false,
+            "sitting": false,
+            "stalking": false,
+            "crouch": 0.0
+          },
+          {
+            "id": 18,
+            "uuid": "ebc52eb3-34ed-4d68-b3c8-20f382f3cc93",
+            "type": "minecraft:wolf",
+            "position": [
+              16.689208984375,
+              64.0,
+              6.562744140625
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "health": 8.0,
+            "maxHealth": 8.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "tamed": false,
+            "sitting": false,
+            "stalking": false,
+            "crouch": 0.0
+          }
+        ],
+        "guest": [
+          {
+            "id": 16,
+            "uuid": "25cfa8f2-2989-4f28-abf8-249424071ee6",
+            "type": "minecraft:wolf",
+            "position": [
+              16.12255859375,
+              64.0,
+              5.755859375
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "health": 8.0,
+            "maxHealth": 8.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "tamed": false,
+            "sitting": false,
+            "stalking": false,
+            "crouch": 0.0
+          },
+          {
+            "id": 17,
+            "uuid": "cb9f6eaf-cab6-4579-9938-21b8d6919a98",
+            "type": "minecraft:wolf",
+            "position": [
+              17.328857421875,
+              64.0,
+              5.817138671875
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "health": 8.0,
+            "maxHealth": 8.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "tamed": false,
+            "sitting": false,
+            "stalking": false,
+            "crouch": 0.0
+          },
+          {
+            "id": 18,
+            "uuid": "ebc52eb3-34ed-4d68-b3c8-20f382f3cc93",
+            "type": "minecraft:wolf",
+            "position": [
+              16.689208984375,
+              64.0,
+              6.562744140625
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "health": 8.0,
+            "maxHealth": 8.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "tamed": false,
+            "sitting": false,
+            "stalking": false,
+            "crouch": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "name": "Tamed owner-defense AI still targets sheep during the former pack cooldown",
+      "passed": true,
+      "pet": {
+        "id": 19,
+        "uuid": "b3ee9370-6f43-4313-b15a-f834116776b9",
+        "type": "minecraft:wolf",
+        "position": [
+          14.5,
+          64.0,
+          9.5
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 40.0,
+        "maxHealth": 40.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "",
+        "target": 15,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "tamed": true,
+        "sitting": false,
+        "stalking": false,
+        "crouch": 0.0,
+        "pack": "accb4ebd-77fe-4830-a783-5ec3537b9164",
+        "mealUntil": 111673
+      }
+    },
+    {
+      "name": "Tamed wolves still follow their owner and obey real sit/follow interactions",
+      "passed": true
+    },
+    {
+      "name": "Baby villager follows a moving untamed village cat without attacking",
+      "passed": true,
+      "child": {
+        "id": 27,
+        "uuid": "61c4d005-efb0-4186-9f6e-949cff42d288",
+        "type": "minecraft:villager",
+        "position": [
+          23.436239435686417,
+          64.0,
+          7.5002249740120135
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 20.0,
+        "maxHealth": 20.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "baby": true,
+        "playCat": "4765eb84-c8d5-4840-8571-f41beb0e0b53",
+        "playUntil": 87984
+      },
+      "cat": {
+        "id": 26,
+        "uuid": "4765eb84-c8d5-4840-8571-f41beb0e0b53",
+        "type": "minecraft:cat",
+        "position": [
+          29.592056782131394,
+          64.0,
+          5.666163563771431
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 10.0,
+        "maxHealth": 10.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        }
+      },
+      "started": 87824
+    },
+    {
+      "name": "The harmless play chase stops after 160 server ticks",
+      "passed": true,
+      "until": 87984,
+      "observed": 87988,
+      "child": {
+        "id": 27,
+        "uuid": "61c4d005-efb0-4186-9f6e-949cff42d288",
+        "type": "minecraft:villager",
+        "position": [
+          44.14914685522419,
+          64.0,
+          1.7444409688875526
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 20.0,
+        "maxHealth": 20.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "baby": true,
+        "playCat": "",
+        "playUntil": 0
+      },
+      "cat": {
+        "id": 26,
+        "uuid": "4765eb84-c8d5-4840-8571-f41beb0e0b53",
+        "type": "minecraft:cat",
+        "position": [
+          46.433186551301176,
+          64.0,
+          -2.830476343146623
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 10.0,
+        "maxHealth": 10.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        }
+      }
+    },
+    {
+      "name": "Both clients stay connected with no recorded render errors",
+      "passed": true,
+      "clients": {
+        "owner": {
+          "connected": true,
+          "renderErrors": []
+        },
+        "guest": {
+          "connected": true,
+          "renderErrors": []
+        }
+      }
+    }
+  ]
+}

@@ -32,6 +32,7 @@ import net.neoforged.neoforge.client.event.*;
 
 @EventBusSubscriber(modid="ffm_multiplayer_test", value=Dist.CLIENT)
 public final class ClientHarness {
+    private static final Map<Integer,Map<String,Object>> WOLF_POSES=new HashMap<>();
     private static final Map<Integer,Map<String,Object>> HORSE_POSES=new HashMap<>();
     private static long frames, skeletonFrames, crossbowFrames, guardFrames;
     private static final List<String> RENDER_ERRORS=new ArrayList<>();
@@ -62,6 +63,21 @@ public final class ClientHarness {
                 HORSE_POSES.put(horse.getId(),Map.of("grazing",horse.isEating(),"eatAnim",horse.getEatAnim(1),"headX",head.xRot,"headY",head.y));
             } catch(ReflectiveOperationException error) {RENDER_ERRORS.add(error.toString());}
         }
+        if(event.getEntity() instanceof net.minecraft.world.entity.animal.Wolf wolf
+                && event.getRenderer().getModel() instanceof net.minecraft.client.model.WolfModel<?> model) {
+            var pose=new LinkedHashMap<String,Object>();
+            pose.put("tamed",wolf.isTame());pose.put("sitting",wolf.isInSittingPose());
+            pose.put("stalking",((net.itsrileynj.fantasyfeudalismmobs.WolfState)wolf).ffm$stalking());
+            try {
+                for(String name:List.of("head","body","upperBody","tail","rightFrontLeg","leftFrontLeg")) {
+                    var field=net.minecraft.client.model.WolfModel.class.getDeclaredField(name);field.setAccessible(true);
+                    var part=(net.minecraft.client.model.geom.ModelPart)field.get(model);
+                    if(!Float.isFinite(part.xRot)||!Float.isFinite(part.y))RENDER_ERRORS.add("Non-finite wolf model pose");
+                    pose.put(name,Map.of("y",part.y,"xRot",part.xRot,"scaleY",part.yScale));
+                }
+                WOLF_POSES.put(wolf.getId(),pose);
+            } catch(ReflectiveOperationException error){RENDER_ERRORS.add(error.toString());}
+        }
         if(!(event.getEntity() instanceof AbstractSkeleton skeleton))return;
         skeletonFrames++;
         if(skeleton.getMainHandItem().getItem() instanceof CrossbowItem)crossbowFrames++;
@@ -91,6 +107,7 @@ public final class ClientHarness {
     private static Object execute(Minecraft mc,JsonObject q)throws Exception {
         String action=q.get("action").getAsString();
         switch(action) {
+            case "cleanView":mc.options.hideGui=q.get("value").getAsBoolean();mc.gui.getChat().clearMessages(true);mc.getTutorial().stop();return true;
             case "watchEffectParticles":EffectParticleProbe.watch(q.get("entity").getAsInt());return true;
             case "effectParticleProbe":return EffectParticleProbe.snapshot();
             case "snapshot":return snapshot(mc);
@@ -154,6 +171,7 @@ public final class ClientHarness {
         result.put("crossbowPoses",new HashMap<>(CROSSBOW_POSES));
         result.put("spiderPoses",new HashMap<>(SPIDER_POSES));
         result.put("horsePoses",new HashMap<>(HORSE_POSES));
+        result.put("wolfPoses",new HashMap<>(WOLF_POSES));
         if(mc.screen instanceof CreativeModeInventoryScreen creative) {
             result.put("creativeTabs",creative.getCurrentPage().getVisibleTabs().stream().map(tab->Map.of(
                     "title",tab.getDisplayName().getString(),"top",creative.getCurrentPage().isTop(tab),

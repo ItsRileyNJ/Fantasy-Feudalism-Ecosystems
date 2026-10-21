@@ -13,6 +13,8 @@ import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Bee;
+import net.minecraft.world.entity.animal.Wolf;
+import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.*;
@@ -59,6 +61,7 @@ public final class FeudalEvents {
             MobRules.initialize(mob, event.loadedFromDisk());
         }
         if (event.getEntity() instanceof Silverfish fish) SilverfishBurrowing.restore(fish);
+        if (event.getEntity() instanceof Wolf wolf) WolfPacks.initialize(wolf);
         if (event.getEntity() instanceof Horse horse) {
             HorseLife.initialize(horse);
             horse.setEating(false); // An interrupted saved grazing goal must not leave a horse immobile.
@@ -143,9 +146,19 @@ public final class FeudalEvents {
                 && !fish.level().isClientSide) SilverfishBurrowing.creditKill(fish);
     }
 
+    @SubscribeEvent(priority = net.neoforged.bus.api.EventPriority.LOWEST)
+    public static void wolfMeal(LivingDeathEvent event) {
+        if(event.getEntity() instanceof Sheep && event.getSource().getEntity() instanceof Wolf wolf
+                && !wolf.level().isClientSide && !wolf.isTame()) WolfPacks.ateSheep(wolf);
+    }
+
     @SubscribeEvent
     public static void targeting(LivingChangeTargetEvent event) {
         LivingEntity proposed = event.getNewAboutToBeSetTarget();
+        if(event.getEntity() instanceof Wolf wolf && !wolf.isTame() && WolfPacks.food(proposed)
+                && !WolfPacks.hungry(wolf) && wolf.getLastHurtByMob()!=proposed) {
+            event.setNewAboutToBeSetTarget(null);return;
+        }
         if (event.getEntity() instanceof Silverfish fish && proposed != null && SilverfishBurrowing.hasKill(fish)) {
             event.setNewAboutToBeSetTarget(null);
             return;
@@ -180,6 +193,7 @@ public final class FeudalEvents {
             event.setCanceled(true);
             return;
         }
+        if (entity instanceof Wolf wolf) WolfPacks.beforeTick(wolf);
         if (entity instanceof Zombie zombie) MobRules.updateZombie(zombie);
         if (entity instanceof AbstractSkeleton skeleton && skeleton.getTarget() instanceof Player player
                 && (player.isCreative() || player.isSpectator())) {

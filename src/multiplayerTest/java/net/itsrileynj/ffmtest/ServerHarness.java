@@ -113,6 +113,32 @@ public final class ServerHarness {
                 }
                 p.containerMenu.broadcastChanges(); p.inventoryMenu.broadcastChanges(); return true;
             }
+            case "wolfPack": {
+                net.minecraft.world.entity.SpawnGroupData group=null;var pack=new ArrayList<Map<String,Object>>();
+                for(int i=0;i<q.get("count").getAsInt();i++) {
+                    var wolf=EntityType.WOLF.create(level);wolf.moveTo(number(q,"x",2),number(q,"y",64),number(q,"z",2)+i*2,0,0);
+                    group=wolf.finalizeSpawn(level,level.getCurrentDifficultyAt(wolf.blockPosition()),net.minecraft.world.entity.MobSpawnType.NATURAL,group);
+                    wolf.setAge(0);wolf.setPersistenceRequired();level.addFreshEntity(wolf);pack.add(ControlFiles.entity(wolf));
+                }
+                return pack;
+            }
+            case "villagePlay": {
+                var pos=new BlockPos(20,64,4);
+                level.setBlock(pos.south(),Blocks.WHITE_BED.defaultBlockState(),2);
+                level.setBlock(pos,Blocks.WHITE_BED.defaultBlockState().setValue(net.minecraft.world.level.block.BedBlock.PART,net.minecraft.world.level.block.state.properties.BedPart.HEAD),3);
+                var manager=level.getPoiManager();manager.add(pos,level.registryAccess().registryOrThrow(net.minecraft.core.registries.Registries.POINT_OF_INTEREST_TYPE)
+                        .getHolderOrThrow(net.minecraft.world.entity.ai.village.poi.PoiTypes.HOME));
+                manager.take(type->type.is(net.minecraft.world.entity.ai.village.poi.PoiTypes.HOME),(type,at)->at.equals(pos),pos,1);
+                var cat=EntityType.CAT.create(level);cat.moveTo(23,64,8);cat.setPersistenceRequired();level.addFreshEntity(cat);
+                var child=EntityType.VILLAGER.create(level);child.moveTo(17,64,8);child.setBaby(true);child.setPersistenceRequired();level.addFreshEntity(child);
+                var brain=child.getBrain();brain.setActiveActivityIfPossible(net.minecraft.world.entity.schedule.Activity.PLAY);
+                brain.eraseMemory(net.minecraft.world.entity.ai.memory.MemoryModuleType.WALK_TARGET);
+                var play=new net.itsrileynj.fantasyfeudalismmobs.BabyCatPlay();
+                brain.addActivity(net.minecraft.world.entity.schedule.Activity.PLAY,com.google.common.collect.ImmutableList.of(com.mojang.datafixers.util.Pair.of(1,play)));
+                long seed=0;while(RandomSource.create(seed).nextInt(12)!=0)seed++;child.getRandom().setSeed(seed);
+                if(!play.tryStart(level,child,level.getGameTime()))throw new IllegalStateException("Village play fixture did not start");
+                return Map.of("child",ControlFiles.entity(child),"cat",ControlFiles.entity(cat));
+            }
             case "horseHerd": {
                 net.minecraft.world.entity.SpawnGroupData group=null;
                 var herd=new ArrayList<Map<String,Object>>();
@@ -146,6 +172,10 @@ public final class ServerHarness {
                     MercenaryHarness.call(e,"bind",new Class<?>[]{BlockPos.class,UUID.class,BlockPos.class},null,owner.getUUID(),e.blockPosition());
                     ((Mob)e).setItemSlot(EquipmentSlot.MAINHAND,new ItemStack(Items.CROSSBOW));
                     MercenaryHarness.call(e,"initializeMercenary",new Class<?>[]{boolean.class},false);
+                }
+                if(e instanceof net.minecraft.world.entity.animal.Wolf wolf && q.has("owner")) {
+                    var p=server.getPlayerList().getPlayerByName(q.get("owner").getAsString());
+                    wolf.setOwnerUUID(p.getUUID());wolf.setTame(true,true);
                 }
                 if(e instanceof Spider spider && q.has("owner")) {
                     ServerPlayer p=server.getPlayerList().getPlayerByName(q.get("owner").getAsString());

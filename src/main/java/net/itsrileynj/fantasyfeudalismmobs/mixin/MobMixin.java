@@ -34,6 +34,7 @@ public abstract class MobMixin extends LivingEntity {
         Mob mob = (Mob)(Object)this;
         MobRules.finalizeArmor(mob, mob.getRandom(), difficulty);
         SpawnHerd.spawned(mob, cir.getReturnValue());
+        WolfPacks.spawned(mob, cir.getReturnValue(), reason);
     }
 
     @Inject(method = "enchantSpawnedArmor", at = @At("HEAD"), cancellable = true)

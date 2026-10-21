@@ -6,7 +6,15 @@ This repository contains only the Fantasy Feudal Mobs project, its build tools, 
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_mobs-0.1.7.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_mobs-0.1.8.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.8 changes
+
+- Wild wolf packs share a sheep target detected within 15 blocks, stalk slowly together, and charge at normal attack speed once a member gets within seven blocks. Their animated stalking pose lowers the body, head and tail, with shorter walking steps and smooth transitions.
+- A wild wolf killing a sheep starts a **24,000-tick / one-Minecraft-day** hunting cooldown for its whole pack, including unloaded members. Pack identity and meal deadlines survive saves. Tamed wolf orders, owner defense, feeding and normal combat stay vanilla.
+- Baby villagers occasionally chase untamed village cats during their daytime play activity, for up to **160 ticks / eight seconds**. Cats run away playfully; neither participant attacks or damages the other. Danger interrupts play. Eligible children roll a 1-in-12 chance every ten seconds while idle, with at least two minutes between successful chases.
+
+See [the validation report](docs/RELEASE_0.1.8.md).
 
 ## Version 0.1.7 changes
 
@@ -50,7 +58,7 @@ The six-second level I companion effects and their approved family exclusions ar
 
 ## Mercenaries compatibility
 
-Version **0.1.1** includes optional compatibility with the supplied **Fantasy Feudalism: Mercenaries 1.15.7** (`villagerscontract`). Install Mobs 0.1.7 and Mercenaries 1.15.7 on the server and every client, replacing the older Mobs JAR. Mercenaries remains optional when using Mobs alone.
+Version **0.1.1** includes optional compatibility with the supplied **Fantasy Feudalism: Mercenaries 1.15.7** (`villagerscontract`). Install Mobs 0.1.8 and Mercenaries 1.15.7 on the server and every client, replacing the older Mobs JAR. Mercenaries remains optional when using Mobs alone.
 
 Guards recognize tamed spiders as allies, companions respect guard alliances, and mercenary combat spacing follows a skeleton's equipped weapon. Faster skeleton arrows retain the requested 40% speed increase with a corrected gravity arc and vanilla spread. Rejected or losing guard-menu transfers explicitly correct the hidden player inventory so two viewers cannot retain predicted ghost items.
 

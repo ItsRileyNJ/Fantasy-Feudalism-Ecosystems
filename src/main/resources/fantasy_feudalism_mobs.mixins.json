@@ -4,6 +4,10 @@
   "package": "net.itsrileynj.fantasyfeudalismmobs.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "VillagerCatPlayMixin",
+    "CatPlayMixin",
+    "WolfMixin",
+    "WolfTamingMixin",
     "ChickenMixin",
     "CowMixin",
     "HorseMixin",
@@ -28,6 +32,7 @@
     "ZombieAttackGoalMixin"
   ],
   "client": [
+    "WolfModelMixin",
     "SkeletonModelMixin",
     "SpiderRendererMixin",
     "CaveSpiderRendererMixin",
