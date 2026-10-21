@@ -10,7 +10,7 @@ Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), the
 
 ## Version 0.1.3 changes
 
-Sitting tamed regular and cave spiders tilt their rear abdomen downward by approximately ten degrees. Following restores the normal angle. This replaces the vertical offset in 0.1.2; see [the validation report](docs/RELEASE_0.1.3.md).
+Sitting tamed regular and cave spiders tilt their rear abdomen downward by approximately ten degrees. Following restores the normal angle. This replaces the vertical offset in 0.1.2; see [the validation report](docs/RELEASE_0.1.3.md). A subsequent [two-client particle audit](docs/SPIDER_EFFECT_PARTICLES.md) verified the matching vanilla particles for all companion effects using this unchanged release.
 
 ## Version 0.1.2 changes
 
@@ -55,7 +55,7 @@ Choose a fresh test directory for each combined run: Mercenaries' built-in villa
 - Spiders cannot swim. Tamed spiders avoid water, lava, and fire, take **25% extra fire damage**, and make their own sounds only when a hostile mob is within **16 blocks**.
 - Both wild and tamed spiders use three-block jumps, including three-block edges in their path search. Combat pounces on level ground travel forward with a low arc, reserving high jumps for elevated targets or obstacles. Wild regular spiders hunt bees and fully heal after killing one; wild cave spiders hunt silverfish. Both wild and tamed spider types are immune to falls shorter than nine blocks.
 - Right-click a tamed spider with **shears** for **1–4 string**, costing **1 shears durability**. Use a **glass bottle** for **one standard vanilla Poison potion**. Each resource has its own **48,000-game-tick** cooldown per spider, saved with the entity.
-- Tamed spider hits apply **Slowness I and Weakness I for six seconds** to hostile mobs; cave spiders also apply **Poison I for six seconds**. Skeleton, zombie, and spider families are excluded from these effects.
+- Tamed spider hits apply **Slowness I and Weakness I for six seconds** to hostile mobs; cave spiders also apply **Poison I for six seconds**. The affected enemy shows the matching vanilla status-effect particles. Skeleton, zombie, and spider families are excluded from these effects.
 - Wild spiders are neutral toward players who have a tamed spider following them.
 
 ## Other mob changes

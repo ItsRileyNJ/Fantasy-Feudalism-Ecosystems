@@ -289,3 +289,7 @@ The user requested a Fantasy Feudal Mobs creative inventory tab and a small blac
 ## Sitting-pose correction in 0.1.3
 
 The user clarified that the tamed spider's abdomen should angle downward slightly instead of being translated vertically. Apply a slight downward pitch to the rear abdomen of sitting regular and cave spiders, restoring its normal angle when following. Wild spiders retain their normal pose.
+
+## Companion effect particles
+
+Successful companion attacks must show the vanilla particles belonging to the effects on the affected enemy: Slowness I and Weakness I, plus Poison I for cave spiders. Preserve their approved six-second duration and the existing target exclusions and vanilla effect immunities. Particle visibility must synchronize to other players and stop emitting when the effects expire.

@@ -108,6 +108,13 @@ public final class ServerHarness {
                 SpiderCompanion.data(spider).putLong(SpiderCompanion.POISON_READY,0);return true;
             }
             case "health": { ((LivingEntity)entity(level,q)).setHealth((float)number(q,"health",0)); return true; }
+            case "hit": {
+                Mob attacker=(Mob)entity(level,q);
+                Entity victim=level.getEntity(q.get("target").getAsInt());
+                if (victim==null) throw new IllegalArgumentException("Victim is not loaded");
+                boolean hit=attacker.doHurtTarget(victim);
+                return Map.of("successful",hit,"target",ControlFiles.entity(victim));
+            }
             case "remove": { entity(level,q).discard();return true; }
             case "target": {
                 Mob mob=(Mob)entity(level,q);mob.setNoAi(false);mob.setTarget((LivingEntity)level.getEntity(q.get("target").getAsInt()));return true;

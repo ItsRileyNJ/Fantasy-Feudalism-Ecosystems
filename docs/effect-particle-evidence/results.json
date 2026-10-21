@@ -1,0 +1,160 @@
+[
+  {
+    "name": "spider: visible level I six-second effects and correct vanilla particle colors sync to both clients",
+    "status": "passed",
+    "detail": [
+      {
+        "effect": "minecraft:slowness",
+        "particle": {
+          "type": "minecraft:entity_effect",
+          "rgb": 9154528,
+          "alpha": 1.0
+        },
+        "duration": 120,
+        "amplifier": 0,
+        "visible": true,
+        "ambient": false
+      },
+      {
+        "effect": "minecraft:weakness",
+        "particle": {
+          "type": "minecraft:entity_effect",
+          "rgb": 4738376,
+          "alpha": 1.0
+        },
+        "duration": 120,
+        "amplifier": 0,
+        "visible": true,
+        "ambient": false
+      }
+    ]
+  },
+  {
+    "name": "spider: both clients actually create visible particles of every applied effect color at the enemy",
+    "status": "passed",
+    "detail": {
+      "owner": {
+        "colors": {
+          "4738376": 4,
+          "9154528": 3
+        },
+        "error": "",
+        "entity": 12,
+        "ticks": 138
+      },
+      "guest": {
+        "entity": 12,
+        "error": "",
+        "colors": {
+          "4738376": 2,
+          "9154528": 2
+        },
+        "ticks": 23
+      }
+    }
+  },
+  {
+    "name": "spider: effect metadata clears and particle emission stops after expiry on both clients",
+    "status": "passed",
+    "detail": {
+      "owner": {
+        "colors": {},
+        "error": "",
+        "entity": 12,
+        "ticks": 44
+      },
+      "guest": {
+        "entity": 12,
+        "error": "",
+        "colors": {},
+        "ticks": 42
+      }
+    }
+  },
+  {
+    "name": "cave_spider: visible level I six-second effects and correct vanilla particle colors sync to both clients",
+    "status": "passed",
+    "detail": [
+      {
+        "effect": "minecraft:poison",
+        "particle": {
+          "type": "minecraft:entity_effect",
+          "rgb": 8889187,
+          "alpha": 1.0
+        },
+        "duration": 120,
+        "amplifier": 0,
+        "visible": true,
+        "ambient": false
+      },
+      {
+        "effect": "minecraft:slowness",
+        "particle": {
+          "type": "minecraft:entity_effect",
+          "rgb": 9154528,
+          "alpha": 1.0
+        },
+        "duration": 120,
+        "amplifier": 0,
+        "visible": true,
+        "ambient": false
+      },
+      {
+        "effect": "minecraft:weakness",
+        "particle": {
+          "type": "minecraft:entity_effect",
+          "rgb": 4738376,
+          "alpha": 1.0
+        },
+        "duration": 120,
+        "amplifier": 0,
+        "visible": true,
+        "ambient": false
+      }
+    ]
+  },
+  {
+    "name": "cave_spider: both clients actually create visible particles of every applied effect color at the enemy",
+    "status": "passed",
+    "detail": {
+      "owner": {
+        "colors": {
+          "4738376": 2,
+          "8889187": 2,
+          "9154528": 3
+        },
+        "error": "",
+        "entity": 14,
+        "ticks": 31
+      },
+      "guest": {
+        "entity": 14,
+        "error": "",
+        "colors": {
+          "4738376": 4,
+          "8889187": 2,
+          "9154528": 4
+        },
+        "ticks": 31
+      }
+    }
+  },
+  {
+    "name": "cave_spider: effect metadata clears and particle emission stops after expiry on both clients",
+    "status": "passed",
+    "detail": {
+      "owner": {
+        "colors": {},
+        "error": "",
+        "entity": 14,
+        "ticks": 30
+      },
+      "guest": {
+        "entity": 14,
+        "error": "",
+        "colors": {},
+        "ticks": 31
+      }
+    }
+  }
+]

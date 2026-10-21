@@ -66,6 +66,7 @@ public final class ClientHarness {
     }
     @SubscribeEvent public static void tick(ClientTickEvent.Post event) {
         if(System.getProperty("ffm.test.control")==null)return;
+        EffectParticleProbe.tick(Minecraft.getInstance());
         JsonObject q=ControlFiles.command();if(q==null)return;
         try {
             Object value=execute(Minecraft.getInstance(),q);
@@ -80,6 +81,8 @@ public final class ClientHarness {
     private static Object execute(Minecraft mc,JsonObject q)throws Exception {
         String action=q.get("action").getAsString();
         switch(action) {
+            case "watchEffectParticles":EffectParticleProbe.watch(q.get("entity").getAsInt());return true;
+            case "effectParticleProbe":return EffectParticleProbe.snapshot();
             case "snapshot":return snapshot(mc);
             case "connect": {
                 if(mc.level!=null){mc.level.disconnect();mc.disconnect();}OBSERVED_ENTITIES.clear();

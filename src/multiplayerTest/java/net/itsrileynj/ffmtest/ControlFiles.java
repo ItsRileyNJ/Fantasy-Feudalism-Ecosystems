@@ -12,12 +12,39 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.particles.ColorParticleOption;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.network.syncher.EntityDataAccessor;
 import net.itsrileynj.fantasyfeudalismmobs.*;
 
 /** File control is local only. Gameplay interactions still use the real Minecraft connection. */
 public final class ControlFiles {
     public static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static long completed = -1;
+    private static EntityDataAccessor<List<ParticleOptions>> effectParticleData;
+
+    public static Map<String,Object> particle(ParticleOptions option) {
+        var info = new LinkedHashMap<String,Object>();
+        info.put("type", BuiltInRegistries.PARTICLE_TYPE.getKey(option.getType()).toString());
+        if (option instanceof ColorParticleOption color) {
+            info.put("rgb", (Math.round(color.getRed()*255)<<16) | (Math.round(color.getGreen()*255)<<8) | Math.round(color.getBlue()*255));
+            info.put("alpha", color.getAlpha());
+        }
+        return info;
+    }
+
+    // Named development runtime only; these diagnostics never enter the release JAR.
+    @SuppressWarnings("unchecked")
+    private static List<Map<String,Object>> effectParticles(LivingEntity living) {
+        try {
+            if (effectParticleData == null) {
+                var field = LivingEntity.class.getDeclaredField("DATA_EFFECT_PARTICLES");
+                field.setAccessible(true);
+                effectParticleData = (EntityDataAccessor<List<ParticleOptions>>) field.get(null);
+            }
+            return living.getEntityData().get(effectParticleData).stream().map(ControlFiles::particle).toList();
+        } catch (ReflectiveOperationException error) { throw new IllegalStateException(error); }
+    }
     public static Path root() { return Path.of(System.getProperty("ffm.test.control", "/workspace/multiplayer/control/unused")); }
     public static JsonObject command() {
         Path file = root().resolve("command.json");
@@ -66,6 +93,10 @@ public final class ControlFiles {
         if(entity instanceof LivingEntity living) {
             info.put("health",living.getHealth());info.put("maxHealth",living.getMaxHealth());
             info.put("effects",living.getActiveEffects().stream().map(e->e.getEffect().getRegisteredName()).toList());
+            info.put("effectDetails",living.getActiveEffects().stream().map(e->Map.of(
+                    "effect",e.getEffect().getRegisteredName(),"duration",e.getDuration(),"amplifier",e.getAmplifier(),
+                    "visible",e.isVisible(),"ambient",e.isAmbient(),"particle",particle(e.getParticleOptions()))).toList());
+            info.put("effectParticles",effectParticles(living));
         }
         if(entity instanceof Mob mob) {
             info.put("target",mob.getTarget()==null?-1:mob.getTarget().getId());info.put("noAi",mob.isNoAi());

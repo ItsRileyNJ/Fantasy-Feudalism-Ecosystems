@@ -16,4 +16,6 @@ All **three focused live checks passed**: sitting pitch and unchanged vertical p
 
 No render error was recorded by the harness. Tests used loopback networking and Linux Mesa software rendering, so they do not establish behavior on every graphics driver or mod combination.
 
+A subsequent [effect-particle audit](SPIDER_EFFECT_PARTICLES.md) passed six additional checks using the unchanged release JAR: both clients showed the matching vanilla particles from successful companion attacks, and emission stopped after effect expiry.
+
 The focused two-client check uses `tools/multiplayer/sitting_pose_0_1_3.py` against the disposable local fixture described in [the validation report](VALIDATION.md). This correction changes only client model posing; the broader gameplay results in [the 0.1.2 report](RELEASE_0.1.2.md) are historical and were not rerun for this cosmetic update.
