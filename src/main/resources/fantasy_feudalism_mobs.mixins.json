@@ -7,6 +7,7 @@
     "ChickenMixin",
     "CowMixin",
     "HorseMixin",
+    "HorseGrowthMixin",
     "HorseMatingMixin",
     "AnimalBreedingMixin",
     "SpiderMixin",

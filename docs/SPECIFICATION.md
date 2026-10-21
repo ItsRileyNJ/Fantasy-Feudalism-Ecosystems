@@ -313,3 +313,7 @@ Cows that spawn together stay together as a herd. Spawn-group identity persists 
 The user requested horse spawn-group herds; sheep-style grass consumption using the horse’s existing eating animation; automatic breeding every fourteen Minecraft days, initiated by one horse eating grass with another nearby horse producing a foal; and adult-only drops of one to two Raw Horse. Raw Horse cooks in furnaces and smokers into Cooked Horse with cooked mutton food properties.
 
 The user confirmed: “Automatic breeding only; keep manual breeding unchanged.” The implementation uses 336,000 elapsed world ticks per horse, persists the deadline through saves, and resets both parents after a successful birth. New horses wait one full interval, and foals begin their own interval at birth. Ordinary golden apple/carrot breeding retains vanilla behavior.
+
+## Horse growth follow-up
+
+The user requested that horses take three times as long to grow up. Natural baby aging advances once every three server ticks, including existing foals. Fresh foals require 72,000 loaded ticks (60 minutes at 20 TPS) to mature. Partial-tick progress persists through saves and reloads. Food-based growth, adult breeding cooldowns and other animals retain their vanilla aging behavior.

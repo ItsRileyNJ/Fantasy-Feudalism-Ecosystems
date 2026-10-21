@@ -1,0 +1,14 @@
+{
+  "artifact": {
+    "file": "fantasy_feudalism_mobs-0.1.7.jar",
+    "bytes": 104539,
+    "sha256": "c4661fe12a3e2b30e96ddac8fb0e09daaea778414bc41b3bbc7c97429ecbb8c3"
+  },
+  "minecraft": "1.21.1",
+  "neoforge": "21.1.262",
+  "java": 21,
+  "standalone_required_tests": 90,
+  "packaging": "Class bytes match compiled output; GameTests, diagnostic harness and nested third-party JARs excluded.",
+  "mobs_mercenaries_required_tests": 100,
+  "compatibility_mod": "fantasyfeudalism-mercenaries-1.15.7.jar"
+}
