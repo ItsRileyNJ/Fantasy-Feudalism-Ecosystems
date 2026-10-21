@@ -6,7 +6,15 @@ This repository contains only the Fantasy Feudal Mobs project, its build tools, 
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_mobs-0.1.9.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_mobs-0.1.10.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.10 changes
+
+- Sitting tamed wolves protect sheep from wild wolves and chickens from foxes within a 24-block radius of the livestock. This also interrupts hunts already in progress and makes predators move away from nearby guarded livestock.
+- A stopped wolf pack shares its normal one-day hunger cooldown; foxes now receive a persistent one-day hunting cooldown after a stopped hunt or a successful prey kill.
+- Only the nearest guarding dog silently loses one heart per stopped pack or fox. Its ordinary health-based tail drops; feeding heals it normally. Fatigue cannot kill it and causes no hurt flash, damage sound, knockback, retaliation or standing.
+
+See [the validation report](docs/RELEASE_0.1.10.md).
 
 ## Version 0.1.9 changes
 
@@ -68,7 +76,7 @@ The six-second level I companion effects and their approved family exclusions ar
 
 ## Mercenaries compatibility
 
-Version **0.1.1** includes optional compatibility with the supplied **Fantasy Feudalism: Mercenaries 1.15.7** (`villagerscontract`). Install Mobs 0.1.9 and Mercenaries 1.15.7 on the server and every client, replacing the older Mobs JAR. Mercenaries remains optional when using Mobs alone.
+Version **0.1.1** includes optional compatibility with the supplied **Fantasy Feudalism: Mercenaries 1.15.7** (`villagerscontract`). Install Mobs 0.1.10 and Mercenaries 1.15.7 on the server and every client, replacing the older Mobs JAR. Mercenaries remains optional when using Mobs alone.
 
 Guards recognize tamed spiders as allies, companions respect guard alliances, and mercenary combat spacing follows a skeleton's equipped weapon. Faster skeleton arrows retain the requested 40% speed increase with a corrected gravity arc and vanilla spread. Rejected or losing guard-menu transfers explicitly correct the hidden player inventory so two viewers cannot retain predicted ghost items.
 

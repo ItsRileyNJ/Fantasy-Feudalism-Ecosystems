@@ -114,6 +114,7 @@ public final class WolfPacks {
         if(hunt==null || !hunt.prey.equals(prey.getUUID())) {
             joinHunt(wolf,prey);hunt=data.hunts.get(huntKey(wolf));
         }
+        if(hunt==null)return false; // A guard can cancel recruitment while joinHunt assigns targets.
         if(!hunt.prey.equals(prey.getUUID()))return true;
         hunt.touched=wolf.level().getGameTime();
         if(wolf.distanceToSqr(prey)<=49)hunt.charging=true;

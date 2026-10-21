@@ -1,0 +1,6 @@
+guard-dog-0110-retreat-standalone-2.log
+[21:50:34] [Server thread/INFO] [minecraft/GameTestServer]: All 113 required tests passed :)
+BUILD SUCCESSFUL in 31s
+guard-dog-0110-retreat-combined.log
+[21:51:12] [Server thread/INFO] [minecraft/GameTestServer]: All 123 required tests passed :)
+BUILD SUCCESSFUL in 31s

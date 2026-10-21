@@ -1,0 +1,873 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "Real owner interaction seats a healthy guarding dog",
+      "passed": true,
+      "dog": {
+        "id": 7,
+        "uuid": "e9405852-5492-4999-8715-2b8e396a4f27",
+        "type": "minecraft:wolf",
+        "position": [
+          12.0,
+          64.0,
+          7.0
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 40.0,
+        "maxHealth": 40.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "tailAngle": 1.7278761,
+        "tamed": true,
+        "sitting": true,
+        "stalking": false,
+        "crouch": 0.0,
+        "firstStalk": -1,
+        "pack": "521c1cf2-bcf8-47a2-9663-a1788ebf39c7",
+        "mealUntil": 0
+      },
+      "baselineTailRotations": {
+        "owner": 1.7278761,
+        "guest": 1.7278761
+      }
+    },
+    {
+      "name": "One seated dog deters a whole wild pack for one shared hunger cooldown and one heart",
+      "passed": true,
+      "wolves": [
+        {
+          "id": 9,
+          "uuid": "fda688b1-61f4-41f9-98b8-db32f1cd05e1",
+          "type": "minecraft:wolf",
+          "position": [
+            2.0,
+            64.0,
+            3.0
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "tailAngle": 0.62831855,
+          "tamed": false,
+          "sitting": false,
+          "stalking": false,
+          "crouch": 0.0,
+          "firstStalk": -1,
+          "pack": "6b5fdbf6-9e62-4bf9-a67e-fd6fe7a15076",
+          "mealUntil": 121380
+        },
+        {
+          "id": 10,
+          "uuid": "93c5ee1a-255a-4b31-bb54-c7ef3e66f55e",
+          "type": "minecraft:wolf",
+          "position": [
+            2.0,
+            64.0,
+            5.0
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "tailAngle": 0.62831855,
+          "tamed": false,
+          "sitting": false,
+          "stalking": false,
+          "crouch": 0.0,
+          "firstStalk": -1,
+          "pack": "6b5fdbf6-9e62-4bf9-a67e-fd6fe7a15076",
+          "mealUntil": 121380
+        },
+        {
+          "id": 11,
+          "uuid": "ad81ba19-3cda-4c1d-950b-0090714fe247",
+          "type": "minecraft:wolf",
+          "position": [
+            2.0,
+            64.0,
+            7.0
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "tailAngle": 0.62831855,
+          "tamed": false,
+          "sitting": false,
+          "stalking": false,
+          "crouch": 0.0,
+          "firstStalk": -1,
+          "pack": "6b5fdbf6-9e62-4bf9-a67e-fd6fe7a15076",
+          "mealUntil": 121380
+        }
+      ],
+      "dog": {
+        "id": 7,
+        "uuid": "e9405852-5492-4999-8715-2b8e396a4f27",
+        "type": "minecraft:wolf",
+        "position": [
+          12.0,
+          64.0,
+          7.0
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 38.0,
+        "maxHealth": 40.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "tailAngle": 1.6650443,
+        "tamed": true,
+        "sitting": true,
+        "stalking": false,
+        "crouch": 0.0,
+        "firstStalk": -1,
+        "pack": "521c1cf2-bcf8-47a2-9663-a1788ebf39c7",
+        "mealUntil": 0
+      },
+      "sheep": {
+        "id": 8,
+        "uuid": "39992a61-5ab2-40c0-b5ad-aa83b8395e2e",
+        "type": "minecraft:sheep",
+        "position": [
+          16.0,
+          64.0,
+          5.0
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        }
+      }
+    },
+    {
+      "name": "Both clients show the lower tail and health with no hurt animation or damage sound",
+      "passed": true,
+      "clients": {
+        "owner": {
+          "dog": {
+            "id": 7,
+            "uuid": "e9405852-5492-4999-8715-2b8e396a4f27",
+            "type": "minecraft:wolf",
+            "position": [
+              12.0,
+              64.0,
+              7.0
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 38.0,
+            "maxHealth": 40.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "tailAngle": 1.6650443,
+            "tamed": true,
+            "sitting": true,
+            "stalking": false,
+            "crouch": 0.0
+          },
+          "pose": {
+            "tamed": true,
+            "sitting": true,
+            "stalking": false,
+            "head": {
+              "xRot": -0.31661344,
+              "scaleY": 1.0,
+              "y": 13.5
+            },
+            "body": {
+              "xRot": 0.7853982,
+              "scaleY": 1.0,
+              "y": 18.0
+            },
+            "upperBody": {
+              "xRot": 1.2566371,
+              "scaleY": 1.0,
+              "y": 16.0
+            },
+            "tail": {
+              "xRot": 1.6650443,
+              "scaleY": 1.0,
+              "y": 21.0
+            },
+            "rightFrontLeg": {
+              "xRot": 5.811947,
+              "scaleY": 1.0,
+              "y": 17.0
+            },
+            "leftFrontLeg": {
+              "xRot": 5.811947,
+              "scaleY": 1.0,
+              "y": 17.0
+            }
+          },
+          "hurtMax": 0,
+          "wolfSounds": {
+            "entity.wolf.ambient": 1
+          }
+        },
+        "guest": {
+          "dog": {
+            "id": 7,
+            "uuid": "e9405852-5492-4999-8715-2b8e396a4f27",
+            "type": "minecraft:wolf",
+            "position": [
+              12.0,
+              64.0,
+              7.0
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 38.0,
+            "maxHealth": 40.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "tailAngle": 1.6650443,
+            "tamed": true,
+            "sitting": true,
+            "stalking": false,
+            "crouch": 0.0
+          },
+          "pose": {
+            "tamed": true,
+            "sitting": true,
+            "stalking": false,
+            "head": {
+              "xRot": -0.3681554,
+              "scaleY": 1.0,
+              "y": 13.5
+            },
+            "body": {
+              "xRot": 0.7853982,
+              "scaleY": 1.0,
+              "y": 18.0
+            },
+            "upperBody": {
+              "xRot": 1.2566371,
+              "scaleY": 1.0,
+              "y": 16.0
+            },
+            "tail": {
+              "xRot": 1.6650443,
+              "scaleY": 1.0,
+              "y": 21.0
+            },
+            "rightFrontLeg": {
+              "xRot": 5.811947,
+              "scaleY": 1.0,
+              "y": 17.0
+            },
+            "leftFrontLeg": {
+              "xRot": 5.811947,
+              "scaleY": 1.0,
+              "y": 17.0
+            }
+          },
+          "hurtMax": 0,
+          "wolfSounds": {
+            "entity.wolf.ambient": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "Repeated AI scans do not drain more health or hurt the guarded sheep",
+      "passed": true,
+      "dog": {
+        "id": 7,
+        "uuid": "e9405852-5492-4999-8715-2b8e396a4f27",
+        "type": "minecraft:wolf",
+        "position": [
+          12.0,
+          64.0,
+          7.0
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 38.0,
+        "maxHealth": 40.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "tailAngle": 1.6650443,
+        "tamed": true,
+        "sitting": true,
+        "stalking": false,
+        "crouch": 0.0,
+        "firstStalk": -1,
+        "pack": "521c1cf2-bcf8-47a2-9663-a1788ebf39c7",
+        "mealUntil": 0
+      }
+    },
+    {
+      "name": "One real survival-mode feeding restores the health and tail and consumes one food",
+      "passed": true,
+      "dog": {
+        "id": 7,
+        "uuid": "e9405852-5492-4999-8715-2b8e396a4f27",
+        "type": "minecraft:wolf",
+        "position": [
+          12.0,
+          64.0,
+          7.0
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 40.0,
+        "maxHealth": 40.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "tailAngle": 1.7278761,
+        "tamed": true,
+        "sitting": true,
+        "stalking": false,
+        "crouch": 0.0,
+        "firstStalk": -1,
+        "pack": "521c1cf2-bcf8-47a2-9663-a1788ebf39c7",
+        "mealUntil": 0
+      },
+      "clients": {
+        "owner": {
+          "tamed": true,
+          "sitting": true,
+          "stalking": false,
+          "head": {
+            "xRot": 0.0,
+            "scaleY": 1.0,
+            "y": 13.5
+          },
+          "body": {
+            "xRot": 0.7853982,
+            "scaleY": 1.0,
+            "y": 18.0
+          },
+          "upperBody": {
+            "xRot": 1.2566371,
+            "scaleY": 1.0,
+            "y": 16.0
+          },
+          "tail": {
+            "xRot": 1.7278761,
+            "scaleY": 1.0,
+            "y": 21.0
+          },
+          "rightFrontLeg": {
+            "xRot": 5.811947,
+            "scaleY": 1.0,
+            "y": 17.0
+          },
+          "leftFrontLeg": {
+            "xRot": 5.811947,
+            "scaleY": 1.0,
+            "y": 17.0
+          }
+        },
+        "guest": {
+          "tamed": true,
+          "sitting": true,
+          "stalking": false,
+          "head": {
+            "xRot": 0.0,
+            "scaleY": 1.0,
+            "y": 13.5
+          },
+          "body": {
+            "xRot": 0.7853982,
+            "scaleY": 1.0,
+            "y": 18.0
+          },
+          "upperBody": {
+            "xRot": 1.2566371,
+            "scaleY": 1.0,
+            "y": 16.0
+          },
+          "tail": {
+            "xRot": 1.7278761,
+            "scaleY": 1.0,
+            "y": 21.0
+          },
+          "rightFrontLeg": {
+            "xRot": 5.811947,
+            "scaleY": 1.0,
+            "y": 17.0
+          },
+          "leftFrontLeg": {
+            "xRot": 5.811947,
+            "scaleY": 1.0,
+            "y": 17.0
+          }
+        }
+      }
+    },
+    {
+      "name": "Sitting the dog interrupts a real fox chicken hunt and starts its one-day hunger cooldown",
+      "passed": true,
+      "fox": {
+        "id": 13,
+        "uuid": "d23a3aed-ac24-451d-999f-4b8bad081aab",
+        "type": "minecraft:fox",
+        "position": [
+          9.828652463239859,
+          64.0,
+          5.716197087661726
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 10.0,
+        "maxHealth": 10.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "COMMAND",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "mealUntil": 121489,
+        "hungry": false
+      },
+      "dog": {
+        "id": 7,
+        "uuid": "e9405852-5492-4999-8715-2b8e396a4f27",
+        "type": "minecraft:wolf",
+        "position": [
+          12.0,
+          64.0,
+          7.0
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 38.0,
+        "maxHealth": 40.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "tailAngle": 1.6650443,
+        "tamed": true,
+        "sitting": true,
+        "stalking": false,
+        "crouch": 0.0,
+        "firstStalk": -1,
+        "pack": "521c1cf2-bcf8-47a2-9663-a1788ebf39c7",
+        "mealUntil": 0
+      },
+      "chicken": {
+        "id": 12,
+        "uuid": "ef4b9b8a-7bb9-4c2b-8528-14736415a47b",
+        "type": "minecraft:chicken",
+        "position": [
+          22.0,
+          64.0,
+          5.0
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 4.0,
+        "maxHealth": 4.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        }
+      }
+    },
+    {
+      "name": "The deterred fox cannot immediately resume hunting or repeatedly tire the dog",
+      "passed": true,
+      "fox": {
+        "id": 13,
+        "uuid": "d23a3aed-ac24-451d-999f-4b8bad081aab",
+        "type": "minecraft:fox",
+        "position": [
+          9.880073740959277,
+          64.0,
+          5.747266205181645
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 10.0,
+        "maxHealth": 10.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "COMMAND",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "mealUntil": 121489,
+        "hungry": false
+      },
+      "dog": {
+        "id": 7,
+        "uuid": "e9405852-5492-4999-8715-2b8e396a4f27",
+        "type": "minecraft:wolf",
+        "position": [
+          12.0,
+          64.0,
+          7.0
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 38.0,
+        "maxHealth": 40.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "tailAngle": 1.6650443,
+        "tamed": true,
+        "sitting": true,
+        "stalking": false,
+        "crouch": 0.0,
+        "firstStalk": -1,
+        "pack": "521c1cf2-bcf8-47a2-9663-a1788ebf39c7",
+        "mealUntil": 0
+      }
+    },
+    {
+      "name": "A chicken outside the 24-block guard radius can be hunted and a real fox kill starts its meal cooldown",
+      "passed": true,
+      "fox": {
+        "id": 15,
+        "uuid": "f683f367-0e6b-48cd-a71c-560eb0ddec53",
+        "type": "minecraft:fox",
+        "position": [
+          36.261657940683435,
+          64.0,
+          7.0913215315581715
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 10.0,
+        "maxHealth": 10.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "COMMAND",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "mealUntil": 121609,
+        "hungry": false
+      },
+      "dog": {
+        "id": 7,
+        "uuid": "e9405852-5492-4999-8715-2b8e396a4f27",
+        "type": "minecraft:wolf",
+        "position": [
+          12.0,
+          64.0,
+          7.0
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 38.0,
+        "maxHealth": 40.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "tailAngle": 1.6650443,
+        "tamed": true,
+        "sitting": true,
+        "stalking": false,
+        "crouch": 0.0,
+        "firstStalk": -1,
+        "pack": "521c1cf2-bcf8-47a2-9663-a1788ebf39c7",
+        "mealUntil": 0
+      }
+    },
+    {
+      "name": "A nearby fox walks away from guarded chickens without another predator or survival player nearby",
+      "passed": true,
+      "fox": {
+        "id": 19,
+        "uuid": "fbb6a9aa-05d8-45dc-8f82-54e3651c57e5",
+        "type": "minecraft:fox",
+        "position": [
+          24.053609440284134,
+          64.0,
+          7.817315123364771
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 10.0,
+        "maxHealth": 10.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "COMMAND",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "mealUntil": 121626,
+        "hungry": false
+      },
+      "chicken": {
+        "id": 18,
+        "uuid": "371fe7e3-fc43-4935-b135-0f70c5718184",
+        "type": "minecraft:chicken",
+        "position": [
+          16.0,
+          64.0,
+          7.0
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 4.0,
+        "maxHealth": 4.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        }
+      },
+      "dog": {
+        "id": 7,
+        "uuid": "e9405852-5492-4999-8715-2b8e396a4f27",
+        "type": "minecraft:wolf",
+        "position": [
+          12.0,
+          64.0,
+          7.0
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 36.0,
+        "maxHealth": 40.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "tailAngle": 1.6022123,
+        "tamed": true,
+        "sitting": true,
+        "stalking": false,
+        "crouch": 0.0,
+        "firstStalk": -1,
+        "pack": "521c1cf2-bcf8-47a2-9663-a1788ebf39c7",
+        "mealUntil": 0
+      }
+    },
+    {
+      "name": "Both clients remain synchronized without hurt effects or render errors and inventory still opens",
+      "passed": true
+    }
+  ]
+}

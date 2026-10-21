@@ -331,3 +331,11 @@ Wild wolves should stay relatively together and begin hunting at the same time. 
 ### More common mineshaft silverfish
 
 Increase the frequency of silverfish packs in abandoned mineshafts and set their minimum requested pack size to four. The mineshaft spawn entry now has weight 120 (previously 60), minimum four and maximum nine; ordinary Minecraft space, lighting and mob-cap checks still apply.
+
+### Sitting livestock guardian follow-up
+
+A living tamed wolf that is ordered to sit and actually sitting protects sheep against wild wolves and chickens against foxes within a spherical 24-block radius of the livestock. Protection applies to new target acquisition and hunts already underway. A stopped wild wolf starts the entire persistent pack's existing one-day (24,000-tick) meal cooldown; a stopped fox receives its own persistent one-day hunting cooldown. Foxes also receive that cooldown after a normal successful prey kill and cannot switch to other food prey during it. Defensive non-food combat and tamed wolf owner defense remain available.
+
+One deterred pack or individual fox silently costs only the nearest guard two health points (one heart), with a floor of one health point. Merely watching nearby livestock and repeated scans by already-fed predators cause no fatigue. Health is adjusted directly, without a damage transaction, keeping the guard seated and avoiding hurt flashes, damage sounds, knockback or retaliation. Its normal health-based tail angle decreases and ordinary owner feeding restores health. Multiple eligible guardians never all pay for the same stopped hunt.
+
+Deterred wild wolves and foxes also avoid approaching protected sheep/chickens within eight blocks, walking away through normal navigation. This retreat never overrides tamed wolf commands or defensive targets, and its guard lookup does not charge fatigue. The goal installs once per entity, including across level rejoining.

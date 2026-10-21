@@ -15,6 +15,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Bee;
 import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.animal.Sheep;
+import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.*;
@@ -59,6 +60,7 @@ public final class FeudalEvents {
         if (event.getLevel().isClientSide) return;
         if (event.getEntity() instanceof Mob mob) {
             MobRules.initialize(mob, event.loadedFromDisk());
+            GuardDogs.install(mob);
         }
         if (event.getEntity() instanceof Silverfish fish) SilverfishBurrowing.restore(fish);
         if (event.getEntity() instanceof Wolf wolf) WolfPacks.initialize(wolf);
@@ -104,6 +106,9 @@ public final class FeudalEvents {
 
     @SubscribeEvent
     public static void damage(LivingIncomingDamageEvent event) {
+        if(event.getSource().getDirectEntity() instanceof Mob hunter && GuardDogs.blocks(hunter,event.getEntity())) {
+            event.setCanceled(true);return;
+        }
         if (event.getEntity() instanceof Spider spider && SpiderCompanion.isTamed(spider)
                 && event.getSource().is(DamageTypeTags.IS_FIRE)) event.setAmount(event.getAmount() * 1.25F);
         if (event.getEntity() instanceof Zombie && event.getSource().getEntity() instanceof Silverfish)
@@ -148,6 +153,8 @@ public final class FeudalEvents {
 
     @SubscribeEvent(priority = net.neoforged.bus.api.EventPriority.LOWEST)
     public static void wolfMeal(LivingDeathEvent event) {
+        if(!event.getEntity().level().isClientSide && event.getSource().getEntity() instanceof Fox fox
+                && GuardDogs.foxFood(event.getEntity()))GuardDogs.feedFox(fox);
         if(event.getEntity() instanceof Sheep && event.getSource().getEntity() instanceof Wolf wolf
                 && !wolf.level().isClientSide && !wolf.isTame()) WolfPacks.ateSheep(wolf);
     }
@@ -155,6 +162,9 @@ public final class FeudalEvents {
     @SubscribeEvent
     public static void targeting(LivingChangeTargetEvent event) {
         LivingEntity proposed = event.getNewAboutToBeSetTarget();
+        if(event.getEntity() instanceof Mob hunter && GuardDogs.blocks(hunter,proposed)) {
+            event.setNewAboutToBeSetTarget(null);return;
+        }
         if(event.getEntity() instanceof Wolf wolf && !wolf.isTame() && WolfPacks.food(proposed)
                 && !WolfPacks.hungry(wolf) && wolf.getLastHurtByMob()!=proposed) {
             event.setNewAboutToBeSetTarget(null);return;
@@ -193,7 +203,8 @@ public final class FeudalEvents {
             event.setCanceled(true);
             return;
         }
-        if (entity instanceof Wolf wolf) WolfPacks.beforeTick(wolf);
+        if (entity instanceof Wolf wolf) { WolfPacks.beforeTick(wolf);GuardDogs.beforeTick(wolf); }
+        if (entity instanceof Fox fox) GuardDogs.beforeTick(fox);
         if (entity instanceof Zombie zombie) MobRules.updateZombie(zombie);
         if (entity instanceof AbstractSkeleton skeleton && skeleton.getTarget() instanceof Player player
                 && (player.isCreative() || player.isSpectator())) {

@@ -94,7 +94,7 @@ public final class ControlFiles {
         info.put("invisible",entity.isInvisible());info.put("silent",entity.isSilent());
         if(entity instanceof net.minecraft.world.entity.item.ItemEntity item) info.put("item",stack(item.getItem()));
         if(entity instanceof LivingEntity living) {
-            info.put("health",living.getHealth());info.put("maxHealth",living.getMaxHealth());
+            info.put("hurtTime",living.hurtTime);info.put("health",living.getHealth());info.put("maxHealth",living.getMaxHealth());
             info.put("effects",living.getActiveEffects().stream().map(e->e.getEffect().getRegisteredName()).toList());
             info.put("effectDetails",living.getActiveEffects().stream().map(e->Map.of(
                     "effect",e.getEffect().getRegisteredName(),"duration",e.getDuration(),"amplifier",e.getAmplifier(),
@@ -107,10 +107,13 @@ public final class ControlFiles {
             info.put("mainHand",stack(mob.getMainHandItem()));
         }
         if (entity instanceof net.minecraft.world.entity.animal.Wolf wolf) {
-            info.put("tamed",wolf.isTame());info.put("sitting",wolf.isInSittingPose());
+            info.put("tailAngle",wolf.getTailAngle());info.put("tamed",wolf.isTame());info.put("sitting",wolf.isInSittingPose());
             info.put("stalking",((WolfState)wolf).ffm$stalking());
             info.put("crouch",((WolfState)wolf).ffm$crouch(1));
             if(!wolf.level().isClientSide) { info.put("firstStalk",ServerHarness.firstStalk(wolf.getId()));info.put("pack",WolfPacks.pack(wolf).toString());info.put("mealUntil",WolfPacks.deadline(wolf)); }
+        }
+        if(entity instanceof net.minecraft.world.entity.animal.Fox fox && !fox.level().isClientSide) {
+            info.put("mealUntil",GuardDogs.foxDeadline(fox));info.put("hungry",GuardDogs.foxHungry(fox));
         }
         if(entity instanceof net.minecraft.world.entity.npc.Villager villager) {
             info.put("baby",villager.isBaby());

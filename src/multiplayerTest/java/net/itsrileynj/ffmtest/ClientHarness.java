@@ -32,6 +32,11 @@ import net.neoforged.neoforge.client.event.*;
 
 @EventBusSubscriber(modid="ffm_multiplayer_test", value=Dist.CLIENT)
 public final class ClientHarness {
+    private static final Map<Integer,Integer> WOLF_HURT=new HashMap<>();
+    private static final Map<String,Integer> WOLF_SOUNDS=new java.util.concurrent.ConcurrentHashMap<>();
+    @SubscribeEvent public static void sound(net.neoforged.neoforge.client.event.sound.PlaySoundEvent event) {
+        if(event.getName().contains("wolf"))WOLF_SOUNDS.merge(event.getName(),1,Integer::sum);
+    }
     private static final Map<Integer,Map<String,Object>> WOLF_POSES=new HashMap<>();
     private static final Map<Integer,Map<String,Object>> HORSE_POSES=new HashMap<>();
     private static long frames, skeletonFrames, crossbowFrames, guardFrames;
@@ -92,7 +97,10 @@ public final class ClientHarness {
     }
     @SubscribeEvent public static void tick(ClientTickEvent.Post event) {
         if(System.getProperty("ffm.test.control")==null)return;
-        EffectParticleProbe.tick(Minecraft.getInstance());
+        var mc=Minecraft.getInstance();
+        if(mc.level!=null)for(var entity:mc.level.entitiesForRendering())
+            if(entity instanceof net.minecraft.world.entity.animal.Wolf wolf)WOLF_HURT.merge(wolf.getId(),wolf.hurtTime,Math::max);
+        EffectParticleProbe.tick(mc);
         JsonObject q=ControlFiles.command();if(q==null)return;
         try {
             Object value=execute(Minecraft.getInstance(),q);
@@ -172,6 +180,7 @@ public final class ClientHarness {
         result.put("spiderPoses",new HashMap<>(SPIDER_POSES));
         result.put("horsePoses",new HashMap<>(HORSE_POSES));
         result.put("wolfPoses",new HashMap<>(WOLF_POSES));
+        result.put("wolfHurtMax",new HashMap<>(WOLF_HURT));result.put("wolfSounds",new HashMap<>(WOLF_SOUNDS));
         if(mc.screen instanceof CreativeModeInventoryScreen creative) {
             result.put("creativeTabs",creative.getCurrentPage().getVisibleTabs().stream().map(tab->Map.of(
                     "title",tab.getDisplayName().getString(),"top",creative.getCurrentPage().isTop(tab),

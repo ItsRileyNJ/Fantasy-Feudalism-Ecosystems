@@ -171,6 +171,8 @@ public final class ServerHarness {
                 e.moveTo(number(q,"x",2),number(q,"y",64),number(q,"z",2),0,0);
                 if(e instanceof Mob mob) {mob.setPersistenceRequired();mob.setNoAi(!q.has("ai")||!q.get("ai").getAsBoolean());}
                 if(q.has("invulnerable"))e.setInvulnerable(q.get("invulnerable").getAsBoolean());
+                if(e instanceof net.minecraft.world.entity.animal.Fox fox && q.has("ai")&&q.get("ai").getAsBoolean())
+                    fox.finalizeSpawn(level,level.getCurrentDifficultyAt(fox.blockPosition()),MobSpawnType.COMMAND,null);
                 level.addFreshEntity(e);
                 if(MercenaryHarness.isGuard(e)&&q.has("owner")) {
                     var owner=server.getPlayerList().getPlayerByName(q.get("owner").getAsString());
