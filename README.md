@@ -6,7 +6,11 @@ This repository contains only the Fantasy Feudal Mobs project, its build tools, 
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_mobs-0.1.2.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_mobs-0.1.3.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.3 changes
+
+Sitting tamed regular and cave spiders tilt their rear abdomen downward by approximately ten degrees. Following restores the normal angle. This replaces the vertical offset in 0.1.2; see [the validation report](docs/RELEASE_0.1.3.md).
 
 ## Version 0.1.2 changes
 
@@ -19,11 +23,11 @@ Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), the
 - Zombie pursuit stays active between short routes, retaining vanilla path recalculation timing and normal target validity checks.
 - Natural spawn entries keep the identities required by Minecraft's final spawn validation. This fixes mineshaft silverfish and restores the intended spawn rules for the other modified mob families.
 
-The six-second level I companion effects and their approved family exclusions are unchanged and have additional combat tests. Install **0.1.2** on the server and every client, replacing older Mobs JARs. See [the 0.1.2 validation report](docs/RELEASE_0.1.2.md) for measured results and limitations.
+The six-second level I companion effects and their approved family exclusions are unchanged and have additional combat tests. See [the 0.1.2 validation report](docs/RELEASE_0.1.2.md) for that release's measured results and limitations.
 
 ## Mercenaries compatibility
 
-Version **0.1.1** includes optional compatibility with the supplied **Fantasy Feudalism: Mercenaries 1.15.7** (`villagerscontract`). Install Mobs 0.1.2 and Mercenaries 1.15.7 on the server and every client, replacing the older Mobs JAR. Mercenaries remains optional when using Mobs alone.
+Version **0.1.1** includes optional compatibility with the supplied **Fantasy Feudalism: Mercenaries 1.15.7** (`villagerscontract`). Install Mobs 0.1.3 and Mercenaries 1.15.7 on the server and every client, replacing the older Mobs JAR. Mercenaries remains optional when using Mobs alone.
 
 Guards recognize tamed spiders as allies, companions respect guard alliances, and mercenary combat spacing follows a skeleton's equipped weapon. Faster skeleton arrows retain the requested 40% speed increase with a corrected gravity arc and vanilla spread. Rejected or losing guard-menu transfers explicitly correct the hidden player inventory so two viewers cannot retain predicted ghost items.
 
@@ -46,7 +50,7 @@ Choose a fresh test directory for each combined run: Mercenaries' built-in villa
 
 - Right-click a bee with a glass bottle to capture it. The Bee Bottle uses glass bottle artwork with a two-pixel black-and-yellow bee inside.
 - Feed a Bee Bottle to a regular or cave spider for a **33%** taming chance. Feeding returns an empty bottle, including on a failed attempt.
-- Newly tamed spiders start sitting, with their rear abdomen lowered slightly. The owner can right-click to switch between sitting and following. Following uses vanilla wolf distance thresholds and safe owner teleporting. Companions can be leashed and persist through saves and Peaceful difficulty.
+- Newly tamed spiders start sitting, with their rear abdomen angled down slightly. The owner can right-click to switch between sitting and following. Following uses vanilla wolf distance thresholds and safe owner teleporting. Companions can be leashed and persist through saves and Peaceful difficulty.
 - Tamed spiders have **30 health / 15 hearts** and **0.36 movement speed**. Raw meat, raw fish, and rotten flesh heal them using vanilla wolf food-healing amounts. Feeding shows hearts; spiders cannot breed.
 - Spiders cannot swim. Tamed spiders avoid water, lava, and fire, take **25% extra fire damage**, and make their own sounds only when a hostile mob is within **16 blocks**.
 - Both wild and tamed spiders use three-block jumps, including three-block edges in their path search. Combat pounces on level ground travel forward with a low arc, reserving high jumps for elevated targets or obstacles. Wild regular spiders hunt bees and fully heal after killing one; wild cave spiders hunt silverfish. Both wild and tamed spider types are immune to falls shorter than nine blocks.

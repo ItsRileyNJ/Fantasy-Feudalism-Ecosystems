@@ -285,3 +285,7 @@ The user requested a Fantasy Feudal Mobs creative inventory tab and a small blac
 - A sitting tamed spider's large rear abdomen should lower slightly. Restore the normal pose on following; other players must see the same state.
 - Investigate silverfish natural spawning in abandoned mineshafts. Preserve the agreed weight 60, groups 3–9, dark hostile placement rules, and mineshaft restriction.
 - A wild spider that kills/eats a bee fully heals. A nonfatal hit does not count as eating it; tamed spiders retain their feeding rules.
+
+## Sitting-pose correction in 0.1.3
+
+The user clarified that the tamed spider's abdomen should angle downward slightly instead of being translated vertically. Apply a slight downward pitch to the rear abdomen of sitting regular and cave spiders, restoring its normal angle when following. Wild spiders retain their normal pose.

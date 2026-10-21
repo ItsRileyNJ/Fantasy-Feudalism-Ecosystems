@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Both clients render sitting regular/cave abdomens at -0.18 radians without a vertical offset; wild/following models remain neutral",
+    "status": "passed"
+  },
+  {
+    "name": "Repeated real sit/follow interactions restore the normal angle without accumulated rotation or shared-model leakage",
+    "status": "passed"
+  },
+  {
+    "name": "Resource reload preserves correct poses on both connected clients",
+    "status": "passed"
+  }
+]

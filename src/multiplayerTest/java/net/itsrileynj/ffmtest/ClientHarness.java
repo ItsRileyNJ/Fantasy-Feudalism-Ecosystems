@@ -42,7 +42,8 @@ public final class ClientHarness {
         if(event.getEntity() instanceof Spider spider && event.getRenderer().getModel() instanceof SpiderModel<?> model) {
             var abdomen=model.root().getChild("body1");
             SPIDER_POSES.put(spider.getId(),Map.of("sitting",SpiderCompanion.isSitting(spider),
-                    "abdomenY",abdomen.y,"restY",abdomen.getInitialPose().y));
+                    "abdomenY",abdomen.y,"restY",abdomen.getInitialPose().y,
+                    "abdomenXRot",abdomen.xRot,"restXRot",abdomen.getInitialPose().xRot));
         }
         if(MercenaryHarness.isGuard(event.getEntity())) {
             guardFrames++;

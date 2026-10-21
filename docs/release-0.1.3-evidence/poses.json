@@ -1,0 +1,98 @@
+{
+  "owner": {
+    "connected": true,
+    "renderErrors": [],
+    "spiderPoses": {
+      "16": {
+        "restXRot": 0.0,
+        "abdomenY": 15.0,
+        "abdomenXRot": -0.18,
+        "restY": 15.0,
+        "sitting": true
+      },
+      "9": {
+        "restXRot": 0.0,
+        "abdomenY": 15.0,
+        "abdomenXRot": 0.0,
+        "restY": 15.0,
+        "sitting": false
+      },
+      "10": {
+        "restXRot": 0.0,
+        "abdomenY": 15.0,
+        "abdomenXRot": 0.0,
+        "restY": 15.0,
+        "sitting": false
+      },
+      "13": {
+        "restXRot": 0.0,
+        "abdomenY": 15.0,
+        "abdomenXRot": -0.18,
+        "restY": 15.0,
+        "sitting": true
+      },
+      "14": {
+        "restXRot": 0.0,
+        "abdomenY": 15.0,
+        "abdomenXRot": 0.0,
+        "restY": 15.0,
+        "sitting": false
+      },
+      "15": {
+        "restXRot": 0.0,
+        "abdomenY": 15.0,
+        "abdomenXRot": 0.0,
+        "restY": 15.0,
+        "sitting": false
+      }
+    }
+  },
+  "guest": {
+    "connected": true,
+    "renderErrors": [],
+    "spiderPoses": {
+      "16": {
+        "sitting": true,
+        "restY": 15.0,
+        "abdomenXRot": -0.18,
+        "abdomenY": 15.0,
+        "restXRot": 0.0
+      },
+      "9": {
+        "sitting": false,
+        "restY": 15.0,
+        "abdomenXRot": 0.0,
+        "abdomenY": 15.0,
+        "restXRot": 0.0
+      },
+      "10": {
+        "sitting": false,
+        "restY": 15.0,
+        "abdomenXRot": 0.0,
+        "abdomenY": 15.0,
+        "restXRot": 0.0
+      },
+      "13": {
+        "sitting": true,
+        "restY": 15.0,
+        "abdomenXRot": -0.18,
+        "abdomenY": 15.0,
+        "restXRot": 0.0
+      },
+      "14": {
+        "sitting": false,
+        "restY": 15.0,
+        "abdomenXRot": 0.0,
+        "abdomenY": 15.0,
+        "restXRot": 0.0
+      },
+      "15": {
+        "sitting": false,
+        "restY": 15.0,
+        "abdomenXRot": 0.0,
+        "abdomenY": 15.0,
+        "restXRot": 0.0
+      }
+    }
+  }
+}
