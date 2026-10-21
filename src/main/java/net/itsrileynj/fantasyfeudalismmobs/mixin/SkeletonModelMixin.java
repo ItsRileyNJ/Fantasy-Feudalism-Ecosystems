@@ -18,9 +18,13 @@ public abstract class SkeletonModelMixin extends HumanoidModel<Mob> {
 
     @Inject(method = "setupAnim(Lnet/minecraft/world/entity/Mob;FFFFF)V", at = @At("TAIL"))
     private void ffm$crossbowPose(Mob entity, float walk, float amplitude, float age, float yaw, float pitch, CallbackInfo ci) {
-        if (!(entity.getMainHandItem().getItem() instanceof CrossbowItem)) return;
-        boolean right = entity.getMainArm() == HumanoidArm.RIGHT;
-        if (entity.isUsingItem()) AnimationUtils.animateCrossbowCharge(rightArm, leftArm, entity, right);
-        else if (entity.isAggressive()) AnimationUtils.animateCrossbowHold(rightArm, leftArm, head, right);
+        boolean mainHand = entity.getMainHandItem().getItem() instanceof CrossbowItem;
+        if (!mainHand && !(entity.getOffhandItem().getItem() instanceof CrossbowItem)) return;
+        boolean right = (entity.getMainArm() == HumanoidArm.RIGHT) == mainHand;
+        rightArm.zRot = 0;
+        leftArm.zRot = 0;
+        if (entity.isUsingItem() && entity.getUseItem().getItem() instanceof CrossbowItem)
+            AnimationUtils.animateCrossbowCharge(rightArm, leftArm, entity, right);
+        else AnimationUtils.animateCrossbowHold(rightArm, leftArm, head, right);
     }
 }

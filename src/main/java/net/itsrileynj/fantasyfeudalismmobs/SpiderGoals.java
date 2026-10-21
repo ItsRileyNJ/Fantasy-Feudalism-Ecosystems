@@ -25,7 +25,7 @@ public final class SpiderGoals {
         targets.removeAllGoals(g -> true);
         spider.getNavigation().setCanFloat(false);
         goals.addGoal(0, new Sit(spider));
-        goals.addGoal(3, new LeapAtTargetGoal(spider, JUMP_POWER));
+        goals.addGoal(3, new ForwardLeap(spider));
         goals.addGoal(4, new Attack(spider));
         goals.addGoal(5, new Follow(spider));
         goals.addGoal(7, new WaterAvoidingRandomStrollGoal(spider, 0.8));
@@ -36,6 +36,33 @@ public final class SpiderGoals {
         targets.addGoal(5, new WildTarget<>(spider, IronGolem.class, true));
         if (spider instanceof CaveSpider) targets.addGoal(6, new WildTarget<>(spider, Silverfish.class, false));
         else targets.addGoal(6, new WildTarget<>(spider, Bee.class, false));
+    }
+
+    /** A low forward pounce on level ground; retain height when clearing a ledge. */
+    private static class ForwardLeap extends LeapAtTargetGoal {
+        private final Spider spider;
+        ForwardLeap(Spider spider) { super(spider, JUMP_POWER); this.spider = spider; }
+        private boolean inRange() {
+            LivingEntity target = spider.getTarget();
+            if (target == null) return false;
+            double distance = spider.distanceToSqr(target);
+            return distance >= 2.75 * 2.75 && distance <= 3.25 * 3.25;
+        }
+        @Override public boolean canUse() {
+            return inRange() && mayAttack(spider, spider.getTarget()) && super.canUse();
+        }
+        @Override public void start() {
+            LivingEntity target = spider.getTarget();
+            if (!inRange() || !mayAttack(spider, target)) return;
+            Vec3 direction = new Vec3(target.getX() - spider.getX(), 0, target.getZ() - spider.getZ());
+            if (direction.lengthSqr() < 1.0E-7) return;
+            direction = direction.normalize();
+            boolean elevated = target.getY() > spider.getY() + 0.5
+                    || !spider.level().noCollision(spider, spider.getBoundingBox().move(direction.scale(0.8)));
+            spider.getNavigation().stop();
+            spider.setDeltaMovement(direction.scale(elevated ? 0.4 : 0.82).add(0, elevated ? JUMP_POWER : 0.32, 0));
+            spider.hasImpulse = true;
+        }
     }
 
     public static boolean mayAttack(Spider spider, LivingEntity target) {

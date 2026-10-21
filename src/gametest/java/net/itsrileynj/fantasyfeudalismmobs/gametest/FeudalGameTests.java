@@ -1,6 +1,8 @@
 package net.itsrileynj.fantasyfeudalismmobs.gametest;
 
 import java.util.*;
+import com.mojang.authlib.GameProfile;
+import io.netty.channel.embedded.EmbeddedChannel;
 import net.itsrileynj.fantasyfeudalismmobs.*;
 import net.minecraft.core.*;
 import net.minecraft.core.component.DataComponents;
@@ -8,6 +10,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.gametest.framework.*;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.PacketFlow;
+import net.minecraft.server.network.CommonListenerCookie;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.random.WeightedRandomList;
@@ -54,6 +59,15 @@ public final class FeudalGameTests {
     }
     private static Player player(GameTestHelper h) {
         Player player = h.makeMockPlayer(GameType.SURVIVAL); player.moveTo(h.absoluteVec(new Vec3(5, 2, 4))); return player;
+    }
+    private static ServerPlayer switchablePlayer(GameTestHelper h) {
+        UUID id = UUID.randomUUID();
+        var cookie = CommonListenerCookie.createInitial(new GameProfile(id, "ffm-" + id.toString().substring(0, 8)), false);
+        var player = new ServerPlayer(h.getLevel().getServer(), h.getLevel(), cookie.gameProfile(), cookie.clientInformation());
+        var connection = new Connection(PacketFlow.SERVERBOUND);
+        new EmbeddedChannel(connection);
+        h.getLevel().getServer().getPlayerList().placeNewPlayer(connection, player, cookie);
+        return player;
     }
     private static void near(GameTestHelper h, double actual, double expected, String label) {
         h.assertTrue(Math.abs(actual - expected) < 0.001, label + ": expected " + expected + ", got " + actual);
@@ -222,6 +236,41 @@ public final class FeudalGameTests {
                 && spider.distanceToSqr(h.absoluteVec(new Vec3(10.5, 5, 6.5))) < 4, "Spider must traverse its planned route"));
     }
 
+    @GameTest(template = "test_empty", timeoutTicks = 60)
+    public static void spiderPouncesForwardOnLevelGround(GameTestHelper h) {
+        floor(h);
+        List<Spider> spiders = new ArrayList<>();
+        Map<Spider, Vec3> starts = new HashMap<>();
+        Map<Spider, Double> peaks = new HashMap<>();
+        for (int i = 0; i < 4; i++) {
+            Spider spider = mob(h, i < 2 ? EntityType.SPIDER : EntityType.CAVE_SPIDER, i % 2 == 0 ? 3 : 11, i < 2 ? 3 : 11);
+            if (i % 2 != 0) SpiderCompanion.tame(spider, UUID.randomUUID());
+            SpiderCompanion.setSitting(spider, false);
+            var target = mob(h, EntityType.ZOMBIE, i % 2 == 0 ? 3 : 11, (i < 2 ? 3 : 11) + 3);
+            spider.setTarget(target); spider.setInvulnerable(true);
+            Goal leap = spider.goalSelector.getAvailableGoals().stream().map(WrappedGoal::getGoal)
+                    .filter(g -> g instanceof LeapAtTargetGoal).findFirst().orElseThrow();
+            spider.goalSelector.removeAllGoals(g -> true); spider.targetSelector.removeAllGoals(g -> true);
+            spider.setNoAi(false); spiders.add(spider);
+            h.runAfterDelay(2, () -> {
+                starts.put(spider, spider.position()); peaks.put(spider, spider.getY()); leap.start();
+            });
+        }
+        for (int tick = 3; tick <= 28; tick++) h.runAfterDelay(tick, () -> {
+            for (Spider spider : spiders) peaks.merge(spider, spider.getY(), Math::max);
+        });
+        h.runAfterDelay(30, () -> {
+            for (Spider spider : spiders) {
+                double height = peaks.get(spider) - starts.get(spider).y;
+                double forward = spider.getZ() - starts.get(spider).z;
+                h.assertTrue(height > 0.4 && height < 1, "Level pounce must have a low arc, got " + height);
+                h.assertTrue(forward >= 1.5 && forward < 3, "Pounce must approach without passing the three-block target, got " + forward);
+                h.assertTrue(spider.onGround(), "Pounce must land again");
+            }
+            h.succeed();
+        });
+    }
+
     @GameTest(template = "test_empty")
     public static void spiderNeutralityAndSitOrders(GameTestHelper h) {
         floor(h); ServerPlayer owner = h.makeMockServerPlayerInLevel(); owner.moveTo(h.absoluteVec(new Vec3(6, 2, 6)));
@@ -298,6 +347,94 @@ public final class FeudalGameTests {
         ServerPlayer player = h.makeMockServerPlayerInLevel(); player.moveTo(skeleton.position().add(4, 0, 0));
         skeleton.setTarget(next); h.assertTrue(skeleton.getTarget() == next, "Player inside five blocks permits retargeting");
         player.getServer().getPlayerList().remove(player); h.succeed();
+    }
+
+    @GameTest(template = "test_empty")
+    public static void skeletonReleasesCreativeAndSpectatorPlayers(GameTestHelper h) {
+        floor(h);
+        ServerPlayer player = switchablePlayer(h);
+        try {
+            for (var weapon : List.of(Items.BOW, Items.CROSSBOW)) {
+                var skeleton = mob(h, EntityType.SKELETON, 3, 3);
+                skeleton.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(weapon));
+                player.moveTo(skeleton.position().add(8, 0, 0));
+                for (var mode : List.of(GameType.CREATIVE, GameType.SPECTATOR)) {
+                    player.setGameMode(GameType.SURVIVAL); skeleton.setTarget(player);
+                    h.assertTrue(skeleton.getTarget() == player, "Survival player must be a valid initial target");
+                    player.setGameMode(mode);
+                    NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.tick.EntityTickEvent.Pre(skeleton));
+                    h.assertTrue(skeleton.getTarget() == null, "Skeleton must release a player changing to " + mode + " with " + weapon);
+                    skeleton.setTarget(player);
+                    h.assertTrue(skeleton.getTarget() == null, "Creative/Spectator players cannot be acquired again");
+                }
+                player.setGameMode(GameType.SURVIVAL); skeleton.setTarget(player); skeleton.setTarget(null);
+                h.assertTrue(skeleton.getTarget() == null, "Vanilla AI must be allowed to clear an expired target");
+                skeleton.discard();
+            }
+        } finally { player.getServer().getPlayerList().remove(player); }
+        h.succeed();
+    }
+
+    @GameTest(template = "test_empty", timeoutTicks = 220)
+    public static void zombiePursuesMovingPlayer(GameTestHelper h) {
+        floor(h);
+        var player = switchablePlayer(h);
+        player.setGameMode(GameType.SURVIVAL);
+        player.moveTo(h.absoluteVec(new Vec3(12, 2, 12)));
+        Zombie zombie = mob(h, EntityType.ZOMBIE, 3, 3);
+        zombie.setItemSlot(EquipmentSlot.HEAD, new ItemStack(Items.IRON_HELMET));
+        zombie.setInvulnerable(true); zombie.setTarget(player); zombie.setNoAi(false);
+        double start = zombie.distanceTo(player);
+        int[] running = {0}, stalled = {0};
+        for (int tick = 1; tick <= 120; tick++) {
+            final int t = tick;
+            h.runAfterDelay(tick, () -> {
+                player.setHealth(player.getMaxHealth());
+                if (t > 40) player.moveTo(h.absoluteVec(new Vec3(12 - (t - 40) * 0.05, 2, 12)));
+                if (zombie.distanceTo(player) > 3 && t > 10) {
+                    running[0]++;
+                    if (zombie.getDeltaMovement().horizontalDistanceSqr() < 0.0001) stalled[0]++;
+                }
+            });
+        }
+        h.runAfterDelay(125, () -> {
+            try {
+                h.assertTrue(zombie.distanceTo(player) < 3, "Zombie should catch the slowly moving player; start=" + start + " final=" + zombie.distanceTo(player));
+                h.assertTrue(running[0] > 0 && stalled[0] < running[0] / 3, "Pursuit should advance consistently; stalled=" + stalled[0] + "/" + running[0]);
+            } finally { player.getServer().getPlayerList().remove(player); }
+            h.succeed();
+        });
+    }
+
+    @GameTest(template = "test_empty")
+    public static void zombieKeepsPursuitWhenShortPathFinishes(GameTestHelper h) {
+        floor(h);
+        long previousTime = h.getLevel().getDayTime();
+        h.getLevel().setDayTime(18000); // Drowned intentionally avoid chasing dry targets during daytime.
+        h.getLevel().updateSkyBrightness();
+        var player = switchablePlayer(h);
+        player.setGameMode(GameType.SURVIVAL);
+        try {
+            for (var type : List.of(EntityType.ZOMBIE, EntityType.HUSK, EntityType.DROWNED,
+                    EntityType.ZOMBIE_VILLAGER, EntityType.ZOMBIFIED_PIGLIN)) {
+                Zombie zombie = mob(h, type, 4, 4);
+                player.moveTo(zombie.position().add(2, 0, 0)); zombie.setTarget(player);
+                var attack = zombie.goalSelector.getAvailableGoals().stream().map(WrappedGoal::getGoal)
+                        .filter(g -> g instanceof ZombieAttackGoal).map(g -> (ZombieAttackGoal)g).findFirst().orElseThrow();
+                zombie.getNavigation().moveTo(player, 1);
+                zombie.getNavigation().stop(); // The old short route has finished as the player moves on.
+                player.moveTo(zombie.position().add(4, 0, 0));
+                h.assertFalse(new MeleeAttackGoal(zombie, 1, false).canContinueToUse(), "Vanilla short-path policy is the regression control");
+                h.assertTrue(attack.canContinueToUse(), "A completed short route must not restart pursuit for " + type);
+                player.setGameMode(GameType.CREATIVE);
+                h.assertFalse(attack.canContinueToUse(), "Creative mode still ends zombie pursuit");
+                player.setGameMode(GameType.SURVIVAL); zombie.discard();
+            }
+        } finally {
+            player.getServer().getPlayerList().remove(player);
+            h.getLevel().setDayTime(previousTime); h.getLevel().updateSkyBrightness();
+        }
+        h.succeed();
     }
 
     @GameTest(template = "test_empty")

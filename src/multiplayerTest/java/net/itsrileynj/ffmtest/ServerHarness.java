@@ -41,6 +41,19 @@ public final class ServerHarness {
     public static Object execute(MinecraftServer server, JsonObject q) {
         ServerLevel level = server.overworld(); String action = q.get("action").getAsString();
         switch (action) {
+            case "command": server.getCommands().performPrefixedCommand(server.createCommandSourceStack(),q.get("command").getAsString()); return true;
+            case "mineshaft": {
+                var found=level.findNearestMapStructure(net.minecraft.tags.StructureTags.MINESHAFT,new BlockPos(0,64,0),100,false);
+                if(found==null)throw new IllegalStateException("No generated mineshaft found");
+                level.getChunkAt(found);
+                var starts=level.structureManager().startsForStructure(new ChunkPos(found),s->s instanceof net.minecraft.world.level.levelgen.structure.structures.MineshaftStructure);
+                var pieces=new ArrayList<Map<String,Object>>();
+                for(var start:starts)for(var piece:start.getPieces()) {
+                    var b=piece.getBoundingBox();
+                    pieces.add(Map.of("min",List.of(b.minX(),b.minY(),b.minZ()),"max",List.of(b.maxX(),b.maxY(),b.maxZ())));
+                }
+                return Map.of("location",List.of(found.getX(),found.getY(),found.getZ()),"pieces",pieces);
+            }
             case "mercenary": return MercenaryHarness.execute(server,q);
             case "snapshot": return snapshot(server);
             case "setup":

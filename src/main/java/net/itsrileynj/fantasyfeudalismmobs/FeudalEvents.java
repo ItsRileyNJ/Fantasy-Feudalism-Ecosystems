@@ -1,6 +1,8 @@
 package net.itsrileynj.fantasyfeudalismmobs;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.StructureTags;
@@ -31,6 +33,16 @@ import net.neoforged.neoforge.event.level.*;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
 public final class FeudalEvents {
+    private record SpawnEntry(EntityType<?> type, int weight, int min, int max) {}
+    // NaturalSpawner rechecks list membership by identity. Never recreate a selected entry.
+    // Keys contain registry objects and numbers, never worlds or chunks.
+    private static final Map<SpawnEntry, MobSpawnSettings.SpawnerData> SPAWN_ENTRIES = new ConcurrentHashMap<>();
+
+    private static MobSpawnSettings.SpawnerData spawnEntry(EntityType<?> type, int weight, int min, int max) {
+        return SPAWN_ENTRIES.computeIfAbsent(new SpawnEntry(type, weight, min, max),
+                key -> new MobSpawnSettings.SpawnerData(key.type(), key.weight(), key.min(), key.max()));
+    }
+
     public static void spawnPlacements(RegisterSpawnPlacementsEvent event) {
         event.register(EntityType.SILVERFISH, (type, level, reason, pos, random) ->
                 reason == MobSpawnType.NATURAL && inMineshaft(level.getLevel(), pos)
@@ -95,14 +107,38 @@ public final class FeudalEvents {
 
     @SubscribeEvent
     public static void hurtCompanion(LivingDamageEvent.Post event) {
-        if (event.getNewDamage() > 0 && event.getEntity() instanceof Spider spider && SpiderCompanion.isTamed(spider)) {
+        if (event.getNewDamage() > 0 && event.getEntity() instanceof Spider spider && SpiderCompanion.isTamed(spider)
+                && SpiderCompanion.isSitting(spider)) {
             SpiderCompanion.setSitting(spider, false);
+        }
+    }
+
+    @SubscribeEvent
+    public static void spiderFall(LivingFallEvent event) {
+        if (event.getEntity() instanceof Spider spider) {
+            double distance = ((SpiderState)spider).ffm$landingDistance();
+            if (!Double.isFinite(distance)) distance = event.getDistance();
+            // The accumulator is a float; tolerate rounding at an exact nine-block drop.
+            if (distance < 9.0 - 1.0E-5) event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent(priority = net.neoforged.bus.api.EventPriority.LOWEST)
+    public static void wildSpiderEatsBee(LivingDeathEvent event) {
+        if (event.getEntity() instanceof Bee && event.getSource().getDirectEntity() instanceof Spider spider
+                && !spider.level().isClientSide && spider.isAlive() && !SpiderCompanion.isTamed(spider)) {
+            spider.setHealth(spider.getMaxHealth());
         }
     }
 
     @SubscribeEvent
     public static void targeting(LivingChangeTargetEvent event) {
         LivingEntity proposed = event.getNewAboutToBeSetTarget();
+        if (event.getEntity() instanceof AbstractSkeleton && proposed instanceof Player player
+                && (player.isCreative() || player.isSpectator())) {
+            event.setNewAboutToBeSetTarget(null);
+            return;
+        }
         if (event.getEntity() instanceof Spider spider && proposed != null && !SpiderGoals.mayAttack(spider, proposed)) {
             event.setCanceled(true); return;
         }
@@ -111,7 +147,8 @@ public final class FeudalEvents {
         }
         if (event.getEntity() instanceof AbstractSkeleton skeleton && skeleton.isHolding(s -> s.getItem() instanceof ProjectileWeaponItem)) {
             LivingEntity current = skeleton.getTarget();
-            if (current != null && current.isAlive() && current != proposed && !(current instanceof Player p && p.isSpectator())) {
+            if (proposed != null && current != null && current.canBeSeenAsEnemy() && current != proposed
+                    && !(current instanceof Player p && (p.isCreative() || p.isSpectator()))) {
                 Player nearby = skeleton.level().getNearestPlayer(skeleton, 5.0);
                 if (nearby == null) event.setCanceled(true);
             }
@@ -123,6 +160,13 @@ public final class FeudalEvents {
         Entity entity = event.getEntity();
         if (entity.level().isClientSide) return;
         if (entity instanceof Zombie zombie) MobRules.updateZombie(zombie);
+        if (entity instanceof AbstractSkeleton skeleton && skeleton.getTarget() instanceof Player player
+                && (player.isCreative() || player.isSpectator())) {
+            skeleton.setTarget(null);
+            skeleton.stopUsingItem();
+            skeleton.setAggressive(false);
+            skeleton.getNavigation().stop();
+        }
         if (entity instanceof Blaze blaze) MobRules.dash(blaze);
         if (entity instanceof Phantom phantom && phantom.getTarget() instanceof Player player && player.getHealth() > 8) phantom.setTarget(null);
         if (entity instanceof Spider spider) {
@@ -174,11 +218,11 @@ public final class FeudalEvents {
             else if (isZombie(original.type)) { min = 4; max = 9; }
             else continue;
             event.removeSpawnerData(original);
-            event.addSpawnerData(new MobSpawnSettings.SpawnerData(original.type, weight, min, max));
+            event.addSpawnerData(spawnEntry(original.type, weight, min, max));
         }
         if (event.getLevel() instanceof ServerLevel level && inMineshaft(level, event.getPos())
                 && event.getSpawnerDataList().stream().noneMatch(s -> s.type == EntityType.SILVERFISH)) {
-            event.addSpawnerData(new MobSpawnSettings.SpawnerData(EntityType.SILVERFISH, 60, 3, 9));
+            event.addSpawnerData(spawnEntry(EntityType.SILVERFISH, 60, 3, 9));
         }
     }
 

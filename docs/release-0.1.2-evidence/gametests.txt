@@ -1,0 +1,17 @@
+standalone
+[05:52:51] [Server thread/INFO] [minecraft/GameTestServer]: ========= 64 GAME TESTS COMPLETE IN 5.791 s ======================
+[05:52:51] [Server thread/INFO] [minecraft/GameTestServer]: All 64 required tests passed :)
+BUILD SUCCESSFUL in 29s
+Process exit code: 0
+
+combined
+[05:54:16] [Server thread/INFO] [minecraft/GameTestServer]: ========= 74 GAME TESTS COMPLETE IN 10.46 s ======================
+[05:54:16] [Server thread/INFO] [minecraft/GameTestServer]: All 74 required tests passed :)
+BUILD SUCCESSFUL in 56s
+Process exit code: 0
+
+mercenaries
+[05:56:28] [Server thread/INFO] [minecraft/GameTestServer]: ========= 336 GAME TESTS COMPLETE IN 1.352 min ======================
+[05:56:28] [Server thread/INFO] [minecraft/GameTestServer]: All 336 required tests passed :)
+BUILD SUCCESSFUL in 1m 44s
+Process exit code: 0

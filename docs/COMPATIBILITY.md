@@ -1,5 +1,7 @@
 # Mobs 0.1.1 and Mercenaries 1.15.7
 
+This is the historical **0.1.1** compatibility report. For current changes and validation, see [version 0.1.2](RELEASE_0.1.2.md).
+
 Validated October 20, 2026 (America/Los_Angeles; runtime logs use October 21 UTC), on Minecraft 1.21.1, NeoForge 21.1.262, and JDK 21. This report covers this specific pair, without additional third-party mods.
 
 ## Release and installation

@@ -17,10 +17,14 @@
     "SilverfishMixin",
     "MercenaryDefenderMixin",
     "MercenaryKitingMixin",
-    "MercenaryMenuMixin"
+    "MercenaryMenuMixin",
+    "ZombieAttackGoalMixin"
   ],
   "client": [
-    "SkeletonModelMixin"
+    "SkeletonModelMixin",
+    "SpiderRendererMixin",
+    "CaveSpiderRendererMixin",
+    "SpiderModelMixin"
   ],
   "injectors": {
     "defaultRequire": 1

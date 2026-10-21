@@ -1,0 +1,85 @@
+{
+  "releaseSha256": "42b51d631ef667e3acc295899295a857ba496e267be694439394832836dc7c7e",
+  "seen": [
+    {
+      "id": 86,
+      "uuid": "a323916f-fb12-4ac5-9d2e-244031a361e8",
+      "type": "minecraft:silverfish",
+      "position": [
+        -59.5,
+        -15.0,
+        15.5
+      ],
+      "alive": true,
+      "removed": false,
+      "health": 8.0,
+      "maxHealth": 8.0,
+      "effects": [],
+      "target": -1,
+      "noAi": false,
+      "mainHand": {
+        "item": "minecraft:air",
+        "count": 0,
+        "damage": 0
+      }
+    }
+  ],
+  "samples": [
+    {
+      "tick": 1963,
+      "counts": {
+        "minecraft:bat": 8,
+        "minecraft:squid": 4
+      },
+      "silverfish": []
+    },
+    {
+      "tick": 1968,
+      "counts": {
+        "minecraft:bat": 13,
+        "minecraft:squid": 8,
+        "minecraft:item": 14,
+        "minecraft:drowned": 2,
+        "minecraft:glow_squid": 8
+      },
+      "silverfish": []
+    },
+    {
+      "tick": 1975,
+      "counts": {
+        "minecraft:bat": 17,
+        "minecraft:squid": 8,
+        "minecraft:item": 13,
+        "minecraft:drowned": 2,
+        "minecraft:glow_squid": 8,
+        "minecraft:zombie": 1,
+        "minecraft:silverfish": 1,
+        "minecraft:creeper": 3
+      },
+      "silverfish": [
+        {
+          "id": 86,
+          "uuid": "a323916f-fb12-4ac5-9d2e-244031a361e8",
+          "type": "minecraft:silverfish",
+          "position": [
+            -59.5,
+            -15.0,
+            15.5
+          ],
+          "alive": true,
+          "removed": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          }
+        }
+      ]
+    }
+  ]
+}

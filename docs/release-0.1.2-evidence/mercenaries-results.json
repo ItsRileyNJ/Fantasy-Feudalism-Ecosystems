@@ -1,0 +1,80 @@
+[
+  {
+    "name": "200 competing contract packets redeem one two-pillager patrol exactly once and consume one contract",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Both spider companion types are allied to mercenaries and excluded from guard targeting",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Two real GuardScreens compete for shared storage: 13 string conserved with authoritative hidden-inventory updates",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Concurrent clicks cannot extract or duplicate the mercenary ammunition slots",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Guard order buttons synchronize authoritative state to both open viewers",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Mercenary GUI renders and preserves synchronized slots at GUI scales 1, 2 and 3",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Shared guard storage accepts vanilla string and safely rejects Bee Bottles without loss, duplication or desync",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Spider-harvested Poison remains intact when the guard GUI rejects a negative potion",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Mercenary custom highlight payload reaches only its requesting client",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Both mods survive resource reload with valid Bee Bottle models, guard rendering and usable GuardScreens",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Disconnecting with a guard-menu cursor stack conserves all items across player, world-drop and guard-loot ownership; reconnect inventories agree",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Twelve repeated real-client inventory races conserve 17 items each and eliminate the previously reproduced losing-client ghost stack",
+    "status": "passed",
+    "detail": {
+      "races": 12,
+      "concurrentQuickMoveRequests": 96
+    }
+  },
+  {
+    "name": "Full process restart preserves both mods: guard contracts, equipment, supplies, orders and skins; spider ownership/cooldowns; both player inventories",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Both-mod restart and guard persistence cannot reset spider poison harvesting cooldown",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Real guard GUI mounts and dismounts an owned horse with matching state and valid rendering on both clients",
+    "status": "passed",
+    "detail": null
+  }
+]

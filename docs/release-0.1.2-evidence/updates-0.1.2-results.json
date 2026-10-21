@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Creative tab and Bee Bottle transfer agree with the server on both clients",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Both clients render wild/tamed textures and reversible sitting poses without model-state leakage",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Resource reload preserves both clients' spider textures and poses",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Idle crossbow skeleton, stray, bogged and wither skeleton use two-handed holds on both clients",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Crossbow charge animation reaches both clients",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "bow skeleton family releases real players switching to Creative and Spectator",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "crossbow skeleton family releases real players switching to Creative and Spectator",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Both clients remain connected with finite rendered poses and no missing Bee Bottle model",
+    "status": "passed",
+    "detail": null
+  }
+]

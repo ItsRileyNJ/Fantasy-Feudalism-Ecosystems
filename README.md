@@ -6,11 +6,24 @@ This repository contains only the Fantasy Feudal Mobs project, its build tools, 
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_mobs-0.1.1.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_mobs-0.1.2.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.2 changes
+
+- A **Fantasy Feudal Mobs** creative tab contains the Bee Bottle. The bottle now shows a two-pixel black-and-yellow bee inside vanilla glass bottle artwork.
+- Tamed regular spiders are slightly browner; tamed cave spiders are bluer. Their rear abdomen lowers slightly while sitting and returns to normal when following. Wild spiders retain vanilla textures.
+- Spider attack leaps start only around three blocks away (2.75–3.25 blocks), use a low forward arc, and land short of the target. Three-block obstacle jumps remain available for navigation.
+- Wild and tamed spiders ignore falls shorter than nine blocks. Larger falls retain normal damage, and surviving damage no longer clears a following companion's combat target.
+- Killing a bee fully heals a wild spider. Nonfatal hits and tamed spider kills do not grant this healing.
+- Crossbow skeletons use pillager-style two-handed holding and charging poses, including the idle hold. Bow and crossbow skeletons release Creative/Spectator players.
+- Zombie pursuit stays active between short routes, retaining vanilla path recalculation timing and normal target validity checks.
+- Natural spawn entries keep the identities required by Minecraft's final spawn validation. This fixes mineshaft silverfish and restores the intended spawn rules for the other modified mob families.
+
+The six-second level I companion effects and their approved family exclusions are unchanged and have additional combat tests. Install **0.1.2** on the server and every client, replacing older Mobs JARs. See [the 0.1.2 validation report](docs/RELEASE_0.1.2.md) for measured results and limitations.
 
 ## Mercenaries compatibility
 
-Version **0.1.1** includes optional compatibility with the supplied **Fantasy Feudalism: Mercenaries 1.15.7** (`villagerscontract`). Install Mobs 0.1.1 and Mercenaries 1.15.7 on the server and every client, replacing the older Mobs JAR. Mercenaries remains optional when using Mobs alone.
+Version **0.1.1** includes optional compatibility with the supplied **Fantasy Feudalism: Mercenaries 1.15.7** (`villagerscontract`). Install Mobs 0.1.2 and Mercenaries 1.15.7 on the server and every client, replacing the older Mobs JAR. Mercenaries remains optional when using Mobs alone.
 
 Guards recognize tamed spiders as allies, companions respect guard alliances, and mercenary combat spacing follows a skeleton's equipped weapon. Faster skeleton arrows retain the requested 40% speed increase with a corrected gravity arc and vanilla spread. Rejected or losing guard-menu transfers explicitly correct the hidden player inventory so two viewers cannot retain predicted ghost items.
 
@@ -31,12 +44,12 @@ Choose a fresh test directory for each combined run: Mercenaries' built-in villa
 
 ## Spiders and Bee Bottles
 
-- Right-click a bee with a glass bottle to capture it. The Bee Bottle uses vanilla bottle artwork.
+- Right-click a bee with a glass bottle to capture it. The Bee Bottle uses glass bottle artwork with a two-pixel black-and-yellow bee inside.
 - Feed a Bee Bottle to a regular or cave spider for a **33%** taming chance. Feeding returns an empty bottle, including on a failed attempt.
-- Newly tamed spiders start sitting. The owner can right-click to switch between sitting and following. Following uses vanilla wolf distance thresholds and safe owner teleporting. Companions can be leashed and persist through saves and Peaceful difficulty.
+- Newly tamed spiders start sitting, with their rear abdomen lowered slightly. The owner can right-click to switch between sitting and following. Following uses vanilla wolf distance thresholds and safe owner teleporting. Companions can be leashed and persist through saves and Peaceful difficulty.
 - Tamed spiders have **30 health / 15 hearts** and **0.36 movement speed**. Raw meat, raw fish, and rotten flesh heal them using vanilla wolf food-healing amounts. Feeding shows hearts; spiders cannot breed.
 - Spiders cannot swim. Tamed spiders avoid water, lava, and fire, take **25% extra fire damage**, and make their own sounds only when a hostile mob is within **16 blocks**.
-- Both wild and tamed spiders use three-block jumps, including three-block edges in their path search and attack leaps. Wild regular spiders hunt bees; wild cave spiders hunt silverfish.
+- Both wild and tamed spiders use three-block jumps, including three-block edges in their path search. Combat pounces on level ground travel forward with a low arc, reserving high jumps for elevated targets or obstacles. Wild regular spiders hunt bees and fully heal after killing one; wild cave spiders hunt silverfish. Both wild and tamed spider types are immune to falls shorter than nine blocks.
 - Right-click a tamed spider with **shears** for **1–4 string**, costing **1 shears durability**. Use a **glass bottle** for **one standard vanilla Poison potion**. Each resource has its own **48,000-game-tick** cooldown per spider, saved with the entity.
 - Tamed spider hits apply **Slowness I and Weakness I for six seconds** to hostile mobs; cave spiders also apply **Poison I for six seconds**. Skeleton, zombie, and spider families are excluded from these effects.
 - Wild spiders are neutral toward players who have a tamed spider following them.
@@ -46,7 +59,7 @@ Choose a fresh test directory for each combined run: Mercenaries' built-in villa
 | Mob | Changes |
 | --- | --- |
 | Creepers | Natural spawn weights reduced by 60%; explosions retain entity damage but do not destroy blocks. They convert applicable blocks to mossy variants and plant vegetation with 75% eligible-position coverage, biased 50/35/15 toward moss carpet / ferns / tall grass. Vanilla survival rules restrict which plants fit each position. Killed creepers additionally drop 1–2 moss blocks. |
-| Skeleton families | Detect and shoot up to 35 blocks; projectiles are 40% faster. Equipment: 80% bows, 15% crossbows, 5% swords. Sword users have melee AI and use 80% stone / 20% iron swords. Crossbows use vanilla charging/firing AI and poses. Ranged skeletons keep their target unless a player is within five blocks. |
+| Skeleton families | Detect and shoot up to 35 blocks; projectiles are 40% faster. Equipment: 80% bows, 15% crossbows, 5% swords. Sword users have melee AI and use 80% stone / 20% iron swords. Crossbows use vanilla charging/firing AI and pillager-style two-handed hold/charge poses, including the idle hold. Ranged skeletons retain valid targets unless a player is within five blocks; expired targets and players who switch to Creative or Spectator mode are released. |
 | Endermen | Deal 35% more damage to players, disengage and teleport away after one successful hit, and can immediately be provoked again. Block pickup is disabled by default. |
 | Zombie families | Natural groups of 4–9; independently randomized 80–120% speed and attack damage. Speed doubles below three hearts and returns to the individual baseline when healed. |
 | Phantoms | Attack players only at four hearts or less. Those spawned on Hard receive infinite Swiftness I. |

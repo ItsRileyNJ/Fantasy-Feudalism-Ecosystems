@@ -260,3 +260,28 @@ Codex should follow these rules while implementing the mod:
 13. Changes include the corresponding vanilla mob variants, including strays, bogged, husks, and drowned.
 
 Vanilla systems retained: spawn weighting and placement validity, wolf follow/sit/teleport thresholds, item/bottle inventory exchange and overflow, standard Poison potion contents, normal loot outside explicit overrides, and normal Minecraft equipment/drop behavior. No new commands are requested.
+
+
+## Approved follow-up: creative tab and Bee Bottle artwork
+
+The user requested a Fantasy Feudal Mobs creative inventory tab and a small black-and-yellow two-pixel bee inside the Bee Bottle. Version 0.1.2 adds the tab with the Bee Bottle as its icon and only mod item, and overlays exactly two opaque bee pixels on the vanilla glass bottle. This supersedes the original vanilla-only bottle artwork.
+
+
+## Additional approved follow-ups in 0.1.2
+
+- Tamed regular spiders retain the vanilla texture pattern with a subtle brown tint. Tamed cave spiders retain the vanilla pattern with a blue tint. Wild spiders retain vanilla textures.
+- Spider combat jumps should favor a forward leap over a vertical jump. Use a low pounce on level ground while retaining the three-block obstacle/pathfinding capability.
+- Skeletons holding crossbows should hold them like pillagers, including a two-handed idle pose and the vanilla charging animation.
+- Skeletons must stop targeting players who change to Creative mode; Spectator mode also remains protected.
+- Investigate reported zombie chase hesitation, with attention to pathfinding and repeated movement checks.
+
+
+## Additional spider follow-ups in 0.1.2
+
+- Verify the approved six-second level I companion combat effects and existing family exclusions against actual successful attacks; rejected hits must not apply them.
+- Following companions must keep their combat target after surviving fall damage. Damage should wake a sitting companion without reapplying the follow order to one that is already following.
+- Attack leaps should start only around three blocks from the target. Use a narrow 2.75–3.25-block distance window to accommodate moving entities and land within melee reach instead of passing the target. Navigation jumps for obstacles remain available separately.
+- Both wild and tamed regular/cave spiders are immune to falls strictly shorter than nine blocks. Falls of nine blocks or more retain normal damage.
+- A sitting tamed spider's large rear abdomen should lower slightly. Restore the normal pose on following; other players must see the same state.
+- Investigate silverfish natural spawning in abandoned mineshafts. Preserve the agreed weight 60, groups 3–9, dark hostile placement rules, and mineshaft restriction.
+- A wild spider that kills/eats a bee fully heals. A nonfatal hit does not count as eating it; tamed spiders retain their feeding rules.
