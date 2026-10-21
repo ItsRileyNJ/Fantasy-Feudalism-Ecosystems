@@ -81,6 +81,56 @@ public final class WolfPackTests {
         });
     }
 
+    @GameTest(template="test_empty",timeoutTicks=240)
+    public static void separatedWildCompanionsRegroupWithoutTeleporting(GameTestHelper h){
+        floor(h);var a=wolf(h,2,8);var b=wolf(h,15,8);var g=group(h,a,null);group(h,b,g);
+        var leader=a.getUUID().compareTo(b.getUUID())<0?a:b;var follower=leader==a?b:a;
+        // Keep the leader stationary without disabling its AI or its pack participation.
+        leader.goalSelector.getAvailableGoals().stream().map(e->e.getGoal())
+                .filter(e->e instanceof net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal)
+                .toList().forEach(leader.goalSelector::removeGoal);
+        double[] previous={follower.getX(),follower.getZ()};
+        h.onEachTick(()->{
+            double dx=follower.getX()-previous[0],dz=follower.getZ()-previous[1];
+            h.assertTrue(dx*dx+dz*dz<1,"Pack cohesion uses walking, never teleporting");
+            previous[0]=follower.getX();previous[1]=follower.getZ();
+        });
+        h.succeedWhen(()->h.assertTrue(follower.distanceToSqr(leader)<16,"A separated wild wolf rejoins its stable pack leader"));
+    }
+
+    @GameTest(template="test_empty",timeoutTicks=180)
+    public static void packWaitsForStragglerAndStartsStalkingOnOneSharedTick(GameTestHelper h){
+        floor(h);var a=wolf(h,4,7);var b=wolf(h,1,17);var g=group(h,a,null);group(h,b,g);
+        a.setBaby(false);b.setBaby(false);var prey=sheep(h,16,7);
+        long[] starts={-1,-1};boolean[] waited={false};
+        h.onEachTick(()->{
+            if(a.getTarget()==prey && a.distanceToSqr(b)>64) {
+                waited[0]=true;
+                h.assertFalse(((WolfState)a).ffm$stalking(),"The scout waits rather than stalking alone while its companion regroups");
+                h.assertTrue(a.distanceToSqr(prey)>100,"The scout holds its position during assembly");
+            }
+            for(int i=0;i<2;i++)if(starts[i]<0 && ((WolfState)(i==0?a:b)).ffm$stalking())starts[i]=h.getLevel().getGameTime();
+        });
+        h.succeedWhen(()->{
+            h.assertTrue(starts[0]>=0&&starts[1]>=0,"Both pack members enter stalking through ordinary world AI");
+            h.assertTrue(waited[0],"A separated companion caused a real assembly phase");
+            h.assertTrue(Math.abs(starts[0]-starts[1])<=1,"The whole pack starts stalking together within one server tick");
+            h.assertTrue(a.getTarget()==prey&&b.getTarget()==prey,"The same prey is assigned to the whole pack");
+            h.assertTrue(prey.getHealth()==prey.getMaxHealth(),"No member attacks before the coordinated launch");
+        });
+    }
+
+    @GameTest(template="test_empty")
+    public static void regroupNeverOverridesPetsLeashesOrCombat(GameTestHelper h){
+        floor(h);var a=wolf(h,2,8);var b=wolf(h,15,8);var g=group(h,a,null);group(h,b,g);
+        var follower=a.getUUID().compareTo(b.getUUID())>0?a:b;
+        var goal=new WolfHuntGoals.Regroup(follower);
+        follower.setTame(true,true);h.assertFalse(goal.canUse(),"Tamed wolves never follow a wild pack");
+        follower.setTame(false,true);var enemy=h.spawn(EntityType.ZOMBIE,8,2,8);enemy.setNoAi(true);follower.setTarget(enemy);
+        h.assertFalse(new WolfHuntGoals.Regroup(follower).canUse(),"Defensive combat takes priority over regrouping");
+        h.succeed();
+    }
+
     @GameTest(template="test_empty")
     public static void mealCooldownCoversUnloadedMembersAndSurvivesSavedDataRoundtrip(GameTestHelper h){
         floor(h);var killer=wolf(h,4,8);var member=wolf(h,6,8);var outsider=wolf(h,8,8);

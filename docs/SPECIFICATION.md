@@ -323,3 +323,11 @@ The user requested that horses take three times as long to grow up. Natural baby
 Wild wolves cooperate on a sheep hunt starting within fifteen blocks. They stalk slowly with a crouched walking pose (body, head and tail down) until a pack member reaches seven blocks, then charge at full normal attack speed. A wolf killing a sheep gives every member of that pack an eating/hunting cooldown. The user confirmed a duration of one Minecraft day (twenty minutes / 24,000 server ticks). The cooldown must persist through unloading and saves. Tamed wolf behavior remains vanilla.
 
 The user also requested that baby villagers rarely chase untamed village cats for about eight seconds. This is implemented as a harmless daytime PLAY activity, with danger and taming able to end it early.
+
+### Wolf cohesion follow-up
+
+Wild wolves should stay relatively together and begin hunting at the same time. Idle wild pack members walk toward a stable leader when more than six blocks away and stop following within three blocks. A sheep scout recruits eligible nearby adults, waits for them to gather within eight blocks, and uses one server deadline to launch stalking together. Assembly never teleports wolves and times out after 200 ticks if terrain prevents reunion. Tamed wolves and higher-priority survival/defensive behavior remain unaffected.
+
+### More common mineshaft silverfish
+
+Increase the frequency of silverfish packs in abandoned mineshafts and set their minimum requested pack size to four. The mineshaft spawn entry now has weight 120 (previously 60), minimum four and maximum nine; ordinary Minecraft space, lighting and mob-cap checks still apply.

@@ -110,7 +110,7 @@ public final class ControlFiles {
             info.put("tamed",wolf.isTame());info.put("sitting",wolf.isInSittingPose());
             info.put("stalking",((WolfState)wolf).ffm$stalking());
             info.put("crouch",((WolfState)wolf).ffm$crouch(1));
-            if(!wolf.level().isClientSide) { info.put("pack",WolfPacks.pack(wolf).toString());info.put("mealUntil",WolfPacks.deadline(wolf)); }
+            if(!wolf.level().isClientSide) { info.put("firstStalk",ServerHarness.firstStalk(wolf.getId()));info.put("pack",WolfPacks.pack(wolf).toString());info.put("mealUntil",WolfPacks.deadline(wolf)); }
         }
         if(entity instanceof net.minecraft.world.entity.npc.Villager villager) {
             info.put("baby",villager.isBaby());

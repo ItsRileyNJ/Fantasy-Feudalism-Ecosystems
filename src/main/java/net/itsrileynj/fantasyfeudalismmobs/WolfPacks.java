@@ -60,7 +60,53 @@ public final class WolfPacks {
         var existing=data.hunts.get(id);
         if(existing!=null && wolf.level() instanceof ServerLevel level && level.getEntity(existing.prey) instanceof Sheep sheep
                 && sheep.isAlive() && wolf.distanceToSqr(sheep)<=1024)return sheep;
-        data.hunts.put(id,new WolfPackData.Hunt(candidate.getUUID(),wolf.level().getGameTime()));return candidate;
+        var hunt=new WolfPackData.Hunt(candidate.getUUID(),wolf.getUUID(),wolf.level().getGameTime());
+        data.hunts.put(id,hunt);
+        // Recruit in one server operation rather than waiting for independent target scans.
+        for(var member:members(wolf,32)) {
+            if(canHunt(member) && !member.isNoAi() && !member.isLeashed() && !member.isPassenger()
+                    && (member.getTarget()==null || member.getTarget() instanceof Sheep)) {
+                hunt.members.add(member.getUUID());member.setTarget(candidate);
+            }
+        }
+        return candidate;
+    }
+
+    public static List<Wolf> members(Wolf wolf,double radius) {
+        UUID id=pack(wolf);
+        return wolf.level().getEntitiesOfClass(Wolf.class,wolf.getBoundingBox().inflate(radius),
+                other->other.isAlive()&&!other.isTame()&&other.getPersistentData().hasUUID(PACK)
+                        &&other.getPersistentData().getUUID(PACK).equals(id));
+    }
+
+    /** A common deadline prevents entity tick order and goal scan cadence from splitting the launch. */
+    public static boolean ready(Wolf wolf,Sheep prey) {
+        var level=(ServerLevel)wolf.level();var hunt=WolfPackData.get(level).hunts.get(huntKey(wolf));
+        if(hunt==null || !hunt.prey.equals(prey.getUUID()))return false;
+        long now=level.getGameTime();hunt.touched=now;
+        if(hunt.startsAt==Long.MAX_VALUE && now>=hunt.assembledAt+200) {
+            // An unreachable companion must not leave the pack stuck in assembly forever.
+            WolfPackData.get(level).hunts.remove(huntKey(wolf));
+            for(UUID id:hunt.members)if(level.getEntity(id) instanceof Wolf member && member.getTarget()==prey)clearHunt(member);
+            return false;
+        }
+        if(hunt.startsAt!=Long.MAX_VALUE)return now>=hunt.startsAt;
+        Wolf leader=level.getEntity(hunt.leader) instanceof Wolf w&&w.isAlive()&&!w.isTame()?w:wolf;
+        boolean together=true;
+        for(UUID id:hunt.members) {
+            if(level.getEntity(id) instanceof Wolf member && member.isAlive() && !member.isTame()
+                    && canHunt(member) && member.getTarget()==prey && !member.isNoAi()
+                    && !member.isLeashed() && !member.isPassenger()) {
+                if(member.distanceToSqr(leader)>64 || !((WolfState)member).ffm$hunting())together=false;
+            }
+        }
+        if(together && now>=hunt.assembledAt+20)hunt.startsAt=now+4;
+        return false;
+    }
+
+    public static Wolf assemblyLeader(Wolf wolf) {
+        var level=(ServerLevel)wolf.level();var hunt=WolfPackData.get(level).hunts.get(huntKey(wolf));
+        return hunt!=null && level.getEntity(hunt.leader) instanceof Wolf leader && leader.isAlive()&&!leader.isTame()?leader:wolf;
     }
 
     public static boolean charging(Wolf wolf,Sheep prey) {

@@ -750,7 +750,7 @@ public final class FeudalGameTests {
         var event = new LevelEvent.PotentialSpawns(h.getLevel(), MobCategory.MONSTER, pos, WeightedRandomList.create());
         NeoForge.EVENT_BUS.post(event);
         h.assertTrue(event.getSpawnerDataList().stream().anyMatch(s -> s.type == EntityType.SILVERFISH
-                && s.getWeight().asInt() == 60 && s.minCount == 3 && s.maxCount == 9), "Mineshaft silverfish spawn entry");
+                && s.getWeight().asInt() == 120 && s.minCount == 4 && s.maxCount == 9), "Mineshaft silverfish spawn entry");
         for (int x = 4; x <= 8; x++) for (int y = 2; y <= 5; y++) for (int z = 4; z <= 8; z++) {
             if (x == 4 || x == 8 || z == 4 || z == 8 || y == 5) h.setBlock(new BlockPos(x, y, z), Blocks.STONE);
         }

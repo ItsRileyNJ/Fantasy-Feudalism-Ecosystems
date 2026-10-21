@@ -67,7 +67,14 @@ public final class SpawnRegressionTests {
             var pack = new ArrayList<Silverfish>();
             try {
                 h.assertTrue(FeudalEvents.inMineshaft(level, pos), "Natural-spawn fixture is a registered mineshaft room");
-                for (int attempt = 0; attempt < 120 && pack.size() < 3; attempt++) {
+                var base=WeightedRandomList.create(List.of(new MobSpawnSettings.SpawnerData(EntityType.ZOMBIE,100,4,4)));
+                var entries=EventHooks.getPotentialSpawns(level,MobCategory.MONSTER,pos,base);
+                var fishEntry=entries.unwrap().stream().filter(e->e.type==EntityType.SILVERFISH).findFirst().orElseThrow();
+                h.assertTrue(fishEntry.minCount==4&&fishEntry.maxCount==9,"Mineshaft packs request four to nine silverfish");
+                h.assertTrue(fishEntry.getWeight().asInt()==120,"Mineshaft silverfish have twice the previous spawn weight");
+                h.assertTrue(EventHooks.getPotentialSpawns(level,MobCategory.MONSTER,pos,base).unwrap().contains(fishEntry),
+                        "The larger common pack survives vanilla identity-based spawn revalidation");
+                for (int attempt = 0; attempt < 120 && pack.size() < 4; attempt++) {
                     pack.forEach(Silverfish::discard); pack.clear();
                     level.random.setSeed(20000 + attempt);
                     NaturalSpawner.spawnCategoryForPosition(MobCategory.MONSTER, level, chunk, pos,
@@ -76,7 +83,7 @@ public final class SpawnRegressionTests {
                                 else mob.discard();
                             });
                 }
-                h.assertTrue(pack.size() >= 3 && pack.size() <= 9,
+                h.assertTrue(pack.size() >= 4 && pack.size() <= 9,
                         "One natural-spawner pass must create a pack, got " + pack.size());
             } finally { level.getServer().getPlayerList().remove(observer); }
             // The roaming behavior must survive ordinary entity save/load too.

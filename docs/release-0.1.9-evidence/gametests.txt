@@ -1,0 +1,6 @@
+wolf-silverfish-019-final-standalone-2.log
+[21:29:24] [Server thread/INFO] [minecraft/GameTestServer]: All 104 required tests passed :)
+BUILD SUCCESSFUL in 34s
+wolf-silverfish-019-final-combined.log
+[21:30:17] [Server thread/INFO] [minecraft/GameTestServer]: All 114 required tests passed :)
+BUILD SUCCESSFUL in 36s

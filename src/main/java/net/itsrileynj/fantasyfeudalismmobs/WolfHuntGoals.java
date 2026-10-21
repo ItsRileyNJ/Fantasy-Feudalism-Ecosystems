@@ -28,6 +28,7 @@ public final class WolfHuntGoals {
         targets.addGoal(6,new NonTameRandomTargetGoal<>(wolf,Turtle.class,false,
                 prey->Turtle.BABY_ON_LAND_SELECTOR.test(prey)&&WolfPacks.hungry(wolf)));
         goals.addGoal(5,new Hunt(wolf));
+        goals.addGoal(7,new Regroup(wolf));
     }
 
     public static final class SelectSheep extends Goal {
@@ -49,12 +50,22 @@ public final class WolfHuntGoals {
 
     public static final class Hunt extends MeleeAttackGoal {
         private final Wolf wolf;
+        private int assemblePath;
         public Hunt(Wolf wolf){super(wolf,1.0,true);this.wolf=wolf;}
         @Override public boolean canUse(){return WolfPacks.canHunt(wolf)&&wolf.getTarget() instanceof Sheep&&super.canUse();}
         @Override public boolean canContinueToUse(){return WolfPacks.canHunt(wolf)&&wolf.getTarget() instanceof Sheep&&super.canContinueToUse();}
-        @Override public void start(){super.start();((WolfState)wolf).ffm$setHunting(true);}
+        @Override public void start(){super.start();wolf.getNavigation().stop();assemblePath=0;((WolfState)wolf).ffm$setHunting(true);}
         @Override public void tick(){
             if(wolf.getTarget() instanceof Sheep sheep) {
+                if(!WolfPacks.ready(wolf,sheep)) {
+                    ((WolfState)wolf).ffm$setStalking(false);
+                    Wolf leader=WolfPacks.assemblyLeader(wolf);
+                    if(leader!=wolf && wolf.distanceToSqr(leader)>16) {
+                        if(--assemblePath<=0){assemblePath=10;wolf.getNavigation().moveTo(leader,1.0);}
+                    }
+                    else wolf.getNavigation().stop();
+                    return;
+                }
                 boolean charge=WolfPacks.charging(wolf,sheep);
                 ((WolfState)wolf).ffm$setStalking(!charge);
                 super.tick();wolf.getNavigation().setSpeedModifier(charge?1.0:0.5);
@@ -66,6 +77,26 @@ public final class WolfHuntGoals {
         @Override public void stop(){
             super.stop();((WolfState)wolf).ffm$setStalking(false);((WolfState)wolf).ffm$setHunting(false);
         }
+    }
+    /** Wild companions follow a stable leader; higher-priority danger and combat goals win. */
+    public static final class Regroup extends Goal {
+        private final Wolf wolf;
+        private Wolf leader;
+        private int scan,repath;
+        public Regroup(Wolf wolf){this.wolf=wolf;setFlags(EnumSet.of(Flag.MOVE));}
+        private boolean free(){return !wolf.isTame()&&!wolf.isLeashed()&&!wolf.isPassenger()
+                &&!wolf.isVehicle()&&wolf.getTarget()==null&&!wolf.isAngry();}
+        @Override public boolean canUse(){
+            if(!free()||scan-- >0)return false;scan=reducedTickDelay(20);
+            leader=WolfPacks.members(wolf,48).stream().filter(w->!w.isNoAi()&&!w.isLeashed()&&!w.isPassenger()&&!w.isVehicle())
+                    .min(java.util.Comparator.comparing(Wolf::getUUID)).orElse(wolf);
+            return leader!=wolf&&wolf.distanceToSqr(leader)>36;
+        }
+        @Override public boolean canContinueToUse(){return free()&&leader!=null&&leader.isAlive()&&!leader.isTame()
+                &&wolf.distanceToSqr(leader)>9&&wolf.distanceToSqr(leader)<48*48;}
+        @Override public void start(){repath=0;}
+        @Override public void tick(){if(--repath<=0){repath=adjustedTickDelay(10);wolf.getNavigation().moveTo(leader,1.0);}}
+        @Override public void stop(){leader=null;wolf.getNavigation().stop();}
     }
     private WolfHuntGoals(){}
 }

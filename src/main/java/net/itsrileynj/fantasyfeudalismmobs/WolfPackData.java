@@ -17,9 +17,13 @@ public final class WolfPackData extends SavedData {
 
     static final class Hunt {
         final UUID prey;
+        final UUID leader;
+        final java.util.Set<UUID> members=new java.util.HashSet<>();
+        final long assembledAt;
+        long startsAt=Long.MAX_VALUE;
         boolean charging;
         long touched;
-        Hunt(UUID prey, long now) { this.prey=prey;this.touched=now; }
+        Hunt(UUID prey, UUID leader, long now) { this.prey=prey;this.leader=leader;this.assembledAt=now;this.touched=now; }
     }
 
     public static WolfPackData get(ServerLevel level) {

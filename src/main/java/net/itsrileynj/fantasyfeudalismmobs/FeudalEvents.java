@@ -260,7 +260,7 @@ public final class FeudalEvents {
         }
         if (event.getLevel() instanceof ServerLevel level && inMineshaft(level, event.getPos())
                 && event.getSpawnerDataList().stream().noneMatch(s -> s.type == EntityType.SILVERFISH)) {
-            event.addSpawnerData(spawnEntry(EntityType.SILVERFISH, 60, 3, 9));
+            event.addSpawnerData(spawnEntry(EntityType.SILVERFISH, 120, 4, 9));
         }
     }
 

@@ -1,0 +1,2439 @@
+[
+  {
+    "name": "A group of at least four live silverfish spawned naturally inside an unchanged generated mineshaft",
+    "status": "passed",
+    "detail": {
+      "pack": [
+        {
+          "id": 626,
+          "uuid": "b47a6109-5d87-44be-acf4-eeabbeb20c4d",
+          "type": "minecraft:silverfish",
+          "position": [
+            -94.5,
+            -15.0,
+            14.5
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "mineshaft": true,
+          "killedZombie": false,
+          "burrowed": false,
+          "burrowUntil": 0
+        },
+        {
+          "id": 627,
+          "uuid": "7ca824e7-a875-4fd6-a772-d86af44cde39",
+          "type": "minecraft:silverfish",
+          "position": [
+            -93.49634983823205,
+            -15.0,
+            16.50000587227048
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "mineshaft": true,
+          "killedZombie": false,
+          "burrowed": false,
+          "burrowUntil": 0
+        },
+        {
+          "id": 638,
+          "uuid": "a7f63879-131d-4d9c-89d7-a05678625153",
+          "type": "minecraft:silverfish",
+          "position": [
+            -81.5,
+            -15.0,
+            14.5
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "mineshaft": true,
+          "killedZombie": false,
+          "burrowed": false,
+          "burrowUntil": 0
+        },
+        {
+          "id": 639,
+          "uuid": "7db3e0da-3302-4ee5-9767-482a984849a3",
+          "type": "minecraft:silverfish",
+          "position": [
+            -89.5,
+            -15.0,
+            14.5
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "mineshaft": true,
+          "killedZombie": false,
+          "burrowed": false,
+          "burrowUntil": 0
+        }
+      ],
+      "births": [
+        {
+          "tick": 1715,
+          "entity": {
+            "id": 426,
+            "uuid": "1b468a12-10b5-4dc7-a272-5ee8a7df8cdd",
+            "type": "minecraft:silverfish",
+            "position": [
+              -14.5,
+              -17.0,
+              26.5
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "health": 8.0,
+            "maxHealth": 8.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "mineshaft": true,
+            "killedZombie": false,
+            "burrowed": false,
+            "burrowUntil": 0
+          }
+        },
+        {
+          "tick": 1715,
+          "entity": {
+            "id": 427,
+            "uuid": "6bff9dce-8c8f-42f6-8d38-dab7773e6cc0",
+            "type": "minecraft:silverfish",
+            "position": [
+              -14.5,
+              -17.0,
+              27.5
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "health": 8.0,
+            "maxHealth": 8.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "mineshaft": true,
+            "killedZombie": false,
+            "burrowed": false,
+            "burrowUntil": 0
+          }
+        },
+        {
+          "tick": 1715,
+          "entity": {
+            "id": 428,
+            "uuid": "6b9d65ff-a25e-4025-859c-0f612799c326",
+            "type": "minecraft:silverfish",
+            "position": [
+              -16.5,
+              -17.0,
+              25.5
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "health": 8.0,
+            "maxHealth": 8.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "mineshaft": true,
+            "killedZombie": false,
+            "burrowed": false,
+            "burrowUntil": 0
+          }
+        },
+        {
+          "tick": 2032,
+          "entity": {
+            "id": 626,
+            "uuid": "b47a6109-5d87-44be-acf4-eeabbeb20c4d",
+            "type": "minecraft:silverfish",
+            "position": [
+              -94.5,
+              -15.0,
+              14.5
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "health": 8.0,
+            "maxHealth": 8.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "mineshaft": true,
+            "killedZombie": false,
+            "burrowed": false,
+            "burrowUntil": 0
+          }
+        },
+        {
+          "tick": 2032,
+          "entity": {
+            "id": 627,
+            "uuid": "7ca824e7-a875-4fd6-a772-d86af44cde39",
+            "type": "minecraft:silverfish",
+            "position": [
+              -91.5,
+              -15.0,
+              16.5
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "health": 8.0,
+            "maxHealth": 8.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "mineshaft": true,
+            "killedZombie": false,
+            "burrowed": false,
+            "burrowUntil": 0
+          }
+        },
+        {
+          "tick": 2049,
+          "entity": {
+            "id": 636,
+            "uuid": "d25a07b4-cd0f-4c4b-9521-7c63cf1a6c53",
+            "type": "minecraft:silverfish",
+            "position": [
+              -72.5,
+              -15.0,
+              14.5
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "health": 8.0,
+            "maxHealth": 8.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "mineshaft": true,
+            "killedZombie": false,
+            "burrowed": false,
+            "burrowUntil": 0
+          }
+        },
+        {
+          "tick": 2049,
+          "entity": {
+            "id": 637,
+            "uuid": "e4e404bc-fca2-4d75-8327-0574fd9f7e17",
+            "type": "minecraft:silverfish",
+            "position": [
+              -76.5,
+              -15.0,
+              15.5
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "health": 8.0,
+            "maxHealth": 8.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "mineshaft": true,
+            "killedZombie": false,
+            "burrowed": false,
+            "burrowUntil": 0
+          }
+        },
+        {
+          "tick": 2049,
+          "entity": {
+            "id": 638,
+            "uuid": "a7f63879-131d-4d9c-89d7-a05678625153",
+            "type": "minecraft:silverfish",
+            "position": [
+              -81.5,
+              -15.0,
+              14.5
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "health": 8.0,
+            "maxHealth": 8.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "mineshaft": true,
+            "killedZombie": false,
+            "burrowed": false,
+            "burrowUntil": 0
+          }
+        },
+        {
+          "tick": 2049,
+          "entity": {
+            "id": 639,
+            "uuid": "7db3e0da-3302-4ee5-9767-482a984849a3",
+            "type": "minecraft:silverfish",
+            "position": [
+              -89.5,
+              -15.0,
+              14.5
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "health": 8.0,
+            "maxHealth": 8.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "mineshaft": true,
+            "killedZombie": false,
+            "burrowed": false,
+            "burrowUntil": 0
+          }
+        }
+      ],
+      "competingEntitiesCleared": 511,
+      "structure": {
+        "pieces": [
+          {
+            "min": [
+              -62,
+              -17,
+              2
+            ],
+            "max": [
+              -54,
+              -8,
+              11
+            ]
+          },
+          {
+            "min": [
+              -56,
+              -15,
+              12
+            ],
+            "max": [
+              -54,
+              -13,
+              31
+            ]
+          },
+          {
+            "min": [
+              -56,
+              -15,
+              32
+            ],
+            "max": [
+              -54,
+              -13,
+              51
+            ]
+          },
+          {
+            "min": [
+              -76,
+              -16,
+              48
+            ],
+            "max": [
+              -57,
+              -14,
+              50
+            ]
+          },
+          {
+            "min": [
+              -76,
+              -16,
+              38
+            ],
+            "max": [
+              -74,
+              -14,
+              47
+            ]
+          },
+          {
+            "min": [
+              -96,
+              -17,
+              38
+            ],
+            "max": [
+              -77,
+              -15,
+              40
+            ]
+          },
+          {
+            "min": [
+              -111,
+              -16,
+              38
+            ],
+            "max": [
+              -97,
+              -14,
+              40
+            ]
+          },
+          {
+            "min": [
+              -116,
+              -17,
+              37
+            ],
+            "max": [
+              -112,
+              -15,
+              41
+            ]
+          },
+          {
+            "min": [
+              -115,
+              -17,
+              17
+            ],
+            "max": [
+              -113,
+              -15,
+              36
+            ]
+          },
+          {
+            "min": [
+              -116,
+              -16,
+              12
+            ],
+            "max": [
+              -112,
+              -14,
+              16
+            ]
+          },
+          {
+            "min": [
+              -115,
+              -17,
+              42
+            ],
+            "max": [
+              -113,
+              -15,
+              61
+            ]
+          },
+          {
+            "min": [
+              -135,
+              -17,
+              58
+            ],
+            "max": [
+              -116,
+              -15,
+              60
+            ]
+          },
+          {
+            "min": [
+              -136,
+              -17,
+              38
+            ],
+            "max": [
+              -117,
+              -15,
+              40
+            ]
+          },
+          {
+            "min": [
+              -136,
+              -16,
+              41
+            ],
+            "max": [
+              -134,
+              -14,
+              55
+            ]
+          },
+          {
+            "min": [
+              -109,
+              -16,
+              41
+            ],
+            "max": [
+              -105,
+              -10,
+              45
+            ]
+          },
+          {
+            "min": [
+              -108,
+              -16,
+              46
+            ],
+            "max": [
+              -106,
+              -14,
+              65
+            ]
+          },
+          {
+            "min": [
+              -104,
+              -16,
+              42
+            ],
+            "max": [
+              -85,
+              -14,
+              44
+            ]
+          },
+          {
+            "min": [
+              -114,
+              -12,
+              41
+            ],
+            "max": [
+              -110,
+              -6,
+              45
+            ]
+          },
+          {
+            "min": [
+              -104,
+              -12,
+              41
+            ],
+            "max": [
+              -100,
+              -6,
+              45
+            ]
+          },
+          {
+            "min": [
+              -83,
+              -17,
+              41
+            ],
+            "max": [
+              -81,
+              -15,
+              60
+            ]
+          },
+          {
+            "min": [
+              -98,
+              -16,
+              57
+            ],
+            "max": [
+              -84,
+              -14,
+              59
+            ]
+          },
+          {
+            "min": [
+              -98,
+              -16,
+              47
+            ],
+            "max": [
+              -96,
+              -14,
+              56
+            ]
+          },
+          {
+            "min": [
+              -80,
+              -17,
+              54
+            ],
+            "max": [
+              -66,
+              -15,
+              56
+            ]
+          },
+          {
+            "min": [
+              -73,
+              -16,
+              40
+            ],
+            "max": [
+              -69,
+              -14,
+              44
+            ]
+          },
+          {
+            "min": [
+              -72,
+              -21,
+              31
+            ],
+            "max": [
+              -70,
+              -14,
+              39
+            ]
+          },
+          {
+            "min": [
+              -73,
+              -21,
+              26
+            ],
+            "max": [
+              -69,
+              -19,
+              30
+            ]
+          },
+          {
+            "min": [
+              -72,
+              -21,
+              6
+            ],
+            "max": [
+              -70,
+              -19,
+              25
+            ]
+          },
+          {
+            "min": [
+              -93,
+              -21,
+              27
+            ],
+            "max": [
+              -74,
+              -19,
+              29
+            ]
+          },
+          {
+            "min": [
+              -68,
+              -21,
+              27
+            ],
+            "max": [
+              -49,
+              -19,
+              29
+            ]
+          },
+          {
+            "min": [
+              -68,
+              -16,
+              41
+            ],
+            "max": [
+              -59,
+              -14,
+              43
+            ]
+          },
+          {
+            "min": [
+              -63,
+              -16,
+              51
+            ],
+            "max": [
+              -61,
+              -14,
+              65
+            ]
+          },
+          {
+            "min": [
+              -63,
+              -15,
+              66
+            ],
+            "max": [
+              -61,
+              -13,
+              80
+            ]
+          },
+          {
+            "min": [
+              -60,
+              -15,
+              76
+            ],
+            "max": [
+              -56,
+              -13,
+              80
+            ]
+          },
+          {
+            "min": [
+              -59,
+              -15,
+              61
+            ],
+            "max": [
+              -57,
+              -13,
+              75
+            ]
+          },
+          {
+            "min": [
+              -60,
+              -14,
+              56
+            ],
+            "max": [
+              -56,
+              -12,
+              60
+            ]
+          },
+          {
+            "min": [
+              -59,
+              -15,
+              81
+            ],
+            "max": [
+              -57,
+              -13,
+              90
+            ]
+          },
+          {
+            "min": [
+              -55,
+              -15,
+              77
+            ],
+            "max": [
+              -36,
+              -13,
+              79
+            ]
+          },
+          {
+            "min": [
+              -35,
+              -16,
+              77
+            ],
+            "max": [
+              -21,
+              -14,
+              79
+            ]
+          },
+          {
+            "min": [
+              -72,
+              -20,
+              74
+            ],
+            "max": [
+              -64,
+              -13,
+              76
+            ]
+          },
+          {
+            "min": [
+              -92,
+              -20,
+              74
+            ],
+            "max": [
+              -73,
+              -18,
+              76
+            ]
+          },
+          {
+            "min": [
+              -78,
+              -16,
+              59
+            ],
+            "max": [
+              -64,
+              -14,
+              61
+            ]
+          },
+          {
+            "min": [
+              -61,
+              -15,
+              34
+            ],
+            "max": [
+              -57,
+              -9,
+              38
+            ]
+          },
+          {
+            "min": [
+              -61,
+              -15,
+              29
+            ],
+            "max": [
+              -57,
+              -9,
+              33
+            ]
+          },
+          {
+            "min": [
+              -60,
+              -15,
+              14
+            ],
+            "max": [
+              -58,
+              -13,
+              28
+            ]
+          },
+          {
+            "min": [
+              -65,
+              -15,
+              13
+            ],
+            "max": [
+              -61,
+              -13,
+              17
+            ]
+          },
+          {
+            "min": [
+              -64,
+              -20,
+              18
+            ],
+            "max": [
+              -62,
+              -13,
+              26
+            ]
+          },
+          {
+            "min": [
+              -85,
+              -15,
+              14
+            ],
+            "max": [
+              -66,
+              -13,
+              16
+            ]
+          },
+          {
+            "min": [
+              -105,
+              -15,
+              14
+            ],
+            "max": [
+              -86,
+              -13,
+              16
+            ]
+          },
+          {
+            "min": [
+              -66,
+              -15,
+              30
+            ],
+            "max": [
+              -62,
+              -13,
+              32
+            ]
+          },
+          {
+            "min": [
+              -60,
+              -11,
+              14
+            ],
+            "max": [
+              -58,
+              -9,
+              28
+            ]
+          },
+          {
+            "min": [
+              -65,
+              -11,
+              13
+            ],
+            "max": [
+              -61,
+              -9,
+              17
+            ]
+          },
+          {
+            "min": [
+              -64,
+              -11,
+              18
+            ],
+            "max": [
+              -62,
+              -9,
+              37
+            ]
+          },
+          {
+            "min": [
+              -64,
+              -10,
+              38
+            ],
+            "max": [
+              -62,
+              -8,
+              52
+            ]
+          },
+          {
+            "min": [
+              -80,
+              -11,
+              14
+            ],
+            "max": [
+              -66,
+              -9,
+              16
+            ]
+          },
+          {
+            "min": [
+              -85,
+              -11,
+              13
+            ],
+            "max": [
+              -81,
+              -9,
+              17
+            ]
+          },
+          {
+            "min": [
+              -57,
+              -11,
+              17
+            ],
+            "max": [
+              -43,
+              -9,
+              19
+            ]
+          },
+          {
+            "min": [
+              -42,
+              -11,
+              17
+            ],
+            "max": [
+              -33,
+              -9,
+              19
+            ]
+          },
+          {
+            "min": [
+              -66,
+              -15,
+              35
+            ],
+            "max": [
+              -62,
+              -13,
+              37
+            ]
+          },
+          {
+            "min": [
+              -56,
+              -11,
+              34
+            ],
+            "max": [
+              -52,
+              -9,
+              38
+            ]
+          },
+          {
+            "min": [
+              -55,
+              -11,
+              24
+            ],
+            "max": [
+              -53,
+              -9,
+              33
+            ]
+          },
+          {
+            "min": [
+              -52,
+              -10,
+              24
+            ],
+            "max": [
+              -38,
+              -8,
+              26
+            ]
+          },
+          {
+            "min": [
+              -41,
+              -10,
+              27
+            ],
+            "max": [
+              -39,
+              -8,
+              46
+            ]
+          },
+          {
+            "min": [
+              -50,
+              -16,
+              43
+            ],
+            "max": [
+              -42,
+              -9,
+              45
+            ]
+          },
+          {
+            "min": [
+              -49,
+              -10,
+              27
+            ],
+            "max": [
+              -47,
+              -8,
+              41
+            ]
+          },
+          {
+            "min": [
+              -44,
+              -10,
+              27
+            ],
+            "max": [
+              -42,
+              -8,
+              41
+            ]
+          },
+          {
+            "min": [
+              -55,
+              -11,
+              39
+            ],
+            "max": [
+              -53,
+              -9,
+              53
+            ]
+          },
+          {
+            "min": [
+              -52,
+              -10,
+              50
+            ],
+            "max": [
+              -43,
+              -8,
+              52
+            ]
+          },
+          {
+            "min": [
+              -53,
+              -15,
+              40
+            ],
+            "max": [
+              -39,
+              -13,
+              42
+            ]
+          },
+          {
+            "min": [
+              -38,
+              -16,
+              40
+            ],
+            "max": [
+              -19,
+              -14,
+              42
+            ]
+          },
+          {
+            "min": [
+              -18,
+              -17,
+              39
+            ],
+            "max": [
+              -14,
+              -15,
+              43
+            ]
+          },
+          {
+            "min": [
+              -17,
+              -17,
+              19
+            ],
+            "max": [
+              -15,
+              -15,
+              38
+            ]
+          },
+          {
+            "min": [
+              -14,
+              -18,
+              18
+            ],
+            "max": [
+              -10,
+              -16,
+              22
+            ]
+          },
+          {
+            "min": [
+              -14,
+              -18,
+              13
+            ],
+            "max": [
+              -10,
+              -12,
+              17
+            ]
+          },
+          {
+            "min": [
+              -13,
+              -18,
+              23
+            ],
+            "max": [
+              -11,
+              -16,
+              42
+            ]
+          },
+          {
+            "min": [
+              -9,
+              -23,
+              19
+            ],
+            "max": [
+              -1,
+              -16,
+              21
+            ]
+          },
+          {
+            "min": [
+              -17,
+              -17,
+              44
+            ],
+            "max": [
+              -15,
+              -15,
+              63
+            ]
+          },
+          {
+            "min": [
+              -17,
+              -16,
+              64
+            ],
+            "max": [
+              -15,
+              -14,
+              73
+            ]
+          },
+          {
+            "min": [
+              -17,
+              -17,
+              74
+            ],
+            "max": [
+              -15,
+              -15,
+              83
+            ]
+          },
+          {
+            "min": [
+              -14,
+              -17,
+              47
+            ],
+            "max": [
+              5,
+              -15,
+              49
+            ]
+          },
+          {
+            "min": [
+              -25,
+              -16,
+              30
+            ],
+            "max": [
+              -23,
+              -14,
+              39
+            ]
+          },
+          {
+            "min": [
+              -25,
+              -20,
+              21
+            ],
+            "max": [
+              -23,
+              -13,
+              29
+            ]
+          },
+          {
+            "min": [
+              -25,
+              -20,
+              11
+            ],
+            "max": [
+              -23,
+              -18,
+              20
+            ]
+          },
+          {
+            "min": [
+              -22,
+              -16,
+              33
+            ],
+            "max": [
+              -18,
+              -14,
+              35
+            ]
+          },
+          {
+            "min": [
+              -71,
+              -15,
+              45
+            ],
+            "max": [
+              -57,
+              -13,
+              47
+            ]
+          },
+          {
+            "min": [
+              -71,
+              -16,
+              8
+            ],
+            "max": [
+              -63,
+              -9,
+              10
+            ]
+          },
+          {
+            "min": [
+              -53,
+              -16,
+              4
+            ],
+            "max": [
+              -49,
+              -14,
+              8
+            ]
+          },
+          {
+            "min": [
+              -52,
+              -21,
+              -5
+            ],
+            "max": [
+              -50,
+              -14,
+              3
+            ]
+          },
+          {
+            "min": [
+              -52,
+              -21,
+              -25
+            ],
+            "max": [
+              -50,
+              -19,
+              -6
+            ]
+          },
+          {
+            "min": [
+              -53,
+              -21,
+              -30
+            ],
+            "max": [
+              -49,
+              -15,
+              -26
+            ]
+          },
+          {
+            "min": [
+              -52,
+              -21,
+              -40
+            ],
+            "max": [
+              -50,
+              -19,
+              -31
+            ]
+          },
+          {
+            "min": [
+              -61,
+              -27,
+              -40
+            ],
+            "max": [
+              -53,
+              -20,
+              -38
+            ]
+          },
+          {
+            "min": [
+              -76,
+              -27,
+              -40
+            ],
+            "max": [
+              -62,
+              -25,
+              -38
+            ]
+          },
+          {
+            "min": [
+              -91,
+              -27,
+              -40
+            ],
+            "max": [
+              -77,
+              -25,
+              -38
+            ]
+          },
+          {
+            "min": [
+              -111,
+              -27,
+              -40
+            ],
+            "max": [
+              -92,
+              -25,
+              -38
+            ]
+          },
+          {
+            "min": [
+              -68,
+              -21,
+              -29
+            ],
+            "max": [
+              -54,
+              -19,
+              -27
+            ]
+          },
+          {
+            "min": [
+              -68,
+              -20,
+              -49
+            ],
+            "max": [
+              -66,
+              -18,
+              -30
+            ]
+          },
+          {
+            "min": [
+              -65,
+              -20,
+              -49
+            ],
+            "max": [
+              -46,
+              -18,
+              -47
+            ]
+          },
+          {
+            "min": [
+              -49,
+              -19,
+              -64
+            ],
+            "max": [
+              -47,
+              -17,
+              -50
+            ]
+          },
+          {
+            "min": [
+              -69,
+              -19,
+              -64
+            ],
+            "max": [
+              -50,
+              -17,
+              -62
+            ]
+          },
+          {
+            "min": [
+              -52,
+              -20,
+              -59
+            ],
+            "max": [
+              -50,
+              -18,
+              -50
+            ]
+          },
+          {
+            "min": [
+              -65,
+              -20,
+              -46
+            ],
+            "max": [
+              -46,
+              -18,
+              -44
+            ]
+          },
+          {
+            "min": [
+              -61,
+              -21,
+              -26
+            ],
+            "max": [
+              -57,
+              -19,
+              -22
+            ]
+          },
+          {
+            "min": [
+              -60,
+              -21,
+              -21
+            ],
+            "max": [
+              -58,
+              -19,
+              -12
+            ]
+          },
+          {
+            "min": [
+              -60,
+              -20,
+              -11
+            ],
+            "max": [
+              -58,
+              -18,
+              -2
+            ]
+          },
+          {
+            "min": [
+              -76,
+              -21,
+              -25
+            ],
+            "max": [
+              -62,
+              -19,
+              -23
+            ]
+          },
+          {
+            "min": [
+              -96,
+              -20,
+              -25
+            ],
+            "max": [
+              -77,
+              -18,
+              -23
+            ]
+          },
+          {
+            "min": [
+              -48,
+              -21,
+              -30
+            ],
+            "max": [
+              -44,
+              -19,
+              -26
+            ]
+          },
+          {
+            "min": [
+              -47,
+              -21,
+              -40
+            ],
+            "max": [
+              -45,
+              -19,
+              -31
+            ]
+          },
+          {
+            "min": [
+              -47,
+              -21,
+              -25
+            ],
+            "max": [
+              -45,
+              -19,
+              -11
+            ]
+          },
+          {
+            "min": [
+              -43,
+              -21,
+              -29
+            ],
+            "max": [
+              -24,
+              -19,
+              -27
+            ]
+          },
+          {
+            "min": [
+              -27,
+              -20,
+              -26
+            ],
+            "max": [
+              -25,
+              -18,
+              -17
+            ]
+          },
+          {
+            "min": [
+              -24,
+              -20,
+              -20
+            ],
+            "max": [
+              -10,
+              -18,
+              -18
+            ]
+          },
+          {
+            "min": [
+              -9,
+              -19,
+              -20
+            ],
+            "max": [
+              5,
+              -17,
+              -18
+            ]
+          },
+          {
+            "min": [
+              -37,
+              -20,
+              -23
+            ],
+            "max": [
+              -28,
+              -18,
+              -21
+            ]
+          },
+          {
+            "min": [
+              -40,
+              -21,
+              -44
+            ],
+            "max": [
+              -38,
+              -19,
+              -30
+            ]
+          },
+          {
+            "min": [
+              -37,
+              -26,
+              -44
+            ],
+            "max": [
+              -29,
+              -19,
+              -42
+            ]
+          },
+          {
+            "min": [
+              -52,
+              -17,
+              -45
+            ],
+            "max": [
+              -50,
+              -15,
+              -31
+            ]
+          },
+          {
+            "min": [
+              -72,
+              -17,
+              -45
+            ],
+            "max": [
+              -53,
+              -15,
+              -43
+            ]
+          },
+          {
+            "min": [
+              -92,
+              -16,
+              -45
+            ],
+            "max": [
+              -73,
+              -14,
+              -43
+            ]
+          },
+          {
+            "min": [
+              -112,
+              -17,
+              -45
+            ],
+            "max": [
+              -93,
+              -15,
+              -43
+            ]
+          },
+          {
+            "min": [
+              -112,
+              -17,
+              -55
+            ],
+            "max": [
+              -110,
+              -15,
+              -46
+            ]
+          },
+          {
+            "min": [
+              -89,
+              -21,
+              -42
+            ],
+            "max": [
+              -87,
+              -14,
+              -34
+            ]
+          },
+          {
+            "min": [
+              -84,
+              -16,
+              -42
+            ],
+            "max": [
+              -82,
+              -14,
+              -23
+            ]
+          },
+          {
+            "min": [
+              -59,
+              -17,
+              -42
+            ],
+            "max": [
+              -57,
+              -15,
+              -33
+            ]
+          },
+          {
+            "min": [
+              -59,
+              -16,
+              -32
+            ],
+            "max": [
+              -57,
+              -14,
+              -13
+            ]
+          },
+          {
+            "min": [
+              -53,
+              -17,
+              -25
+            ],
+            "max": [
+              -49,
+              -15,
+              -21
+            ]
+          },
+          {
+            "min": [
+              -52,
+              -17,
+              -20
+            ],
+            "max": [
+              -50,
+              -15,
+              -11
+            ]
+          },
+          {
+            "min": [
+              -52,
+              -17,
+              -10
+            ],
+            "max": [
+              -50,
+              -15,
+              -6
+            ]
+          },
+          {
+            "min": [
+              -48,
+              -17,
+              -24
+            ],
+            "max": [
+              -39,
+              -15,
+              -22
+            ]
+          },
+          {
+            "min": [
+              -38,
+              -16,
+              -24
+            ],
+            "max": [
+              -24,
+              -14,
+              -22
+            ]
+          },
+          {
+            "min": [
+              -27,
+              -17,
+              -39
+            ],
+            "max": [
+              -25,
+              -15,
+              -25
+            ]
+          },
+          {
+            "min": [
+              -27,
+              -18,
+              -59
+            ],
+            "max": [
+              -25,
+              -16,
+              -40
+            ]
+          },
+          {
+            "min": [
+              -30,
+              -16,
+              -21
+            ],
+            "max": [
+              -28,
+              -14,
+              -2
+            ]
+          },
+          {
+            "min": [
+              -45,
+              -17,
+              -39
+            ],
+            "max": [
+              -43,
+              -15,
+              -25
+            ]
+          },
+          {
+            "min": [
+              -52,
+              -16,
+              9
+            ],
+            "max": [
+              -50,
+              -14,
+              18
+            ]
+          },
+          {
+            "min": [
+              -48,
+              -16,
+              5
+            ],
+            "max": [
+              -39,
+              -14,
+              7
+            ]
+          },
+          {
+            "min": [
+              -42,
+              -16,
+              -5
+            ],
+            "max": [
+              -40,
+              -14,
+              4
+            ]
+          },
+          {
+            "min": [
+              -47,
+              -15,
+              -5
+            ],
+            "max": [
+              -43,
+              -13,
+              -3
+            ]
+          },
+          {
+            "min": [
+              -47,
+              -15,
+              -15
+            ],
+            "max": [
+              -45,
+              -13,
+              -6
+            ]
+          },
+          {
+            "min": [
+              -47,
+              -16,
+              -20
+            ],
+            "max": [
+              -45,
+              -14,
+              -16
+            ]
+          },
+          {
+            "min": [
+              -44,
+              -15,
+              -12
+            ],
+            "max": [
+              -35,
+              -13,
+              -10
+            ]
+          }
+        ],
+        "location": [
+          -64,
+          0,
+          0
+        ]
+      }
+    }
+  },
+  {
+    "name": "The natural pack remains above ground for over ten seconds with mob griefing enabled",
+    "status": "passed",
+    "detail": [
+      {
+        "id": 426,
+        "uuid": "1b468a12-10b5-4dc7-a272-5ee8a7df8cdd",
+        "type": "minecraft:silverfish",
+        "position": [
+          -14.824851879175613,
+          -17.0,
+          25.800086101731313
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "NATURAL",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "mineshaft": true,
+        "killedZombie": false,
+        "burrowed": false,
+        "burrowUntil": 0
+      },
+      {
+        "id": 427,
+        "uuid": "6bff9dce-8c8f-42f6-8d38-dab7773e6cc0",
+        "type": "minecraft:silverfish",
+        "position": [
+          -11.509760140963484,
+          -18.0,
+          17.833199368375393
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "NATURAL",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "mineshaft": true,
+        "killedZombie": false,
+        "burrowed": false,
+        "burrowUntil": 0
+      },
+      {
+        "id": 428,
+        "uuid": "6b9d65ff-a25e-4025-859c-0f612799c326",
+        "type": "minecraft:silverfish",
+        "position": [
+          -15.87627743234982,
+          -17.0,
+          32.01326416974709
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "NATURAL",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "mineshaft": true,
+        "killedZombie": false,
+        "burrowed": false,
+        "burrowUntil": 0
+      },
+      {
+        "id": 626,
+        "uuid": "b47a6109-5d87-44be-acf4-eeabbeb20c4d",
+        "type": "minecraft:silverfish",
+        "position": [
+          -94.1493111538389,
+          -15.0,
+          14.779945666436587
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "NATURAL",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "mineshaft": true,
+        "killedZombie": false,
+        "burrowed": false,
+        "burrowUntil": 0
+      },
+      {
+        "id": 627,
+        "uuid": "7ca824e7-a875-4fd6-a772-d86af44cde39",
+        "type": "minecraft:silverfish",
+        "position": [
+          -88.40448776269737,
+          -15.0,
+          14.493463286352481
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "NATURAL",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "mineshaft": true,
+        "killedZombie": false,
+        "burrowed": false,
+        "burrowUntil": 0
+      },
+      {
+        "id": 636,
+        "uuid": "d25a07b4-cd0f-4c4b-9521-7c63cf1a6c53",
+        "type": "minecraft:silverfish",
+        "position": [
+          -62.367736786644244,
+          -15.0,
+          15.806072238184735
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "NATURAL",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "mineshaft": true,
+        "killedZombie": false,
+        "burrowed": false,
+        "burrowUntil": 0
+      },
+      {
+        "id": 637,
+        "uuid": "e4e404bc-fca2-4d75-8327-0574fd9f7e17",
+        "type": "minecraft:silverfish",
+        "position": [
+          -88.8807556171651,
+          -15.0,
+          14.500061458241039
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "NATURAL",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "mineshaft": true,
+        "killedZombie": false,
+        "burrowed": false,
+        "burrowUntil": 0
+      },
+      {
+        "id": 638,
+        "uuid": "a7f63879-131d-4d9c-89d7-a05678625153",
+        "type": "minecraft:silverfish",
+        "position": [
+          -73.50425064562398,
+          -15.0,
+          16.442089919222756
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "NATURAL",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "mineshaft": true,
+        "killedZombie": false,
+        "burrowed": false,
+        "burrowUntil": 0
+      },
+      {
+        "id": 639,
+        "uuid": "7db3e0da-3302-4ee5-9767-482a984849a3",
+        "type": "minecraft:silverfish",
+        "position": [
+          -79.32893888978953,
+          -15.0,
+          14.5
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "NATURAL",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "mineshaft": true,
+        "killedZombie": false,
+        "burrowed": false,
+        "burrowUntil": 0
+      }
+    ]
+  },
+  {
+    "name": "Both graphical clients track the same live pack without recorded rendering errors",
+    "status": "passed",
+    "detail": [
+      626,
+      627,
+      638,
+      639
+    ]
+  }
+]

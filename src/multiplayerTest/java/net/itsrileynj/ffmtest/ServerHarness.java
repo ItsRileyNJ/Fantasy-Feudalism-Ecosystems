@@ -22,6 +22,8 @@ import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 
 public final class ServerHarness {
     private static long tickStart;
+    private static final Map<Integer,Long> WOLF_STARTS=new HashMap<>();
+    public static long firstStalk(int id){return WOLF_STARTS.getOrDefault(id,-1L);}
     private static final ArrayDeque<Double> TIMES = new ArrayDeque<>();
     private static final ArrayDeque<Map<String,Object>> NATURAL_SILVERFISH = new ArrayDeque<>();
     private static final ArrayDeque<Map<String,Object>> SILVERFISH_KILLS = new ArrayDeque<>();
@@ -43,6 +45,9 @@ public final class ServerHarness {
     @SubscribeEvent public static void post(ServerTickEvent.Post event) {
         TIMES.add((System.nanoTime() - tickStart) / 1_000_000.0); if (TIMES.size() > 1200) TIMES.remove();
         if (System.getProperty("ffm.test.control") == null) return;
+        for(var entity:event.getServer().overworld().getAllEntities())
+            if(entity instanceof net.minecraft.world.entity.animal.Wolf wolf && ((net.itsrileynj.fantasyfeudalismmobs.WolfState)wolf).ffm$stalking())
+                WOLF_STARTS.putIfAbsent(wolf.getId(),wolf.level().getGameTime());
         JsonObject request = ControlFiles.command(); if (request == null) return;
         try { ControlFiles.respond(request, execute(event.getServer(), request)); }
         catch (Throwable error) { error.printStackTrace(); ControlFiles.fail(request, error); }
