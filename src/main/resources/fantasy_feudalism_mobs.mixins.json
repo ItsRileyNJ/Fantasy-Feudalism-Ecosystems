@@ -4,6 +4,8 @@
   "package": "net.itsrileynj.fantasyfeudalismmobs.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "ChickenMixin",
+    "CowMixin",
     "SpiderMixin",
     "WalkNodeEvaluatorMixin",
     "MobMixin",

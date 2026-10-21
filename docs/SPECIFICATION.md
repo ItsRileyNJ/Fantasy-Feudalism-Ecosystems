@@ -299,3 +299,11 @@ Successful companion attacks must show the vanilla particles belonging to the ef
 The user reported missing packs and reiterated that silverfish should spawn like normal mobs in mineshafts and attack zombies. Preserve normal group attempts of 3–9, spawn weight 60, dark hostile placement, mineshaft restriction and mob caps. Prefer zombie prey over nearby players while retaining spider avoidance.
 
 The user further specified that only the silverfish landing a zombie's killing blow should burrow. Other silverfish keep roaming until their own zombie kill or death; assists and environmental finishing damage do not grant credit. This rule applies to every silverfish spawn origin. The killer hides inside a suitable adjacent block and despawns 600 game ticks (30 seconds) after entering. The block remains unchanged, preventing a permanent infestation or a second silverfish from being released later. Per-entity kill credit and the original deadline persist through save/load; the deadline does not reset.
+
+## Chicken follow-up
+
+Chickens flee when a player comes within three blocks. Fleeing speed is 5% below normal unbuffed player sprinting on ordinary ground. Adult and baby chickens use this behavior. Normal vanilla avoidance exemptions apply to Creative and Spectator players.
+
+## Cow follow-up
+
+Cows that spawn together stay together as a herd. Spawn-group identity persists across saves and reloads. A separated cow uses ordinary navigation to regroup, without teleporting or forcing chunks to load. Vanilla panic, breeding, food temptation, calf following and leashes take priority.

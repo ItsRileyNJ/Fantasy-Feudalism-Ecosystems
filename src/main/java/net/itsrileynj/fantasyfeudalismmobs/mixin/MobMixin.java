@@ -33,6 +33,7 @@ public abstract class MobMixin extends LivingEntity {
                                     SpawnGroupData group, CallbackInfoReturnable<SpawnGroupData> cir) {
         Mob mob = (Mob)(Object)this;
         MobRules.finalizeArmor(mob, mob.getRandom(), difficulty);
+        CowHerd.spawned(mob, cir.getReturnValue());
     }
 
     @Inject(method = "enchantSpawnedArmor", at = @At("HEAD"), cancellable = true)
