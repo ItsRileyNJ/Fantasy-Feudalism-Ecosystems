@@ -1,0 +1,186 @@
+{
+  "mobs": [
+    {
+      "name": "Two independent clients log in to packaged NeoForge server",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "200 competing bee-capture interactions conserve one bee and one bottle",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "Live Bee Bottle taming synchronizes ownership, sitting, health and speed to both clients",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "Another player cannot steal ownership by feeding",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "2000 concurrent poison-harvest requests yield exactly one potion with no inventory desync",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "2000 concurrent silk-harvest requests yield one 1-4 string harvest and one durability cost",
+      "status": "passed",
+      "detail": {
+        "string": 4
+      }
+    },
+    {
+      "name": "Full-inventory concurrent harvesting drops exactly one output and consumes one input",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "Inventory pickup, placement and shift-click conserve items and agree with server",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "Both clients reload resources without missing Bee Bottle models or render exceptions",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "Disconnect/reconnect restores inventory and full companion entity state",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "Both clients close their connections through the vanilla logout sequence without timeout",
+      "status": "passed",
+      "detail": {
+        "logoutSeconds": {
+          "guest": 0.2541440089989919,
+          "owner": 0.2578153829999792
+        }
+      }
+    }
+  ],
+  "mercenaries": [
+    {
+      "name": "200 competing contract packets redeem one two-pillager patrol exactly once and consume one contract",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "Both spider companion types are allied to mercenaries and excluded from guard targeting",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "Two real GuardScreens compete for shared storage: 13 string conserved with authoritative hidden-inventory updates",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "Concurrent clicks cannot extract or duplicate the mercenary ammunition slots",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "Guard order buttons synchronize authoritative state to both open viewers",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "Mercenary GUI renders and preserves synchronized slots at GUI scales 1, 2 and 3",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "Shared guard storage accepts vanilla string and safely rejects Bee Bottles without loss, duplication or desync",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "Spider-harvested Poison remains intact when the guard GUI rejects a negative potion",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "Mercenary custom highlight payload reaches only its requesting client",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "Both mods survive resource reload with valid Bee Bottle models, guard rendering and usable GuardScreens",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "Disconnecting with a guard-menu cursor stack conserves all items across player, world-drop and guard-loot ownership; reconnect inventories agree",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "Twelve repeated real-client inventory races conserve 17 items each and eliminate the previously reproduced losing-client ghost stack",
+      "status": "passed",
+      "detail": {
+        "races": 12,
+        "concurrentQuickMoveRequests": 96
+      }
+    },
+    {
+      "name": "Live bow skeleton AI hits a mercenary at 10 blocks and both graphical clients receive its health change",
+      "status": "passed",
+      "detail": {
+        "health": 24.0,
+        "maxHealth": 30.0
+      }
+    },
+    {
+      "name": "Live crossbow skeleton AI hits a mercenary at 27 blocks and both graphical clients receive its health change",
+      "status": "passed",
+      "detail": {
+        "health": 20.0,
+        "maxHealth": 30.0
+      }
+    },
+    {
+      "name": "180 active modified mobs plus 20 armed mercenaries remain responsive with two graphical clients, advancing frames and no render failures",
+      "status": "passed",
+      "detail": {
+        "tickSamples": 723,
+        "meanTickMs": 14.565421367911481,
+        "p95TickMs": 44.727019,
+        "maxTickMs": 148.716443,
+        "initialMobs": 200,
+        "guards": 20,
+        "elapsedSeconds": 35.34379735599941,
+        "ticksAdvanced": 722,
+        "observedTicksPerSecond": 20.427912505486468,
+        "remainingEntities": 303
+      }
+    }
+  ],
+  "release": {
+    "mobs": "0.1.1",
+    "mercenaries": "1.15.7",
+    "mobsSha256": "436907336838132913b2b373a7b9ed1d22c79816e23aadb0148cd7a7beb38c08",
+    "mercenariesSha256": "32fba122dde2819abdd64a46ee350dc3e6f2533e34c8b7360700e2a8239d0a65"
+  },
+  "earlierRestartAndMountChecks": [
+    {
+      "name": "Full process restart preserves both mods: guard contracts, equipment, supplies, orders and skins; spider ownership/cooldowns; both player inventories",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "Both-mod restart and guard persistence cannot reset spider poison harvesting cooldown",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "name": "Real guard GUI mounts and dismounts an owned horse with matching state and valid rendering on both clients",
+      "status": "passed",
+      "detail": null
+    }
+  ]
+}

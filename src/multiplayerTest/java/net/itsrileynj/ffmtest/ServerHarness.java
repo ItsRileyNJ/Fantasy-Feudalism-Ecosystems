@@ -1,0 +1,136 @@
+package net.itsrileynj.ffmtest;
+
+import com.google.gson.*;
+import java.util.*;
+import net.itsrileynj.fantasyfeudalismmobs.*;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.*;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.Blocks;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
+
+public final class ServerHarness {
+    private static long tickStart;
+    private static final ArrayDeque<Double> TIMES = new ArrayDeque<>();
+    @SubscribeEvent public static void pre(ServerTickEvent.Pre event) { tickStart = System.nanoTime(); }
+    @SubscribeEvent public static void post(ServerTickEvent.Post event) {
+        TIMES.add((System.nanoTime() - tickStart) / 1_000_000.0); if (TIMES.size() > 1200) TIMES.remove();
+        if (System.getProperty("ffm.test.control") == null) return;
+        JsonObject request = ControlFiles.command(); if (request == null) return;
+        try { ControlFiles.respond(request, execute(event.getServer(), request)); }
+        catch (Throwable error) { error.printStackTrace(); ControlFiles.fail(request, error); }
+    }
+    private static ServerPlayer player(MinecraftServer server, JsonObject q) {
+        ServerPlayer p = server.getPlayerList().getPlayerByName(q.get("player").getAsString());
+        if (p == null) throw new IllegalArgumentException("Player not connected"); return p;
+    }
+    private static Entity entity(ServerLevel level, JsonObject q) {
+        Entity entity = level.getEntity(q.get("entity").getAsInt());
+        if (entity == null) throw new IllegalArgumentException("Entity is not loaded"); return entity;
+    }
+    private static double number(JsonObject q, String key, double fallback) { return q.has(key) ? q.get(key).getAsDouble() : fallback; }
+    public static Object execute(MinecraftServer server, JsonObject q) {
+        ServerLevel level = server.overworld(); String action = q.get("action").getAsString();
+        switch (action) {
+            case "mercenary": return MercenaryHarness.execute(server,q);
+            case "snapshot": return snapshot(server);
+            case "setup":
+                level.setDayTime(18000); level.setWeatherParameters(1000000, 0, false, false);
+                level.getGameRules().getRule(GameRules.RULE_DOMOBSPAWNING).set(false, server);
+                level.getGameRules().getRule(GameRules.RULE_DAYLIGHT).set(false, server);
+                for (int x=-12;x<=40;x++) for (int z=-12;z<=20;z++) {
+                    level.setBlock(new BlockPos(x,63,z),Blocks.GRASS_BLOCK.defaultBlockState(),3);
+                    for(int y=64;y<=70;y++) level.setBlock(new BlockPos(x,y,z),Blocks.AIR.defaultBlockState(),3);
+                }
+                return true;
+            case "teleport": {
+                ServerPlayer p=player(server,q);p.teleportTo(level,number(q,"x",0),number(q,"y",64),number(q,"z",0),Set.of(),
+                        (float)number(q,"yaw",0),(float)number(q,"pitch",0));return true;
+            }
+            case "inventory": {
+                ServerPlayer p=player(server,q); p.getInventory().clearContent(); p.containerMenu.setCarried(ItemStack.EMPTY);
+                if(q.has("fill")) for(int i=0;i<36;i++) p.getInventory().setItem(i,new ItemStack(Items.COBBLESTONE,64));
+                if(q.has("slots")) for(JsonElement e:q.getAsJsonArray("slots")) {
+                    JsonObject s=e.getAsJsonObject(); Item item=BuiltInRegistries.ITEM.get(ResourceLocation.parse(s.get("item").getAsString()));
+                    p.getInventory().setItem(s.get("slot").getAsInt(),new ItemStack(item,s.has("count")?s.get("count").getAsInt():1));
+                }
+                p.containerMenu.broadcastChanges(); p.inventoryMenu.broadcastChanges(); return true;
+            }
+            case "spawn": {
+                EntityType<?> type=BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.parse(q.get("type").getAsString()));
+                Entity e=type.create(level); if(e==null)throw new IllegalArgumentException("Cannot create entity");
+                e.moveTo(number(q,"x",2),number(q,"y",64),number(q,"z",2),0,0);
+                if(e instanceof Mob mob) {mob.setPersistenceRequired();mob.setNoAi(!q.has("ai")||!q.get("ai").getAsBoolean());}
+                if(q.has("invulnerable"))e.setInvulnerable(q.get("invulnerable").getAsBoolean());
+                level.addFreshEntity(e);
+                if(MercenaryHarness.isGuard(e)&&q.has("owner")) {
+                    var owner=server.getPlayerList().getPlayerByName(q.get("owner").getAsString());
+                    MercenaryHarness.call(e,"bind",new Class<?>[]{BlockPos.class,UUID.class,BlockPos.class},null,owner.getUUID(),e.blockPosition());
+                    ((Mob)e).setItemSlot(EquipmentSlot.MAINHAND,new ItemStack(Items.CROSSBOW));
+                    MercenaryHarness.call(e,"initializeMercenary",new Class<?>[]{boolean.class},false);
+                }
+                if(e instanceof Spider spider && q.has("owner")) {
+                    ServerPlayer p=server.getPlayerList().getPlayerByName(q.get("owner").getAsString());
+                    SpiderCompanion.tame(spider,p.getUUID());SpiderCompanion.setSitting(spider,false);
+                }
+                if(e instanceof AbstractSkeleton skeleton && q.has("weapon")) skeleton.setItemSlot(EquipmentSlot.MAINHAND,
+                        new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse(q.get("weapon").getAsString()))));
+                if(e instanceof Mob mob && q.has("seed")) mob.getRandom().setSeed(q.get("seed").getAsLong());
+                return ControlFiles.entity(e);
+            }
+            case "seedTame": {
+                Mob mob=(Mob)entity(level,q);long seed=0;while(RandomSource.create(seed).nextInt(100)>=33)seed++;mob.getRandom().setSeed(seed);return seed;
+            }
+            case "resetHarvest": {
+                Spider spider=(Spider)entity(level,q);SpiderCompanion.data(spider).putLong(SpiderCompanion.SILK_READY,0);
+                SpiderCompanion.data(spider).putLong(SpiderCompanion.POISON_READY,0);return true;
+            }
+            case "health": { ((LivingEntity)entity(level,q)).setHealth((float)number(q,"health",0)); return true; }
+            case "remove": { entity(level,q).discard();return true; }
+            case "target": {
+                Mob mob=(Mob)entity(level,q);mob.setNoAi(false);mob.setTarget((LivingEntity)level.getEntity(q.get("target").getAsInt()));return true;
+            }
+            case "save": {server.saveEverything(false,true,true);return snapshot(server);}
+            case "invulnerable": {for(ServerPlayer p:server.getPlayerList().getPlayers())p.setInvulnerable(q.get("value").getAsBoolean());return true;}
+            case "clear": {
+                List<Entity> entities=new ArrayList<>();for(Entity e:level.getAllEntities())if(!(e instanceof ServerPlayer))entities.add(e);
+                for(Entity e:entities)e.discard();return entities.size();
+            }
+            case "resetTimings": TIMES.clear();return true;
+            case "stress": {
+                int count=q.get("count").getAsInt(); EntityType<?>[] types={EntityType.SPIDER,EntityType.CAVE_SPIDER,EntityType.SKELETON,
+                    EntityType.BOGGED,EntityType.STRAY,EntityType.ZOMBIE,EntityType.HUSK,EntityType.SILVERFISH,EntityType.BLAZE};
+                ServerPlayer owner=server.getPlayerList().getPlayers().getFirst();
+                for(int i=0;i<count;i++) {
+                    Mob mob=(Mob)types[i%types.length].create(level);mob.setPersistenceRequired();
+                    mob.moveTo(-8+i%30,64,-8+(i/30)%25,0,0);level.addFreshEntity(mob);
+                    if(mob instanceof Spider spider) {SpiderCompanion.tame(spider,owner.getUUID());SpiderCompanion.setSitting(spider,false);}
+                }
+                TIMES.clear();return count;
+            }
+            default:throw new IllegalArgumentException("Unknown action "+action);
+        }
+    }
+    private static Object snapshot(MinecraftServer server) {
+        var result=new LinkedHashMap<String,Object>();result.put("tick",server.getTickCount());
+        result.put("players",server.getPlayerList().getPlayers().stream().map(ControlFiles::player).toList());
+        var entities=new ArrayList<Map<String,Object>>();
+        for(Entity e:server.overworld().getAllEntities()) {
+            if(e instanceof ServerPlayer)continue;
+            var info=ControlFiles.entity(e);if(e instanceof net.minecraft.world.entity.item.ItemEntity item)info.put("stack",ControlFiles.stack(item.getItem()));entities.add(info);
+        }
+        result.put("entities",entities);var sorted=TIMES.stream().sorted().toList();
+        result.put("tickSamples",sorted.size());result.put("meanTickMs",sorted.stream().mapToDouble(Double::doubleValue).average().orElse(0));
+        result.put("p95TickMs",sorted.isEmpty()?0:sorted.get(Math.min(sorted.size()-1,(int)(sorted.size()*.95))));
+        result.put("maxTickMs",sorted.isEmpty()?0:sorted.getLast());return result;
+    }
+}

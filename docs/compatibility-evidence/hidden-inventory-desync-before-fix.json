@@ -1,0 +1,29 @@
+{
+  "preFixMobsJarSha256": "e1d63ca0991baab67f1b8a88d74aba85fa07e9c362324399686ca929965168ad",
+  "players": {
+    "owner": {
+      "serverString": 0,
+      "clientString": 13,
+      "differences": [
+        [
+          20,
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:string",
+            "count": 13,
+            "damage": 0
+          }
+        ]
+      ]
+    },
+    "guest": {
+      "serverString": 13,
+      "clientString": 13,
+      "differences": []
+    }
+  }
+}

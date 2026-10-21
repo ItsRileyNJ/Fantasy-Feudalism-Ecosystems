@@ -1,0 +1,118 @@
+[
+  {
+    "name": "Two independent clients log in to packaged NeoForge server",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "200 competing bee-capture interactions conserve one bee and one bottle",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Live Bee Bottle taming synchronizes ownership, sitting, health and speed to both clients",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Another player cannot steal ownership by feeding",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "2000 concurrent poison-harvest requests yield exactly one potion with no inventory desync",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "2000 concurrent silk-harvest requests yield one 1-4 string harvest and one durability cost",
+    "status": "passed",
+    "detail": {
+      "string": 3
+    }
+  },
+  {
+    "name": "Full-inventory concurrent harvesting drops exactly one output and consumes one input",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Inventory pickup, placement and shift-click conserve items and agree with server",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Both clients reload resources without missing Bee Bottle models or render exceptions",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Disconnect/reconnect restores inventory and full companion entity state",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Normal dedicated-server stop/restart preserves companion UUID, ownership, orders, both cooldowns and player inventories",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Saved harvest cooldown cannot be bypassed by restarting the server",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Both graphical clients render active skeleton, stray and bogged crossbows with finite model poses",
+    "status": "passed",
+    "detail": {
+      "owner": {
+        "frames": 109,
+        "crossbowFrames": 327
+      },
+      "guest": {
+        "frames": 130,
+        "crossbowFrames": 390
+      }
+    }
+  },
+  {
+    "name": "240 active mixed mobs with both graphical clients remain responsive without disconnects or render failures",
+    "status": "passed",
+    "detail": {
+      "tickSamples": 689,
+      "meanTickMs": 26.086714902757617,
+      "p95TickMs": 76.413898,
+      "maxTickMs": 311.066987,
+      "spawnedMobs": 240,
+      "remainingEntities": 216,
+      "elapsedSeconds": 35.756485161000455,
+      "ticksAdvanced": 688,
+      "observedTicksPerSecond": 19.24126481957462
+    }
+  },
+  {
+    "name": "240-mob load check without concurrent Gradle/GameTest processes",
+    "status": "passed",
+    "detail": {
+      "tickSamples": 711,
+      "meanTickMs": 12.315924724331927,
+      "p95TickMs": 24.227676,
+      "maxTickMs": 81.975065,
+      "spawnedMobs": 240,
+      "remainingEntities": 196,
+      "elapsedSeconds": 35.1511735969998,
+      "ticksAdvanced": 710,
+      "observedTicksPerSecond": 20.198472123292053
+    }
+  },
+  {
+    "name": "Both clients close their connections through the vanilla logout sequence without timeout",
+    "status": "passed",
+    "detail": {
+      "logoutSeconds": {
+        "guest": 0.41143150300013076,
+        "owner": 0.321134391000669
+      }
+    }
+  }
+]

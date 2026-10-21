@@ -1,0 +1,7 @@
+{
+  "status": "interrupted_incomplete",
+  "passed": 314,
+  "failed": 0,
+  "unfinished": 81,
+  "reason": "No progress in batch spawning; thread dump locates work in Minecraft ChunkMap.processUnloads. Completing both namespaces in separate fresh worlds."
+}

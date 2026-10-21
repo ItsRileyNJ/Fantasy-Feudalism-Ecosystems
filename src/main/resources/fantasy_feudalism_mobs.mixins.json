@@ -1,0 +1,28 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.itsrileynj.fantasyfeudalismmobs.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "SpiderMixin",
+    "WalkNodeEvaluatorMixin",
+    "MobMixin",
+    "CaveSpiderMixin",
+    "EndermanPickupMixin",
+    "EndermanAccessor",
+    "GhastMixin",
+    "SkeletonMixin",
+    "EntitySoundMixin",
+    "BlazeMixin",
+    "SilverfishMixin",
+    "MercenaryDefenderMixin",
+    "MercenaryKitingMixin",
+    "MercenaryMenuMixin"
+  ],
+  "client": [
+    "SkeletonModelMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

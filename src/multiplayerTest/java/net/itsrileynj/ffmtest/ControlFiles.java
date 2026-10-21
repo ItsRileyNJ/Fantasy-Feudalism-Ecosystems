@@ -1,0 +1,94 @@
+package net.itsrileynj.ffmtest;
+
+import com.google.gson.*;
+import java.nio.file.*;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.component.DataComponents;
+import net.itsrileynj.fantasyfeudalismmobs.*;
+
+/** File control is local only. Gameplay interactions still use the real Minecraft connection. */
+public final class ControlFiles {
+    public static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    private static long completed = -1;
+    public static Path root() { return Path.of(System.getProperty("ffm.test.control", "/workspace/multiplayer/control/unused")); }
+    public static JsonObject command() {
+        Path file = root().resolve("command.json");
+        if (!Files.exists(file)) return null;
+        try {
+            JsonObject request = JsonParser.parseString(Files.readString(file)).getAsJsonObject();
+            long id = request.get("id").getAsLong();
+            if (id <= completed) return null;
+            completed = id;
+            return request;
+        } catch (Exception ignored) { return null; } // Atomic writer may not have committed the request yet.
+    }
+    public static void respond(JsonObject request, Object result) { write(request.get("id").getAsLong(), result, null); }
+    public static void fail(JsonObject request, Throwable error) { write(request.get("id").getAsLong(), null, error.toString()); }
+    private static void write(long id, Object result, String error) {
+        try {
+            Files.createDirectories(root()); JsonObject response = new JsonObject(); response.addProperty("id", id);
+            response.add("result", GSON.toJsonTree(result)); if (error != null) response.addProperty("error", error);
+            Path temp = root().resolve("response.tmp"); Files.writeString(temp, GSON.toJson(response), StandardCharsets.UTF_8);
+            Files.move(temp, root().resolve("response.json"), StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
+        } catch (Exception errorWriting) { throw new IllegalStateException(errorWriting); }
+    }
+    public static Map<String,Object> stack(ItemStack stack) {
+        var info = new LinkedHashMap<String,Object>();
+        info.put("item", BuiltInRegistries.ITEM.getKey(stack.getItem()).toString()); info.put("count", stack.getCount());
+        info.put("damage", stack.getDamageValue());
+        var potion = stack.get(DataComponents.POTION_CONTENTS);
+        if (potion != null) info.put("potion", potion.potion().map(h -> h.getRegisteredName()).orElse("custom"));
+        return info;
+    }
+    public static Map<String,Object> player(Player player) {
+        var info = entity(player);
+        info.put("name", player.getName().getString()); info.put("health", player.getHealth());
+        info.put("selected", player.getInventory().selected);
+        var inventory = new ArrayList<Map<String,Object>>();
+        for (int i = 0; i < player.getInventory().getContainerSize(); i++) inventory.add(stack(player.getInventory().getItem(i)));
+        info.put("inventory", inventory); info.put("cursor", stack(player.containerMenu.getCarried()));
+        info.put("menu", menu(player.containerMenu));
+        return info;
+    }
+    public static Map<String,Object> entity(Entity entity) {
+        var info = new LinkedHashMap<String,Object>(); info.put("id", entity.getId()); info.put("uuid", entity.getUUID().toString());
+        info.put("type", BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).toString());
+        info.put("position", List.of(entity.getX(),entity.getY(),entity.getZ()));
+        info.put("alive", entity.isAlive()); info.put("removed", entity.isRemoved());
+        if(entity instanceof LivingEntity living) {
+            info.put("health",living.getHealth());info.put("maxHealth",living.getMaxHealth());
+            info.put("effects",living.getActiveEffects().stream().map(e->e.getEffect().getRegisteredName()).toList());
+        }
+        if(entity instanceof Mob mob) {
+            info.put("target",mob.getTarget()==null?-1:mob.getTarget().getId());info.put("noAi",mob.isNoAi());
+            info.put("mainHand",stack(mob.getMainHandItem()));
+        }
+        if (entity instanceof net.minecraft.world.entity.monster.Spider spider) {
+            info.put("owner", ((SpiderState)spider).ffm$owner().map(UUID::toString).orElse(""));
+            info.put("sitting", SpiderCompanion.isSitting(spider)); info.put("health", spider.getHealth()); info.put("maxHealth", spider.getMaxHealth());
+            info.put("speed", spider.getAttributeValue(net.minecraft.world.entity.ai.attributes.Attributes.MOVEMENT_SPEED));
+            if (!spider.level().isClientSide) info.put("cooldowns", SpiderCompanion.data(spider).toString());
+        }
+        if(MercenaryHarness.isGuard(entity)) info.put("guard",MercenaryHarness.state(entity));
+        return info;
+    }
+    public static Map<String,Object> menu(AbstractContainerMenu menu) {
+        var info=new LinkedHashMap<String,Object>();info.put("type",menu.getClass().getSimpleName());
+        info.put("id",menu.containerId);info.put("state",menu.getStateId());
+        info.put("slots",menu.slots.stream().map(s->stack(s.getItem())).toList());
+        if(menu.getClass().getName().equals("dev.villagerscontract.GuardMenu")) {
+            for(String key:List.of("health","maxHealth","hunger","order","mountState"))
+                info.put(key,MercenaryHarness.call(menu,key,new Class<?>[0]));
+        }
+        return info;
+    }
+    private ControlFiles() {}
+}
