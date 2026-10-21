@@ -293,3 +293,9 @@ The user clarified that the tamed spider's abdomen should angle downward slightl
 ## Companion effect particles
 
 Successful companion attacks must show the vanilla particles belonging to the effects on the affected enemy: Slowness I and Weakness I, plus Poison I for cave spiders. Preserve their approved six-second duration and the existing target exclusions and vanilla effect immunities. Particle visibility must synchronize to other players and stop emitting when the effects expire.
+
+## Silverfish packs follow-up in 0.1.4
+
+The user reported missing packs and reiterated that silverfish should spawn like normal mobs in mineshafts and attack zombies. Preserve normal group attempts of 3–9, spawn weight 60, dark hostile placement, mineshaft restriction and mob caps. Prefer zombie prey over nearby players while retaining spider avoidance.
+
+The user further specified that only the silverfish landing a zombie's killing blow should burrow. Other silverfish keep roaming until their own zombie kill or death; assists and environmental finishing damage do not grant credit. This rule applies to every silverfish spawn origin. The killer hides inside a suitable adjacent block and despawns 600 game ticks (30 seconds) after entering. The block remains unchanged, preventing a permanent infestation or a second silverfish from being released later. Per-entity kill credit and the original deadline persist through save/load; the deadline does not reset.

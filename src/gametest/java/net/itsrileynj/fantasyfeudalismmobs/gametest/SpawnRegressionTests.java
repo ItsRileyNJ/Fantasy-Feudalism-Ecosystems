@@ -1,15 +1,19 @@
 package net.itsrileynj.fantasyfeudalismmobs.gametest;
 
 import java.util.List;
+import java.util.ArrayList;
 import net.itsrileynj.fantasyfeudalismmobs.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.gametest.framework.*;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.random.WeightedRandomList;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.monster.Silverfish;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.block.Blocks;
@@ -39,8 +43,8 @@ public final class SpawnRegressionTests {
         h.succeed();
     }
 
-    @GameTest(template = "test_empty", timeoutTicks = 100, batch = "ffm_natural_spawning")
-    public static void naturalSpawnerActuallyCreatesMineshaftSilverfish(GameTestHelper h) {
+    @GameTest(template = "test_empty", timeoutTicks = 400, batch = "ffm_natural_spawning")
+    public static void naturalSilverfishPackRemainsAndHuntsZombies(GameTestHelper h) {
         var level = h.getLevel(); var pos = h.absolutePos(new BlockPos(8, 2, 8));
         for (int x = 0; x < 18; x++) for (int z = 0; z < 18; z++) {
             h.setBlock(x, 1, z, Blocks.STONE); h.setBlock(x, 5, z, Blocks.STONE);
@@ -60,20 +64,64 @@ public final class SpawnRegressionTests {
         var observer = h.makeMockServerPlayerInLevel(); observer.moveTo(pos.getX() + 40, pos.getY(), pos.getZ());
         level.setBlock(observer.blockPosition().below(), Blocks.STONE.defaultBlockState(), 3);
         h.runAfterDelay(10, () -> {
-            int[] fish = {0};
+            var pack = new ArrayList<Silverfish>();
             try {
                 h.assertTrue(FeudalEvents.inMineshaft(level, pos), "Natural-spawn fixture is a registered mineshaft room");
-                for (int attempt = 0; attempt < 120 && fish[0] < 4; attempt++) {
+                for (int attempt = 0; attempt < 120 && pack.size() < 3; attempt++) {
+                    pack.forEach(Silverfish::discard); pack.clear();
                     level.random.setSeed(20000 + attempt);
                     NaturalSpawner.spawnCategoryForPosition(MobCategory.MONSTER, level, chunk, pos,
                             (type, at, candidateChunk) -> true, (mob, spawnedChunk) -> {
-                                if (mob instanceof Silverfish) fish[0]++;
-                                mob.discard();
+                                if (mob instanceof Silverfish fish) pack.add(fish);
+                                else mob.discard();
                             });
                 }
-                h.assertTrue(fish[0] > 0, "The actual natural spawner must create silverfish, got " + fish[0]);
+                h.assertTrue(pack.size() >= 3 && pack.size() <= 9,
+                        "One natural-spawner pass must create a pack, got " + pack.size());
             } finally { level.getServer().getPlayerList().remove(observer); }
-            h.succeed();
+            // The roaming behavior must survive ordinary entity save/load too.
+            Silverfish first = pack.getFirst();
+            CompoundTag saved = first.saveWithoutId(new CompoundTag());
+            first.discard();
+            Silverfish restored = EntityType.SILVERFISH.create(level); restored.load(saved);
+            level.addFreshEntity(restored); pack.set(0, restored);
+            h.assertTrue(restored.getSpawnType() == MobSpawnType.NATURAL, "Natural origin survives save/load");
+            h.runAfterDelay(200, () -> {
+                h.assertTrue(pack.stream().allMatch(Silverfish::isAlive),
+                        "An idle natural pack must remain above ground instead of disappearing into stone: "
+                                + pack.stream().filter(Silverfish::isAlive).count() + "/" + pack.size());
+                var zombie = h.spawn(EntityType.ZOMBIE, 8, 2, 8); zombie.setNoAi(true);
+                zombie.getAttribute(Attributes.MAX_HEALTH).setBaseValue(200); zombie.setHealth(200);
+                zombie.getAttribute(Attributes.ARMOR).setBaseValue(0);
+                h.succeedWhen(() -> {
+                    h.assertTrue(pack.stream().anyMatch(f -> f.getTarget() == zombie), "Natural silverfish must acquire a zombie without a forced target");
+                    h.assertTrue(zombie.getHealth() < 200, "The natural pack must reach and damage the zombie through melee AI");
+                });
+            });
         });
+    }
+
+    @GameTest(template = "test_empty")
+    public static void everySpawnOriginRequiresItsOwnZombieKillToBurrow(GameTestHelper h) {
+        for (int x = 0; x < 18; x++) for (int z = 0; z < 18; z++) h.setBlock(x, 1, z, Blocks.STONE);
+        for (var reason : List.of(MobSpawnType.NATURAL, MobSpawnType.SPAWNER, MobSpawnType.TRIGGERED, MobSpawnType.SPAWN_EGG, MobSpawnType.COMMAND)) {
+            var fish = h.spawn(EntityType.SILVERFISH, 8, 2, 8); fish.setNoAi(true);
+            fish.finalizeSpawn(h.getLevel(), h.getLevel().getCurrentDifficultyAt(fish.blockPosition()), reason, null);
+            fish.getRandom().setSeed(41);
+            var merge = fish.goalSelector.getAvailableGoals().stream().map(g -> g.getGoal())
+                    .filter(g -> g instanceof RandomStrollGoal).findFirst().orElseThrow();
+            for (int attempt = 0; attempt < 1000 && fish.isAlive(); attempt++) {
+                fish.getNavigation().stop();
+                if (merge.canUse()) { merge.start(); merge.stop(); }
+            }
+            h.assertTrue(fish.isAlive() && !SilverfishBurrowing.isBurrowed(fish), "An uncredited " + reason + " silverfish must keep roaming");
+            var zombie = h.spawn(EntityType.ZOMBIE, 10, 2, 8); zombie.setNoAi(true); zombie.setHealth(0.1F);
+            h.assertTrue(fish.doHurtTarget(zombie), "The silverfish lands the final hit");
+            h.assertTrue(SilverfishBurrowing.hasKill(fish), "Only its own successful zombie kill earns burrowing");
+            h.assertTrue(merge.canUse(), "The killer finds the adjacent stone"); merge.start();
+            h.assertTrue(SilverfishBurrowing.isBurrowed(fish) && fish.isAlive(), "Burrowing keeps a hidden timer entity alive");
+            h.assertBlockPresent(Blocks.STONE, 8, 1, 8);
+        }
+        h.succeed();
     }
 }

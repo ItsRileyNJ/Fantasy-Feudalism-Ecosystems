@@ -1,0 +1,14 @@
+{
+  "release": "0.1.4",
+  "sha256": "d15e7246777d6b74d09dfb13224937f152e32c454540780f4557a297152bc843",
+  "bytes": 84210,
+  "minecraft": "1.21.1",
+  "neoforge": "21.1.262",
+  "mercenaries": "1.15.7",
+  "clients": 2,
+  "network": "loopback",
+  "graphics": "Linux Mesa software rendering, 960x540",
+  "checksPassed": 9,
+  "postChecksConnected": true,
+  "renderErrors": []
+}

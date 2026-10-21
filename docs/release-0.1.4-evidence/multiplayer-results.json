@@ -1,0 +1,3285 @@
+[
+  {
+    "name": "A group of at least three live silverfish spawned naturally inside an unchanged generated mineshaft",
+    "status": "passed",
+    "detail": {
+      "pack": [
+        {
+          "id": 100,
+          "uuid": "5ba816cb-a4f6-4ef2-9492-1d6a9a2b213b",
+          "type": "minecraft:silverfish",
+          "position": [
+            -34.5,
+            -20.0,
+            -21.5
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "mineshaft": true,
+          "killedZombie": false,
+          "burrowed": false,
+          "burrowUntil": 0
+        },
+        {
+          "id": 101,
+          "uuid": "8591fc31-2eea-4cd4-889c-621a4c0b7f3b",
+          "type": "minecraft:silverfish",
+          "position": [
+            -31.5,
+            -20.0,
+            -20.5
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "mineshaft": true,
+          "killedZombie": false,
+          "burrowed": false,
+          "burrowUntil": 0
+        },
+        {
+          "id": 102,
+          "uuid": "183473a0-994f-4caf-87be-e9ae3349177a",
+          "type": "minecraft:silverfish",
+          "position": [
+            -35.5,
+            -20.0,
+            -20.5
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "mineshaft": true,
+          "killedZombie": false,
+          "burrowed": false,
+          "burrowUntil": 0
+        }
+      ],
+      "births": [
+        {
+          "tick": 6253,
+          "entity": {
+            "id": 100,
+            "uuid": "5ba816cb-a4f6-4ef2-9492-1d6a9a2b213b",
+            "type": "minecraft:silverfish",
+            "position": [
+              -34.5,
+              -20.0,
+              -21.5
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "health": 8.0,
+            "maxHealth": 8.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "mineshaft": true,
+            "killedZombie": false,
+            "burrowed": false,
+            "burrowUntil": 0
+          }
+        },
+        {
+          "tick": 6253,
+          "entity": {
+            "id": 101,
+            "uuid": "8591fc31-2eea-4cd4-889c-621a4c0b7f3b",
+            "type": "minecraft:silverfish",
+            "position": [
+              -31.5,
+              -20.0,
+              -20.5
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "health": 8.0,
+            "maxHealth": 8.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "mineshaft": true,
+            "killedZombie": false,
+            "burrowed": false,
+            "burrowUntil": 0
+          }
+        },
+        {
+          "tick": 6253,
+          "entity": {
+            "id": 102,
+            "uuid": "183473a0-994f-4caf-87be-e9ae3349177a",
+            "type": "minecraft:silverfish",
+            "position": [
+              -35.5,
+              -20.0,
+              -20.5
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "health": 8.0,
+            "maxHealth": 8.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "mineshaft": true,
+            "killedZombie": false,
+            "burrowed": false,
+            "burrowUntil": 0
+          }
+        }
+      ],
+      "competingEntitiesCleared": 0,
+      "structure": {
+        "location": [
+          -64,
+          0,
+          0
+        ],
+        "pieces": [
+          {
+            "max": [
+              -54,
+              -8,
+              11
+            ],
+            "min": [
+              -62,
+              -17,
+              2
+            ]
+          },
+          {
+            "max": [
+              -54,
+              -13,
+              31
+            ],
+            "min": [
+              -56,
+              -15,
+              12
+            ]
+          },
+          {
+            "max": [
+              -54,
+              -13,
+              51
+            ],
+            "min": [
+              -56,
+              -15,
+              32
+            ]
+          },
+          {
+            "max": [
+              -57,
+              -14,
+              50
+            ],
+            "min": [
+              -76,
+              -16,
+              48
+            ]
+          },
+          {
+            "max": [
+              -74,
+              -14,
+              47
+            ],
+            "min": [
+              -76,
+              -16,
+              38
+            ]
+          },
+          {
+            "max": [
+              -77,
+              -15,
+              40
+            ],
+            "min": [
+              -96,
+              -17,
+              38
+            ]
+          },
+          {
+            "max": [
+              -97,
+              -14,
+              40
+            ],
+            "min": [
+              -111,
+              -16,
+              38
+            ]
+          },
+          {
+            "max": [
+              -112,
+              -15,
+              41
+            ],
+            "min": [
+              -116,
+              -17,
+              37
+            ]
+          },
+          {
+            "max": [
+              -113,
+              -15,
+              36
+            ],
+            "min": [
+              -115,
+              -17,
+              17
+            ]
+          },
+          {
+            "max": [
+              -112,
+              -14,
+              16
+            ],
+            "min": [
+              -116,
+              -16,
+              12
+            ]
+          },
+          {
+            "max": [
+              -113,
+              -15,
+              61
+            ],
+            "min": [
+              -115,
+              -17,
+              42
+            ]
+          },
+          {
+            "max": [
+              -116,
+              -15,
+              60
+            ],
+            "min": [
+              -135,
+              -17,
+              58
+            ]
+          },
+          {
+            "max": [
+              -117,
+              -15,
+              40
+            ],
+            "min": [
+              -136,
+              -17,
+              38
+            ]
+          },
+          {
+            "max": [
+              -134,
+              -14,
+              55
+            ],
+            "min": [
+              -136,
+              -16,
+              41
+            ]
+          },
+          {
+            "max": [
+              -105,
+              -10,
+              45
+            ],
+            "min": [
+              -109,
+              -16,
+              41
+            ]
+          },
+          {
+            "max": [
+              -106,
+              -14,
+              65
+            ],
+            "min": [
+              -108,
+              -16,
+              46
+            ]
+          },
+          {
+            "max": [
+              -85,
+              -14,
+              44
+            ],
+            "min": [
+              -104,
+              -16,
+              42
+            ]
+          },
+          {
+            "max": [
+              -110,
+              -6,
+              45
+            ],
+            "min": [
+              -114,
+              -12,
+              41
+            ]
+          },
+          {
+            "max": [
+              -100,
+              -6,
+              45
+            ],
+            "min": [
+              -104,
+              -12,
+              41
+            ]
+          },
+          {
+            "max": [
+              -81,
+              -15,
+              60
+            ],
+            "min": [
+              -83,
+              -17,
+              41
+            ]
+          },
+          {
+            "max": [
+              -84,
+              -14,
+              59
+            ],
+            "min": [
+              -98,
+              -16,
+              57
+            ]
+          },
+          {
+            "max": [
+              -96,
+              -14,
+              56
+            ],
+            "min": [
+              -98,
+              -16,
+              47
+            ]
+          },
+          {
+            "max": [
+              -66,
+              -15,
+              56
+            ],
+            "min": [
+              -80,
+              -17,
+              54
+            ]
+          },
+          {
+            "max": [
+              -69,
+              -14,
+              44
+            ],
+            "min": [
+              -73,
+              -16,
+              40
+            ]
+          },
+          {
+            "max": [
+              -70,
+              -14,
+              39
+            ],
+            "min": [
+              -72,
+              -21,
+              31
+            ]
+          },
+          {
+            "max": [
+              -69,
+              -19,
+              30
+            ],
+            "min": [
+              -73,
+              -21,
+              26
+            ]
+          },
+          {
+            "max": [
+              -70,
+              -19,
+              25
+            ],
+            "min": [
+              -72,
+              -21,
+              6
+            ]
+          },
+          {
+            "max": [
+              -74,
+              -19,
+              29
+            ],
+            "min": [
+              -93,
+              -21,
+              27
+            ]
+          },
+          {
+            "max": [
+              -49,
+              -19,
+              29
+            ],
+            "min": [
+              -68,
+              -21,
+              27
+            ]
+          },
+          {
+            "max": [
+              -59,
+              -14,
+              43
+            ],
+            "min": [
+              -68,
+              -16,
+              41
+            ]
+          },
+          {
+            "max": [
+              -61,
+              -14,
+              65
+            ],
+            "min": [
+              -63,
+              -16,
+              51
+            ]
+          },
+          {
+            "max": [
+              -61,
+              -13,
+              80
+            ],
+            "min": [
+              -63,
+              -15,
+              66
+            ]
+          },
+          {
+            "max": [
+              -56,
+              -13,
+              80
+            ],
+            "min": [
+              -60,
+              -15,
+              76
+            ]
+          },
+          {
+            "max": [
+              -57,
+              -13,
+              75
+            ],
+            "min": [
+              -59,
+              -15,
+              61
+            ]
+          },
+          {
+            "max": [
+              -56,
+              -12,
+              60
+            ],
+            "min": [
+              -60,
+              -14,
+              56
+            ]
+          },
+          {
+            "max": [
+              -57,
+              -13,
+              90
+            ],
+            "min": [
+              -59,
+              -15,
+              81
+            ]
+          },
+          {
+            "max": [
+              -36,
+              -13,
+              79
+            ],
+            "min": [
+              -55,
+              -15,
+              77
+            ]
+          },
+          {
+            "max": [
+              -21,
+              -14,
+              79
+            ],
+            "min": [
+              -35,
+              -16,
+              77
+            ]
+          },
+          {
+            "max": [
+              -64,
+              -13,
+              76
+            ],
+            "min": [
+              -72,
+              -20,
+              74
+            ]
+          },
+          {
+            "max": [
+              -73,
+              -18,
+              76
+            ],
+            "min": [
+              -92,
+              -20,
+              74
+            ]
+          },
+          {
+            "max": [
+              -64,
+              -14,
+              61
+            ],
+            "min": [
+              -78,
+              -16,
+              59
+            ]
+          },
+          {
+            "max": [
+              -57,
+              -9,
+              38
+            ],
+            "min": [
+              -61,
+              -15,
+              34
+            ]
+          },
+          {
+            "max": [
+              -57,
+              -9,
+              33
+            ],
+            "min": [
+              -61,
+              -15,
+              29
+            ]
+          },
+          {
+            "max": [
+              -58,
+              -13,
+              28
+            ],
+            "min": [
+              -60,
+              -15,
+              14
+            ]
+          },
+          {
+            "max": [
+              -61,
+              -13,
+              17
+            ],
+            "min": [
+              -65,
+              -15,
+              13
+            ]
+          },
+          {
+            "max": [
+              -62,
+              -13,
+              26
+            ],
+            "min": [
+              -64,
+              -20,
+              18
+            ]
+          },
+          {
+            "max": [
+              -66,
+              -13,
+              16
+            ],
+            "min": [
+              -85,
+              -15,
+              14
+            ]
+          },
+          {
+            "max": [
+              -86,
+              -13,
+              16
+            ],
+            "min": [
+              -105,
+              -15,
+              14
+            ]
+          },
+          {
+            "max": [
+              -62,
+              -13,
+              32
+            ],
+            "min": [
+              -66,
+              -15,
+              30
+            ]
+          },
+          {
+            "max": [
+              -58,
+              -9,
+              28
+            ],
+            "min": [
+              -60,
+              -11,
+              14
+            ]
+          },
+          {
+            "max": [
+              -61,
+              -9,
+              17
+            ],
+            "min": [
+              -65,
+              -11,
+              13
+            ]
+          },
+          {
+            "max": [
+              -62,
+              -9,
+              37
+            ],
+            "min": [
+              -64,
+              -11,
+              18
+            ]
+          },
+          {
+            "max": [
+              -62,
+              -8,
+              52
+            ],
+            "min": [
+              -64,
+              -10,
+              38
+            ]
+          },
+          {
+            "max": [
+              -66,
+              -9,
+              16
+            ],
+            "min": [
+              -80,
+              -11,
+              14
+            ]
+          },
+          {
+            "max": [
+              -81,
+              -9,
+              17
+            ],
+            "min": [
+              -85,
+              -11,
+              13
+            ]
+          },
+          {
+            "max": [
+              -43,
+              -9,
+              19
+            ],
+            "min": [
+              -57,
+              -11,
+              17
+            ]
+          },
+          {
+            "max": [
+              -33,
+              -9,
+              19
+            ],
+            "min": [
+              -42,
+              -11,
+              17
+            ]
+          },
+          {
+            "max": [
+              -62,
+              -13,
+              37
+            ],
+            "min": [
+              -66,
+              -15,
+              35
+            ]
+          },
+          {
+            "max": [
+              -52,
+              -9,
+              38
+            ],
+            "min": [
+              -56,
+              -11,
+              34
+            ]
+          },
+          {
+            "max": [
+              -53,
+              -9,
+              33
+            ],
+            "min": [
+              -55,
+              -11,
+              24
+            ]
+          },
+          {
+            "max": [
+              -38,
+              -8,
+              26
+            ],
+            "min": [
+              -52,
+              -10,
+              24
+            ]
+          },
+          {
+            "max": [
+              -39,
+              -8,
+              46
+            ],
+            "min": [
+              -41,
+              -10,
+              27
+            ]
+          },
+          {
+            "max": [
+              -42,
+              -9,
+              45
+            ],
+            "min": [
+              -50,
+              -16,
+              43
+            ]
+          },
+          {
+            "max": [
+              -47,
+              -8,
+              41
+            ],
+            "min": [
+              -49,
+              -10,
+              27
+            ]
+          },
+          {
+            "max": [
+              -42,
+              -8,
+              41
+            ],
+            "min": [
+              -44,
+              -10,
+              27
+            ]
+          },
+          {
+            "max": [
+              -53,
+              -9,
+              53
+            ],
+            "min": [
+              -55,
+              -11,
+              39
+            ]
+          },
+          {
+            "max": [
+              -43,
+              -8,
+              52
+            ],
+            "min": [
+              -52,
+              -10,
+              50
+            ]
+          },
+          {
+            "max": [
+              -39,
+              -13,
+              42
+            ],
+            "min": [
+              -53,
+              -15,
+              40
+            ]
+          },
+          {
+            "max": [
+              -19,
+              -14,
+              42
+            ],
+            "min": [
+              -38,
+              -16,
+              40
+            ]
+          },
+          {
+            "max": [
+              -14,
+              -15,
+              43
+            ],
+            "min": [
+              -18,
+              -17,
+              39
+            ]
+          },
+          {
+            "max": [
+              -15,
+              -15,
+              38
+            ],
+            "min": [
+              -17,
+              -17,
+              19
+            ]
+          },
+          {
+            "max": [
+              -10,
+              -16,
+              22
+            ],
+            "min": [
+              -14,
+              -18,
+              18
+            ]
+          },
+          {
+            "max": [
+              -10,
+              -12,
+              17
+            ],
+            "min": [
+              -14,
+              -18,
+              13
+            ]
+          },
+          {
+            "max": [
+              -11,
+              -16,
+              42
+            ],
+            "min": [
+              -13,
+              -18,
+              23
+            ]
+          },
+          {
+            "max": [
+              -1,
+              -16,
+              21
+            ],
+            "min": [
+              -9,
+              -23,
+              19
+            ]
+          },
+          {
+            "max": [
+              -15,
+              -15,
+              63
+            ],
+            "min": [
+              -17,
+              -17,
+              44
+            ]
+          },
+          {
+            "max": [
+              -15,
+              -14,
+              73
+            ],
+            "min": [
+              -17,
+              -16,
+              64
+            ]
+          },
+          {
+            "max": [
+              -15,
+              -15,
+              83
+            ],
+            "min": [
+              -17,
+              -17,
+              74
+            ]
+          },
+          {
+            "max": [
+              5,
+              -15,
+              49
+            ],
+            "min": [
+              -14,
+              -17,
+              47
+            ]
+          },
+          {
+            "max": [
+              -23,
+              -14,
+              39
+            ],
+            "min": [
+              -25,
+              -16,
+              30
+            ]
+          },
+          {
+            "max": [
+              -23,
+              -13,
+              29
+            ],
+            "min": [
+              -25,
+              -20,
+              21
+            ]
+          },
+          {
+            "max": [
+              -23,
+              -18,
+              20
+            ],
+            "min": [
+              -25,
+              -20,
+              11
+            ]
+          },
+          {
+            "max": [
+              -18,
+              -14,
+              35
+            ],
+            "min": [
+              -22,
+              -16,
+              33
+            ]
+          },
+          {
+            "max": [
+              -57,
+              -13,
+              47
+            ],
+            "min": [
+              -71,
+              -15,
+              45
+            ]
+          },
+          {
+            "max": [
+              -63,
+              -9,
+              10
+            ],
+            "min": [
+              -71,
+              -16,
+              8
+            ]
+          },
+          {
+            "max": [
+              -49,
+              -14,
+              8
+            ],
+            "min": [
+              -53,
+              -16,
+              4
+            ]
+          },
+          {
+            "max": [
+              -50,
+              -14,
+              3
+            ],
+            "min": [
+              -52,
+              -21,
+              -5
+            ]
+          },
+          {
+            "max": [
+              -50,
+              -19,
+              -6
+            ],
+            "min": [
+              -52,
+              -21,
+              -25
+            ]
+          },
+          {
+            "max": [
+              -49,
+              -15,
+              -26
+            ],
+            "min": [
+              -53,
+              -21,
+              -30
+            ]
+          },
+          {
+            "max": [
+              -50,
+              -19,
+              -31
+            ],
+            "min": [
+              -52,
+              -21,
+              -40
+            ]
+          },
+          {
+            "max": [
+              -53,
+              -20,
+              -38
+            ],
+            "min": [
+              -61,
+              -27,
+              -40
+            ]
+          },
+          {
+            "max": [
+              -62,
+              -25,
+              -38
+            ],
+            "min": [
+              -76,
+              -27,
+              -40
+            ]
+          },
+          {
+            "max": [
+              -77,
+              -25,
+              -38
+            ],
+            "min": [
+              -91,
+              -27,
+              -40
+            ]
+          },
+          {
+            "max": [
+              -92,
+              -25,
+              -38
+            ],
+            "min": [
+              -111,
+              -27,
+              -40
+            ]
+          },
+          {
+            "max": [
+              -54,
+              -19,
+              -27
+            ],
+            "min": [
+              -68,
+              -21,
+              -29
+            ]
+          },
+          {
+            "max": [
+              -66,
+              -18,
+              -30
+            ],
+            "min": [
+              -68,
+              -20,
+              -49
+            ]
+          },
+          {
+            "max": [
+              -46,
+              -18,
+              -47
+            ],
+            "min": [
+              -65,
+              -20,
+              -49
+            ]
+          },
+          {
+            "max": [
+              -47,
+              -17,
+              -50
+            ],
+            "min": [
+              -49,
+              -19,
+              -64
+            ]
+          },
+          {
+            "max": [
+              -50,
+              -17,
+              -62
+            ],
+            "min": [
+              -69,
+              -19,
+              -64
+            ]
+          },
+          {
+            "max": [
+              -50,
+              -18,
+              -50
+            ],
+            "min": [
+              -52,
+              -20,
+              -59
+            ]
+          },
+          {
+            "max": [
+              -46,
+              -18,
+              -44
+            ],
+            "min": [
+              -65,
+              -20,
+              -46
+            ]
+          },
+          {
+            "max": [
+              -57,
+              -19,
+              -22
+            ],
+            "min": [
+              -61,
+              -21,
+              -26
+            ]
+          },
+          {
+            "max": [
+              -58,
+              -19,
+              -12
+            ],
+            "min": [
+              -60,
+              -21,
+              -21
+            ]
+          },
+          {
+            "max": [
+              -58,
+              -18,
+              -2
+            ],
+            "min": [
+              -60,
+              -20,
+              -11
+            ]
+          },
+          {
+            "max": [
+              -62,
+              -19,
+              -23
+            ],
+            "min": [
+              -76,
+              -21,
+              -25
+            ]
+          },
+          {
+            "max": [
+              -77,
+              -18,
+              -23
+            ],
+            "min": [
+              -96,
+              -20,
+              -25
+            ]
+          },
+          {
+            "max": [
+              -44,
+              -19,
+              -26
+            ],
+            "min": [
+              -48,
+              -21,
+              -30
+            ]
+          },
+          {
+            "max": [
+              -45,
+              -19,
+              -31
+            ],
+            "min": [
+              -47,
+              -21,
+              -40
+            ]
+          },
+          {
+            "max": [
+              -45,
+              -19,
+              -11
+            ],
+            "min": [
+              -47,
+              -21,
+              -25
+            ]
+          },
+          {
+            "max": [
+              -24,
+              -19,
+              -27
+            ],
+            "min": [
+              -43,
+              -21,
+              -29
+            ]
+          },
+          {
+            "max": [
+              -25,
+              -18,
+              -17
+            ],
+            "min": [
+              -27,
+              -20,
+              -26
+            ]
+          },
+          {
+            "max": [
+              -10,
+              -18,
+              -18
+            ],
+            "min": [
+              -24,
+              -20,
+              -20
+            ]
+          },
+          {
+            "max": [
+              5,
+              -17,
+              -18
+            ],
+            "min": [
+              -9,
+              -19,
+              -20
+            ]
+          },
+          {
+            "max": [
+              -28,
+              -18,
+              -21
+            ],
+            "min": [
+              -37,
+              -20,
+              -23
+            ]
+          },
+          {
+            "max": [
+              -38,
+              -19,
+              -30
+            ],
+            "min": [
+              -40,
+              -21,
+              -44
+            ]
+          },
+          {
+            "max": [
+              -29,
+              -19,
+              -42
+            ],
+            "min": [
+              -37,
+              -26,
+              -44
+            ]
+          },
+          {
+            "max": [
+              -50,
+              -15,
+              -31
+            ],
+            "min": [
+              -52,
+              -17,
+              -45
+            ]
+          },
+          {
+            "max": [
+              -53,
+              -15,
+              -43
+            ],
+            "min": [
+              -72,
+              -17,
+              -45
+            ]
+          },
+          {
+            "max": [
+              -73,
+              -14,
+              -43
+            ],
+            "min": [
+              -92,
+              -16,
+              -45
+            ]
+          },
+          {
+            "max": [
+              -93,
+              -15,
+              -43
+            ],
+            "min": [
+              -112,
+              -17,
+              -45
+            ]
+          },
+          {
+            "max": [
+              -110,
+              -15,
+              -46
+            ],
+            "min": [
+              -112,
+              -17,
+              -55
+            ]
+          },
+          {
+            "max": [
+              -87,
+              -14,
+              -34
+            ],
+            "min": [
+              -89,
+              -21,
+              -42
+            ]
+          },
+          {
+            "max": [
+              -82,
+              -14,
+              -23
+            ],
+            "min": [
+              -84,
+              -16,
+              -42
+            ]
+          },
+          {
+            "max": [
+              -57,
+              -15,
+              -33
+            ],
+            "min": [
+              -59,
+              -17,
+              -42
+            ]
+          },
+          {
+            "max": [
+              -57,
+              -14,
+              -13
+            ],
+            "min": [
+              -59,
+              -16,
+              -32
+            ]
+          },
+          {
+            "max": [
+              -49,
+              -15,
+              -21
+            ],
+            "min": [
+              -53,
+              -17,
+              -25
+            ]
+          },
+          {
+            "max": [
+              -50,
+              -15,
+              -11
+            ],
+            "min": [
+              -52,
+              -17,
+              -20
+            ]
+          },
+          {
+            "max": [
+              -50,
+              -15,
+              -6
+            ],
+            "min": [
+              -52,
+              -17,
+              -10
+            ]
+          },
+          {
+            "max": [
+              -39,
+              -15,
+              -22
+            ],
+            "min": [
+              -48,
+              -17,
+              -24
+            ]
+          },
+          {
+            "max": [
+              -24,
+              -14,
+              -22
+            ],
+            "min": [
+              -38,
+              -16,
+              -24
+            ]
+          },
+          {
+            "max": [
+              -25,
+              -15,
+              -25
+            ],
+            "min": [
+              -27,
+              -17,
+              -39
+            ]
+          },
+          {
+            "max": [
+              -25,
+              -16,
+              -40
+            ],
+            "min": [
+              -27,
+              -18,
+              -59
+            ]
+          },
+          {
+            "max": [
+              -28,
+              -14,
+              -2
+            ],
+            "min": [
+              -30,
+              -16,
+              -21
+            ]
+          },
+          {
+            "max": [
+              -43,
+              -15,
+              -25
+            ],
+            "min": [
+              -45,
+              -17,
+              -39
+            ]
+          },
+          {
+            "max": [
+              -50,
+              -14,
+              18
+            ],
+            "min": [
+              -52,
+              -16,
+              9
+            ]
+          },
+          {
+            "max": [
+              -39,
+              -14,
+              7
+            ],
+            "min": [
+              -48,
+              -16,
+              5
+            ]
+          },
+          {
+            "max": [
+              -40,
+              -14,
+              4
+            ],
+            "min": [
+              -42,
+              -16,
+              -5
+            ]
+          },
+          {
+            "max": [
+              -43,
+              -13,
+              -3
+            ],
+            "min": [
+              -47,
+              -15,
+              -5
+            ]
+          },
+          {
+            "max": [
+              -45,
+              -13,
+              -6
+            ],
+            "min": [
+              -47,
+              -15,
+              -15
+            ]
+          },
+          {
+            "max": [
+              -45,
+              -14,
+              -16
+            ],
+            "min": [
+              -47,
+              -16,
+              -20
+            ]
+          },
+          {
+            "max": [
+              -35,
+              -13,
+              -10
+            ],
+            "min": [
+              -44,
+              -15,
+              -12
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "The natural pack remains above ground for over ten seconds with mob griefing enabled",
+    "status": "passed",
+    "detail": [
+      {
+        "id": 100,
+        "uuid": "5ba816cb-a4f6-4ef2-9492-1d6a9a2b213b",
+        "type": "minecraft:silverfish",
+        "position": [
+          -26.82326259914395,
+          -20.0,
+          -20.488209752336683
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "NATURAL",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "mineshaft": true,
+        "killedZombie": false,
+        "burrowed": false,
+        "burrowUntil": 0
+      },
+      {
+        "id": 101,
+        "uuid": "8591fc31-2eea-4cd4-889c-621a4c0b7f3b",
+        "type": "minecraft:silverfish",
+        "position": [
+          -36.53712183491905,
+          -20.0,
+          -22.22950707637833
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "NATURAL",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "mineshaft": true,
+        "killedZombie": false,
+        "burrowed": false,
+        "burrowUntil": 0
+      },
+      {
+        "id": 102,
+        "uuid": "183473a0-994f-4caf-87be-e9ae3349177a",
+        "type": "minecraft:silverfish",
+        "position": [
+          -24.619287312182347,
+          -20.0,
+          -22.126998082149562
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "NATURAL",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "mineshaft": true,
+        "killedZombie": false,
+        "burrowed": false,
+        "burrowUntil": 0
+      }
+    ]
+  },
+  {
+    "name": "Both graphical clients track the same live pack without recorded rendering errors",
+    "status": "passed",
+    "detail": [
+      100,
+      101,
+      102
+    ]
+  },
+  {
+    "name": "The fixture establishes silverfish already pursuing a nearby survival player",
+    "status": "passed",
+    "detail": [
+      101
+    ]
+  },
+  {
+    "name": "Naturally spawned silverfish switch from the player to acquire, chase and damage a zombie without forced targets",
+    "status": "passed",
+    "detail": {
+      "tick": 6535,
+      "gameTime": 68665,
+      "players": [
+        {
+          "id": 1,
+          "uuid": "1f039e49-cc58-30d0-a564-dac0d0b0d263",
+          "type": "minecraft:player",
+          "position": [
+            -27.5,
+            -20.0,
+            -21.5
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 20.0,
+          "maxHealth": 20.0,
+          "effects": [
+            "minecraft:resistance",
+            "minecraft:night_vision"
+          ],
+          "effectDetails": [
+            {
+              "duration": -1,
+              "amplifier": 4,
+              "visible": false,
+              "ambient": false,
+              "effect": "minecraft:resistance",
+              "particle": {
+                "type": "minecraft:entity_effect",
+                "rgb": 9520880,
+                "alpha": 1.0
+              }
+            },
+            {
+              "duration": -1,
+              "amplifier": 0,
+              "visible": false,
+              "ambient": false,
+              "effect": "minecraft:night_vision",
+              "particle": {
+                "type": "minecraft:entity_effect",
+                "rgb": 12779366,
+                "alpha": 1.0
+              }
+            }
+          ],
+          "effectParticles": [],
+          "name": "FFMGuest",
+          "selected": 0,
+          "inventory": [
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            }
+          ],
+          "cursor": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "menu": {
+            "type": "InventoryMenu",
+            "id": 0,
+            "state": 1,
+            "slots": [
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              }
+            ]
+          }
+        },
+        {
+          "id": 6,
+          "uuid": "52d3a8c5-c3b6-391c-93f6-861ad99dcec8",
+          "type": "minecraft:player",
+          "position": [
+            -27.5,
+            -20.0,
+            -21.5
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 20.0,
+          "maxHealth": 20.0,
+          "effects": [
+            "minecraft:resistance",
+            "minecraft:night_vision"
+          ],
+          "effectDetails": [
+            {
+              "duration": -1,
+              "amplifier": 4,
+              "visible": false,
+              "ambient": false,
+              "effect": "minecraft:resistance",
+              "particle": {
+                "type": "minecraft:entity_effect",
+                "rgb": 9520880,
+                "alpha": 1.0
+              }
+            },
+            {
+              "duration": -1,
+              "amplifier": 0,
+              "visible": false,
+              "ambient": false,
+              "effect": "minecraft:night_vision",
+              "particle": {
+                "type": "minecraft:entity_effect",
+                "rgb": 12779366,
+                "alpha": 1.0
+              }
+            }
+          ],
+          "effectParticles": [],
+          "name": "FFMOwner",
+          "selected": 0,
+          "inventory": [
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            }
+          ],
+          "cursor": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "menu": {
+            "type": "InventoryMenu",
+            "id": 0,
+            "state": 1,
+            "slots": [
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              }
+            ]
+          }
+        }
+      ],
+      "entities": [
+        {
+          "id": 100,
+          "uuid": "5ba816cb-a4f6-4ef2-9492-1d6a9a2b213b",
+          "type": "minecraft:silverfish",
+          "position": [
+            -26.47768862510009,
+            -20.0,
+            -19.981316675869312
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": 1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "mineshaft": true,
+          "killedZombie": false,
+          "burrowed": false,
+          "burrowUntil": 0
+        },
+        {
+          "id": 101,
+          "uuid": "8591fc31-2eea-4cd4-889c-621a4c0b7f3b",
+          "type": "minecraft:silverfish",
+          "position": [
+            -36.43268015485813,
+            -20.0,
+            -22.06930365785528
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": 119,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "mineshaft": true,
+          "killedZombie": false,
+          "burrowed": false,
+          "burrowUntil": 0
+        },
+        {
+          "id": 102,
+          "uuid": "183473a0-994f-4caf-87be-e9ae3349177a",
+          "type": "minecraft:silverfish",
+          "position": [
+            -24.52423919900223,
+            -20.0,
+            -22.033259342916033
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": 119,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "mineshaft": true,
+          "killedZombie": false,
+          "burrowed": false,
+          "burrowUntil": 0
+        },
+        {
+          "id": 119,
+          "uuid": "7f0232a4-1297-47bb-bce6-af781ce2a5eb",
+          "type": "minecraft:zombie",
+          "position": [
+            -36.5,
+            -20.0,
+            -21.5
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 198.08,
+          "maxHealth": 200.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          }
+        }
+      ],
+      "tickSamples": 1200,
+      "meanTickMs": 11.5846376525,
+      "p95TickMs": 36.201029,
+      "maxTickMs": 1515.793286
+    }
+  },
+  {
+    "name": "Only the actual final hitter earns credit and burrows; surviving pack members keep roaming",
+    "status": "passed",
+    "detail": {
+      "kill": {
+        "zombie": "7f0232a4-1297-47bb-bce6-af781ce2a5eb",
+        "killer": 101,
+        "gameTime": 68703
+      },
+      "killer": {
+        "id": 101,
+        "uuid": "8591fc31-2eea-4cd4-889c-621a4c0b7f3b",
+        "type": "minecraft:silverfish",
+        "position": [
+          -36.5,
+          -20.75,
+          -22.5
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": true,
+        "silent": true,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "NATURAL",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "mineshaft": false,
+        "killedZombie": true,
+        "burrowed": true,
+        "burrowUntil": 69305
+      },
+      "survivors": [
+        100,
+        102
+      ]
+    }
+  },
+  {
+    "name": "Both clients receive the killer's hidden inert state",
+    "status": "passed",
+    "detail": 101
+  },
+  {
+    "name": "Six-second effects and their particles expire while hidden without extending the burrow deadline",
+    "status": "passed",
+    "detail": 69305
+  },
+  {
+    "name": "The hidden killer despawns after thirty seconds on server and both clients while the rest keep roaming",
+    "status": "passed",
+    "detail": {
+      "deadline": 69305,
+      "removedAt": 69314,
+      "remaining": [
+        {
+          "id": 100,
+          "uuid": "5ba816cb-a4f6-4ef2-9492-1d6a9a2b213b",
+          "type": "minecraft:silverfish",
+          "position": [
+            -25.659679492147525,
+            -20.0,
+            -21.533197419808058
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "mineshaft": true,
+          "killedZombie": false,
+          "burrowed": false,
+          "burrowUntil": 0
+        },
+        {
+          "id": 102,
+          "uuid": "183473a0-994f-4caf-87be-e9ae3349177a",
+          "type": "minecraft:silverfish",
+          "position": [
+            -24.488929761036413,
+            -20.0,
+            -22.21597030020358
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "mineshaft": true,
+          "killedZombie": false,
+          "burrowed": false,
+          "burrowUntil": 0
+        }
+      ],
+      "isolationEntitiesCleared": 2
+    }
+  }
+]

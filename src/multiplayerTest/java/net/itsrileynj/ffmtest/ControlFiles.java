@@ -90,6 +90,7 @@ public final class ControlFiles {
         info.put("type", BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).toString());
         info.put("position", List.of(entity.getX(),entity.getY(),entity.getZ()));
         info.put("alive", entity.isAlive()); info.put("removed", entity.isRemoved());
+        info.put("invisible",entity.isInvisible());info.put("silent",entity.isSilent());
         if(entity instanceof LivingEntity living) {
             info.put("health",living.getHealth());info.put("maxHealth",living.getMaxHealth());
             info.put("effects",living.getActiveEffects().stream().map(e->e.getEffect().getRegisteredName()).toList());
@@ -99,8 +100,15 @@ public final class ControlFiles {
             info.put("effectParticles",effectParticles(living));
         }
         if(entity instanceof Mob mob) {
+            info.put("spawnType",mob.getSpawnType()==null?"":mob.getSpawnType().name());
             info.put("target",mob.getTarget()==null?-1:mob.getTarget().getId());info.put("noAi",mob.isNoAi());
             info.put("mainHand",stack(mob.getMainHandItem()));
+        }
+        if (entity instanceof net.minecraft.world.entity.monster.Silverfish fish && !entity.level().isClientSide) {
+            info.put("mineshaft",FeudalEvents.inMineshaft((net.minecraft.server.level.ServerLevel)entity.level(),entity.blockPosition()));
+            info.put("killedZombie",SilverfishBurrowing.hasKill(fish));
+            info.put("burrowed",SilverfishBurrowing.isBurrowed(fish));
+            info.put("burrowUntil",SilverfishBurrowing.deadline(fish));
         }
         if (entity instanceof net.minecraft.world.entity.monster.Spider spider) {
             info.put("owner", ((SpiderState)spider).ffm$owner().map(UUID::toString).orElse(""));

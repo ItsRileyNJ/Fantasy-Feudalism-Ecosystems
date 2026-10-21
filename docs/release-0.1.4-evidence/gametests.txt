@@ -1,0 +1,15 @@
+BASELINE
+[16:26:16] [Server thread/INFO] [minecraft/GameTestServer]: 64 tests are now running at position -7764825, -59, 4302870!
+[16:26:53] [Server thread/ERROR] [minecraft/LogTestReporter]: naturalsilverfishpackremainsandhuntszombies failed at -7764510, -60, 4303192! An idle natural pack must remain above ground instead of disappearing into stone: 0/3
+[16:26:53] [Server thread/INFO] [minecraft/GameTestServer]: 1 required tests failed :(
+BUILD FAILED in 2m 26s
+
+FINAL STANDALONE
+[17:19:38] [Server thread/INFO] [minecraft/GameTestServer]: 68 tests are now running at position 4654963, -59, -5717183!
+[17:20:03] [Server thread/INFO] [minecraft/GameTestServer]: All 68 required tests passed :)
+BUILD SUCCESSFUL in 3m 11s
+
+FINAL COMBINED
+[17:23:30] [Server thread/INFO] [minecraft/GameTestServer]: 78 tests are now running at position 8830626, -59, 13210286!
+[17:24:00] [Server thread/INFO] [minecraft/GameTestServer]: All 78 required tests passed :)
+BUILD SUCCESSFUL in 2m 5s

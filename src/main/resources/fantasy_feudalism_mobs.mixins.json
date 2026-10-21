@@ -15,6 +15,7 @@
     "EntitySoundMixin",
     "BlazeMixin",
     "SilverfishMixin",
+    "SilverfishMergeGoalMixin",
     "MercenaryDefenderMixin",
     "MercenaryKitingMixin",
     "MercenaryMenuMixin",

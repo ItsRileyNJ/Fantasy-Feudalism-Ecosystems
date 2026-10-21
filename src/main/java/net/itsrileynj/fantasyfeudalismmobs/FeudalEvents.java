@@ -57,6 +57,7 @@ public final class FeudalEvents {
         if (event.getEntity() instanceof Mob mob) {
             MobRules.initialize(mob, event.loadedFromDisk());
         }
+        if (event.getEntity() instanceof Silverfish fish) SilverfishBurrowing.restore(fish);
         if (event.getEntity() instanceof AbstractArrow arrow && arrow.getOwner() instanceof AbstractSkeleton skeleton
                 && !event.loadedFromDisk() && !arrow.getPersistentData().getBoolean("ffm_faster")) {
             SkeletonBallistics.accelerate(arrow, skeleton);
@@ -131,9 +132,19 @@ public final class FeudalEvents {
         }
     }
 
+    @SubscribeEvent(priority = net.neoforged.bus.api.EventPriority.LOWEST)
+    public static void silverfishKillsZombie(LivingDeathEvent event) {
+        if (event.getEntity() instanceof Zombie && event.getSource().getEntity() instanceof Silverfish fish
+                && !fish.level().isClientSide) SilverfishBurrowing.creditKill(fish);
+    }
+
     @SubscribeEvent
     public static void targeting(LivingChangeTargetEvent event) {
         LivingEntity proposed = event.getNewAboutToBeSetTarget();
+        if (event.getEntity() instanceof Silverfish fish && proposed != null && SilverfishBurrowing.hasKill(fish)) {
+            event.setNewAboutToBeSetTarget(null);
+            return;
+        }
         if (event.getEntity() instanceof AbstractSkeleton && proposed instanceof Player player
                 && (player.isCreative() || player.isSpectator())) {
             event.setNewAboutToBeSetTarget(null);
@@ -159,6 +170,11 @@ public final class FeudalEvents {
     public static void beforeTick(EntityTickEvent.Pre event) {
         Entity entity = event.getEntity();
         if (entity.level().isClientSide) return;
+        if (entity instanceof Silverfish fish && SilverfishBurrowing.isBurrowed(fish)) {
+            SilverfishBurrowing.tick(fish);
+            event.setCanceled(true);
+            return;
+        }
         if (entity instanceof Zombie zombie) MobRules.updateZombie(zombie);
         if (entity instanceof AbstractSkeleton skeleton && skeleton.getTarget() instanceof Player player
                 && (player.isCreative() || player.isSpectator())) {

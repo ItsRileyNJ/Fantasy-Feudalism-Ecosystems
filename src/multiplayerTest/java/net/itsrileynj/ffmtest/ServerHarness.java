@@ -17,10 +17,28 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 
 public final class ServerHarness {
     private static long tickStart;
     private static final ArrayDeque<Double> TIMES = new ArrayDeque<>();
+    private static final ArrayDeque<Map<String,Object>> NATURAL_SILVERFISH = new ArrayDeque<>();
+    private static final ArrayDeque<Map<String,Object>> SILVERFISH_KILLS = new ArrayDeque<>();
+    @SubscribeEvent public static void died(LivingDeathEvent event) {
+        if(event.getEntity() instanceof Zombie zombie && event.getSource().getEntity() instanceof Silverfish fish
+                && !fish.level().isClientSide) {
+            SILVERFISH_KILLS.add(Map.of("killer",fish.getId(),"zombie",zombie.getUUID().toString(),"gameTime",fish.level().getGameTime()));
+            if(SILVERFISH_KILLS.size()>1000)SILVERFISH_KILLS.remove();
+        }
+    }
+    @SubscribeEvent public static void joined(EntityJoinLevelEvent event) {
+        if (!event.getLevel().isClientSide && !event.loadedFromDisk()
+                && event.getEntity() instanceof Silverfish fish && fish.getSpawnType()==MobSpawnType.NATURAL) {
+            NATURAL_SILVERFISH.add(Map.of("tick",fish.getServer().getTickCount(),"entity",ControlFiles.entity(fish)));
+            if (NATURAL_SILVERFISH.size()>1000) NATURAL_SILVERFISH.remove();
+        }
+    }
     @SubscribeEvent public static void pre(ServerTickEvent.Pre event) { tickStart = System.nanoTime(); }
     @SubscribeEvent public static void post(ServerTickEvent.Post event) {
         TIMES.add((System.nanoTime() - tickStart) / 1_000_000.0); if (TIMES.size() > 1200) TIMES.remove();
@@ -56,6 +74,23 @@ public final class ServerHarness {
             }
             case "mercenary": return MercenaryHarness.execute(server,q);
             case "snapshot": return snapshot(server);
+            case "naturalSilverfish": return List.copyOf(NATURAL_SILVERFISH);
+            case "silverfishKills": return List.copyOf(SILVERFISH_KILLS);
+            case "zombiePosition": {
+                LivingEntity hunter=(LivingEntity)entity(level,q);
+                Zombie probe=EntityType.ZOMBIE.create(level);
+                BlockPos origin=hunter.blockPosition();
+                for(int radius=1;radius<=6;radius++)for(int dy:new int[]{0,1,-1})
+                    for(int dx=-radius;dx<=radius;dx++)for(int dz=-radius;dz<=radius;dz++) {
+                        if(Math.max(Math.abs(dx),Math.abs(dz))!=radius)continue;
+                        BlockPos at=origin.offset(dx,dy,dz);
+                        if(!level.getBlockState(at.below()).isFaceSturdy(level,at.below(),Direction.UP))continue;
+                        probe.moveTo(at.getX()+0.5,at.getY(),at.getZ()+0.5);
+                        if(level.noCollision(probe)&&hunter.hasLineOfSight(probe))
+                            return Map.of("x",probe.getX(),"y",probe.getY(),"z",probe.getZ());
+                    }
+                throw new IllegalStateException("No unobstructed visible zombie position near the hunter");
+            }
             case "setup":
                 level.setDayTime(18000); level.setWeatherParameters(1000000, 0, false, false);
                 level.getGameRules().getRule(GameRules.RULE_DOMOBSPAWNING).set(false, server);
@@ -81,6 +116,10 @@ public final class ServerHarness {
             case "spawn": {
                 EntityType<?> type=BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.parse(q.get("type").getAsString()));
                 Entity e=type.create(level); if(e==null)throw new IllegalArgumentException("Cannot create entity");
+                if (e instanceof LivingEntity living && q.has("maxHealth")) {
+                    living.getAttribute(Attributes.MAX_HEALTH).setBaseValue(q.get("maxHealth").getAsDouble());
+                    living.setHealth(living.getMaxHealth());
+                }
                 e.moveTo(number(q,"x",2),number(q,"y",64),number(q,"z",2),0,0);
                 if(e instanceof Mob mob) {mob.setPersistenceRequired();mob.setNoAi(!q.has("ai")||!q.get("ai").getAsBoolean());}
                 if(q.has("invulnerable"))e.setInvulnerable(q.get("invulnerable").getAsBoolean());
@@ -122,7 +161,8 @@ public final class ServerHarness {
             case "save": {server.saveEverything(false,true,true);return snapshot(server);}
             case "invulnerable": {for(ServerPlayer p:server.getPlayerList().getPlayers())p.setInvulnerable(q.get("value").getAsBoolean());return true;}
             case "clear": {
-                List<Entity> entities=new ArrayList<>();for(Entity e:level.getAllEntities())if(!(e instanceof ServerPlayer))entities.add(e);
+                List<Entity> entities=new ArrayList<>();for(Entity e:level.getAllEntities())if(!(e instanceof ServerPlayer)
+                        && (!q.has("except") || !BuiltInRegistries.ENTITY_TYPE.getKey(e.getType()).toString().equals(q.get("except").getAsString())))entities.add(e);
                 for(Entity e:entities)e.discard();return entities.size();
             }
             case "resetTimings": TIMES.clear();return true;
@@ -142,6 +182,7 @@ public final class ServerHarness {
     }
     private static Object snapshot(MinecraftServer server) {
         var result=new LinkedHashMap<String,Object>();result.put("tick",server.getTickCount());
+        result.put("gameTime",server.overworld().getGameTime());
         result.put("players",server.getPlayerList().getPlayers().stream().map(ControlFiles::player).toList());
         var entities=new ArrayList<Map<String,Object>>();
         for(Entity e:server.overworld().getAllEntities()) {

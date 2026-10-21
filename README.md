@@ -6,7 +6,11 @@ This repository contains only the Fantasy Feudal Mobs project, its build tools, 
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_mobs-0.1.3.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_mobs-0.1.4.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.4 changes
+
+Silverfish remain roaming until they personally land a killing blow on a zombie. Only that killer burrows into a nearby suitable block, then despawns after 30 seconds; the rest keep roaming until their own kill or death. Burrowing leaves no permanent infestation. Kill credit and the burrow deadline survive save/load. Silverfish prefer nearby zombies over players as prey. The existing mineshaft spawn weight 60, group attempts of 3–9, dark placement rules and mob caps remain unchanged. See [the validation report](docs/RELEASE_0.1.4.md).
 
 ## Version 0.1.3 changes
 
@@ -27,7 +31,7 @@ The six-second level I companion effects and their approved family exclusions ar
 
 ## Mercenaries compatibility
 
-Version **0.1.1** includes optional compatibility with the supplied **Fantasy Feudalism: Mercenaries 1.15.7** (`villagerscontract`). Install Mobs 0.1.3 and Mercenaries 1.15.7 on the server and every client, replacing the older Mobs JAR. Mercenaries remains optional when using Mobs alone.
+Version **0.1.1** includes optional compatibility with the supplied **Fantasy Feudalism: Mercenaries 1.15.7** (`villagerscontract`). Install Mobs 0.1.4 and Mercenaries 1.15.7 on the server and every client, replacing the older Mobs JAR. Mercenaries remains optional when using Mobs alone.
 
 Guards recognize tamed spiders as allies, companions respect guard alliances, and mercenary combat spacing follows a skeleton's equipped weapon. Faster skeleton arrows retain the requested 40% speed increase with a corrected gravity arc and vanilla spread. Rejected or losing guard-menu transfers explicitly correct the hidden player inventory so two viewers cannot retain predicted ghost items.
 
@@ -70,7 +74,7 @@ Choose a fresh test directory for each combined run: Mercenaries' built-in villa
 | Armor-wearing undead | One eligibility roll per mob: Easy 20%, Normal 35%, Hard 60%. Material weights: leather 50%, chainmail 25%, iron 20%, gold 5%; vanilla armor-slot selection. Each piece has a 50% unenchanted / 35% level I / 15% level II enchantment distribution, using applicable vanilla enchanting-table enchantments. |
 | Blazes | Alternate four-block sideways dashes over ten ticks, respecting collisions. After the five-second cooldown, roll a 20% chance each second while they have an attack target. |
 | Ghasts | Natural spawn weights reduced by 20%, groups of three, exactly two ghast tears on death. Other vanilla drops remain. |
-| Silverfish | Natural mineshaft spawn weight 60, groups of 3–9, with vanilla hostile-mob light rules. They target zombies, deal double damage to them, and flee wild or tamed spiders of both types. |
+| Silverfish | Natural mineshaft spawn weight 60, groups of 3–9, with vanilla hostile-mob light rules. They prefer zombies as prey, deal double damage to them, and flee wild or tamed spiders of both types. Each keeps roaming until its own zombie killing blow; only that killer burrows, then despawns 600 game ticks later. |
 
 Spider-family natural spawn weights are halved. Spawn changes use vanilla weighted spawn lists and vanilla placement checks; actual pack sizes remain subject to available space, mob caps, and valid positions. Family changes include variants such as strays, bogged, wither skeletons, husks, drowned, zombie villagers, and zombified piglins where applicable.
 
