@@ -349,3 +349,7 @@ Grazing now has priority over following a player holding golden horse food, whil
 ### Shorter automatic horse breeding interval
 
 The user replaced the fourteen-day automatic horse breeding interval with two hours thirty minutes. Use 180,000 elapsed world ticks at normal twenty-tick-per-second speed for new horses, both parents after birth and newborn foals. Existing saved deadlines migrate once by preserving their original cycle start and subtracting 156,000 ticks from the old deadline. Horses already past the shorter interval become eligible immediately; repeated access and reload must not shorten the timer again. Manual golden-food breeding, grazing and triple foal growth remain unchanged.
+
+### Frog water escape follow-up
+
+Frogs jump toward nearby water when a player approaches. Implementation defaults: visible living non-spectator players within six blocks, surface water within twelve blocks in loaded chunks, collision-checked direct jumps up to five blocks and navigation closer for farther water. Breeding, egg laying, leashes and existing native jumps take precedence. Frogs already swimming and frogs without reachable water retain vanilla behavior.

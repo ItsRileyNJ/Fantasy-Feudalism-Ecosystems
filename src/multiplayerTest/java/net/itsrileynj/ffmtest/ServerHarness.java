@@ -198,6 +198,8 @@ public final class ServerHarness {
                 if(q.has("invulnerable"))e.setInvulnerable(q.get("invulnerable").getAsBoolean());
                 if(e instanceof net.minecraft.world.entity.animal.Fox fox && q.has("ai")&&q.get("ai").getAsBoolean())
                     fox.finalizeSpawn(level,level.getCurrentDifficultyAt(fox.blockPosition()),MobSpawnType.COMMAND,null);
+                if(e instanceof net.minecraft.world.entity.animal.frog.Frog frog && q.has("ai")&&q.get("ai").getAsBoolean())
+                    frog.finalizeSpawn(level,level.getCurrentDifficultyAt(frog.blockPosition()),MobSpawnType.COMMAND,null);
                 level.addFreshEntity(e);
                 if(MercenaryHarness.isGuard(e)&&q.has("owner")) {
                     var owner=server.getPlayerList().getPlayerByName(q.get("owner").getAsString());

@@ -1,0 +1,120 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "A real player approach launches the frog; both graphical clients render its synchronized jump and water landing",
+      "passed": true,
+      "frog": {
+        "id": 10,
+        "uuid": "00b3922a-fba3-479b-9cd0-8deb29b336f8",
+        "type": "minecraft:frog",
+        "position": [
+          10.711507994851129,
+          63.76636799395752,
+          7.454735460076367
+        ],
+        "pose": "STANDING",
+        "onGround": false,
+        "inWater": true,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 10.0,
+        "maxHealth": 10.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "COMMAND",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        }
+      },
+      "clients": {
+        "owner": {
+          "jumpFrames": 3,
+          "frog": {
+            "id": 10,
+            "uuid": "00b3922a-fba3-479b-9cd0-8deb29b336f8",
+            "type": "minecraft:frog",
+            "position": [
+              12.768229166666668,
+              64.82210286458334,
+              6.266357421875
+            ],
+            "pose": "LONG_JUMPING",
+            "onGround": false,
+            "inWater": false,
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 10.0,
+            "maxHealth": 10.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            }
+          },
+          "renderErrors": []
+        },
+        "guest": {
+          "jumpFrames": 45,
+          "frog": {
+            "id": 10,
+            "uuid": "00b3922a-fba3-479b-9cd0-8deb29b336f8",
+            "type": "minecraft:frog",
+            "position": [
+              13.115478515625,
+              64.7724609375,
+              6.313232421875
+            ],
+            "pose": "LONG_JUMPING",
+            "onGround": false,
+            "inWater": false,
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 10.0,
+            "maxHealth": 10.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            }
+          },
+          "renderErrors": []
+        }
+      }
+    },
+    {
+      "name": "Both clients converge on the standing swimming pose after landing",
+      "passed": true
+    },
+    {
+      "name": "World save and the normal player inventory work after repeated client updates",
+      "passed": true
+    }
+  ]
+}

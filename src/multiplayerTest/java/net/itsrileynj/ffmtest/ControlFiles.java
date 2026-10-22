@@ -90,6 +90,7 @@ public final class ControlFiles {
         var info = new LinkedHashMap<String,Object>(); info.put("id", entity.getId()); info.put("uuid", entity.getUUID().toString());
         info.put("type", BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).toString());
         info.put("position", List.of(entity.getX(),entity.getY(),entity.getZ()));
+        info.put("pose",entity.getPose().name());info.put("onGround",entity.onGround());info.put("inWater",entity.isInWater());
         info.put("alive", entity.isAlive()); info.put("removed", entity.isRemoved());
         info.put("invisible",entity.isInvisible());info.put("silent",entity.isSilent());
         if(entity instanceof net.minecraft.world.entity.item.ItemEntity item) info.put("item",stack(item.getItem()));

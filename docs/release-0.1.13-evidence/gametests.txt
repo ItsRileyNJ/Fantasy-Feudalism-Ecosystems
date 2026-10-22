@@ -1,0 +1,6 @@
+Standalone
+[03:39:54] [Server thread/INFO] [minecraft/GameTestServer]: All 120 required tests passed :)
+BUILD SUCCESSFUL in 36s
+Mercenaries 1.15.7
+[03:39:09] [Server thread/INFO] [minecraft/GameTestServer]: All 130 required tests passed :)
+BUILD SUCCESSFUL in 31s

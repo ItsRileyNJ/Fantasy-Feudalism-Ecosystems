@@ -32,6 +32,7 @@ import net.neoforged.neoforge.client.event.*;
 
 @EventBusSubscriber(modid="ffm_multiplayer_test", value=Dist.CLIENT)
 public final class ClientHarness {
+    private static final Map<Integer,Integer> FROG_JUMP_FRAMES=new HashMap<>();
     private static final Map<Integer,Integer> WOLF_HURT=new HashMap<>();
     private static final Map<String,Integer> WOLF_SOUNDS=new java.util.concurrent.ConcurrentHashMap<>();
     @SubscribeEvent public static void sound(net.neoforged.neoforge.client.event.sound.PlaySoundEvent event) {
@@ -46,6 +47,14 @@ public final class ClientHarness {
     private static final Map<Integer,Map<String,Object>> SPIDER_POSES=new HashMap<>();
     @SubscribeEvent public static void frame(RenderFrameEvent.Post event) { frames++; }
     @SubscribeEvent public static void rendered(RenderLivingEvent.Post<?,?> event) {
+        if(event.getEntity() instanceof net.minecraft.world.entity.animal.frog.Frog frog
+                && frog.getPose()==net.minecraft.world.entity.Pose.LONG_JUMPING)
+            {
+            FROG_JUMP_FRAMES.merge(frog.getId(),1,Integer::sum);
+            if(event.getRenderer().getModel() instanceof HierarchicalModel<?> model)model.root().getAllParts().forEach(part->{
+                if(!Float.isFinite(part.xRot)||!Float.isFinite(part.yRot)||!Float.isFinite(part.zRot))RENDER_ERRORS.add("Non-finite frog model rotation");
+            });
+        }
         if(event.getEntity() instanceof Spider spider && event.getRenderer().getModel() instanceof SpiderModel<?> model) {
             var abdomen=model.root().getChild("body1");
             SPIDER_POSES.put(spider.getId(),Map.of("sitting",SpiderCompanion.isSitting(spider),
@@ -178,6 +187,7 @@ public final class ClientHarness {
         result.put("guardFrames",guardFrames);
         result.put("crossbowPoses",new HashMap<>(CROSSBOW_POSES));
         result.put("spiderPoses",new HashMap<>(SPIDER_POSES));
+        result.put("frogJumpFrames",new HashMap<>(FROG_JUMP_FRAMES));
         result.put("horsePoses",new HashMap<>(HORSE_POSES));
         result.put("wolfPoses",new HashMap<>(WOLF_POSES));
         result.put("wolfHurtMax",new HashMap<>(WOLF_HURT));result.put("wolfSounds",new HashMap<>(WOLF_SOUNDS));

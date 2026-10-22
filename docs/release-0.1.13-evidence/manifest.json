@@ -1,0 +1,12 @@
+{
+  "artifact": "fantasy_feudalism_mobs-0.1.13.jar",
+  "bytes": 146555,
+  "sha256": "9249d4babca7ab0899fe8355f68519f0bc9603b96073f5a3c96d7a2543a578fa",
+  "verifiedMainClasses": 73,
+  "minecraft": "1.21.1",
+  "neoforge": "21.1.262",
+  "java": 21,
+  "optionalMercenaries": "1.15.7",
+  "testHarnessExcluded": true,
+  "thirdPartyJarsExcluded": true
+}

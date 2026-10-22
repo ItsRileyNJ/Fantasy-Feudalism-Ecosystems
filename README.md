@@ -6,7 +6,14 @@ This repository contains only the Fantasy Feudal Mobs project, its build tools, 
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_mobs-0.1.12.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_mobs-0.1.13.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.13 changes
+
+- Frogs on land flee toward nearby water when a visible player approaches within six blocks, including creative players. They use a collision-checked jump, walking closer first when necessary.
+- Water is searched within twelve blocks in loaded chunks. Spectators, frogs already in water, breeding, egg laying and leashes keep their normal behavior; no usable water leaves ordinary AI available.
+
+See [the validation report](docs/RELEASE_0.1.13.md).
 
 ## Version 0.1.12 changes
 
