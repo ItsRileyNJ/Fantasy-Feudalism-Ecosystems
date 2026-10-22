@@ -20,7 +20,9 @@ public abstract class HorseMixin extends Animal {
     @Inject(method="registerGoals", at=@At("TAIL"))
     private void ffm$goals(CallbackInfo ci) {
         if ((Object)this instanceof Horse horse) {
-            goalSelector.addGoal(3, new HorseGrazingGoal(horse));
+            // A player holding golden horse food must not starve grazing indefinitely.
+            // Panic and riding still take priority; love mode ends grazing before breeding.
+            goalSelector.addGoal(2, new HorseGrazingGoal(horse));
             goalSelector.addGoal(5, new SpawnHerd.FollowHerdGoal(horse));
         }
     }

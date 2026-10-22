@@ -21,6 +21,10 @@ import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 
 public final class ServerHarness {
+    private static final Map<Integer,Long> HORSE_FIRST_GRAZE=new HashMap<>();
+    private static final Map<Integer,Integer> HORSE_GRAZES=new HashMap<>();
+    private static final Set<Integer> HORSE_EATING=new HashSet<>();
+    private static final Map<Integer,Long> HORSE_BIRTHS=new HashMap<>();
     private static long tickStart;
     private static final Map<Integer,Long> WOLF_STARTS=new HashMap<>();
     public static long firstStalk(int id){return WOLF_STARTS.getOrDefault(id,-1L);}
@@ -35,6 +39,8 @@ public final class ServerHarness {
         }
     }
     @SubscribeEvent public static void joined(EntityJoinLevelEvent event) {
+        if(!event.getLevel().isClientSide && !event.loadedFromDisk() && event.getEntity() instanceof net.minecraft.world.entity.animal.horse.Horse horse
+                && horse.isBaby())HORSE_BIRTHS.put(horse.getId(),horse.level().getGameTime());
         if (!event.getLevel().isClientSide && !event.loadedFromDisk()
                 && event.getEntity() instanceof Silverfish fish && fish.getSpawnType()==MobSpawnType.NATURAL) {
             NATURAL_SILVERFISH.add(Map.of("tick",fish.getServer().getTickCount(),"entity",ControlFiles.entity(fish)));
@@ -48,6 +54,15 @@ public final class ServerHarness {
         for(var entity:event.getServer().overworld().getAllEntities())
             if(entity instanceof net.minecraft.world.entity.animal.Wolf wolf && ((net.itsrileynj.fantasyfeudalismmobs.WolfState)wolf).ffm$stalking())
                 WOLF_STARTS.putIfAbsent(wolf.getId(),wolf.level().getGameTime());
+        for(var entity:event.getServer().overworld().getAllEntities())
+            if(entity instanceof net.minecraft.world.entity.animal.horse.Horse horse) {
+                if(horse.isEating()) {
+                    if(HORSE_EATING.add(horse.getId())) {
+                        HORSE_FIRST_GRAZE.putIfAbsent(horse.getId(),horse.level().getGameTime());
+                        HORSE_GRAZES.merge(horse.getId(),1,Integer::sum);
+                    }
+                } else HORSE_EATING.remove(horse.getId());
+            }
         JsonObject request = ControlFiles.command(); if (request == null) return;
         try { ControlFiles.respond(request, execute(event.getServer(), request)); }
         catch (Throwable error) { error.printStackTrace(); ControlFiles.fail(request, error); }
@@ -80,6 +95,16 @@ public final class ServerHarness {
             case "mercenary": return MercenaryHarness.execute(server,q);
             case "snapshot": return snapshot(server);
             case "naturalSilverfish": return List.copyOf(NATURAL_SILVERFISH);
+            case "horseObservation": return Map.of("firstGrazes",Map.copyOf(HORSE_FIRST_GRAZE),"grazes",Map.copyOf(HORSE_GRAZES),"births",Map.copyOf(HORSE_BIRTHS));
+            case "pasture": {
+                int grass=0,dirt=0;
+                for(int x=0;x<32;x++)for(int z=0;z<32;z++) {
+                    var block=level.getBlockState(new BlockPos(x,63,z));
+                    if(block.is(Blocks.GRASS_BLOCK))grass++;
+                    if(block.is(Blocks.DIRT))dirt++;
+                }
+                return Map.of("grass",grass,"dirt",dirt);
+            }
             case "silverfishKills": return List.copyOf(SILVERFISH_KILLS);
             case "zombiePosition": {
                 LivingEntity hunter=(LivingEntity)entity(level,q);

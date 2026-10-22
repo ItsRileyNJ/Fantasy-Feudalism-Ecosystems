@@ -12,6 +12,8 @@ import net.neoforged.neoforge.event.EventHooks;
 public final class HorseGrazingGoal extends Goal {
     private final Horse horse;
     private int remaining;
+    private long nextGraze=Long.MIN_VALUE;
+    private boolean scheduledReady;
 
     public HorseGrazingGoal(Horse horse) {
         this.horse = horse;
@@ -23,23 +25,35 @@ public final class HorseGrazingGoal extends Goal {
                 || horse.level().getBlockState(horse.blockPosition().below()).is(Blocks.GRASS_BLOCK);
     }
 
+    private void schedule() {
+        scheduledReady=HorseLife.ready(horse);
+        int minimum=scheduledReady?100:horse.isBaby()?200:400;
+        nextGraze=horse.level().getGameTime()+minimum+horse.getRandom().nextInt(minimum+1);
+    }
+
     @Override public boolean canUse() {
         if (horse.isVehicle() || horse.isPassenger() || horse.isInLove() || horse.isStanding() || horse.isInWater()
-                || horse.isPanicking() || !horse.onGround() || !grassAvailable()) return false;
-        return horse.getRandom().nextInt(HorseLife.ready(horse) ? 40 : horse.isBaby() ? 50 : 1000) == 0;
+                || horse.isPanicking() || !horse.onGround()) return false;
+        if(nextGraze==Long.MIN_VALUE)schedule();
+        else if(HorseLife.ready(horse)&&!scheduledReady) {
+            // Becoming eligible must not wait for the remainder of an ordinary grazing interval.
+            nextGraze=Math.min(nextGraze,horse.level().getGameTime()+100+horse.getRandom().nextInt(101));
+            scheduledReady=true;
+        }
+        return horse.level().getGameTime()>=nextGraze&&grassAvailable();
     }
 
     @Override public boolean requiresUpdateEveryTick() { return true; }
     @Override public boolean canContinueToUse() {
         return remaining > 0 && !horse.isVehicle() && !horse.isPassenger() && !horse.isInWater()
-                && !horse.isStanding() && !horse.isPanicking();
+                && !horse.isStanding() && !horse.isPanicking() && !horse.isInLove();
     }
     @Override public void start() {
         remaining = 40;
         horse.getNavigation().stop();
         horse.setEating(true);
     }
-    @Override public void stop() { remaining = 0; horse.setEating(false); }
+    @Override public void stop() { remaining = 0; horse.setEating(false);schedule(); }
 
     @Override public void tick() {
         if (--remaining != 4) return;

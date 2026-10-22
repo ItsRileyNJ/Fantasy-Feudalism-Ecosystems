@@ -84,18 +84,39 @@ public final class HorseBehaviorTests {
         h.succeed();
     }
 
-    @GameTest(template="test_empty",timeoutTicks=90)
+    @GameTest(template="test_empty",timeoutTicks=320)
     public static void worldTicksCompleteGrazingInsteadOfFreezingAi(GameTestHelper h) {
-        floor(h);var horse=horse(h,8,8);
-        due(horse);
-        // Start through GoalSelector so MOVE/LOOK/JUMP locks are registered, as in
-        // normal gameplay. Repeated selection only avoids a random waiting period.
-        for(int i=0;i<1000&&!horse.isEating();i++)horse.goalSelector.tick();
-        h.assertTrue(horse.isEating(),"Scheduled grazing starts the native pose");
-        h.runAfterDelay(55,()->{
-            h.assertBlockPresent(Blocks.DIRT,8,1,8);
-            h.assertFalse(horse.isEating(),"Native pose must not freeze server AI or the grazing countdown");
-            h.succeed();
+        floor(h);var horse=horse(h,8,8);due(horse);
+        boolean[] seen={false};BlockPos[] bite={null};
+        h.onEachTick(()->{if(horse.isEating()){seen[0]=true;bite[0]=horse.blockPosition().below();}});
+        h.succeedWhen(()->{
+            h.assertTrue(seen[0]&&!horse.isEating(),"Ordinary AI starts and finishes grazing without forced goal scans");
+            h.assertTrue(h.getLevel().getBlockState(bite[0]).is(Blocks.DIRT),"World-ticked grazing consumes the actual grass block");
+        });
+    }
+
+    @AfterBatch(batch="ffm_horse_temptation")
+    public static void removeTemptingFixturePlayer(net.minecraft.server.level.ServerLevel level) {
+        for(var player:List.copyOf(level.players()))if(player.getGameProfile().getName().equals("test-mock-player"))
+            level.getServer().getPlayerList().remove(player);
+    }
+
+    @GameTest(template="test_empty",timeoutTicks=950,batch="ffm_horse_temptation")
+    public static void ordinaryGrazingIsNotStarvedByAPlayerHoldingHorseFood(GameTestHelper h) {
+        floor(h);var horse=horse(h,8,8);horse.setAge(0);
+        var player=h.makeMockServerPlayerInLevel();player.moveTo(h.absoluteVec(new Vec3(8,2,11)));
+        player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND,new ItemStack(Items.GOLDEN_CARROT));
+        boolean[] seen={false};BlockPos[] bite={null};
+        h.runAfterDelay(20,()->h.assertTrue(horse.goalSelector.getAvailableGoals().stream()
+                .anyMatch(g->g.isRunning()&&g.getGoal() instanceof net.minecraft.world.entity.ai.goal.TemptGoal),
+                "The fixture really starts normal food-following before the grazing timer"));
+        h.onEachTick(()->{if(horse.isEating()){seen[0]=true;bite[0]=horse.blockPosition().below();}});
+        h.succeedWhen(()->{
+            h.assertTrue(seen[0]&&!horse.isEating(),"Normal timed grazing interrupts food-following and completes");
+            h.assertTrue(h.getLevel().getBlockState(bite[0]).is(Blocks.DIRT),"The horse consumes real grass while the player continues holding a golden carrot");
+            h.assertFalse(horse.isInLove(),"Grazing before fourteen days must not prematurely start breeding");
+            h.assertTrue(HorseLife.nextBreed(horse)>h.getLevel().getGameTime()+330000,"The original fourteen-day deadline remains in force");
+            h.getLevel().getServer().getPlayerList().remove(player);
         });
     }
 
@@ -112,30 +133,24 @@ public final class HorseBehaviorTests {
         h.runAfterDelay(7,()->{h.assertTrue(HorseLife.ready(loaded),"The horse becomes eligible once the saved deadline passes");h.succeed();});
     }
 
-    @GameTest(template="test_empty",timeoutTicks=210)
+    @GameTest(template="test_empty",timeoutTicks=520)
     public static void grassStartsWildBreedingOnceAndFoalJoinsHerd(GameTestHelper h) {
         floor(h);var a=horse(h,7,8);var b=horse(h,9,8);var extra=horse(h,12,8);
         var data=group(h,a,null);group(h,b,data);group(h,extra,data);due(a);due(b);due(extra);
-        b.goalSelector.removeAllGoals(g->g instanceof net.minecraft.world.entity.ai.goal.RandomStrollGoal);
-        extra.goalSelector.removeAllGoals(g->g instanceof net.minecraft.world.entity.ai.goal.RandomStrollGoal);
-        for(int i=0;i<1000&&!a.isEating();i++)a.goalSelector.tick();
-        h.assertTrue(a.isEating(),"Normal goal selection starts grazing with its movement locks");
-        h.runAfterDelay(45,()->{
-            h.assertTrue(a.isInLove()&&b.isInLove(),"World-ticked grazing starts love mode for a nearby eligible mate");
-            h.assertFalse(extra.isInLove(),"A third horse is not enrolled into the reserved pair");
-            h.assertFalse(a.isTamed()||b.isTamed(),"Natural breeding does not silently tame either parent");
-            h.assertTrue(a.canMate(b)&&b.canMate(a),"Untamed horses can mate through the natural breeding pair");
+        boolean[] sawPair={false};
+        h.onEachTick(()->{
+            long inLove=List.of(a,b,extra).stream().filter(Horse::isInLove).count();
+            if(inLove>0){h.assertTrue(inLove==2,"Only two horses reserve an automatic pair");sawPair[0]=true;}
         });
-        h.runAfterDelay(170,()->{
-            var foals=h.getLevel().getEntitiesOfClass(Horse.class,a.getBoundingBox().inflate(18),
+        h.runAfterDelay(450,()->{
+            var foals=h.getLevel().getEntitiesOfClass(Horse.class,a.getBoundingBox().inflate(25),
                     child->child.isBaby()&&SpawnHerd.together(a,child));
-            h.assertTrue(foals.size()==1,"Exactly one foal is born, got "+foals.size());
-            var foal=foals.getFirst();
-            h.assertFalse(foal.isTamed(),"Natural offspring remain untamed");
-            h.assertTrue(HorseLife.nextBreed(a)>h.getLevel().getGameTime()+335000
-                    &&HorseLife.nextBreed(b)>h.getLevel().getGameTime()+335000,"Both parents receive a fresh fourteen-day cycle");
-            h.assertFalse(HorseLife.ready(a)||HorseLife.ready(b)||HorseLife.ready(foal),"Parents and foal cannot immediately start another natural breeding");
-            h.succeed();
+            h.assertTrue(sawPair[0]&&foals.size()==1,"Scheduled grazing and ordinary mating AI produce exactly one foal");
+            h.assertFalse(foals.getFirst().isTamed(),"Natural offspring remain untamed");
+            long reset=List.of(a,b,extra).stream().filter(parent->HorseLife.nextBreed(parent)>h.getLevel().getGameTime()+335000).count();
+            h.assertTrue(reset==2,"Exactly the two parents receive a fresh fourteen-day cycle");
+            h.assertTrue(List.of(a,b,extra).stream().noneMatch(Horse::isTamed),"Automatic breeding never silently tames the parents");
+            h.assertFalse(HorseLife.ready(foals.getFirst()),"The foal cannot breed immediately");h.succeed();
         });
     }
 

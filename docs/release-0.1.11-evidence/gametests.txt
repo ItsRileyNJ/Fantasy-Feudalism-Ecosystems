@@ -1,0 +1,6 @@
+horse-grazing-0111-standalone.log
+[00:52:50] [Server thread/INFO] [minecraft/GameTestServer]: All 114 required tests passed :)
+BUILD SUCCESSFUL in 31s
+horse-grazing-0111-combined.log
+[00:53:46] [Server thread/INFO] [minecraft/GameTestServer]: All 124 required tests passed :)
+BUILD SUCCESSFUL in 32s
