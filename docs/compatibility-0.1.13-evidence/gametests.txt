@@ -1,0 +1,8 @@
+Mobs and focused compatibility
+[03:51:53] [Server thread/INFO] [minecraft/GameTestServer]: 130 tests are now running at position 7175070, -59, 12470270!
+[03:52:05] [Server thread/INFO] [minecraft/GameTestServer]: All 130 required tests passed :)
+BUILD SUCCESSFUL in 32s
+Supplied Mercenaries suite
+[03:52:28] [Server thread/INFO] [minecraft/GameTestServer]: 336 tests are now running at position -8343142, -59, -2755387!
+[03:53:43] [Server thread/INFO] [minecraft/GameTestServer]: All 336 required tests passed :)
+BUILD SUCCESSFUL in 1m 31s

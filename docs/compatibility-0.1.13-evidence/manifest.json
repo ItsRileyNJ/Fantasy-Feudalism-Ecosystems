@@ -1,0 +1,64 @@
+{
+  "testedMobsCommit": "713c410",
+  "minecraft": "1.21.1",
+  "neoforge": "21.1.262",
+  "java": 21,
+  "mods": [
+    {
+      "file": "fantasy_feudalism_mobs-0.1.13.jar",
+      "bytes": 146555,
+      "sha256": "9249d4babca7ab0899fe8355f68519f0bc9603b96073f5a3c96d7a2543a578fa"
+    },
+    {
+      "file": "fantasyfeudalism-mercenaries-1.15.7.jar",
+      "bytes": 715936,
+      "sha256": "32fba122dde2819abdd64a46ee350dc3e6f2533e34c8b7360700e2a8239d0a65"
+    }
+  ],
+  "copies": {
+    "server": {
+      "fantasy_feudalism_mobs-0.1.13.jar": "9249d4babca7ab0899fe8355f68519f0bc9603b96073f5a3c96d7a2543a578fa",
+      "fantasyfeudalism-mercenaries-1.15.7.jar": "32fba122dde2819abdd64a46ee350dc3e6f2533e34c8b7360700e2a8239d0a65"
+    },
+    "owner": {
+      "fantasy_feudalism_mobs-0.1.13.jar": "9249d4babca7ab0899fe8355f68519f0bc9603b96073f5a3c96d7a2543a578fa",
+      "fantasyfeudalism-mercenaries-1.15.7.jar": "32fba122dde2819abdd64a46ee350dc3e6f2533e34c8b7360700e2a8239d0a65"
+    },
+    "guest": {
+      "fantasy_feudalism_mobs-0.1.13.jar": "9249d4babca7ab0899fe8355f68519f0bc9603b96073f5a3c96d7a2543a578fa",
+      "fantasyfeudalism-mercenaries-1.15.7.jar": "32fba122dde2819abdd64a46ee350dc3e6f2533e34c8b7360700e2a8239d0a65"
+    }
+  },
+  "sharedAssetOrDataFilePaths": [],
+  "fixture": {
+    "connection": "127.0.0.1:25577",
+    "clients": 2,
+    "renderer": "Linux Mesa llvmpipe",
+    "resolution": [
+      960,
+      540
+    ],
+    "offlineTestIdentities": true,
+    "earlyWindowControl": false,
+    "separateTestHarness": true
+  },
+  "actualGuiScaleProbe": {
+    "resolution": [
+      1280,
+      720
+    ],
+    "scales": [
+      1,
+      2,
+      3
+    ],
+    "clients": 2
+  },
+  "automatedTestsPassed": 466,
+  "liveChecksPassed": 56,
+  "rawLogsArchive": {
+    "file": "fantasy-feudal-mobs-0.1.13-mercenaries-1.15.7-compatibility-logs.zip",
+    "bytes": 104494,
+    "sha256": "8ba65eac5dc4ac338818407886c01a3e651506bed04e755adc4dae17d5d8fd0f"
+  }
+}

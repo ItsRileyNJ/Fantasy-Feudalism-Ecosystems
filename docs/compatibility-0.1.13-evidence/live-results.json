@@ -1,0 +1,2249 @@
+{
+  "allPassed": true,
+  "completedCheckCount": 56,
+  "suites": {
+    "mobs-core-and-logout": [
+      {
+        "name": "Two independent clients log in to packaged NeoForge server",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "200 competing bee-capture interactions conserve one bee and one bottle",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "Live Bee Bottle taming synchronizes ownership, sitting, health and speed to both clients",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "Another player cannot steal ownership by feeding",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "2000 concurrent poison-harvest requests yield exactly one potion with no inventory desync",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "2000 concurrent silk-harvest requests yield one 1-4 string harvest and one durability cost",
+        "status": "passed",
+        "detail": {
+          "string": 1
+        }
+      },
+      {
+        "name": "Full-inventory concurrent harvesting drops exactly one output and consumes one input",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "Inventory pickup, placement and shift-click conserve items and agree with server",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "Both clients reload resources without missing Bee Bottle models or render exceptions",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "Disconnect/reconnect restores inventory and full companion entity state",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "Both clients close their connections through the vanilla logout sequence without timeout",
+        "status": "passed",
+        "detail": {
+          "logoutSeconds": {
+            "guest": 0.33561387899953843,
+            "owner": 0.41132206400016
+          }
+        }
+      }
+    ],
+    "mercenaries-interactions-races-restart-combat-load": [
+      {
+        "name": "200 competing contract packets redeem one two-pillager patrol exactly once and consume one contract",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "Both spider companion types are allied to mercenaries and excluded from guard targeting",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "Two real GuardScreens compete for shared storage: 13 string conserved with authoritative hidden-inventory updates",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "Concurrent clicks cannot extract or duplicate the mercenary ammunition slots",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "Guard order buttons synchronize authoritative state to both open viewers",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "Mercenary GUI renders and preserves synchronized slots at GUI scales 1, 2 and 3",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "Shared guard storage accepts vanilla string and safely rejects Bee Bottles without loss, duplication or desync",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "Spider-harvested Poison remains intact when the guard GUI rejects a negative potion",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "Mercenary custom highlight payload reaches only its requesting client",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "Both mods survive resource reload with valid Bee Bottle models, guard rendering and usable GuardScreens",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "Disconnecting with a guard-menu cursor stack conserves all items across player, world-drop and guard-loot ownership; reconnect inventories agree",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "Twelve repeated real-client inventory races conserve 17 items each and eliminate the previously reproduced losing-client ghost stack",
+        "status": "passed",
+        "detail": {
+          "races": 12,
+          "concurrentQuickMoveRequests": 96
+        }
+      },
+      {
+        "name": "Full process restart preserves both mods: guard contracts, equipment, supplies, orders and skins; spider ownership/cooldowns; both player inventories",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "Both-mod restart and guard persistence cannot reset spider poison harvesting cooldown",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "Real guard GUI mounts and dismounts an owned horse with matching state and valid rendering on both clients",
+        "status": "passed",
+        "detail": null
+      },
+      {
+        "name": "Live bow skeleton AI hits a mercenary at 10 blocks and both graphical clients receive its health change",
+        "status": "passed",
+        "detail": {
+          "health": 25.0,
+          "maxHealth": 30.0
+        }
+      },
+      {
+        "name": "Live crossbow skeleton AI hits a mercenary at 27 blocks and both graphical clients receive its health change",
+        "status": "passed",
+        "detail": {
+          "health": 21.0,
+          "maxHealth": 30.0
+        }
+      },
+      {
+        "name": "180 active modified mobs plus 20 armed mercenaries remain responsive with two graphical clients, advancing frames and no render failures",
+        "status": "passed",
+        "detail": {
+          "tickSamples": 735,
+          "meanTickMs": 15.180922492517007,
+          "p95TickMs": 44.632248,
+          "maxTickMs": 136.894002,
+          "initialMobs": 200,
+          "guards": 20,
+          "elapsedSeconds": 35.381273591000536,
+          "ticksAdvanced": 734,
+          "observedTicksPerSecond": 20.745437501342458,
+          "remainingEntities": 200
+        }
+      }
+    ],
+    "spider-particles": [
+      {
+        "name": "spider: visible level I six-second effects and correct vanilla particle colors sync to both clients",
+        "status": "passed",
+        "detail": [
+          {
+            "particle": {
+              "type": "minecraft:entity_effect",
+              "rgb": 4738376,
+              "alpha": 1.0
+            },
+            "effect": "minecraft:weakness",
+            "ambient": false,
+            "visible": true,
+            "amplifier": 0,
+            "duration": 120
+          },
+          {
+            "particle": {
+              "type": "minecraft:entity_effect",
+              "rgb": 9154528,
+              "alpha": 1.0
+            },
+            "effect": "minecraft:slowness",
+            "ambient": false,
+            "visible": true,
+            "amplifier": 0,
+            "duration": 120
+          }
+        ]
+      },
+      {
+        "name": "spider: both clients actually create visible particles of every applied effect color at the enemy",
+        "status": "passed",
+        "detail": {
+          "owner": {
+            "ticks": 20,
+            "colors": {
+              "4738376": 1,
+              "9154528": 2
+            },
+            "error": "",
+            "entity": 732
+          },
+          "guest": {
+            "colors": {
+              "4738376": 2,
+              "9154528": 3
+            },
+            "error": "",
+            "entity": 732,
+            "ticks": 19
+          }
+        }
+      },
+      {
+        "name": "spider: effect metadata clears and particle emission stops after expiry on both clients",
+        "status": "passed",
+        "detail": {
+          "owner": {
+            "ticks": 28,
+            "colors": {},
+            "error": "",
+            "entity": 732
+          },
+          "guest": {
+            "colors": {},
+            "error": "",
+            "entity": 732,
+            "ticks": 29
+          }
+        }
+      },
+      {
+        "name": "cave_spider: visible level I six-second effects and correct vanilla particle colors sync to both clients",
+        "status": "passed",
+        "detail": [
+          {
+            "particle": {
+              "type": "minecraft:entity_effect",
+              "rgb": 4738376,
+              "alpha": 1.0
+            },
+            "effect": "minecraft:weakness",
+            "ambient": false,
+            "visible": true,
+            "amplifier": 0,
+            "duration": 120
+          },
+          {
+            "particle": {
+              "type": "minecraft:entity_effect",
+              "rgb": 8889187,
+              "alpha": 1.0
+            },
+            "effect": "minecraft:poison",
+            "ambient": false,
+            "visible": true,
+            "amplifier": 0,
+            "duration": 120
+          },
+          {
+            "particle": {
+              "type": "minecraft:entity_effect",
+              "rgb": 9154528,
+              "alpha": 1.0
+            },
+            "effect": "minecraft:slowness",
+            "ambient": false,
+            "visible": true,
+            "amplifier": 0,
+            "duration": 120
+          }
+        ]
+      },
+      {
+        "name": "cave_spider: both clients actually create visible particles of every applied effect color at the enemy",
+        "status": "passed",
+        "detail": {
+          "owner": {
+            "ticks": 48,
+            "colors": {
+              "4738376": 1,
+              "8889187": 3,
+              "9154528": 3
+            },
+            "error": "",
+            "entity": 734
+          },
+          "guest": {
+            "colors": {
+              "4738376": 4,
+              "8889187": 3,
+              "9154528": 1
+            },
+            "error": "",
+            "entity": 734,
+            "ticks": 47
+          }
+        }
+      },
+      {
+        "name": "cave_spider: effect metadata clears and particle emission stops after expiry on both clients",
+        "status": "passed",
+        "detail": {
+          "owner": {
+            "ticks": 30,
+            "colors": {},
+            "error": "",
+            "entity": 734
+          },
+          "guest": {
+            "colors": {},
+            "error": "",
+            "entity": 734,
+            "ticks": 31
+          }
+        }
+      }
+    ],
+    "guard-dogs": [
+      {
+        "name": "Real owner interaction seats a healthy guarding dog",
+        "passed": true,
+        "dog": {
+          "id": 735,
+          "uuid": "f98cb6f1-d848-4d08-9876-c4255fb06485",
+          "type": "minecraft:wolf",
+          "position": [
+            12.0,
+            64.0,
+            7.0
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 40.0,
+          "maxHealth": 40.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "tailAngle": 1.7278761,
+          "tamed": true,
+          "sitting": true,
+          "stalking": false,
+          "crouch": 0.0,
+          "firstStalk": -1,
+          "pack": "9ba13717-c92d-44a1-bb3c-86c4f8df0236",
+          "mealUntil": 0
+        },
+        "baselineTailRotations": {
+          "owner": 1.7278761,
+          "guest": 1.7278761
+        }
+      },
+      {
+        "name": "One seated dog deters a whole wild pack for one shared hunger cooldown and one heart",
+        "passed": true,
+        "wolves": [
+          {
+            "id": 737,
+            "uuid": "86129895-4931-46d6-ada0-518a25f8078c",
+            "type": "minecraft:wolf",
+            "position": [
+              2.0,
+              64.0,
+              3.0
+            ],
+            "pose": "STANDING",
+            "onGround": false,
+            "inWater": false,
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 8.0,
+            "maxHealth": 8.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "tailAngle": 0.62831855,
+            "tamed": false,
+            "sitting": false,
+            "stalking": false,
+            "crouch": 0.0,
+            "firstStalk": -1,
+            "pack": "f7c678f8-ad5b-4a0d-9f42-de8364dd03fd",
+            "mealUntil": 1008380
+          },
+          {
+            "id": 738,
+            "uuid": "f39cb118-fd25-4f8b-b2a7-2bc4fb5f436f",
+            "type": "minecraft:wolf",
+            "position": [
+              2.0,
+              64.0,
+              5.0
+            ],
+            "pose": "STANDING",
+            "onGround": false,
+            "inWater": false,
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 8.0,
+            "maxHealth": 8.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "tailAngle": 0.62831855,
+            "tamed": false,
+            "sitting": false,
+            "stalking": false,
+            "crouch": 0.0,
+            "firstStalk": -1,
+            "pack": "f7c678f8-ad5b-4a0d-9f42-de8364dd03fd",
+            "mealUntil": 1008380
+          },
+          {
+            "id": 739,
+            "uuid": "9ab8d003-1c3d-4e07-bad5-c5c60ed633a8",
+            "type": "minecraft:wolf",
+            "position": [
+              2.0,
+              64.0,
+              7.0
+            ],
+            "pose": "STANDING",
+            "onGround": false,
+            "inWater": false,
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 8.0,
+            "maxHealth": 8.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "tailAngle": 0.62831855,
+            "tamed": false,
+            "sitting": false,
+            "stalking": false,
+            "crouch": 0.0,
+            "firstStalk": -1,
+            "pack": "f7c678f8-ad5b-4a0d-9f42-de8364dd03fd",
+            "mealUntil": 1008380
+          }
+        ],
+        "dog": {
+          "id": 735,
+          "uuid": "f98cb6f1-d848-4d08-9876-c4255fb06485",
+          "type": "minecraft:wolf",
+          "position": [
+            12.0,
+            64.0,
+            7.0
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 38.0,
+          "maxHealth": 40.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "tailAngle": 1.6650443,
+          "tamed": true,
+          "sitting": true,
+          "stalking": false,
+          "crouch": 0.0,
+          "firstStalk": -1,
+          "pack": "9ba13717-c92d-44a1-bb3c-86c4f8df0236",
+          "mealUntil": 0
+        },
+        "sheep": {
+          "id": 736,
+          "uuid": "6b7a8521-5f48-4c4b-8d78-b6e8becc94a6",
+          "type": "minecraft:sheep",
+          "position": [
+            16.0,
+            64.0,
+            5.0
+          ],
+          "pose": "STANDING",
+          "onGround": false,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          }
+        }
+      },
+      {
+        "name": "Both clients show the lower tail and health with no hurt animation or damage sound",
+        "passed": true,
+        "clients": {
+          "owner": {
+            "dog": {
+              "id": 735,
+              "uuid": "f98cb6f1-d848-4d08-9876-c4255fb06485",
+              "type": "minecraft:wolf",
+              "position": [
+                12.0,
+                64.0,
+                7.0
+              ],
+              "pose": "STANDING",
+              "onGround": true,
+              "inWater": false,
+              "alive": true,
+              "removed": false,
+              "invisible": false,
+              "silent": false,
+              "hurtTime": 0,
+              "health": 38.0,
+              "maxHealth": 40.0,
+              "effects": [],
+              "effectDetails": [],
+              "effectParticles": [],
+              "spawnType": "",
+              "target": -1,
+              "noAi": false,
+              "mainHand": {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              "tailAngle": 1.6650443,
+              "tamed": true,
+              "sitting": true,
+              "stalking": false,
+              "crouch": 0.0
+            },
+            "pose": {
+              "tamed": true,
+              "sitting": true,
+              "stalking": false,
+              "head": {
+                "scaleY": 1.0,
+                "y": 13.5,
+                "xRot": 0.0
+              },
+              "body": {
+                "scaleY": 1.0,
+                "y": 18.0,
+                "xRot": 0.7853982
+              },
+              "upperBody": {
+                "scaleY": 1.0,
+                "y": 16.0,
+                "xRot": 1.2566371
+              },
+              "tail": {
+                "scaleY": 1.0,
+                "y": 21.0,
+                "xRot": 1.6650443
+              },
+              "rightFrontLeg": {
+                "scaleY": 1.0,
+                "y": 17.0,
+                "xRot": 5.811947
+              },
+              "leftFrontLeg": {
+                "scaleY": 1.0,
+                "y": 17.0,
+                "xRot": 5.811947
+              }
+            },
+            "hurtMax": 0,
+            "wolfSounds": {}
+          },
+          "guest": {
+            "dog": {
+              "id": 735,
+              "uuid": "f98cb6f1-d848-4d08-9876-c4255fb06485",
+              "type": "minecraft:wolf",
+              "position": [
+                12.0,
+                64.0,
+                7.0
+              ],
+              "pose": "STANDING",
+              "onGround": true,
+              "inWater": false,
+              "alive": true,
+              "removed": false,
+              "invisible": false,
+              "silent": false,
+              "hurtTime": 0,
+              "health": 38.0,
+              "maxHealth": 40.0,
+              "effects": [],
+              "effectDetails": [],
+              "effectParticles": [],
+              "spawnType": "",
+              "target": -1,
+              "noAi": false,
+              "mainHand": {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              "tailAngle": 1.6650443,
+              "tamed": true,
+              "sitting": true,
+              "stalking": false,
+              "crouch": 0.0
+            },
+            "pose": {
+              "tamed": true,
+              "sitting": true,
+              "stalking": false,
+              "head": {
+                "y": 13.5,
+                "xRot": 0.0,
+                "scaleY": 1.0
+              },
+              "body": {
+                "y": 18.0,
+                "xRot": 0.7853982,
+                "scaleY": 1.0
+              },
+              "upperBody": {
+                "y": 16.0,
+                "xRot": 1.2566371,
+                "scaleY": 1.0
+              },
+              "tail": {
+                "y": 21.0,
+                "xRot": 1.6650443,
+                "scaleY": 1.0
+              },
+              "rightFrontLeg": {
+                "y": 17.0,
+                "xRot": 5.811947,
+                "scaleY": 1.0
+              },
+              "leftFrontLeg": {
+                "y": 17.0,
+                "xRot": 5.811947,
+                "scaleY": 1.0
+              }
+            },
+            "hurtMax": 0,
+            "wolfSounds": {}
+          }
+        }
+      },
+      {
+        "name": "Repeated AI scans do not drain more health or hurt the guarded sheep",
+        "passed": true,
+        "dog": {
+          "id": 735,
+          "uuid": "f98cb6f1-d848-4d08-9876-c4255fb06485",
+          "type": "minecraft:wolf",
+          "position": [
+            12.0,
+            64.0,
+            7.0
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 38.0,
+          "maxHealth": 40.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "tailAngle": 1.6650443,
+          "tamed": true,
+          "sitting": true,
+          "stalking": false,
+          "crouch": 0.0,
+          "firstStalk": -1,
+          "pack": "9ba13717-c92d-44a1-bb3c-86c4f8df0236",
+          "mealUntil": 0
+        }
+      },
+      {
+        "name": "One real survival-mode feeding restores the health and tail and consumes one food",
+        "passed": true,
+        "dog": {
+          "id": 735,
+          "uuid": "f98cb6f1-d848-4d08-9876-c4255fb06485",
+          "type": "minecraft:wolf",
+          "position": [
+            12.0,
+            64.0,
+            7.0
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 40.0,
+          "maxHealth": 40.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "tailAngle": 1.7278761,
+          "tamed": true,
+          "sitting": true,
+          "stalking": false,
+          "crouch": 0.0,
+          "firstStalk": -1,
+          "pack": "9ba13717-c92d-44a1-bb3c-86c4f8df0236",
+          "mealUntil": 0
+        },
+        "clients": {
+          "owner": {
+            "tamed": true,
+            "sitting": true,
+            "stalking": false,
+            "head": {
+              "scaleY": 1.0,
+              "y": 13.5,
+              "xRot": 0.0
+            },
+            "body": {
+              "scaleY": 1.0,
+              "y": 18.0,
+              "xRot": 0.7853982
+            },
+            "upperBody": {
+              "scaleY": 1.0,
+              "y": 16.0,
+              "xRot": 1.2566371
+            },
+            "tail": {
+              "scaleY": 1.0,
+              "y": 21.0,
+              "xRot": 1.7278761
+            },
+            "rightFrontLeg": {
+              "scaleY": 1.0,
+              "y": 17.0,
+              "xRot": 5.811947
+            },
+            "leftFrontLeg": {
+              "scaleY": 1.0,
+              "y": 17.0,
+              "xRot": 5.811947
+            }
+          },
+          "guest": {
+            "tamed": true,
+            "sitting": true,
+            "stalking": false,
+            "head": {
+              "y": 13.5,
+              "xRot": 0.0,
+              "scaleY": 1.0
+            },
+            "body": {
+              "y": 18.0,
+              "xRot": 0.7853982,
+              "scaleY": 1.0
+            },
+            "upperBody": {
+              "y": 16.0,
+              "xRot": 1.2566371,
+              "scaleY": 1.0
+            },
+            "tail": {
+              "y": 21.0,
+              "xRot": 1.7278761,
+              "scaleY": 1.0
+            },
+            "rightFrontLeg": {
+              "y": 17.0,
+              "xRot": 5.811947,
+              "scaleY": 1.0
+            },
+            "leftFrontLeg": {
+              "y": 17.0,
+              "xRot": 5.811947,
+              "scaleY": 1.0
+            }
+          }
+        }
+      },
+      {
+        "name": "Sitting the dog interrupts a real fox chicken hunt and starts its one-day hunger cooldown",
+        "passed": true,
+        "fox": {
+          "id": 741,
+          "uuid": "aa91f431-c954-49fa-8248-12481a87755f",
+          "type": "minecraft:fox",
+          "position": [
+            8.258801062473422,
+            64.0,
+            5.258776239044694
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 10.0,
+          "maxHealth": 10.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "COMMAND",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "mealUntil": 1008489,
+          "hungry": false
+        },
+        "dog": {
+          "id": 735,
+          "uuid": "f98cb6f1-d848-4d08-9876-c4255fb06485",
+          "type": "minecraft:wolf",
+          "position": [
+            12.0,
+            64.0,
+            7.0
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 38.0,
+          "maxHealth": 40.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "tailAngle": 1.6650443,
+          "tamed": true,
+          "sitting": true,
+          "stalking": false,
+          "crouch": 0.0,
+          "firstStalk": -1,
+          "pack": "9ba13717-c92d-44a1-bb3c-86c4f8df0236",
+          "mealUntil": 0
+        },
+        "chicken": {
+          "id": 740,
+          "uuid": "70bb2226-96f2-40d1-aea3-aca5d791aa19",
+          "type": "minecraft:chicken",
+          "position": [
+            22.0,
+            64.0,
+            5.0
+          ],
+          "pose": "STANDING",
+          "onGround": false,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 4.0,
+          "maxHealth": 4.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          }
+        }
+      },
+      {
+        "name": "The deterred fox cannot immediately resume hunting or repeatedly tire the dog",
+        "passed": true,
+        "fox": {
+          "id": 741,
+          "uuid": "aa91f431-c954-49fa-8248-12481a87755f",
+          "type": "minecraft:fox",
+          "position": [
+            8.304644682124469,
+            64.0,
+            5.304615461511995
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 10.0,
+          "maxHealth": 10.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "COMMAND",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "mealUntil": 1008489,
+          "hungry": false
+        },
+        "dog": {
+          "id": 735,
+          "uuid": "f98cb6f1-d848-4d08-9876-c4255fb06485",
+          "type": "minecraft:wolf",
+          "position": [
+            12.0,
+            64.0,
+            7.0
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 38.0,
+          "maxHealth": 40.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "tailAngle": 1.6650443,
+          "tamed": true,
+          "sitting": true,
+          "stalking": false,
+          "crouch": 0.0,
+          "firstStalk": -1,
+          "pack": "9ba13717-c92d-44a1-bb3c-86c4f8df0236",
+          "mealUntil": 0
+        }
+      },
+      {
+        "name": "A chicken outside the 24-block guard radius can be hunted and a real fox kill starts its meal cooldown",
+        "passed": true,
+        "fox": {
+          "id": 743,
+          "uuid": "7564b45a-5d2c-4666-8726-a01d31a1d687",
+          "type": "minecraft:fox",
+          "position": [
+            36.25549199465919,
+            64.0,
+            7.0913215315581715
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 10.0,
+          "maxHealth": 10.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "COMMAND",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "mealUntil": 1008607,
+          "hungry": false
+        },
+        "dog": {
+          "id": 735,
+          "uuid": "f98cb6f1-d848-4d08-9876-c4255fb06485",
+          "type": "minecraft:wolf",
+          "position": [
+            12.0,
+            64.0,
+            7.0
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 38.0,
+          "maxHealth": 40.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "tailAngle": 1.6650443,
+          "tamed": true,
+          "sitting": true,
+          "stalking": false,
+          "crouch": 0.0,
+          "firstStalk": -1,
+          "pack": "9ba13717-c92d-44a1-bb3c-86c4f8df0236",
+          "mealUntil": 0
+        }
+      },
+      {
+        "name": "A nearby fox walks away from guarded chickens without another predator or survival player nearby",
+        "passed": true,
+        "fox": {
+          "id": 747,
+          "uuid": "6137dfee-7f0e-4ebd-ad13-4a5fac83435a",
+          "type": "minecraft:fox",
+          "position": [
+            24.431649862521834,
+            64.0,
+            7.498331989411283
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 10.0,
+          "maxHealth": 10.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "COMMAND",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "mealUntil": 1008619,
+          "hungry": false
+        },
+        "chicken": {
+          "id": 746,
+          "uuid": "11fe1024-880e-4c54-8c0d-a09dc7c98ec5",
+          "type": "minecraft:chicken",
+          "position": [
+            16.0,
+            64.0,
+            7.0
+          ],
+          "pose": "STANDING",
+          "onGround": false,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 4.0,
+          "maxHealth": 4.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          }
+        },
+        "dog": {
+          "id": 735,
+          "uuid": "f98cb6f1-d848-4d08-9876-c4255fb06485",
+          "type": "minecraft:wolf",
+          "position": [
+            12.0,
+            64.0,
+            7.0
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 36.0,
+          "maxHealth": 40.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "tailAngle": 1.6022123,
+          "tamed": true,
+          "sitting": true,
+          "stalking": false,
+          "crouch": 0.0,
+          "firstStalk": -1,
+          "pack": "9ba13717-c92d-44a1-bb3c-86c4f8df0236",
+          "mealUntil": 0
+        }
+      },
+      {
+        "name": "Both clients remain synchronized without hurt effects or render errors and inventory still opens",
+        "passed": true
+      }
+    ],
+    "horse-full-cycle": [
+      {
+        "name": "Fresh natural adult horses retain the full 150-minute deadline",
+        "passed": true,
+        "start": 984712,
+        "deadline": 1164711,
+        "herd": [
+          {
+            "id": 748,
+            "uuid": "42333e5f-4c29-452f-bc00-d0271fa9e4fb",
+            "type": "minecraft:horse",
+            "position": [
+              12.0,
+              64.0,
+              12.0
+            ],
+            "pose": "STANDING",
+            "onGround": false,
+            "inWater": false,
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 53.0,
+            "maxHealth": 21.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "baby": false,
+            "tamed": false,
+            "grazing": false,
+            "eatAnim": 0.0,
+            "age": 0,
+            "nextBreed": 1164711,
+            "herd": "27b56a41-7684-4133-a10b-bb8fb963d951"
+          },
+          {
+            "id": 749,
+            "uuid": "a6b239f2-2f34-4b4d-9edc-111d143b3490",
+            "type": "minecraft:horse",
+            "position": [
+              14.0,
+              64.0,
+              12.0
+            ],
+            "pose": "STANDING",
+            "onGround": false,
+            "inWater": false,
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 53.0,
+            "maxHealth": 25.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "baby": false,
+            "tamed": false,
+            "grazing": false,
+            "eatAnim": 0.0,
+            "age": 0,
+            "nextBreed": 1164711,
+            "herd": "27b56a41-7684-4133-a10b-bb8fb963d951"
+          }
+        ]
+      },
+      {
+        "name": "Both clients render ordinary scheduled grazing while the owner keeps holding a golden carrot",
+        "passed": true,
+        "firstGrazeTick": 985254,
+        "elapsedTicks": 542,
+        "horse": 749,
+        "clients": {
+          "owner": {
+            "horse": {
+              "id": 749,
+              "uuid": "a6b239f2-2f34-4b4d-9edc-111d143b3490",
+              "type": "minecraft:horse",
+              "position": [
+                14.15185546875,
+                64.0,
+                15.278564453125
+              ],
+              "pose": "STANDING",
+              "onGround": true,
+              "inWater": false,
+              "alive": true,
+              "removed": false,
+              "invisible": false,
+              "silent": false,
+              "hurtTime": 0,
+              "health": 25.0,
+              "maxHealth": 25.0,
+              "effects": [],
+              "effectDetails": [],
+              "effectParticles": [],
+              "spawnType": "",
+              "target": -1,
+              "noAi": false,
+              "mainHand": {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              "baby": false,
+              "tamed": false,
+              "grazing": true,
+              "eatAnim": 0.72
+            },
+            "pose": {
+              "grazing": true,
+              "headX": 1.0054513,
+              "eatAnim": 0.45000002,
+              "headY": 6.2051954
+            }
+          },
+          "guest": {
+            "horse": {
+              "id": 749,
+              "uuid": "a6b239f2-2f34-4b4d-9edc-111d143b3490",
+              "type": "minecraft:horse",
+              "position": [
+                14.15185546875,
+                64.0,
+                15.278564453125
+              ],
+              "pose": "STANDING",
+              "onGround": true,
+              "inWater": false,
+              "alive": true,
+              "removed": false,
+              "invisible": false,
+              "silent": false,
+              "hurtTime": 0,
+              "health": 25.0,
+              "maxHealth": 25.0,
+              "effects": [],
+              "effectDetails": [],
+              "effectParticles": [],
+              "spawnType": "",
+              "target": -1,
+              "noAi": false,
+              "mainHand": {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              "baby": false,
+              "tamed": false,
+              "grazing": true,
+              "eatAnim": 0.882
+            },
+            "pose": {
+              "headX": 1.6723497,
+              "eatAnim": 0.72,
+              "headY": 8.964483,
+              "grazing": true
+            }
+          }
+        }
+      },
+      {
+        "name": "Both adults graze and consume real grass before breeding readiness",
+        "passed": true,
+        "observation": {
+          "firstGrazes": {
+            "8": 981394,
+            "749": 985254,
+            "748": 985277
+          },
+          "births": {},
+          "grazes": {
+            "8": 2,
+            "749": 1,
+            "748": 1
+          }
+        },
+        "pasture": {
+          "dirt": 1,
+          "grass": 1023
+        }
+      },
+      {
+        "name": "Two hours of normal world ticks produce repeated grazing but no premature foal",
+        "passed": true,
+        "elapsedTicks": 144002,
+        "observation": {
+          "firstGrazes": {
+            "8": 981394,
+            "749": 985254,
+            "748": 985277
+          },
+          "births": {},
+          "grazes": {
+            "8": 2,
+            "749": 220,
+            "748": 222
+          }
+        },
+        "horses": [
+          {
+            "id": 748,
+            "uuid": "42333e5f-4c29-452f-bc00-d0271fa9e4fb",
+            "type": "minecraft:horse",
+            "position": [
+              29.35031825734493,
+              64.0,
+              29.785165383158642
+            ],
+            "pose": "STANDING",
+            "onGround": true,
+            "inWater": false,
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 21.0,
+            "maxHealth": 21.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "baby": false,
+            "tamed": false,
+            "grazing": false,
+            "eatAnim": 0.0,
+            "age": 0,
+            "nextBreed": 1164711,
+            "herd": "27b56a41-7684-4133-a10b-bb8fb963d951"
+          },
+          {
+            "id": 749,
+            "uuid": "a6b239f2-2f34-4b4d-9edc-111d143b3490",
+            "type": "minecraft:horse",
+            "position": [
+              25.992565280258653,
+              64.0,
+              26.0868064167233
+            ],
+            "pose": "STANDING",
+            "onGround": true,
+            "inWater": false,
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 25.0,
+            "maxHealth": 25.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "baby": false,
+            "tamed": false,
+            "grazing": false,
+            "eatAnim": 0.0,
+            "age": 0,
+            "nextBreed": 1164711,
+            "herd": "27b56a41-7684-4133-a10b-bb8fb963d951"
+          }
+        ]
+      },
+      {
+        "name": "The full natural 150-minute clock produces exactly one untamed foal and resets both parents",
+        "passed": true,
+        "deadline": 1164711,
+        "birthTick": 1164962,
+        "elapsedTicks": 186002,
+        "foal": {
+          "id": 750,
+          "uuid": "5f12fc03-0744-40f1-a415-373af45bcd14",
+          "type": "minecraft:horse",
+          "position": [
+            16.085220984462165,
+            64.0,
+            10.997337799754078
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 22.25395,
+          "maxHealth": 22.25395,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "baby": true,
+          "tamed": false,
+          "grazing": false,
+          "eatAnim": 0.0,
+          "age": -22083,
+          "nextBreed": 1344962,
+          "herd": "27b56a41-7684-4133-a10b-bb8fb963d951"
+        },
+        "parents": [
+          {
+            "id": 748,
+            "uuid": "42333e5f-4c29-452f-bc00-d0271fa9e4fb",
+            "type": "minecraft:horse",
+            "position": [
+              16.95281256984753,
+              64.0,
+              12.548208031448175
+            ],
+            "pose": "STANDING",
+            "onGround": true,
+            "inWater": false,
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 21.0,
+            "maxHealth": 21.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "baby": false,
+            "tamed": false,
+            "grazing": true,
+            "eatAnim": 1.0,
+            "age": 248,
+            "nextBreed": 1344962,
+            "herd": "27b56a41-7684-4133-a10b-bb8fb963d951"
+          },
+          {
+            "id": 749,
+            "uuid": "a6b239f2-2f34-4b4d-9edc-111d143b3490",
+            "type": "minecraft:horse",
+            "position": [
+              12.416963065700102,
+              64.0,
+              2.601799491824677
+            ],
+            "pose": "STANDING",
+            "onGround": true,
+            "inWater": false,
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 25.0,
+            "maxHealth": 25.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "baby": false,
+            "tamed": false,
+            "grazing": false,
+            "eatAnim": 0.0,
+            "age": 247,
+            "nextBreed": 1344962,
+            "herd": "27b56a41-7684-4133-a10b-bb8fb963d951"
+          }
+        ],
+        "observation": {
+          "firstGrazes": {
+            "748": 985277,
+            "8": 981394,
+            "750": 1165168,
+            "749": 985254
+          },
+          "births": {
+            "750": 1164962
+          },
+          "grazes": {
+            "748": 287,
+            "8": 2,
+            "750": 16,
+            "749": 283
+          }
+        }
+      },
+      {
+        "name": "Both graphical clients receive the same single foal without render errors",
+        "passed": true,
+        "clients": {
+          "owner": [
+            {
+              "id": 748,
+              "uuid": "42333e5f-4c29-452f-bc00-d0271fa9e4fb",
+              "type": "minecraft:horse",
+              "position": [
+                16.952880859375,
+                64.0,
+                12.548095703125
+              ],
+              "pose": "STANDING",
+              "onGround": true,
+              "inWater": false,
+              "alive": true,
+              "removed": false,
+              "invisible": false,
+              "silent": false,
+              "hurtTime": 0,
+              "health": 21.0,
+              "maxHealth": 21.0,
+              "effects": [],
+              "effectDetails": [],
+              "effectParticles": [],
+              "spawnType": "",
+              "target": -1,
+              "noAi": false,
+              "mainHand": {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              "baby": false,
+              "tamed": false,
+              "grazing": true,
+              "eatAnim": 0.9792
+            },
+            {
+              "id": 749,
+              "uuid": "a6b239f2-2f34-4b4d-9edc-111d143b3490",
+              "type": "minecraft:horse",
+              "position": [
+                12.4169921875,
+                64.0,
+                2.601806640625
+              ],
+              "pose": "STANDING",
+              "onGround": true,
+              "inWater": false,
+              "alive": true,
+              "removed": false,
+              "invisible": false,
+              "silent": false,
+              "hurtTime": 0,
+              "health": 25.0,
+              "maxHealth": 25.0,
+              "effects": [],
+              "effectDetails": [],
+              "effectParticles": [],
+              "spawnType": "",
+              "target": -1,
+              "noAi": false,
+              "mainHand": {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              "baby": false,
+              "tamed": false,
+              "grazing": false,
+              "eatAnim": 0.0
+            },
+            {
+              "id": 750,
+              "uuid": "5f12fc03-0744-40f1-a415-373af45bcd14",
+              "type": "minecraft:horse",
+              "position": [
+                16.197021484375,
+                64.0,
+                11.0888671875
+              ],
+              "pose": "STANDING",
+              "onGround": true,
+              "inWater": false,
+              "alive": true,
+              "removed": false,
+              "invisible": false,
+              "silent": false,
+              "hurtTime": 0,
+              "health": 22.25395,
+              "maxHealth": 22.25395,
+              "effects": [],
+              "effectDetails": [],
+              "effectParticles": [],
+              "spawnType": "",
+              "target": -1,
+              "noAi": false,
+              "mainHand": {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              "baby": true,
+              "tamed": false,
+              "grazing": false,
+              "eatAnim": 0.0
+            }
+          ],
+          "guest": [
+            {
+              "id": 748,
+              "uuid": "42333e5f-4c29-452f-bc00-d0271fa9e4fb",
+              "type": "minecraft:horse",
+              "position": [
+                16.952880859375,
+                64.0,
+                12.548095703125
+              ],
+              "pose": "STANDING",
+              "onGround": true,
+              "inWater": false,
+              "alive": true,
+              "removed": false,
+              "invisible": false,
+              "silent": false,
+              "hurtTime": 0,
+              "health": 21.0,
+              "maxHealth": 21.0,
+              "effects": [],
+              "effectDetails": [],
+              "effectParticles": [],
+              "spawnType": "",
+              "target": -1,
+              "noAi": false,
+              "mainHand": {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              "baby": false,
+              "tamed": false,
+              "grazing": true,
+              "eatAnim": 1.0
+            },
+            {
+              "id": 749,
+              "uuid": "a6b239f2-2f34-4b4d-9edc-111d143b3490",
+              "type": "minecraft:horse",
+              "position": [
+                12.4169921875,
+                64.0,
+                2.601806640625
+              ],
+              "pose": "STANDING",
+              "onGround": true,
+              "inWater": false,
+              "alive": true,
+              "removed": false,
+              "invisible": false,
+              "silent": false,
+              "hurtTime": 0,
+              "health": 25.0,
+              "maxHealth": 25.0,
+              "effects": [],
+              "effectDetails": [],
+              "effectParticles": [],
+              "spawnType": "",
+              "target": -1,
+              "noAi": false,
+              "mainHand": {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              "baby": false,
+              "tamed": false,
+              "grazing": false,
+              "eatAnim": 0.0
+            },
+            {
+              "id": 750,
+              "uuid": "5f12fc03-0744-40f1-a415-373af45bcd14",
+              "type": "minecraft:horse",
+              "position": [
+                16.82524707535765,
+                64.0,
+                11.442348237444664
+              ],
+              "pose": "STANDING",
+              "onGround": true,
+              "inWater": false,
+              "alive": true,
+              "removed": false,
+              "invisible": false,
+              "silent": false,
+              "hurtTime": 0,
+              "health": 22.25395,
+              "maxHealth": 22.25395,
+              "effects": [],
+              "effectDetails": [],
+              "effectParticles": [],
+              "spawnType": "",
+              "target": -1,
+              "noAi": false,
+              "mainHand": {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              },
+              "baby": true,
+              "tamed": false,
+              "grazing": false,
+              "eatAnim": 0.0
+            }
+          ]
+        }
+      },
+      {
+        "name": "The family remains stable without duplicate foals and the normal inventory still works",
+        "passed": true,
+        "horses": [
+          {
+            "id": 748,
+            "uuid": "42333e5f-4c29-452f-bc00-d0271fa9e4fb",
+            "type": "minecraft:horse",
+            "position": [
+              6.086220578534678,
+              64.0,
+              8.214817431076382
+            ],
+            "pose": "STANDING",
+            "onGround": true,
+            "inWater": false,
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 21.0,
+            "maxHealth": 21.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "baby": false,
+            "tamed": false,
+            "grazing": false,
+            "eatAnim": 0.0,
+            "age": 0,
+            "nextBreed": 1344962,
+            "herd": "27b56a41-7684-4133-a10b-bb8fb963d951"
+          },
+          {
+            "id": 749,
+            "uuid": "a6b239f2-2f34-4b4d-9edc-111d143b3490",
+            "type": "minecraft:horse",
+            "position": [
+              4.318331571828264,
+              64.0,
+              7.480108231106769
+            ],
+            "pose": "STANDING",
+            "onGround": true,
+            "inWater": false,
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 25.0,
+            "maxHealth": 25.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "NATURAL",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "baby": false,
+            "tamed": false,
+            "grazing": false,
+            "eatAnim": 0.0,
+            "age": 0,
+            "nextBreed": 1344962,
+            "herd": "27b56a41-7684-4133-a10b-bb8fb963d951"
+          },
+          {
+            "id": 750,
+            "uuid": "5f12fc03-0744-40f1-a415-373af45bcd14",
+            "type": "minecraft:horse",
+            "position": [
+              5.435493304757809,
+              64.0,
+              6.72569978607563
+            ],
+            "pose": "STANDING",
+            "onGround": true,
+            "inWater": false,
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 22.25395,
+            "maxHealth": 22.25395,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "baby": true,
+            "tamed": false,
+            "grazing": false,
+            "eatAnim": 0.0,
+            "age": -21915,
+            "nextBreed": 1344962,
+            "herd": "27b56a41-7684-4133-a10b-bb8fb963d951"
+          }
+        ]
+      }
+    ],
+    "frogs": [
+      {
+        "name": "A real player approach launches the frog; both graphical clients render its synchronized jump and water landing",
+        "passed": true,
+        "frog": {
+          "id": 752,
+          "uuid": "a5850d9a-e544-431d-9163-075be53847f1",
+          "type": "minecraft:frog",
+          "position": [
+            11.935538852939104,
+            64.0,
+            10.820743535415145
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": true,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 10.0,
+          "maxHealth": 10.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "COMMAND",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          }
+        },
+        "clients": {
+          "owner": {
+            "jumpFrames": 4,
+            "frog": {
+              "id": 752,
+              "uuid": "a5850d9a-e544-431d-9163-075be53847f1",
+              "type": "minecraft:frog",
+              "position": [
+                13.24267578125,
+                64.489501953125,
+                11.00927734375
+              ],
+              "pose": "LONG_JUMPING",
+              "onGround": false,
+              "inWater": false,
+              "alive": true,
+              "removed": false,
+              "invisible": false,
+              "silent": false,
+              "hurtTime": 0,
+              "health": 10.0,
+              "maxHealth": 10.0,
+              "effects": [],
+              "effectDetails": [],
+              "effectParticles": [],
+              "spawnType": "",
+              "target": -1,
+              "noAi": false,
+              "mainHand": {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              }
+            },
+            "renderErrors": []
+          },
+          "guest": {
+            "jumpFrames": 19,
+            "frog": {
+              "id": 752,
+              "uuid": "a5850d9a-e544-431d-9163-075be53847f1",
+              "type": "minecraft:frog",
+              "position": [
+                13.468017578125,
+                64.41259765625,
+                10.91796875
+              ],
+              "pose": "LONG_JUMPING",
+              "onGround": false,
+              "inWater": false,
+              "alive": true,
+              "removed": false,
+              "invisible": false,
+              "silent": false,
+              "hurtTime": 0,
+              "health": 10.0,
+              "maxHealth": 10.0,
+              "effects": [],
+              "effectDetails": [],
+              "effectParticles": [],
+              "spawnType": "",
+              "target": -1,
+              "noAi": false,
+              "mainHand": {
+                "item": "minecraft:air",
+                "count": 0,
+                "damage": 0
+              }
+            },
+            "renderErrors": []
+          }
+        }
+      },
+      {
+        "name": "Both clients converge on the standing swimming pose after landing",
+        "passed": true
+      },
+      {
+        "name": "World save and the normal player inventory work after repeated client updates",
+        "passed": true
+      }
+    ],
+    "actual-gui-scales": [
+      {
+        "name": "Both GuardScreens remain synchronized and render at actual GUI scales 1, 2 and 3 in 1280x720 windows",
+        "passed": true,
+        "observations": [
+          {
+            "client": "owner",
+            "requestedScale": 1,
+            "resolution": [
+              1280,
+              720
+            ],
+            "screen": "GuardScreen",
+            "matchingGuardSlots": true,
+            "matchingInventory": true,
+            "renderErrors": [],
+            "screenshot": "compatibility-guard-owner-scale-1.png"
+          },
+          {
+            "client": "guest",
+            "requestedScale": 1,
+            "resolution": [
+              1280,
+              720
+            ],
+            "screen": "GuardScreen",
+            "matchingGuardSlots": true,
+            "matchingInventory": true,
+            "renderErrors": [],
+            "screenshot": "compatibility-guard-guest-scale-1.png"
+          },
+          {
+            "client": "owner",
+            "requestedScale": 2,
+            "resolution": [
+              1280,
+              720
+            ],
+            "screen": "GuardScreen",
+            "matchingGuardSlots": true,
+            "matchingInventory": true,
+            "renderErrors": [],
+            "screenshot": "compatibility-guard-owner-scale-2.png"
+          },
+          {
+            "client": "guest",
+            "requestedScale": 2,
+            "resolution": [
+              1280,
+              720
+            ],
+            "screen": "GuardScreen",
+            "matchingGuardSlots": true,
+            "matchingInventory": true,
+            "renderErrors": [],
+            "screenshot": "compatibility-guard-guest-scale-2.png"
+          },
+          {
+            "client": "owner",
+            "requestedScale": 3,
+            "resolution": [
+              1280,
+              720
+            ],
+            "screen": "GuardScreen",
+            "matchingGuardSlots": true,
+            "matchingInventory": true,
+            "renderErrors": [],
+            "screenshot": "compatibility-guard-owner-scale-3.png"
+          },
+          {
+            "client": "guest",
+            "requestedScale": 3,
+            "resolution": [
+              1280,
+              720
+            ],
+            "screen": "GuardScreen",
+            "matchingGuardSlots": true,
+            "matchingInventory": true,
+            "renderErrors": [],
+            "screenshot": "compatibility-guard-guest-scale-3.png"
+          }
+        ]
+      }
+    ]
+  }
+}

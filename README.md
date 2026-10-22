@@ -98,11 +98,11 @@ The six-second level I companion effects and their approved family exclusions ar
 
 ## Mercenaries compatibility
 
-Version **0.1.1** includes optional compatibility with the supplied **Fantasy Feudalism: Mercenaries 1.15.7** (`villagerscontract`). Install Mobs 0.1.12 and Mercenaries 1.15.7 on the server and every client, replacing the older Mobs JAR. Mercenaries remains optional when using Mobs alone.
+Mobs **0.1.13** includes optional compatibility with the supplied **Fantasy Feudalism: Mercenaries 1.15.7** (`villagerscontract`). Install Mobs 0.1.13 and Mercenaries 1.15.7 on the server and every client, replacing the older Mobs JAR. Mercenaries remains optional when using Mobs alone.
 
 Guards recognize tamed spiders as allies, companions respect guard alliances, and mercenary combat spacing follows a skeleton's equipped weapon. Faster skeleton arrows retain the requested 40% speed increase with a corrected gravity arc and vanilla spread. Rejected or losing guard-menu transfers explicitly correct the hidden player inventory so two viewers cannot retain predicted ghost items.
 
-See [the combined-mod validation report](docs/COMPATIBILITY.md) for exact JAR identities, successful checks, diagnostics, screenshots, and limits. To run the combined GameTests against your own copy of the uploaded Mercenaries JAR:
+See [the current combined-mod validation report](docs/COMPATIBILITY_0.1.13.md) for exact JAR identities, completed server and two-client checks, screenshots, and limits. The [original compatibility report](docs/COMPATIBILITY.md) documents the earlier fixes. To run the combined GameTests against your own copy of the uploaded Mercenaries JAR:
 
 ```sh
 ./gradlew runGameTestServer --max-workers=2 \

@@ -1,0 +1,54 @@
+Runtime review of both dedicated-server processes and both graphical clients.
+Expected authentication DNS failures are retained; offline loopback identities were used.
+
+server-before-restart:
+  Checked runtime/mixin/packet/crash failure signatures: 0
+  Error-level entries: 1 (Yggdrasil public-key lookup only)
+  [03:54:23] [Yggdrasil Key Fetcher/ERROR] [mojang/YggdrasilServicesKeyInfo]: Failed to request yggdrasil public key
+  Selected environment/setup warnings: 3
+  [03:54:18] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/workspace/multiplayer/server/libraries/net/minecraft/server/1.21.1-20240808.144430/server-1.21.1-20240808.144430-srg.jar%23120!/assets/.mcassetsroot' uses unexpected schema
+  [03:54:18] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/workspace/multiplayer/server/libraries/net/minecraft/server/1.21.1-20240808.144430/server-1.21.1-20240808.144430-srg.jar%23120!/data/.mcassetsroot' uses unexpected schema
+  [03:54:56] [Server thread/WARN] [minecraft/ServerGamePacketListenerImpl]: FFMOwner moved too quickly! -11.83073209733056,1.0,-8.0
+
+server-after-restart:
+  Checked runtime/mixin/packet/crash failure signatures: 0
+  Error-level entries: 2 (Yggdrasil public-key lookup only)
+  [03:56:13] [Yggdrasil Key Fetcher/ERROR] [mojang/YggdrasilServicesKeyInfo]: Failed to request yggdrasil public key
+  [04:01:13] [Yggdrasil Key Fetcher/ERROR] [mojang/YggdrasilServicesKeyInfo]: Failed to request yggdrasil public key
+  Selected environment/setup warnings: 13
+  [03:56:13] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/workspace/multiplayer/server/libraries/net/minecraft/server/1.21.1-20240808.144430/server-1.21.1-20240808.144430-srg.jar%23120!/assets/.mcassetsroot' uses unexpected schema
+  [03:56:13] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/workspace/multiplayer/server/libraries/net/minecraft/server/1.21.1-20240808.144430/server-1.21.1-20240808.144430-srg.jar%23120!/data/.mcassetsroot' uses unexpected schema
+  [03:58:21] [Server thread/WARN] [minecraft/ServerGamePacketListenerImpl]: FFMOwner moved too quickly! 35.0,0.0,0.0
+  [03:58:21] [Server thread/WARN] [minecraft/ServerGamePacketListenerImpl]: FFMOwner moved too quickly! 35.0,0.0,0.0
+  [03:58:21] [Server thread/WARN] [minecraft/ServerGamePacketListenerImpl]: FFMGuest moved too quickly! 35.0,0.0,0.0
+  [03:59:27] [Server thread/WARN] [minecraft/ServerGamePacketListenerImpl]: FFMOwner moved too quickly! -33.107329889999875,0.0,1.9264892188285365
+  [03:59:27] [Server thread/WARN] [minecraft/ServerGamePacketListenerImpl]: FFMGuest moved too quickly! -19.903435155037254,0.0,4.387775190321451
+  [03:59:50] [Server thread/WARN] [minecraft/ServerGamePacketListenerImpl]: FFMOwner moved too quickly! 13.0,0.0,5.0
+  [03:59:50] [Server thread/WARN] [minecraft/ServerGamePacketListenerImpl]: FFMGuest moved too quickly! 9.0,0.0,5.0
+  [04:00:07] [Server thread/WARN] [minecraft/ServerGamePacketListenerImpl]: FFMGuest moved too quickly! -1.0,0.0,11.0
+  [04:01:20] [Server thread/WARN] [minecraft/ServerGamePacketListenerImpl]: FFMOwner moved too quickly! -9.744737570823514,0.0,-14.279103776440923
+  [04:01:20] [Server thread/WARN] [minecraft/ServerGamePacketListenerImpl]: FFMOwner moved too quickly! -9.744737570823514,0.0,-14.279103776440923
+
+owner:
+  Checked runtime/mixin/packet/crash failure signatures: 0
+  Error-level entries: 2 (Yggdrasil public-key lookup only)
+  [03:54:17] [Yggdrasil Key Fetcher/ERROR] [mojang/YggdrasilServicesKeyInfo]: Failed to request yggdrasil public key
+  [03:59:17] [Yggdrasil Key Fetcher/ERROR] [mojang/YggdrasilServicesKeyInfo]: Failed to request yggdrasil public key
+  Selected environment/setup warnings: 5
+  [03:54:16] [Render thread/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/workspace/Fantasy-Feudalism-Mobs/build/moddev/artifacts/neoforge-21.1.262.jar%23179!/assets/.mcassetsroot' uses unexpected schema
+  [03:54:16] [Render thread/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/workspace/Fantasy-Feudalism-Mobs/build/moddev/artifacts/neoforge-21.1.262.jar%23179!/data/.mcassetsroot' uses unexpected schema
+  [03:54:26] [Render thread/WARN] [minecraft/ShaderInstance]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
+  [03:55:04] [Render thread/WARN] [minecraft/ShaderInstance]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
+  [03:55:23] [Render thread/WARN] [minecraft/ShaderInstance]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
+
+guest:
+  Checked runtime/mixin/packet/crash failure signatures: 0
+  Error-level entries: 2 (Yggdrasil public-key lookup only)
+  [03:54:24] [Yggdrasil Key Fetcher/ERROR] [mojang/YggdrasilServicesKeyInfo]: Failed to request yggdrasil public key
+  [03:59:24] [Yggdrasil Key Fetcher/ERROR] [mojang/YggdrasilServicesKeyInfo]: Failed to request yggdrasil public key
+  Selected environment/setup warnings: 5
+  [03:54:19] [Render thread/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/workspace/Fantasy-Feudalism-Mobs/build/moddev/artifacts/neoforge-21.1.262.jar%23179!/assets/.mcassetsroot' uses unexpected schema
+  [03:54:19] [Render thread/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/workspace/Fantasy-Feudalism-Mobs/build/moddev/artifacts/neoforge-21.1.262.jar%23179!/data/.mcassetsroot' uses unexpected schema
+  [03:54:27] [Render thread/WARN] [minecraft/ShaderInstance]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
+  [03:55:06] [Render thread/WARN] [minecraft/ShaderInstance]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
+  [03:55:25] [Render thread/WARN] [minecraft/ShaderInstance]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
