@@ -1,0 +1,5 @@
+[04:23:56] [Server thread/INFO] [minecraft/GameTestServer]: All 130 required tests passed :)
+BUILD SUCCESSFUL in 32s
+Packaged dedicated server with Ecosystems 0.1.14 and Mercenaries 1.15.7: started, served a snapshot request and accepted normal stop.
+No mixin application/injection failure or server crash signature found. Authentication DNS failures remain an environment limitation.
+Legacy Mobs JAR removed from the disposable server mods folder before startup; exactly one Ecosystems release installed.

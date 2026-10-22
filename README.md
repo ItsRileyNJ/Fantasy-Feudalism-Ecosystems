@@ -1,12 +1,19 @@
-# Fantasy Feudal Mobs
+# Fantasy Feudalism - Ecosystems
 
 A NeoForge mod for **Minecraft 1.21.1**, **NeoForge 21.1.262**, and **Java 21**, implementing the mob changes in [the specification and confirmed answers](docs/SPECIFICATION.md).
 
-This repository contains only the Fantasy Feudal Mobs project, its build tools, tests, and documentation. Mercenaries is a separate mod: its implementation and JAR are not included. Optional compatibility patches and integration tests here belong to Mobs; the separate multiplayer test harness is excluded from the released mod.
+This repository contains only the Fantasy Feudalism - Ecosystems project, its build tools, tests, and documentation. Mercenaries is a separate mod: its implementation and JAR are not included. Optional compatibility patches and integration tests here belong to Mobs; the separate multiplayer test harness is excluded from the released mod.
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_mobs-0.1.13.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.14.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.14 changes
+
+- Renamed the mod and creative tab to **Fantasy Feudalism - Ecosystems**. The JAR is now `fantasy_feudalism_ecosystems-0.1.14.jar`. Replace the old Mobs JAR when updating. Existing registry IDs and saved data are preserved.
+- The [CurseForge description](docs/CURSEFORGE_DESCRIPTION.md) summarizes current features.
+
+See [the release notes](docs/RELEASE_0.1.14.md). Earlier release names and validation reports below retain their historical names.
 
 ## Version 0.1.13 changes
 
@@ -98,7 +105,7 @@ The six-second level I companion effects and their approved family exclusions ar
 
 ## Mercenaries compatibility
 
-Mobs **0.1.13** includes optional compatibility with the supplied **Fantasy Feudalism: Mercenaries 1.15.7** (`villagerscontract`). Install Mobs 0.1.13 and Mercenaries 1.15.7 on the server and every client, replacing the older Mobs JAR. Mercenaries remains optional when using Mobs alone.
+**Fantasy Feudalism - Ecosystems 0.1.14** (formerly Mobs) includes optional compatibility with the supplied **Fantasy Feudalism: Mercenaries 1.15.7** (`villagerscontract`). Install Ecosystems 0.1.14 and Mercenaries 1.15.7 on the server and every client, replacing the older Mobs JAR. Mercenaries remains optional when using Mobs alone.
 
 Guards recognize tamed spiders as allies, companions respect guard alliances, and mercenary combat spacing follows a skeleton's equipped weapon. Faster skeleton arrows retain the requested 40% speed increase with a corrected gravity arc and vanilla spread. Rejected or losing guard-menu transfers explicitly correct the hidden player inventory so two viewers cannot retain predicted ghost items.
 
@@ -133,7 +140,11 @@ Choose a fresh test directory for each combined run: Mercenaries' built-in villa
 
 | Mob | Changes |
 | --- | --- |
-| Horses | Persistent spawn-group herds, sheep-style grazing, automatic grass-triggered breeding every 14 days, and adult-only horse meat drops. Manual breeding stays vanilla. |
+| Wild wolves | Cohesive packs stalk sheep from fifteen blocks, charge within seven, and share a one-day hunting cooldown after a kill. Crouched stalking uses animated body, head and tail poses. |
+| Tamed wolves and foxes | Sitting dogs guard sheep from wild wolves and chickens from foxes within 24 blocks. Stopped hunts start predator cooldowns and silently tire the nearest dog by one heart; feeding heals it. Foxes also rest after a prey kill. |
+| Frogs | Flee visible non-spectator players within six blocks by jumping toward nearby water, walking closer first if needed. |
+| Baby villagers | Occasionally chase wild village cats playfully for about eight seconds. |
+| Horses | Persistent spawn-group herds, sheep-style grazing, automatic grass-triggered breeding after a 150-minute cooldown, and adult-only horse meat drops. Foals grow three times more slowly (60 minutes at 20 TPS). Manual breeding stays vanilla. |
 | Cows | Newly spawned groups stay together as persistent herds, walking back when separated. |
 | Chickens | Flee Survival/Adventure players within three blocks, at 95% of normal player ground sprint speed. |
 | Creepers | Natural spawn weights reduced by 60%; explosions retain entity damage but do not destroy blocks. They convert applicable blocks to mossy variants and plant vegetation with 75% eligible-position coverage, biased 50/35/15 toward moss carpet / ferns / tall grass. Vanilla survival rules restrict which plants fit each position. Killed creepers additionally drop 1–2 moss blocks. |
@@ -158,7 +169,7 @@ endermanBlockPickup = false
 blazeAerialDashing = true
 ```
 
-Disabling creeper conversion keeps the vegetation and the protection against block destruction. No commands, recipes, advancements, additional items, or custom sounds are added.
+Disabling creeper conversion keeps the vegetation and the protection against block destruction. No gameplay commands, advancements or custom sounds are added. The mod adds Bee Bottles, Raw Horse and Cooked Horse, with furnace and smoker recipes for horse meat.
 
 ## Development and verification
 

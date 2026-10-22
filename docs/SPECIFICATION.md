@@ -353,3 +353,7 @@ The user replaced the fourteen-day automatic horse breeding interval with two ho
 ### Frog water escape follow-up
 
 Frogs jump toward nearby water when a player approaches. Implementation defaults: visible living non-spectator players within six blocks, surface water within twelve blocks in loaded chunks, collision-checked direct jumps up to five blocks and navigation closer for farther water. Breeding, egg laying, leashes and existing native jumps take precedence. Frogs already swimming and frogs without reachable water retain vanilla behavior.
+
+### Ecosystems name follow-up
+
+The user renamed the mod to Fantasy Feudalism - Ecosystems. Version 0.1.14 updates display metadata, the creative-tab label, project display name and JAR filename. Existing registry/resource/config identifiers and saved-data keys remain unchanged for world compatibility. Historical specifications and reports retain their original names. A CurseForge description must describe implemented behavior and use the current horse cooldown and silverfish pack sizes.

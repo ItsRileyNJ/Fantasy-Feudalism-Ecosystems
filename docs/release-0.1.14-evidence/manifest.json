@@ -1,0 +1,12 @@
+{
+  "file": "fantasy_feudalism_ecosystems-0.1.14.jar",
+  "bytes": 146598,
+  "sha256": "51a9576f6ade1f1a2442b66202a90b503a6753e8bae6db0c3ad82b1b0daa2048",
+  "unchangedMainClasses": 73,
+  "onlyChangedJarEntries": [
+    "META-INF/neoforge.mods.toml",
+    "assets/fantasy_feudalism_mobs/lang/en_us.json"
+  ],
+  "modIdPreserved": true,
+  "gameplayAssetsAndRecipesUnchanged": true
+}

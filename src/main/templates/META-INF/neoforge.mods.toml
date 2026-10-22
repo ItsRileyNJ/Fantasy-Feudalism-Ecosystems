@@ -7,7 +7,7 @@ modId="${mod_id}"
 version="${mod_version}"
 displayName="${mod_name}"
 authors="ItsRileyNJ"
-description='''Vanilla mob behavior changes, tamable spiders, Bee Bottles, and spider harvesting.'''
+description='''Living ecosystems with animal herds, coordinated predators, livestock guardians, tamable spiders, and reworked hostile mobs.'''
 
 [[dependencies.${mod_id}]]
 modId="neoforge"
