@@ -1,0 +1,24 @@
+{
+  "version": "0.1.15",
+  "minecraft": "1.21.1",
+  "neoforge": "21.1.262",
+  "bytes": 200567,
+  "sha256": "b5505b9ac8a3d6f0315ae5945e218d21dd315cad8120927b13a340ce383b4a51",
+  "productionClasses": 91,
+  "standaloneGameTests": 141,
+  "combinedEcosystemsGameTests": 153,
+  "mercenariesNativeGameTests": 336,
+  "liveChecks": 37,
+  "runtimeJars": {
+    "server": "b5505b9ac8a3d6f0315ae5945e218d21dd315cad8120927b13a340ce383b4a51",
+    "owner": "b5505b9ac8a3d6f0315ae5945e218d21dd315cad8120927b13a340ce383b4a51",
+    "guest": "b5505b9ac8a3d6f0315ae5945e218d21dd315cad8120927b13a340ce383b4a51"
+  },
+  "mercenariesSha256": "32fba122dde2819abdd64a46ee350dc3e6f2533e34c8b7360700e2a8239d0a65",
+  "liveBuilds": {
+    "initialColony": "0e270693829643ad7292c080fffa326033484cf6e0011565db08dabc48db6a44",
+    "colonyRestartAndCombat": "9e43d29e473f59151d13418aca520f3015a723b7de7ee9de55bd3310ac3a8d3d",
+    "finalItemModels": "b5505b9ac8a3d6f0315ae5945e218d21dd315cad8120927b13a340ce383b4a51"
+  },
+  "automatedTestsBeforeFinalClientVisualCorrections": true
+}

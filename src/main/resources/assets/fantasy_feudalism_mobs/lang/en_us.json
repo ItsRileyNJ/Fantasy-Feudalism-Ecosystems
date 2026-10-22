@@ -2,5 +2,10 @@
   "item.fantasy_feudalism_mobs.bee_bottle": "Bee Bottle",
   "itemGroup.fantasy_feudalism_mobs": "Fantasy Feudalism - Ecosystems",
   "item.fantasy_feudalism_mobs.raw_horse": "Raw Horse",
-  "item.fantasy_feudalism_mobs.cooked_horse": "Cooked Horse"
+  "item.fantasy_feudalism_mobs.cooked_horse": "Cooked Horse",
+  "item.fantasy_feudalism_mobs.bat_net": "Bat Net",
+  "block.fantasy_feudalism_mobs.bat_enclosure": "Bat Enclosure",
+  "tooltip.fantasy_feudalism_mobs.bat_net.empty": "Right-click a bat to catch it.",
+  "tooltip.fantasy_feudalism_mobs.bat_net.occupied": "Contains a bat. Use on a Bat Enclosure to move it in.",
+  "item.fantasy_feudalism_mobs.fertilizer": "Fertilizer"
 }

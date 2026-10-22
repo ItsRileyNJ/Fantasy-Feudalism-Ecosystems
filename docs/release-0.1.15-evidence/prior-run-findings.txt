@@ -1,0 +1,7 @@
+ecosystems-015-mercenary-native.log
+[06:04:32] [Server thread/ERROR] [minecraft/LogTestReporter]: mountedcrossbowretreatrestartsacrossgrassystep failed at 12521264, -60, -3569488! Mounted combat must retreat off the grassy edge without a navigation lock: [FFM 1.15.7 mount debug: guard=2866, horse=2867, order=FOLLOW, Guard: noAI=false, inventoryOpen=false, commander=11.871 blocks, target=entity.minecraft.skeleton, underground=false, Horse: noAI=false, immobile=false, eating=false, standing=false, ground=true, saddled=true, leashed=false, ownerMatches=true, Control: passenger=guard, delegated=true, installed=true, serverControlled=true, attributeSpeed=0.225, speed=0.000, Navigation: MountedGuardNavigation, path=none, pause=none, lastBlocked=null, Movement: position=(12521284.320,-58.000,-3569465.957), velocity=(0.000,-0.078,0.000), wanted=true, wantedSpeed=0.000, wantedPosition=(12521284.320,-58.000,-3569465.957), footprintSafe=true, Goals: guard=[KitingCrossbowGoal], horse=[]]
+BUILD FAILED in 3m 41s
+ecosystems-015-standalone-final.log
+[06:13:43] [Server thread/ERROR] [minecraft/LogTestReporter]: approachingplayermakesfrogjumpintonearbywater failed at -1091734, -60, 10207527! The frog reaches water and restores its normal pose
+[06:13:44] [Server thread/INFO] [minecraft/GameTestServer]: 1 required tests failed :(
+BUILD FAILED in 55s

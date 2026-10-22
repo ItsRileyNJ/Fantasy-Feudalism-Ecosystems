@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "fantasy_feudalism_mobs:block/bat_enclosure",
+      "y": 0
+    },
+    "facing=east": {
+      "model": "fantasy_feudalism_mobs:block/bat_enclosure",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "fantasy_feudalism_mobs:block/bat_enclosure",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "fantasy_feudalism_mobs:block/bat_enclosure",
+      "y": 270
+    }
+  }
+}

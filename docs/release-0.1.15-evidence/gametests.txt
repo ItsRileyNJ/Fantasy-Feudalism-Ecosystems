@@ -1,0 +1,12 @@
+ecosystems-015-standalone-rerun.log
+[06:14:55] [Server thread/INFO] [minecraft/GameTestServer]: 141 tests are now running at position 1626736, -59, 2990961!
+[06:15:21] [Server thread/INFO] [minecraft/GameTestServer]: All 141 required tests passed :)
+BUILD SUCCESSFUL in 57s
+ecosystems-015-combined-final.log
+[06:02:23] [Server thread/INFO] [minecraft/GameTestServer]: 153 tests are now running at position 7376820, -59, 12045552!
+[06:02:44] [Server thread/INFO] [minecraft/GameTestServer]: All 153 required tests passed :)
+BUILD SUCCESSFUL in 53s
+ecosystems-015-mercenary-native-retry.log
+[06:06:59] [Server thread/INFO] [minecraft/GameTestServer]: 336 tests are now running at position -13062379, -59, -14477035!
+[06:09:03] [Server thread/INFO] [minecraft/GameTestServer]: All 336 required tests passed :)
+BUILD SUCCESSFUL in 2m 31s

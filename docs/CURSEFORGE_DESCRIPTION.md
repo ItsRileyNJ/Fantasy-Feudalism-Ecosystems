@@ -49,10 +49,11 @@ Tamed spiders:
 ## Reworked monsters
 
 - **Creepers:** Spawn weights are **60% lower**. Explosions still hurt entities but do not destroy terrain. Instead, they convert suitable blocks to mossy variants and scatter moss carpet, ferns and tall grass across roughly **75% of eligible positions**, favoring moss carpet and ferns. Killed creepers also drop **1–2 moss blocks** alongside normal gunpowder.
-- **Skeleton families:** Detect and shoot targets from up to **35 blocks**, with **40% faster projectiles**. Equipment rolls are **80% bows, 15% crossbows and 5% swords**. Sword users use melee AI, with an **80% stone / 20% iron** sword split. Crossbows use charging and firing AI with pillager-style holding poses. Ranged skeletons retain valid targets unless threatened by a player within five blocks, and release players who enter Creative or Spectator mode.
+- **Skeleton families:** Detect and shoot targets from up to **35 blocks**, with **40% faster projectiles**. Ordinary skeleton equipment rolls are **80% bows, 15% crossbows and 5% swords**. Sword users use melee AI, with an **80% stone / 20% iron** sword split. Crossbows use charging and firing AI with pillager-style holding poses. Ranged skeletons retain valid targets unless threatened by a player within five blocks, and release players who enter Creative or Spectator mode.
+- **Wither skeletons:** On Hard, **10%** use bows whose arrows deal **half direct damage** and apply **Wither I and Slowness I for five seconds**. Bow users never carry shields. Sword users wield stone, iron or gold swords; **50%** carry a shield. Shield users advance toward a player crouched and blocking, then stand and sprint into melee from **five blocks** away.
 - **Zombie families:** Spawn in groups of **4–9**, with individual speed and attack damage ranging from **80–120%** of their normal values. Below **three hearts**, their individual movement speed doubles; healing restores the usual speed.
 - **Endermen:** Deal **35% more damage to players**, then disengage and attempt to teleport away after one successful hit. They can be provoked again immediately. Block pickup is disabled by default.
-- **Phantoms:** Attack players only when they have **four hearts or less**. Phantoms spawned on Hard receive permanent **Swiftness I**.
+- **Phantoms:** Attack players only when they have **four hearts or less**. Phantoms spawned on Hard receive permanent **Swiftness I**. Right-click one at night with an **Eye of Ender** to consume the eye and gain its defense until sunrise: it attacks creatures that damage you first. At sunrise the pact ends and it burns normally in daylight.
 - **Blazes:** Can dash sideways up to **four blocks**, alternating direction and respecting obstacles. Dashes take half a second, have a minimum **five-second cooldown**, and are rolled randomly while fighting.
 - **Ghasts:** Spawn weights are **20% lower**, with groups of three where space permits. Each killed ghast drops **two ghast tears**, retaining other normal drops.
 - **Silverfish:** Spawn naturally in abandoned mineshafts in requested packs of **4–9**, using normal hostile spawning checks. They prefer zombies as prey and deal **double damage** to them, while fleeing wild and tamed spiders. Only the silverfish that lands a zombie's killing blow burrows; the rest keep roaming. The burrowed killer despawns after **thirty seconds**, leaving its hiding block unchanged.
@@ -61,9 +62,19 @@ Tamed spiders:
 
 Family changes apply to relevant variants, including strays, bogged, husks and drowned. Spawn weights change relative spawning chances; actual counts and pack sizes still depend on Minecraft's available space, lighting and mob caps.
 
+## Keep a bat colony
+
+Craft a **Bat Net** with string in every slot except an **iron nugget at the center** and a **stick at the bottom center**. Right-click a bat to capture it, then right-click a **Bat Enclosure** to move it inside. The same reusable net becomes empty again.
+
+The wooden enclosure has a glass front, upper side vents and room for **three bats**. Craft it with **planks across the top and bottom**, **fences at middle-left and middle-right**, and an **apple in the center**. Only the bats actually inside appear hanging behind the glass. At night they leave to fly within **fifteen blocks**; in the morning they return. Their places stay reserved while outside.
+
+Feed housed bats **apples** to heal them and show hearts. Each bat can drop **one Fertilizer every five minutes**, so three ready bats can produce three fertilizers for three apples. The cooldown follows the individual bat through capture, relocation and saves. Full-health bats on cooldown do not waste apples.
+
+**Fertilizer** looks like yellow bone meal and instantly matures crops. Mature plants and obstructed growth do not spend it.
+
 ## Items, settings and multiplayer
 
-The **Fantasy Feudalism - Ecosystems** creative tab contains the **Bee Bottle, Raw Horse and Cooked Horse**.
+The **Fantasy Feudalism - Ecosystems** creative tab contains the **Bee Bottle, Raw Horse, Cooked Horse, Bat Net, Bat Enclosure and Fertilizer**.
 
 Server settings let you toggle:
 
@@ -73,6 +84,6 @@ Server settings let you toggle:
 
 **Requires Minecraft 1.21.1, NeoForge 21.1.262 or later within Minecraft 1.21.1, and Java 21. Install the mod on both the server and every client.**
 
-**Fantasy Feudalism: Mercenaries is optional.** Ecosystems includes compatibility for companion alliances, skeleton threat classification and synchronized guard inventories. The shared gameplay implementation was validated with Mercenaries **1.15.7** through **466 server GameTests and 56 live checks using two graphical clients**, including item conservation, GUIs, combat, resource reloads, server restarts and a 200-mob load test. Those results cover the recorded Minecraft/NeoForge configuration; the rename does not change gameplay.
+**Fantasy Feudalism: Mercenaries is optional.** Ecosystems includes compatibility for companion alliances, skeleton threat classification and synchronized guard inventories. Validation reports record dedicated-server GameTests and live checks with two graphical clients and Mercenaries **1.15.7**, covering item conservation, GUIs, combat, resource reloads, restarts and mob load. See the versioned reports in the repository for exact test counts and configuration limits.
 
 Previously released as **Fantasy Feudal Mobs**. When updating, replace the old Mobs JAR with Ecosystems. Existing registry IDs and saved data are retained, so existing mod items and companions remain recognized.

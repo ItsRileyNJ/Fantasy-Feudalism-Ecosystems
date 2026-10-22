@@ -1,0 +1,275 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "A real wither bow projectile hits; both clients synchronize and visibly emit Wither and Slowness particles",
+      "passed": true,
+      "target": {
+        "id": 181,
+        "uuid": "97964338-2352-4248-bfdd-60da05479317",
+        "type": "minecraft:iron_golem",
+        "position": [
+          15.0,
+          64.0,
+          6.0
+        ],
+        "pose": "STANDING",
+        "onGround": false,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 8,
+        "health": 97.0,
+        "maxHealth": 100.0,
+        "effects": [
+          "minecraft:slowness",
+          "minecraft:wither"
+        ],
+        "effectDetails": [
+          {
+            "ambient": false,
+            "visible": true,
+            "amplifier": 0,
+            "duration": 98,
+            "particle": {
+              "type": "minecraft:entity_effect",
+              "rgb": 9154528,
+              "alpha": 1.0
+            },
+            "effect": "minecraft:slowness"
+          },
+          {
+            "ambient": false,
+            "visible": true,
+            "amplifier": 0,
+            "duration": 98,
+            "particle": {
+              "type": "minecraft:entity_effect",
+              "rgb": 7561558,
+              "alpha": 1.0
+            },
+            "effect": "minecraft:wither"
+          }
+        ],
+        "effectParticles": [
+          {
+            "type": "minecraft:entity_effect",
+            "rgb": 9154528,
+            "alpha": 1.0
+          },
+          {
+            "type": "minecraft:entity_effect",
+            "rgb": 7561558,
+            "alpha": 1.0
+          }
+        ],
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false
+      },
+      "particles": {
+        "owner": {
+          "colors": {
+            "7561558": 2,
+            "9154528": 1
+          },
+          "error": "",
+          "entity": 181,
+          "ticks": 39
+        },
+        "guest": {
+          "ticks": 42,
+          "colors": {
+            "7561558": 3,
+            "9154528": 1
+          },
+          "error": "",
+          "entity": 181
+        }
+      }
+    },
+    {
+      "name": "Both graphical clients render the advancing wither crouched with its shield raised",
+      "passed": true,
+      "poses": {
+        "owner": {
+          "leftArmXRot": -0.9179342,
+          "blocking": true,
+          "crouching": true,
+          "bodyXRot": 0.5,
+          "leftArmYRot": -0.110455394,
+          "rightArmXRot": -0.08187824
+        },
+        "guest": {
+          "rightArmXRot": -0.08292075,
+          "leftArmXRot": -0.9179342,
+          "blocking": true,
+          "crouching": true,
+          "bodyXRot": 0.5,
+          "leftArmYRot": 0.25361818
+        }
+      }
+    },
+    {
+      "name": "At five blocks the shield stance changes to a sprint and the wither lands a real melee hit",
+      "passed": true,
+      "charge": {
+        "id": 184,
+        "uuid": "c3880bbf-b89b-47b2-91b8-1b2ee7b57363",
+        "type": "minecraft:wither_skeleton",
+        "position": [
+          15.383981231199595,
+          64.0,
+          6.499919321916235
+        ],
+        "pose": "STANDING",
+        "onGround": true,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 20.0,
+        "maxHealth": 20.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "",
+        "target": 2,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:stone_sword",
+          "count": 1,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:shield",
+          "count": 1,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": true
+      }
+    },
+    {
+      "name": "Switching the target to Creative clears the attack and blocking/crouching state",
+      "passed": true
+    },
+    {
+      "name": "Real eye interaction consumes one eye and competing requests cannot steal ownership or consume other eyes",
+      "passed": true
+    },
+    {
+      "name": "A guardian ignores the unprovoked zombie, then actually flies into attack after it damages the owner",
+      "passed": true,
+      "pact": {
+        "id": 185,
+        "uuid": "686f9711-3683-4484-982d-f9f30d6f2dbb",
+        "type": "minecraft:phantom",
+        "position": [
+          9.507292844681638,
+          66.65610517571942,
+          7.549747073708603
+        ],
+        "pose": "STANDING",
+        "onGround": false,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 20.0,
+        "maxHealth": 20.0,
+        "effects": [
+          "minecraft:speed"
+        ],
+        "effectDetails": [
+          {
+            "ambient": false,
+            "visible": true,
+            "amplifier": 0,
+            "duration": -1,
+            "particle": {
+              "type": "minecraft:entity_effect",
+              "rgb": 3402751,
+              "alpha": 1.0
+            },
+            "effect": "minecraft:speed"
+          }
+        ],
+        "effectParticles": [
+          {
+            "type": "minecraft:entity_effect",
+            "rgb": 3402751,
+            "alpha": 1.0
+          }
+        ],
+        "spawnType": "",
+        "target": 186,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false,
+        "pactOwner": "52d3a8c5-c3b6-391c-93f6-861ad99dcec8",
+        "pact": "{Owner:[I;1389603013,-1011468004,-1812560358,-643969336],Sunrise:23000L,Threats:{8e79a24e-eed4-4046-a6ca-651e5efe0e4c:1b}}"
+      }
+    },
+    {
+      "name": "The original Mercenaries mod recognizes its owner's temporary phantom as an ally",
+      "passed": true,
+      "classification": {
+        "canAttack": false,
+        "hostile": false,
+        "allied": true
+      }
+    },
+    {
+      "name": "Actual world ticks expire the pact at sunrise",
+      "passed": true
+    },
+    {
+      "name": "Bat Net, Enclosure and Fertilizer are safely rejected by reserved Mercenary slots without inventory loss or viewer desync",
+      "passed": true
+    },
+    {
+      "name": "Both real creative menus expose all six Ecosystems items and render their models",
+      "passed": true
+    },
+    {
+      "name": "Both clients reload resources and continue rendering without recorded model errors",
+      "passed": true
+    },
+    {
+      "name": "The combined world saves successfully after new combat and inventory interactions",
+      "passed": true
+    }
+  ]
+}

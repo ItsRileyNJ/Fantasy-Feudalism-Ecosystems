@@ -41,7 +41,8 @@ public final class MobRules {
             variation(mob, Attributes.MOVEMENT_SPEED, SPEED_VARIATION);
             variation(mob, Attributes.ATTACK_DAMAGE, DAMAGE_VARIATION);
         }
-        if (mob instanceof AbstractSkeleton skeleton) {
+        if(mob instanceof WitherSkeleton wither)WitherCombat.equip(wither,mob.getRandom());
+        else if (mob instanceof AbstractSkeleton skeleton) {
             int roll = mob.getRandom().nextInt(100);
             Item weapon = roll < 15 ? Items.CROSSBOW : roll < 20
                     ? (mob.getRandom().nextInt(100) < 80 ? Items.STONE_SWORD : Items.IRON_SWORD) : Items.BOW;

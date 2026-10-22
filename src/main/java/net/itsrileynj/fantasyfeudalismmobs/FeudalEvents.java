@@ -13,6 +13,7 @@ import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Bee;
+import net.minecraft.world.entity.ambient.Bat;
 import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.entity.animal.Fox;
@@ -70,6 +71,7 @@ public final class FeudalEvents {
         }
         if (event.getEntity() instanceof AbstractArrow arrow && arrow.getOwner() instanceof AbstractSkeleton skeleton
                 && !event.loadedFromDisk() && !arrow.getPersistentData().getBoolean("ffm_faster")) {
+            WitherCombat.prepareArrow(arrow);
             SkeletonBallistics.accelerate(arrow, skeleton);
             arrow.getPersistentData().putBoolean("ffm_faster", true);
             if (arrow instanceof Arrow tipped && arrow.getWeaponItem() != null && arrow.getWeaponItem().getItem() instanceof CrossbowItem) {
@@ -90,6 +92,15 @@ public final class FeudalEvents {
     public static void interact(PlayerInteractEvent.EntityInteract event) {
         Player player = event.getEntity();
         if (player.isSpectator() || !event.getTarget().isAlive() || event.getTarget().isRemoved()) return;
+        if(event.getTarget() instanceof Bat bat){
+            InteractionResult result=BatNetItem.capture(player,event.getHand(),bat);
+            if(result==InteractionResult.PASS)result=BatFarming.interact(player,event.getHand(),bat);
+            if(result!=InteractionResult.PASS){event.setCanceled(true);event.setCancellationResult(result);return;}
+        }
+        if(event.getTarget() instanceof Phantom phantom){
+            InteractionResult result=PhantomPact.interact(player,event.getHand(),phantom);
+            if(result!=InteractionResult.PASS){event.setCanceled(true);event.setCancellationResult(result);return;}
+        }
         if (event.getTarget() instanceof Bee bee && player.getItemInHand(event.getHand()).is(Items.GLASS_BOTTLE)) {
             if (!event.getLevel().isClientSide) {
                 SpiderCompanion.giveFilledBottle(player, event.getHand(), player.getItemInHand(event.getHand()),
@@ -105,7 +116,19 @@ public final class FeudalEvents {
     }
 
     @SubscribeEvent
+    public static void fertilizerBeforeHarvest(PlayerInteractEvent.RightClickBlock event){
+        if(event.getItemStack().getItem() instanceof FertilizerItem item&&FertilizerItem.supports(event.getLevel().getBlockState(event.getPos()))){
+            var context=new net.minecraft.world.item.context.UseOnContext(event.getEntity(),event.getHand(),event.getHitVec());
+            event.setCanceled(true);event.setCancellationResult(item.useOn(context));
+        }
+    }
+
+    @SubscribeEvent
     public static void damage(LivingIncomingDamageEvent event) {
+        if(event.getSource().getDirectEntity() instanceof AbstractArrow arrow&&WitherCombat.specialArrow(arrow))event.setAmount(event.getAmount()*.5F);
+        if(event.getSource().getEntity() instanceof Phantom guardian&&PhantomPact.bound(guardian)&&!PhantomPact.mayAttack(guardian,event.getEntity())){
+            event.setCanceled(true);return;
+        }
         if(event.getSource().getDirectEntity() instanceof Mob hunter && GuardDogs.blocks(hunter,event.getEntity())) {
             event.setCanceled(true);return;
         }
@@ -115,12 +138,20 @@ public final class FeudalEvents {
             event.setAmount(event.getAmount() * 2.0F);
         if (event.getEntity() instanceof Player && event.getSource().getEntity() instanceof EnderMan)
             event.setAmount(event.getAmount() * 1.35F);
-        if (event.getSource().getEntity() instanceof Phantom && event.getEntity() instanceof Player player && player.getHealth() > 8)
+        if (event.getSource().getEntity() instanceof Phantom phantom && !PhantomPact.bound(phantom) && event.getEntity() instanceof Player player && player.getHealth() > 8)
             event.setCanceled(true);
     }
 
     @SubscribeEvent
     public static void hurtCompanion(LivingDamageEvent.Post event) {
+        if(event.getNewDamage()>0){
+            if(event.getSource().getDirectEntity() instanceof AbstractArrow arrow&&WitherCombat.specialArrow(arrow)){
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.WITHER,100,0));
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,100,0));
+            }
+            if(event.getEntity() instanceof Player player&&event.getSource().getEntity() instanceof LivingEntity attacker)
+                PhantomPact.playerHurt(player,attacker);
+        }
         if (event.getNewDamage() > 0 && event.getEntity() instanceof Spider spider && SpiderCompanion.isTamed(spider)
                 && SpiderCompanion.isSitting(spider)) {
             SpiderCompanion.setSitting(spider, false);
@@ -135,6 +166,12 @@ public final class FeudalEvents {
             // The accumulator is a float; tolerate rounding at an exact nine-block drop.
             if (distance < 9.0 - 1.0E-5) event.setCanceled(true);
         }
+    }
+
+    @SubscribeEvent(priority=net.neoforged.bus.api.EventPriority.LOWEST)
+    public static void residentBatDied(LivingDeathEvent event){
+        if(event.getEntity() instanceof Bat bat&&bat.level() instanceof ServerLevel level&&BatResidents.housed(bat))
+            BatColonies.get(level).release(bat.getUUID());
     }
 
     @SubscribeEvent(priority = net.neoforged.bus.api.EventPriority.LOWEST)
@@ -162,6 +199,9 @@ public final class FeudalEvents {
     @SubscribeEvent
     public static void targeting(LivingChangeTargetEvent event) {
         LivingEntity proposed = event.getNewAboutToBeSetTarget();
+        if(event.getEntity() instanceof Phantom guardian&&proposed!=null&&PhantomPact.bound(guardian)&&!PhantomPact.mayAttack(guardian,proposed)){
+            event.setNewAboutToBeSetTarget(null);return;
+        }
         if(event.getEntity() instanceof Mob hunter && GuardDogs.blocks(hunter,proposed)) {
             event.setNewAboutToBeSetTarget(null);return;
         }
@@ -181,7 +221,7 @@ public final class FeudalEvents {
         if (event.getEntity() instanceof Spider spider && proposed != null && !SpiderGoals.mayAttack(spider, proposed)) {
             event.setCanceled(true); return;
         }
-        if (event.getEntity() instanceof Phantom && proposed instanceof Player player && player.getHealth() > 8) {
+        if (event.getEntity() instanceof Phantom phantom && !PhantomPact.bound(phantom) && proposed instanceof Player player && player.getHealth() > 8) {
             event.setCanceled(true); return;
         }
         if (event.getEntity() instanceof AbstractSkeleton skeleton && skeleton.isHolding(s -> s.getItem() instanceof ProjectileWeaponItem)) {
@@ -214,7 +254,7 @@ public final class FeudalEvents {
             skeleton.getNavigation().stop();
         }
         if (entity instanceof Blaze blaze) MobRules.dash(blaze);
-        if (entity instanceof Phantom phantom && phantom.getTarget() instanceof Player player && player.getHealth() > 8) phantom.setTarget(null);
+        if (entity instanceof Phantom phantom && !PhantomPact.bound(phantom) && phantom.getTarget() instanceof Player player && player.getHealth() > 8) phantom.setTarget(null);
         if (entity instanceof Spider spider) {
             if (spider.getTarget() != null && !SpiderGoals.mayAttack(spider, spider.getTarget())) spider.setTarget(null);
             if (spider.onGround() && !spider.isInWater() && !SpiderCompanion.isSitting(spider)) {

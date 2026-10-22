@@ -44,6 +44,7 @@ public final class ClientHarness {
     private static final List<String> RENDER_ERRORS=new ArrayList<>();
     private static final Map<Integer,Entity> OBSERVED_ENTITIES=new HashMap<>();
     private static final Map<Integer,Map<String,Object>> CROSSBOW_POSES=new HashMap<>();
+    private static final Map<Integer,Map<String,Object>> SHIELD_POSES=new HashMap<>();
     private static final Map<Integer,Map<String,Object>> SPIDER_POSES=new HashMap<>();
     @SubscribeEvent public static void frame(RenderFrameEvent.Post event) { frames++; }
     @SubscribeEvent public static void rendered(RenderLivingEvent.Post<?,?> event) {
@@ -96,6 +97,7 @@ public final class ClientHarness {
         skeletonFrames++;
         if(skeleton.getMainHandItem().getItem() instanceof CrossbowItem)crossbowFrames++;
         if(event.getRenderer().getModel() instanceof HumanoidModel<?> model) {
+            if(skeleton instanceof net.minecraft.world.entity.monster.WitherSkeleton)SHIELD_POSES.put(skeleton.getId(),Map.of("blocking",skeleton.isBlocking(),"crouching",model.crouching,"bodyXRot",model.body.xRot,"leftArmXRot",model.leftArm.xRot,"leftArmYRot",model.leftArm.yRot,"rightArmXRot",model.rightArm.xRot));
             for(var part:List.of(model.head,model.rightArm,model.leftArm,model.rightLeg,model.leftLeg))
                 if(!Float.isFinite(part.xRot)||!Float.isFinite(part.yRot)||!Float.isFinite(part.zRot))RENDER_ERRORS.add("Non-finite skeleton model rotation");
             if(skeleton.getMainHandItem().getItem() instanceof CrossbowItem)
@@ -127,6 +129,7 @@ public final class ClientHarness {
             case "cleanView":mc.options.hideGui=q.get("value").getAsBoolean();mc.gui.getChat().clearMessages(true);mc.getTutorial().stop();return true;
             case "watchEffectParticles":EffectParticleProbe.watch(q.get("entity").getAsInt());return true;
             case "effectParticleProbe":return EffectParticleProbe.snapshot();
+            case "enclosure":return ControlFiles.enclosure(mc.level,q);
             case "snapshot":return snapshot(mc);
             case "connect": {
                 if(mc.level!=null){mc.level.disconnect();mc.disconnect();}OBSERVED_ENTITIES.clear();
@@ -138,8 +141,10 @@ public final class ClientHarness {
             case "use":mc.options.keyUse.setDown(q.get("value").getAsBoolean());return true;
             case "useBlock": {
                 var pos=new net.minecraft.core.BlockPos(q.get("x").getAsInt(),q.get("y").getAsInt(),q.get("z").getAsInt());
-                return mc.gameMode.useItemOn(mc.player,InteractionHand.MAIN_HAND,
+                String result="";int count=q.has("count")?q.get("count").getAsInt():1;
+                for(int i=0;i<count;i++)result=mc.gameMode.useItemOn(mc.player,InteractionHand.MAIN_HAND,
                         new net.minecraft.world.phys.BlockHitResult(net.minecraft.world.phys.Vec3.atCenterOf(pos),net.minecraft.core.Direction.UP,pos,false)).toString();
+                return result;
             }
             case "walk":mc.options.keyUp.setDown(q.get("value").getAsBoolean());return true;
             case "shift": {
@@ -182,10 +187,12 @@ public final class ClientHarness {
     }
     private static Object snapshot(Minecraft mc) throws ReflectiveOperationException {
         var result=new LinkedHashMap<String,Object>();
+        result.put("guiWidth",mc.getWindow().getGuiScaledWidth());result.put("guiHeight",mc.getWindow().getGuiScaledHeight());
         result.put("screen",mc.screen==null?"":mc.screen.getClass().getSimpleName());result.put("frames",frames);
         result.put("skeletonFrames",skeletonFrames);result.put("crossbowFrames",crossbowFrames);result.put("renderErrors",List.copyOf(RENDER_ERRORS));
         result.put("guardFrames",guardFrames);
         result.put("crossbowPoses",new HashMap<>(CROSSBOW_POSES));
+        result.put("shieldPoses",new HashMap<>(SHIELD_POSES));
         result.put("spiderPoses",new HashMap<>(SPIDER_POSES));
         result.put("frogJumpFrames",new HashMap<>(FROG_JUMP_FRAMES));
         result.put("horsePoses",new HashMap<>(HORSE_POSES));
@@ -219,6 +226,11 @@ public final class ClientHarness {
                         "missing",meatModel==mc.getModelManager().getMissingModel(),"sprite",meatModel.getParticleIcon().contents().name().toString()));
             }
             result.put("horseMeatModels",meatModels);
+            var newModels=new LinkedHashMap<String,Object>();
+            for(var item:List.of(FantasyFeudalismMobs.BAT_NET.get(),FantasyFeudalismMobs.BAT_ENCLOSURE_ITEM.get(),FantasyFeudalismMobs.FERTILIZER.get())){
+                var stack=new ItemStack(item);var baked=mc.getItemRenderer().getModel(stack,mc.level,mc.player,0);
+                newModels.put(net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(item).toString(),Map.of("missing",baked==mc.getModelManager().getMissingModel(),"tint",mc.getItemColors().getColor(stack,0),"quads",baked.getQuads(null,null,net.minecraft.util.RandomSource.create(0)).size()));
+            }result.put("ecosystemModels",newModels);
             ItemStack bottle=new ItemStack(FantasyFeudalismMobs.BEE_BOTTLE.get());
             var model=mc.getItemRenderer().getModel(bottle,mc.level,mc.player,0);
             result.put("beeBottleModelMissing",model==mc.getModelManager().getMissingModel());

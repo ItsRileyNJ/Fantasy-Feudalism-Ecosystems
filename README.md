@@ -6,7 +6,16 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.14.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.15.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.15 changes
+
+- Hard-only wither skeleton archers (10%) with half-damage arrows and five-second Wither I/Slowness I. Half of sword users carry shields, advancing crouched before charging from five blocks.
+- Nighttime Eye of Ender phantom pacts protect against actual attackers until sunrise.
+- Reusable Bat Nets, wooden/glass Bat Enclosures holding up to three real bats, nightly roaming and morning returns. Visible hanging bats always match actual interior occupancy.
+- Apples heal housed bats and produce Fertilizer on independent five-minute cooldowns. Yellow Fertilizer instantly matures crops.
+
+See [the release and validation report](docs/RELEASE_0.1.15.md).
 
 ## Version 0.1.14 changes
 

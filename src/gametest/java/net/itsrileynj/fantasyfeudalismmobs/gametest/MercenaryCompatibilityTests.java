@@ -125,6 +125,25 @@ public final class MercenaryCompatibilityTests {
     public static void rejectedBeeBottleSwapCorrectsUnchangedHotbar(GameTestHelper h) {
         rejectedPrediction(h,true);
     }
+    @GameTest(template="test_empty",templateNamespace=FantasyFeudalismMobs.MOD_ID,batch="ffm_compat")
+    public static void hiredGuardsRespectTemporaryPhantomOwnership(GameTestHelper h){
+        var guard=guard(h);var phantom=h.spawn(EntityType.PHANTOM,5,4,5);phantom.setNoAi(true);
+        var pact=new net.minecraft.nbt.CompoundTag();pact.putUUID("Owner",new UUID(0,7));phantom.getPersistentData().put(PhantomPact.PACT,pact);
+        h.assertFalse(hostile(guard,phantom),"A pact phantom is excluded from proactive monster hunting");
+        h.assertTrue(guard.isAlliedTo(phantom)&&!guard.canAttack(phantom),"A hired guard protects its owner's guardian");
+        pact.putUUID("Owner",new UUID(0,8));
+        h.assertFalse(guard.isAlliedTo(phantom),"Other players' mercenaries are not falsely allied to the guardian");
+        h.assertFalse(guard.canAttack(phantom),"Guards do not proactively hunt another player's peaceful guardian");h.succeed();
+    }
+    @GameTest(template="test_empty",templateNamespace=FantasyFeudalismMobs.MOD_ID,batch="ffm_compat")
+    public static void guardsClassifyWitherBowsAndShieldedSwordsByTheirWeapon(GameTestHelper h)throws Exception{
+        var skeleton=h.spawn(EntityType.WITHER_SKELETON,4,2,4);skeleton.setNoAi(true);
+        var method=Class.forName("dev.villagerscontract.KitingCrossbowGoal").getMethod("preferredDistance",LivingEntity.class);
+        skeleton.setItemSlot(EquipmentSlot.MAINHAND,new ItemStack(Items.BOW));
+        h.assertTrue((double)method.invoke(null,skeleton)==20.0,"Guard kiting recognizes a wither archer");
+        skeleton.setItemSlot(EquipmentSlot.MAINHAND,new ItemStack(Items.IRON_SWORD));skeleton.setItemSlot(EquipmentSlot.OFFHAND,new ItemStack(Items.SHIELD));
+        h.assertTrue((double)method.invoke(null,skeleton)==7.0,"A shield does not misclassify a melee wither as an archer");h.succeed();
+    }
     private static void rejectedPrediction(GameTestHelper h,boolean swap) {
         Mob guard=guard(h);var player=h.makeMockServerPlayerInLevel();
         NetworkRegistry.configureMockConnection(player.connection.getConnection());

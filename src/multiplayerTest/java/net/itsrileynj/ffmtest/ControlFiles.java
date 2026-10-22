@@ -71,6 +71,8 @@ public final class ControlFiles {
         var info = new LinkedHashMap<String,Object>();
         info.put("item", BuiltInRegistries.ITEM.getKey(stack.getItem()).toString()); info.put("count", stack.getCount());
         info.put("damage", stack.getDamageValue());
+        var bat=BatNetItem.captured(stack);
+        if(bat!=null){info.put("batUUID",bat.getUUID("UUID").toString());info.put("batHealth",bat.getFloat("Health"));info.put("batFertilizerUntil",bat.getCompound("NeoForgeData").getLong(BatFarming.NEXT));}
         var potion = stack.get(DataComponents.POTION_CONTENTS);
         if (potion != null) info.put("potion", potion.potion().map(h -> h.getRegisteredName()).orElse("custom"));
         return info;
@@ -105,7 +107,8 @@ public final class ControlFiles {
         if(entity instanceof Mob mob) {
             info.put("spawnType",mob.getSpawnType()==null?"":mob.getSpawnType().name());
             info.put("target",mob.getTarget()==null?-1:mob.getTarget().getId());info.put("noAi",mob.isNoAi());
-            info.put("mainHand",stack(mob.getMainHandItem()));
+            info.put("mainHand",stack(mob.getMainHandItem()));info.put("offHand",stack(mob.getOffhandItem()));
+            info.put("blocking",mob.isBlocking());info.put("usingItem",mob.isUsingItem());info.put("sprinting",mob.isSprinting());
         }
         if (entity instanceof net.minecraft.world.entity.animal.Wolf wolf) {
             info.put("tailAngle",wolf.getTailAngle());info.put("tamed",wolf.isTame());info.put("sitting",wolf.isInSittingPose());
@@ -142,8 +145,15 @@ public final class ControlFiles {
             info.put("speed", spider.getAttributeValue(net.minecraft.world.entity.ai.attributes.Attributes.MOVEMENT_SPEED));
             if (!spider.level().isClientSide) info.put("cooldowns", SpiderCompanion.data(spider).toString());
         }
+        if(entity instanceof net.minecraft.world.entity.ambient.Bat bat){info.put("resting",bat.isResting());info.put("home",bat.getPersistentData().getCompound(BatResidents.HOME).toString());info.put("fertilizerUntil",bat.getPersistentData().getLong(BatFarming.NEXT));}
+        if(entity instanceof net.minecraft.world.entity.monster.Phantom phantom){info.put("pactOwner",String.valueOf(PhantomPact.ownerId(phantom)));info.put("pact",phantom.getPersistentData().getCompound(PhantomPact.PACT).toString());}
         if(MercenaryHarness.isGuard(entity)) info.put("guard",MercenaryHarness.state(entity));
         return info;
+    }
+    public static Map<String,Object> enclosure(net.minecraft.world.level.Level level,JsonObject q){
+        var pos=new net.minecraft.core.BlockPos(q.get("x").getAsInt(),q.get("y").getAsInt(),q.get("z").getAsInt());
+        var home=(BatEnclosureBlockEntity)level.getBlockEntity(pos);
+        return Map.of("residents",home.residentCount(),"inside",home.insideCount(),"ids",home.residentIds().stream().map(UUID::toString).toList(),"display",home.displayBats().size());
     }
     public static Map<String,Object> menu(AbstractContainerMenu menu) {
         var info=new LinkedHashMap<String,Object>();info.put("type",menu.getClass().getSimpleName());
