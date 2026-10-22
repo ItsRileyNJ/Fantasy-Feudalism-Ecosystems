@@ -14,6 +14,7 @@ import net.minecraft.world.level.saveddata.SavedData;
 
 /** Cross-dimension resident claims survive unloaded homes and prevent duplicate enclosure occupants. */
 public final class BatColonies extends SavedData {
+    private static final SavedData.Factory<BatColonies> FACTORY=new SavedData.Factory<>(BatColonies::new,BatColonies::load);
     public record Home(String dimension, BlockPos pos) {
         public static Home at(ServerLevel level, BlockPos pos) {
             return new Home(level.dimension().location().toString(),pos.immutable());
@@ -22,7 +23,7 @@ public final class BatColonies extends SavedData {
     private final Map<UUID,Home> homes=new HashMap<>();
     public static BatColonies get(ServerLevel level) {
         return level.getServer().overworld().getDataStorage().computeIfAbsent(
-                new SavedData.Factory<>(BatColonies::new,BatColonies::load),"ffm_bat_colonies");
+                FACTORY,"ffm_bat_colonies");
     }
     public boolean claim(UUID bat,Home home) {
         if(homes.containsKey(bat))return false;

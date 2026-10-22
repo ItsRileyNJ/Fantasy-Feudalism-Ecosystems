@@ -11,6 +11,7 @@ import net.minecraft.world.level.saveddata.SavedData;
 
 /** Saved pack meals cover unloaded members; transient hunts retain UUIDs only. */
 public final class WolfPackData extends SavedData {
+    private static final SavedData.Factory<WolfPackData> FACTORY=new SavedData.Factory<>(WolfPackData::new,WolfPackData::load);
     private final Map<UUID,Long> meals = new HashMap<>();
     final Map<String,Hunt> hunts = new HashMap<>();
     private long nextCleanup;
@@ -27,7 +28,7 @@ public final class WolfPackData extends SavedData {
     }
 
     public static WolfPackData get(ServerLevel level) {
-        var data=level.getServer().overworld().getDataStorage().computeIfAbsent(new SavedData.Factory<>(WolfPackData::new,WolfPackData::load),
+        var data=level.getServer().overworld().getDataStorage().computeIfAbsent(FACTORY,
                 "fantasy_feudalism_wolf_packs");
         data.cleanup(level.getGameTime());return data;
     }

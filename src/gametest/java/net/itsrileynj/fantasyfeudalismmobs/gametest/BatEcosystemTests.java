@@ -172,6 +172,16 @@ public final class BatEcosystemTests {
             h.assertFalse(FertilizerItem.grow(h.getLevel(),h.absolutePos(at.above())),"Mature columns do not spend fertilizer");
         }h.succeed();
     }
+    @GameTest(template="test_empty",batch="ffm_bat_day",timeoutTicks=40)
+    public static void pistonsCannotMoveAnOccupiedBlockEntityOrDuplicateItsBats(GameTestHelper h){
+        h.getLevel().setDayTime(6000);var home=home(h,8);var bat=bat(h,5);home.insert(capture(h,bat));
+        h.setBlock(7,2,8,Blocks.PISTON.defaultBlockState().setValue(net.minecraft.world.level.block.piston.PistonBaseBlock.FACING,net.minecraft.core.Direction.EAST));
+        h.setBlock(7,2,7,Blocks.REDSTONE_BLOCK);
+        h.runAfterDelay(8,()->{
+            h.assertTrue(h.getLevel().getBlockEntity(home.getBlockPos())==home&&home.insideCount()==1,"Pistons retain vanilla block-entity immovability");
+            h.assertTrue(home.residentIds().equals(List.of(bat.getUUID()))&&h.getLevel().getEntity(bat.getUUID())==null,"No duplicate live or stored resident appears");h.succeed();
+        });
+    }
     @GameTest(template="test_empty",batch="ffm_bat_day")
     public static void craftingRecipesUseTheRequestedNineSlots(GameTestHelper h){
         var net=CraftingInput.of(3,3,List.of(new ItemStack(Items.STRING),new ItemStack(Items.STRING),new ItemStack(Items.STRING),

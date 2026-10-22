@@ -105,6 +105,7 @@ public final class FeudalEvents {
             if (!event.getLevel().isClientSide) {
                 SpiderCompanion.giveFilledBottle(player, event.getHand(), player.getItemInHand(event.getHand()),
                         new ItemStack(FantasyFeudalismMobs.BEE_BOTTLE.get()));
+                if(bee.isLeashed())bee.dropLeash(true,true);
                 bee.discard();
             }
             event.setCanceled(true);
@@ -276,7 +277,7 @@ public final class FeudalEvents {
     public static void explosion(ExplosionEvent.Detonate event) {
         if (event.getExplosion().getDirectSourceEntity() instanceof Creeper) {
             event.getAffectedBlocks().clear();
-            if (!event.getLevel().isClientSide) CreeperVegetation.grow(event.getLevel(), event.getExplosion().center(), event.getExplosion().radius());
+            if (!event.getLevel().isClientSide && net.neoforged.neoforge.event.EventHooks.canEntityGrief(event.getLevel(),event.getExplosion().getDirectSourceEntity())) CreeperVegetation.grow(event.getLevel(), event.getExplosion().center(), event.getExplosion().radius());
         }
     }
 

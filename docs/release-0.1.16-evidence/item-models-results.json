@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "Both clients bake actual visible geometry for all three new item models, with the yellow fertilizer tint",
+      "passed": true,
+      "models": {
+        "owner": {
+          "fantasy_feudalism_mobs:bat_net": {
+            "tint": -1,
+            "missing": false,
+            "quads": 32
+          },
+          "fantasy_feudalism_mobs:bat_enclosure": {
+            "tint": -1,
+            "missing": false,
+            "quads": 200
+          },
+          "fantasy_feudalism_mobs:fertilizer": {
+            "tint": -1850297,
+            "missing": false,
+            "quads": 34
+          }
+        },
+        "guest": {
+          "fantasy_feudalism_mobs:bat_net": {
+            "missing": false,
+            "quads": 32,
+            "tint": -1
+          },
+          "fantasy_feudalism_mobs:bat_enclosure": {
+            "missing": false,
+            "quads": 200,
+            "tint": -1
+          },
+          "fantasy_feudalism_mobs:fertilizer": {
+            "missing": false,
+            "quads": 34,
+            "tint": -1850297
+          }
+        }
+      }
+    },
+    {
+      "name": "The final empty net captures a real bat and synchronizes the occupied net data without a second world bat",
+      "passed": true,
+      "batUUID": "0ccb8989-99f9-46fc-a2b8-dda322986d95"
+    },
+    {
+      "name": "The final release model shows exactly one inserted bat on both clients and empties the same net",
+      "passed": true
+    },
+    {
+      "name": "Both real creative tabs render the repaired Bat Net and all six items, then reload resources successfully",
+      "passed": true
+    },
+    {
+      "name": "The final JAR saves and continues rendering after client resource reloads",
+      "passed": true
+    }
+  ]
+}

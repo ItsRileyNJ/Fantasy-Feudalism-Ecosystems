@@ -1,0 +1,12 @@
+PASS shared inventory race 1
+PASS shared inventory race 2
+PASS shared inventory race 3
+PASS shared inventory race 4
+PASS shared inventory race 5
+PASS shared inventory race 6
+PASS shared inventory race 7
+PASS shared inventory race 8
+PASS shared inventory race 9
+PASS shared inventory race 10
+PASS shared inventory race 11
+PASS shared inventory race 12

@@ -16,6 +16,8 @@ import net.minecraft.world.item.SwordItem;
 
 public final class WitherCombat {
     public static final String BOW_SHOT="ffm_wither_bow";
+    public static final String SHIELD_DISABLED="ffm_wither_shield_disabled_until";
+    public static boolean shieldReady(WitherSkeleton skeleton){return skeleton.level().getGameTime()>=skeleton.getPersistentData().getLong(SHIELD_DISABLED);}
     private WitherCombat(){}
     public static void equip(WitherSkeleton skeleton,RandomSource random){
         boolean bow=skeleton.level().getDifficulty()==Difficulty.HARD&&random.nextInt(100)<10;
@@ -48,7 +50,8 @@ public final class WitherCombat {
         private void stance(){
             if(charging){skeleton.stopUsingItem();skeleton.setShiftKeyDown(false);skeleton.setPose(Pose.STANDING);skeleton.setSprinting(true);}
             else{skeleton.setSprinting(false);skeleton.setShiftKeyDown(true);skeleton.setPose(Pose.CROUCHING);
-                if(!skeleton.isUsingItem())skeleton.startUsingItem(InteractionHand.OFF_HAND);}
+                if(!shieldReady(skeleton))skeleton.stopUsingItem();
+                else if(!skeleton.isUsingItem())skeleton.startUsingItem(InteractionHand.OFF_HAND);}
         }
         @Override public void tick(){
             var target=skeleton.getTarget();if(target==null)return;

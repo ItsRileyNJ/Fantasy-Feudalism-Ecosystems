@@ -129,6 +129,7 @@ public final class ClientHarness {
             case "cleanView":mc.options.hideGui=q.get("value").getAsBoolean();mc.gui.getChat().clearMessages(true);mc.getTutorial().stop();return true;
             case "watchEffectParticles":EffectParticleProbe.watch(q.get("entity").getAsInt());return true;
             case "effectParticleProbe":return EffectParticleProbe.snapshot();
+            case "block":return ControlFiles.block(mc.level,q);
             case "enclosure":return ControlFiles.enclosure(mc.level,q);
             case "snapshot":return snapshot(mc);
             case "connect": {

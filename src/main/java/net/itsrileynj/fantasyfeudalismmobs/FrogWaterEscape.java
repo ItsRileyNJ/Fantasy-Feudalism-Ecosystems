@@ -79,13 +79,19 @@ public final class FrogWaterEscape {
             frog.getNavigation().stop();until=now+200;repath=0;
         }
         if(jumping) {
-            if(frog.isInWaterOrBubble()||(now>launchedAt+2&&frog.onGround())||now>=until)finish(frog,now);
+            if(frog.isInWaterOrBubble()||busy(frog)||now>=until)finish(frog,now);
+            else if(now>launchedAt+2&&frog.onGround()){
+                // Vanilla long-jump vectors deliberately undershoot by half a block. A
+                // shore landing must finish by walking into the water, not discard the escape.
+                jumping=false;frog.setDiscardFriction(false);frog.setPose(Pose.STANDING);repath=0;
+            }
             return true;
         }
         if(frog.isInWaterOrBubble()||now>=until||busy(frog)||!openWater(level,frog,water)) {
             finish(frog,now);return true;
         }
-        if(frog.onGround()) {
+        boolean onShore=frog.position().subtract(Vec3.atCenterOf(water)).horizontalDistanceSqr()<=2.25;
+        if(frog.onGround()&&!onShore) {
             Vec3 velocity=jump(frog,water);
             if(velocity!=null) {
                 frog.getNavigation().stop();frog.setPose(Pose.LONG_JUMPING);frog.setDiscardFriction(true);
@@ -96,7 +102,7 @@ public final class FrogWaterEscape {
             }
         }
         if(--repath<=0) {
-            repath=10;Path path=frog.getNavigation().createPath(water.above(),4);
+            repath=10;Path path=frog.getNavigation().createPath(onShore?water:water.above(),onShore?0:4);
             if(path==null||!path.canReach()){finish(frog,now);return true;}
             if(!frog.getNavigation().moveTo(path,1.5))finish(frog,now);
         }

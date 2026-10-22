@@ -35,12 +35,15 @@ try:
    c=snapshot(side);assert c['connected'] and not c['renderErrors'] and not c['beeBottleModelMissing']
   snapshot('server');time.sleep(.5)
  last=snapshot('server');elapsed=time.monotonic()-started
+ clientFrames={}
  for side in ['owner','guest']:
   c=snapshot(side)
   assert c['frames']>before[side]['frames']+30 and c['guardFrames']>before[side]['guardFrames']+30
+  clientFrames[side]={'framesAdvanced':c['frames']-before[side]['frames'],'observedFramesPerSecond':(c['frames']-before[side]['frames'])/elapsed}
   rpc(side,'screenshot',file='mercenary-mixed-load-'+side+'.png')
  detail={k:last[k] for k in ['tickSamples','meanTickMs','p95TickMs','maxTickMs']}
  detail.update(initialMobs=200,guards=20,elapsedSeconds=elapsed,ticksAdvanced=last['tick']-first['tick'],observedTicksPerSecond=(last['tick']-first['tick'])/elapsed,remainingEntities=len(last['entities']))
+ detail['clients']=clientFrames
  record('180 active modified mobs plus 20 armed mercenaries remain responsive with two graphical clients, advancing frames and no render failures',detail)
  rpc('server','clear');rpc('server','save')
  print('COMBINED LIVE COMBAT AND LOAD COMPLETE',flush=True)

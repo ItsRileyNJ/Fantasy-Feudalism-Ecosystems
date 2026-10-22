@@ -79,6 +79,8 @@ public final class ServerHarness {
     public static Object execute(MinecraftServer server, JsonObject q) {
         ServerLevel level = server.overworld(); String action = q.get("action").getAsString();
         switch (action) {
+            case "auditFixture": return AuditHarness.fixture(server,q);
+            case "block": return ControlFiles.block(level,q);
             case "enclosure": return ControlFiles.enclosure(level,q);
             case "command": server.getCommands().performPrefixedCommand(server.createCommandSourceStack(),q.get("command").getAsString()); return true;
             case "mineshaft": {

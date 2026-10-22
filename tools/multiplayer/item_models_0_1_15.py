@@ -29,6 +29,9 @@ def run():
  cmd('setblock 8 64 8 '+MOD+'bat_enclosure[facing=north]');rpc('owner','useBlock',x=8,y=64,z=8)
  for side in SIDES:
   state=wait_for(lambda side=side:(s if (s:=rpc(side,'enclosure',x=8,y=64,z=8))['inside']==1 and s['display']==1 else None))
+  # Block-entity packets precede asynchronous chunk-mesh rebuilds. Let the
+  # visible cabinet settle before capturing visual evidence.
+  time.sleep(1)
   rpc(side,'screenshot',file='ecosystems-015/final-one-bat.png')
  check('The final release model shows exactly one inserted bat on both clients and empties the same net')
  for side in SIDES:

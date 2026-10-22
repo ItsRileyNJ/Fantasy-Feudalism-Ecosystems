@@ -1,0 +1,117 @@
+[
+  {
+    "name": "200 competing contract packets redeem one two-pillager patrol exactly once and consume one contract",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Both spider companion types are allied to mercenaries and excluded from guard targeting",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Two real GuardScreens compete for shared storage: 13 string conserved with authoritative hidden-inventory updates",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Concurrent clicks cannot extract or duplicate the mercenary ammunition slots",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Guard order buttons synchronize authoritative state to both open viewers",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Mercenary GUI renders and preserves synchronized slots at GUI scales 1, 2 and 3",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Shared guard storage accepts vanilla string and safely rejects Bee Bottles without loss, duplication or desync",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Spider-harvested Poison remains intact when the guard GUI rejects a negative potion",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Mercenary custom highlight payload reaches only its requesting client",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Both mods survive resource reload with valid Bee Bottle models, guard rendering and usable GuardScreens",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Disconnecting with a guard-menu cursor stack conserves all items across player, world-drop and guard-loot ownership; reconnect inventories agree",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Twelve repeated real-client inventory races conserve 17 items each and eliminate the previously reproduced losing-client ghost stack",
+    "status": "passed",
+    "detail": {
+      "races": 12,
+      "concurrentQuickMoveRequests": 96
+    }
+  },
+  {
+    "name": "Full process restart preserves both mods: guard contracts, equipment, supplies, orders and skins; spider ownership/cooldowns; both player inventories",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Both-mod restart and guard persistence cannot reset spider poison harvesting cooldown",
+    "status": "passed",
+    "detail": null
+  },
+  {
+    "name": "Live bow skeleton AI hits a mercenary at 10 blocks and both graphical clients receive its health change",
+    "status": "passed",
+    "detail": {
+      "health": 24.0,
+      "maxHealth": 30.0
+    }
+  },
+  {
+    "name": "Live crossbow skeleton AI hits a mercenary at 27 blocks and both graphical clients receive its health change",
+    "status": "passed",
+    "detail": {
+      "health": 21.0,
+      "maxHealth": 30.0
+    }
+  },
+  {
+    "name": "180 active modified mobs plus 20 armed mercenaries remain responsive with two graphical clients, advancing frames and no render failures",
+    "status": "passed",
+    "detail": {
+      "tickSamples": 716,
+      "meanTickMs": 8.915716076815642,
+      "p95TickMs": 22.128561,
+      "maxTickMs": 66.941155,
+      "initialMobs": 200,
+      "guards": 20,
+      "elapsedSeconds": 35.5004025319995,
+      "ticksAdvanced": 715,
+      "observedTicksPerSecond": 20.14061669738844,
+      "remainingEntities": 158,
+      "clients": {
+        "owner": {
+          "framesAdvanced": 509,
+          "observedFramesPerSecond": 14.337865592966038
+        },
+        "guest": {
+          "framesAdvanced": 595,
+          "observedFramesPerSecond": 16.760373335588984
+        }
+      }
+    }
+  }
+]

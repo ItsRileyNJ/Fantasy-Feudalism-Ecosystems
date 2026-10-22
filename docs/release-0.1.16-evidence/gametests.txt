@@ -1,0 +1,14 @@
+eco016-standalone-final-2.log
+[07:12:51] [Server thread/INFO] [minecraft/GameTestServer]: All 156 required tests passed :)
+BUILD SUCCESSFUL in 54s
+
+eco016-combined-integrity.log
+[07:14:17] [Server thread/INFO] [minecraft/GameTestServer]: All 168 required tests passed :)
+BUILD SUCCESSFUL in 1m 5s
+
+eco016-merc-native-final.log
+[07:09:23] [Server thread/INFO] [minecraft/GameTestServer]: All 338 required tests passed :)
+BUILD SUCCESSFUL in 2m 29s
+
+eco016-merc-only-reference.log
+[07:06:54] [Server thread/INFO] [minecraft/GameTestServer]: All 3 required tests passed :)

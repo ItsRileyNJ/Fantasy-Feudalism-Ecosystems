@@ -149,6 +149,33 @@ public final class NightCombatTests {
         h.runAfterDelay(65,()->h.assertTrue(owner.hurt(h.getLevel().damageSources().mobAttack(attacker),2),"The owner takes real damage after login protection ends"));
         h.succeedWhen(()->h.assertTrue(attacker.getHealth()<attacker.getMaxHealth()&&owner.getHealth()>=18,"Native flying/sweeping AI hits the aggressor and leaves its owner unharmed"));
     }
+    @AfterBatch(batch="ffm_pact_lookup") public static void cleanLookup(ServerLevel level){clean(level);}
+    @AfterBatch(batch="ffm_pact_pvp") public static void cleanPvp(ServerLevel level){level.getServer().setPvpAllowed(true);clean(level);}
+    @GameTest(template="test_empty",batch="ffm_pact_lookup",timeoutTicks=120)
+    public static void guardianResolvesOnlyRecordedLoadedThreatsAndRejectsInvalidNbt(GameTestHelper h){
+        floor(h);var owner=player(h,8,8);var phantom=bind(h,owner,false);
+        var near=h.spawn(EntityType.ZOMBIE,10,2,8);near.setNoAi(true);var far=h.spawn(EntityType.ZOMBIE,16,2,8);far.setNoAi(true);
+        var neutral=h.spawn(EntityType.COW,8,2,8);neutral.setNoAi(true);
+        h.runAfterDelay(65,()->{
+            h.assertTrue(owner.hurt(h.getLevel().damageSources().mobAttack(far),2),"An attacker deals actual damage");
+            owner.invulnerableTime=0;h.assertTrue(owner.hurt(h.getLevel().damageSources().mobAttack(near),2),"A second attacker deals actual damage");
+            var threats=phantom.getPersistentData().getCompound(PhantomPact.PACT).getCompound("Threats");threats.putBoolean("invalid-uuid",true);
+            phantom.setTarget(null);phantom.tickCount=100;PhantomPact.tick(phantom);
+            h.assertTrue(phantom.getTarget()==near&&!threats.contains("invalid-uuid"),"Nearest recorded threat is resolved without targeting a closer neutral or crashing on malformed external NBT");
+            near.discard();phantom.setTarget(null);PhantomPact.tick(phantom);h.assertTrue(phantom.getTarget()==far,"A missing entity never blocks another recorded attacker");h.succeed();
+        });
+    }
+    @GameTest(template="test_empty",batch="ffm_pact_pvp")
+    public static void companionsRespectDisabledServerPvpEvenWithExistingPlayerThreats(GameTestHelper h){
+        floor(h);var owner=player(h,8,8);var other=player(h,10,8);var phantom=bind(h,owner,false);
+        phantom.getPersistentData().getCompound(PhantomPact.PACT).getCompound("Threats").putBoolean(other.getUUID().toString(),true);
+        var pet=h.spawn(EntityType.SPIDER,9,2,9);pet.setNoAi(true);SpiderCompanion.tame(pet,owner.getUUID());SpiderCompanion.setSitting(pet,false);
+        h.getLevel().getServer().setPvpAllowed(false);
+        h.assertFalse(PhantomPact.mayAttack(phantom,other),"An old threat cannot bypass pvp=false through a guardian mob");
+        h.assertFalse(SpiderGoals.mayAttack(pet,other),"Spider owner-defense also honors the server PvP setting");
+        h.getLevel().getServer().setPvpAllowed(true);
+        h.assertTrue(PhantomPact.mayAttack(phantom,other)&&SpiderGoals.mayAttack(pet,other),"Permitted player combat remains available when PvP is enabled");h.succeed();
+    }
     @GameTest(template="test_empty",batch="ffm_pact_sunrise",timeoutTicks=140)
     public static void sunriseEndsThePactAndRestoresNormalSunBurning(GameTestHelper h){
         floor(h);var owner=player(h,8,8);var phantom=bind(h,owner,true);h.getLevel().setDayTime(24000);

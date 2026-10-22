@@ -6,7 +6,14 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.15.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.16.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.16 changes
+
+- Creeper vegetation respects `mobGriefing`; capturing a leashed bee returns its lead.
+- Axes disable wither skeleton shields for five seconds. Explicit command/conversion equipment survives initialization.
+- Spider companions and phantom guardians honor server PvP permissions. Frogs finish shoreline escapes into water.
+- Bat navigation retries and phantom threat lookup perform less repeated work. Dedicated-server, vanilla, Mercenaries and two-client regression results are in [the audit report](docs/RELEASE_0.1.16.md).
 
 ## Version 0.1.15 changes
 

@@ -1,0 +1,70 @@
+[
+  {
+    "kind": "bats",
+    "entities": 120,
+    "before": {
+      "kind": "bats",
+      "phase": "baseline",
+      "elapsedSeconds": 32.28193939799985,
+      "ticks": 646,
+      "tps": 20.01118929180647,
+      "timings": {
+        "tickSamples": 647,
+        "meanTickMs": 2.7371290834621327,
+        "p95TickMs": 5.080471,
+        "maxTickMs": 23.101874
+      },
+      "entities": 120
+    },
+    "after": {
+      "kind": "bats",
+      "phase": "optimized-clean",
+      "elapsedSeconds": 32.282584264000434,
+      "ticks": 646,
+      "tps": 20.01078955504748,
+      "timings": {
+        "tickSamples": 647,
+        "meanTickMs": 2.4968901267387946,
+        "p95TickMs": 3.446209,
+        "maxTickMs": 94.250353
+      },
+      "entities": 120
+    },
+    "meanImprovementPercent": 8.77704154235449,
+    "p95ImprovementPercent": 32.16752934914893
+  },
+  {
+    "kind": "phantoms",
+    "entities": 520,
+    "before": {
+      "kind": "phantoms",
+      "phase": "baseline",
+      "elapsedSeconds": 32.20714048300033,
+      "ticks": 644,
+      "tps": 19.99556590067094,
+      "timings": {
+        "tickSamples": 645,
+        "meanTickMs": 5.745081474418605,
+        "p95TickMs": 16.871837,
+        "maxTickMs": 34.712869
+      },
+      "entities": 520
+    },
+    "after": {
+      "kind": "phantoms",
+      "phase": "optimized-clean",
+      "elapsedSeconds": 32.278251345999706,
+      "ticks": 645,
+      "tps": 19.982495119889318,
+      "timings": {
+        "tickSamples": 646,
+        "meanTickMs": 3.9249805944272445,
+        "p95TickMs": 7.734934,
+        "maxTickMs": 18.629559
+      },
+      "entities": 520
+    },
+    "meanImprovementPercent": 31.68102816462759,
+    "p95ImprovementPercent": 54.15476097830959
+  }
+]

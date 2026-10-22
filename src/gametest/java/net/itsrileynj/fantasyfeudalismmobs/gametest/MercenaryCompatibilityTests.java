@@ -144,6 +144,33 @@ public final class MercenaryCompatibilityTests {
         skeleton.setItemSlot(EquipmentSlot.MAINHAND,new ItemStack(Items.IRON_SWORD));skeleton.setItemSlot(EquipmentSlot.OFFHAND,new ItemStack(Items.SHIELD));
         h.assertTrue((double)method.invoke(null,skeleton)==7.0,"A shield does not misclassify a melee wither as an archer");h.succeed();
     }
+    private static Object mountedFixture(String name,Object...args){
+        try{
+            var type=Class.forName("dev.villagerscontract.MountedGuardGameTests");
+            var method=java.util.Arrays.stream(type.getDeclaredMethods()).filter(m->m.getName().equals(name)&&m.getParameterCount()==args.length).findFirst().orElseThrow();
+            method.setAccessible(true);return method.invoke(null,args);
+        }catch(ReflectiveOperationException e){throw new IllegalStateException(e);}
+    }
+    @GameTest(template="combat_arena",templateNamespace="villagerscontract",batch="ffm_mounted_bow_audit",skyAccess=true,timeoutTicks=450)
+    public static void mountedMercenaryKeepsSafeBowSeparationAcrossGrass(GameTestHelper h)throws Exception{mountedWeapon(h,true);}
+    @GameTest(template="combat_arena",templateNamespace="villagerscontract",batch="ffm_mounted_crossbow_audit",skyAccess=true,timeoutTicks=450)
+    public static void mountedMercenaryHoldsSafeGroundAgainstAnExplicitCrossbow(GameTestHelper h)throws Exception{mountedWeapon(h,false);}
+    @SuppressWarnings({"unchecked","rawtypes"})
+    private static void mountedWeapon(GameTestHelper h,boolean bow)throws Exception{
+        mountedFixture("grassyStep",h);var owner=(net.minecraft.server.level.ServerPlayer)mountedFixture("player",h,8,22);
+        var guard=(Mob)mountedFixture("guard",h,owner,8,22);
+        var horse=(net.minecraft.world.entity.animal.horse.Horse)mountedFixture("horse",h,owner.getUUID(),10,22);
+        horse.setPos(h.absoluteVec(new Vec3(20.32,2,22.043)));mountedFixture("ride",h,guard,horse);horse.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(.225);
+        var enemy=h.spawn(EntityType.SKELETON,3,2,22);enemy.setNoAi(true);enemy.setPersistenceRequired();enemy.getAttribute(Attributes.MAX_HEALTH).setBaseValue(200);enemy.setHealth(200);
+        enemy.setItemSlot(EquipmentSlot.MAINHAND,new ItemStack(bow?Items.BOW:Items.CROSSBOW));
+        var order=Class.forName("dev.villagerscontract.GuardOrder");invoke(guard,"issueOrder",new Class<?>[]{order,net.minecraft.world.entity.player.Player.class},Enum.valueOf((Class)order,"FOLLOW"),owner);
+        guard.setTarget(enemy);guard.setNoAi(false);float health=horse.getHealth();Vec3 start=horse.position();
+        h.succeedWhen(()->{
+            h.assertTrue(guard.getVehicle()==horse&&horse.getHealth()==health&&!guard.isInWall(),"Native mounted navigation keeps the rider safe");
+            if(bow)h.assertTrue(guard.distanceToSqr(enemy)>=19*19&&horse.position().distanceToSqr(start)>1,"A bow threat requires real separation near twenty blocks, accepting safe diagonal routes");
+            else h.assertTrue(enemy.getHealth()<200&&h.relativeVec(horse.position()).x<24,"At seventeen blocks a crossbow threat is already outside its twelve-block retreat threshold; the guard holds and fires");
+        });
+    }
     private static void rejectedPrediction(GameTestHelper h,boolean swap) {
         Mob guard=guard(h);var player=h.makeMockServerPlayerInLevel();
         NetworkRegistry.configureMockConnection(player.connection.getConnection());

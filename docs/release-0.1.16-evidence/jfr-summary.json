@@ -1,0 +1,65 @@
+{
+  "baseline": {
+    "bats": {
+      "executionSamples": 34,
+      "serverExecutionSamples": 34,
+      "modInclusiveSamples": {
+        "net/itsrileynj/fantasyfeudalismmobs/BatResidents.tick": 2,
+        "net/itsrileynj/fantasyfeudalismmobs/BatColonies.get": 1
+      },
+      "modInclusiveEstimatedAllocationBytes": {
+        "net/itsrileynj/fantasyfeudalismmobs/BatResidents.tick": 71042320,
+        "net.itsrileynj.fantasyfeudalismmobs.BatEnclosureBlockEntity$$Lambda/0x00007f8fdd07d8a0.test": 2095864,
+        "net/itsrileynj/fantasyfeudalismmobs/BatEnclosureBlockEntity.address": 2095864,
+        "net/itsrileynj/fantasyfeudalismmobs/BatEnclosureBlockEntity.lambda$reconcile$3": 2095864,
+        "net/itsrileynj/fantasyfeudalismmobs/BatColonies$Home.at": 2095864
+      }
+    },
+    "phantoms": {
+      "executionSamples": 227,
+      "serverExecutionSamples": 227,
+      "modInclusiveSamples": {
+        "net/itsrileynj/fantasyfeudalismmobs/PhantomPact.mayAttack": 22,
+        "net/itsrileynj/fantasyfeudalismmobs/PhantomPact.bound": 19,
+        "net/itsrileynj/fantasyfeudalismmobs/PhantomPact.ownerId": 13,
+        "net/itsrileynj/fantasyfeudalismmobs/PhantomPact.lambda$tick$1": 13,
+        "net.itsrileynj.fantasyfeudalismmobs.PhantomPact$$Lambda/0x00007f8fdd109f98.test": 2,
+        "net/itsrileynj/fantasyfeudalismmobs/PhantomPact.owner": 2,
+        "net/itsrileynj/fantasyfeudalismmobs/PhantomPact.allied": 1
+      },
+      "modInclusiveEstimatedAllocationBytes": {
+        "net/itsrileynj/fantasyfeudalismmobs/PhantomPact.mayAttack": 261192928,
+        "net/itsrileynj/fantasyfeudalismmobs/PhantomPact.lambda$tick$1": 261192928,
+        "net/itsrileynj/fantasyfeudalismmobs/PhantomPact.allied": 154936856,
+        "net/itsrileynj/fantasyfeudalismmobs/PhantomPact.ownerId": 154936856,
+        "net/itsrileynj/fantasyfeudalismmobs/PhantomPact.tick": 8383808
+      }
+    }
+  },
+  "optimized-clean": {
+    "bats": {
+      "executionSamples": 93,
+      "serverExecutionSamples": 93,
+      "modInclusiveSamples": {
+        "net/itsrileynj/fantasyfeudalismmobs/BatResidents.housed": 1
+      },
+      "modInclusiveEstimatedAllocationBytes": {
+        "net/itsrileynj/fantasyfeudalismmobs/BatResidents.tick": 32463864,
+        "net/itsrileynj/fantasyfeudalismmobs/BatEnclosureBlockEntity.address": 2096000,
+        "net/itsrileynj/fantasyfeudalismmobs/BatEnclosureBlockEntity.lambda$reconcile$3": 2096000,
+        "net.itsrileynj.fantasyfeudalismmobs.BatEnclosureBlockEntity$$Lambda/0x00007fb7d50558a0.test": 2096000,
+        "net/itsrileynj/fantasyfeudalismmobs/BatColonies$Home.at": 2096000
+      }
+    },
+    "phantoms": {
+      "executionSamples": 147,
+      "serverExecutionSamples": 147,
+      "modInclusiveSamples": {
+        "net/itsrileynj/fantasyfeudalismmobs/BatResidents.housed": 2,
+        "net/itsrileynj/fantasyfeudalismmobs/PhantomPact.tick": 1,
+        "net/itsrileynj/fantasyfeudalismmobs/PhantomPact.bound": 1
+      },
+      "modInclusiveEstimatedAllocationBytes": {}
+    }
+  }
+}

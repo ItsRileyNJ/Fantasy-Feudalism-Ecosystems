@@ -14,6 +14,7 @@ import net.minecraft.world.phys.Vec3;
 public final class BatResidents {
     public static final String HOME="ffm_bat_home";
     private Path path;
+    private FlyingPathNavigation navigation;
     private Vec3 destination;
     private long nextPath;
     public static boolean housed(Bat bat){return bat.getPersistentData().contains(HOME);}
@@ -45,6 +46,7 @@ public final class BatResidents {
         bat.setResting(false);long now=level.getGameTime();
         boolean outside=bat.distanceToSqr(center)>14*14;
         if(returning||outside){
+            if(destination==null||destination.distanceToSqr(entrance)>.01){path=null;nextPath=now;}
             destination=entrance;
         }else if(destination==null||bat.position().distanceToSqr(destination)<1||now>=nextPath){
             destination=null;
@@ -56,9 +58,11 @@ public final class BatResidents {
             }
             if(destination==null)destination=center.add(0,2,-1.5);
         }
-        if(now>=nextPath||path==null||path.isDone()){
+        // A failed or completed path waits for its normal retry deadline. Recreating the
+        // navigation/path every tick here makes dense colonies stall on obstructed routes.
+        if(navigation==null)navigation=new FlyingPathNavigation(bat,level);
+        if(now>=nextPath){
             nextPath=now+40;
-            var navigation=new FlyingPathNavigation(bat,level);
             path=navigation.createPath(BlockPos.containing(destination),1,32);
         }
         Vec3 toward=destination;

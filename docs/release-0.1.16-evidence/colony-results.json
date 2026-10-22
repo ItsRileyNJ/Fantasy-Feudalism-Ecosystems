@@ -1,0 +1,792 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "An empty cabinet has zero stored and zero client display bats",
+      "passed": true,
+      "states": {
+        "server": {
+          "inside": 0,
+          "residents": 0,
+          "display": 0,
+          "ids": []
+        },
+        "owner": {
+          "residents": 0,
+          "inside": 0,
+          "ids": [],
+          "display": 0
+        },
+        "guest": {
+          "ids": [],
+          "display": 0,
+          "residents": 0,
+          "inside": 0
+        }
+      }
+    },
+    {
+      "name": "1 inserted bat(s) produce exactly 1 synchronized hanging display bat(s) on each client",
+      "passed": true,
+      "states": {
+        "server": {
+          "inside": 1,
+          "residents": 1,
+          "display": 0,
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613"
+          ]
+        },
+        "owner": {
+          "residents": 1,
+          "inside": 1,
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613"
+          ],
+          "display": 1
+        },
+        "guest": {
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613"
+          ],
+          "display": 1,
+          "residents": 1,
+          "inside": 1
+        }
+      }
+    },
+    {
+      "name": "2 inserted bat(s) produce exactly 2 synchronized hanging display bat(s) on each client",
+      "passed": true,
+      "states": {
+        "server": {
+          "inside": 2,
+          "residents": 2,
+          "display": 0,
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61"
+          ]
+        },
+        "owner": {
+          "residents": 2,
+          "inside": 2,
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61"
+          ],
+          "display": 2
+        },
+        "guest": {
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61"
+          ],
+          "display": 2,
+          "residents": 2,
+          "inside": 2
+        }
+      }
+    },
+    {
+      "name": "3 inserted bat(s) produce exactly 3 synchronized hanging display bat(s) on each client",
+      "passed": true,
+      "states": {
+        "server": {
+          "inside": 3,
+          "residents": 3,
+          "display": 0,
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ]
+        },
+        "owner": {
+          "residents": 3,
+          "inside": 3,
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ],
+          "display": 3
+        },
+        "guest": {
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ],
+          "display": 3,
+          "residents": 3,
+          "inside": 3
+        }
+      }
+    },
+    {
+      "name": "A fourth bat remains in its original net after repeated full-enclosure insert attempts",
+      "passed": true,
+      "states": {
+        "server": {
+          "inside": 3,
+          "residents": 3,
+          "display": 0,
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ]
+        },
+        "owner": {
+          "residents": 3,
+          "inside": 3,
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ],
+          "display": 3
+        },
+        "guest": {
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ],
+          "display": 3,
+          "residents": 3,
+          "inside": 3
+        }
+      }
+    },
+    {
+      "name": "Competing real client feed packets consume exactly three apples and produce exactly three fertilizers",
+      "passed": true,
+      "apples": 13,
+      "fertilizers": 3
+    },
+    {
+      "name": "Healthy bats reject further apples during their individual five-minute cooldowns",
+      "passed": true
+    },
+    {
+      "name": "A real fertilizer interaction spends one item for instant crop growth and rejects repeated mature-crop use",
+      "passed": true
+    },
+    {
+      "name": "At night the three actual residents leave and both clients display zero bats inside",
+      "passed": true,
+      "states": {
+        "server": {
+          "inside": 0,
+          "residents": 3,
+          "display": 0,
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ]
+        },
+        "owner": {
+          "residents": 3,
+          "inside": 0,
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ],
+          "display": 0
+        },
+        "guest": {
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ],
+          "display": 0,
+          "residents": 3,
+          "inside": 0
+        }
+      }
+    },
+    {
+      "name": "Actual roaming bat positions remain within the enclosure flight radius",
+      "passed": true,
+      "maximumDistance": 10.112445987290208
+    },
+    {
+      "name": "The saved nighttime colony retains all original UUID reservations before restart",
+      "passed": true,
+      "states": {
+        "server": {
+          "inside": 0,
+          "residents": 3,
+          "display": 0,
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ]
+        },
+        "owner": {
+          "residents": 3,
+          "inside": 0,
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ],
+          "display": 0
+        },
+        "guest": {
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ],
+          "display": 0,
+          "residents": 3,
+          "inside": 0
+        }
+      }
+    },
+    {
+      "name": "A normal restart restores exactly the four original roaming bat identities, without replacement or duplication",
+      "passed": true,
+      "bats": [
+        {
+          "id": 2,
+          "uuid": "191dcae7-d2b9-46a3-a68c-ee185caae613",
+          "type": "minecraft:bat",
+          "position": [
+            2.8334947306339715,
+            67.34962995096807,
+            7.167314225515727
+          ],
+          "pose": "STANDING",
+          "onGround": false,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false,
+          "resting": false,
+          "home": "{Dimension:\"minecraft:overworld\",Pos:2199023288384L}",
+          "fertilizerUntil": 1222442
+        },
+        {
+          "id": 3,
+          "uuid": "0372eb52-663f-4dc3-9227-08373f253a61",
+          "type": "minecraft:bat",
+          "position": [
+            7.628746895122046,
+            67.39593106141842,
+            3.4980987935772543
+          ],
+          "pose": "STANDING",
+          "onGround": false,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false,
+          "resting": false,
+          "home": "{Dimension:\"minecraft:overworld\",Pos:2199023288384L}",
+          "fertilizerUntil": 1222442
+        },
+        {
+          "id": 4,
+          "uuid": "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77",
+          "type": "minecraft:bat",
+          "position": [
+            9.97224272546309,
+            66.8401432245898,
+            8.867091284785817
+          ],
+          "pose": "STANDING",
+          "onGround": false,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false,
+          "resting": false,
+          "home": "{Dimension:\"minecraft:overworld\",Pos:2199023288384L}",
+          "fertilizerUntil": 1222442
+        },
+        {
+          "id": 5,
+          "uuid": "0dd306da-e9a6-4f8e-bb36-3bec42b5d4ea",
+          "type": "minecraft:bat",
+          "position": [
+            9.247356086073243,
+            66.35177753007763,
+            -2.416737724557953
+          ],
+          "pose": "STANDING",
+          "onGround": false,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false,
+          "resting": false,
+          "home": "{Dimension:\"minecraft:overworld\",Pos:2473901195328L}",
+          "fertilizerUntil": 0
+        }
+      ],
+      "states": {
+        "server": {
+          "residents": 3,
+          "display": 0,
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ],
+          "inside": 0
+        },
+        "owner": {
+          "residents": 3,
+          "inside": 0,
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ],
+          "display": 0
+        },
+        "guest": {
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ],
+          "display": 0,
+          "residents": 3,
+          "inside": 0
+        }
+      }
+    },
+    {
+      "name": "At dawn the original bats return; both clients display exactly three hanging occupants again",
+      "passed": true,
+      "states": {
+        "server": {
+          "residents": 3,
+          "display": 0,
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ],
+          "inside": 3
+        },
+        "owner": {
+          "residents": 3,
+          "inside": 3,
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ],
+          "display": 3
+        },
+        "guest": {
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ],
+          "display": 3,
+          "residents": 3,
+          "inside": 3
+        }
+      }
+    },
+    {
+      "name": "Resource reload rebuilds exactly the real resident count on both clients",
+      "passed": true,
+      "states": {
+        "server": {
+          "residents": 3,
+          "display": 0,
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ],
+          "inside": 3
+        },
+        "owner": {
+          "residents": 3,
+          "inside": 3,
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ],
+          "display": 3
+        },
+        "guest": {
+          "ids": [
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ],
+          "display": 3,
+          "residents": 3,
+          "inside": 3
+        }
+      }
+    },
+    {
+      "name": "A save, normal restart, night flight and morning return cannot reset fertilizer cooldowns",
+      "passed": true
+    },
+    {
+      "name": "Breaking the occupied cabinet releases exactly its three original bats and keeps the other colony stored",
+      "passed": true,
+      "bats": [
+        {
+          "id": 159,
+          "uuid": "191dcae7-d2b9-46a3-a68c-ee185caae613",
+          "type": "minecraft:bat",
+          "position": [
+            8.082606221610696,
+            64.73321199403415,
+            7.817393778389304
+          ],
+          "pose": "STANDING",
+          "onGround": false,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false,
+          "resting": false,
+          "home": "{}",
+          "fertilizerUntil": 1222442
+        },
+        {
+          "id": 160,
+          "uuid": "0372eb52-663f-4dc3-9227-08373f253a61",
+          "type": "minecraft:bat",
+          "position": [
+            8.917393778389304,
+            64.0,
+            7.75
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false,
+          "resting": false,
+          "home": "{}",
+          "fertilizerUntil": 1222442
+        },
+        {
+          "id": 161,
+          "uuid": "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77",
+          "type": "minecraft:bat",
+          "position": [
+            8.082606221610696,
+            64.20587270942472,
+            7.513482337614984
+          ],
+          "pose": "STANDING",
+          "onGround": false,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false,
+          "resting": false,
+          "home": "{}",
+          "fertilizerUntil": 1222442
+        }
+      ]
+    },
+    {
+      "name": "The final cabinet model has no decorative bats when empty",
+      "passed": true,
+      "states": {
+        "server": {
+          "residents": 0,
+          "display": 0,
+          "ids": [],
+          "inside": 0
+        },
+        "owner": {
+          "residents": 0,
+          "inside": 0,
+          "ids": [],
+          "display": 0
+        },
+        "guest": {
+          "ids": [],
+          "display": 0,
+          "residents": 0,
+          "inside": 0
+        }
+      }
+    },
+    {
+      "name": "Final visible models: exactly 1 stored bat(s), with no display shadows or roof clipping",
+      "passed": true,
+      "states": {
+        "server": {
+          "residents": 1,
+          "display": 0,
+          "ids": [
+            "0372eb52-663f-4dc3-9227-08373f253a61"
+          ],
+          "inside": 1
+        },
+        "owner": {
+          "residents": 1,
+          "inside": 1,
+          "ids": [
+            "0372eb52-663f-4dc3-9227-08373f253a61"
+          ],
+          "display": 1
+        },
+        "guest": {
+          "ids": [
+            "0372eb52-663f-4dc3-9227-08373f253a61"
+          ],
+          "display": 1,
+          "residents": 1,
+          "inside": 1
+        }
+      }
+    },
+    {
+      "name": "Final visible models: exactly 2 stored bat(s), with no display shadows or roof clipping",
+      "passed": true,
+      "states": {
+        "server": {
+          "residents": 2,
+          "display": 0,
+          "ids": [
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "191dcae7-d2b9-46a3-a68c-ee185caae613"
+          ],
+          "inside": 2
+        },
+        "owner": {
+          "residents": 2,
+          "inside": 2,
+          "ids": [
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "191dcae7-d2b9-46a3-a68c-ee185caae613"
+          ],
+          "display": 2
+        },
+        "guest": {
+          "ids": [
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "191dcae7-d2b9-46a3-a68c-ee185caae613"
+          ],
+          "display": 2,
+          "residents": 2,
+          "inside": 2
+        }
+      }
+    },
+    {
+      "name": "Final visible models: exactly 3 stored bat(s), with no display shadows or roof clipping",
+      "passed": true,
+      "states": {
+        "server": {
+          "residents": 3,
+          "display": 0,
+          "ids": [
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ],
+          "inside": 3
+        },
+        "owner": {
+          "residents": 3,
+          "inside": 3,
+          "ids": [
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ],
+          "display": 3
+        },
+        "guest": {
+          "ids": [
+            "0372eb52-663f-4dc3-9227-08373f253a61",
+            "191dcae7-d2b9-46a3-a68c-ee185caae613",
+            "3f21a9e5-6d9d-473b-bea9-7e1e3ecdfc77"
+          ],
+          "display": 3,
+          "residents": 3,
+          "inside": 3
+        }
+      }
+    }
+  ]
+}

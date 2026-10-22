@@ -75,7 +75,8 @@ public final class SpiderGoals {
                 && SpiderCompanion.data(other).getUUID("owner").equals(SpiderCompanion.data(spider).getUUID("owner"))) return false;
         if (target instanceof TamableAnimal pet && pet.isTame()
                 && SpiderCompanion.data(spider).getUUID("owner").equals(pet.getOwnerUUID())) return false;
-        return !(target instanceof Player player && owner != null && !owner.canHarmPlayer(player));
+        return !(target instanceof Player player && owner != null
+                && (!owner.canHarmPlayer(player) || !spider.level().getServer().isPvpAllowed()));
     }
 
     private static class WildTarget<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {

@@ -1,0 +1,124 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "A real lead attaches to a bee; glass-bottle capture returns exactly one lead and one Bee Bottle",
+      "passed": true,
+      "leads": 1
+    },
+    {
+      "name": "A real axe attack disables the raised shield and both clients see blocking end",
+      "passed": true,
+      "wither": {
+        "id": 17,
+        "uuid": "2e7a7d47-6403-400e-a350-36f749be6379",
+        "type": "minecraft:wither_skeleton",
+        "position": [
+          8.5,
+          64.71360000610352,
+          11.73190001872778
+        ],
+        "pose": "CROUCHING",
+        "onGround": false,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 8,
+        "health": 20.0,
+        "maxHealth": 20.0,
+        "effects": [
+          "minecraft:slowness"
+        ],
+        "effectDetails": [
+          {
+            "duration": 1173,
+            "amplifier": 255,
+            "visible": false,
+            "ambient": false,
+            "effect": "minecraft:slowness",
+            "particle": {
+              "type": "minecraft:entity_effect",
+              "rgb": 9154528,
+              "alpha": 1.0
+            }
+          }
+        ],
+        "effectParticles": [],
+        "spawnType": "",
+        "target": 1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:stone_sword",
+          "count": 1,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:shield",
+          "count": 1,
+          "damage": 9
+        },
+        "shieldDisabledUntil": 1208979,
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false
+      }
+    },
+    {
+      "name": "Shield AI honors the five-second axe cooldown and can raise the shield again afterward",
+      "passed": true
+    },
+    {
+      "name": "Native creeper explosions respect mobGriefing=false on the server and both graphical clients",
+      "passed": true,
+      "blocks": {
+        "server": [
+          "minecraft:stone_bricks",
+          "minecraft:stone_bricks",
+          "minecraft:stone_bricks"
+        ],
+        "owner": [
+          "minecraft:stone_bricks",
+          "minecraft:stone_bricks",
+          "minecraft:stone_bricks"
+        ],
+        "guest": [
+          "minecraft:stone_bricks",
+          "minecraft:stone_bricks",
+          "minecraft:stone_bricks"
+        ]
+      }
+    },
+    {
+      "name": "Ordinary bone meal retains native crop growth and consumes one item",
+      "passed": true,
+      "crop": {
+        "block": "minecraft:wheat",
+        "properties": {
+          "age": "4"
+        }
+      }
+    },
+    {
+      "name": "Fertilizer reaches maximum crop age without disrupting the ordinary bone-meal path",
+      "passed": true
+    },
+    {
+      "name": "Drinking milk through the real client cures effects and returns the vanilla empty bucket",
+      "passed": true
+    },
+    {
+      "name": "A vanilla furnace cooks Raw Horse and a vanilla hopper extracts exactly one Cooked Horse",
+      "passed": true
+    },
+    {
+      "name": "Both players can open and close the native furnace GUI after mod item automation",
+      "passed": true
+    },
+    {
+      "name": "The vanilla audit world saves and both clients report no render errors",
+      "passed": true
+    }
+  ]
+}

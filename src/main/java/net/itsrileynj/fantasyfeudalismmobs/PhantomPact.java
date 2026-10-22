@@ -1,6 +1,6 @@
 package net.itsrileynj.fantasyfeudalismmobs;
 
-import java.util.Comparator;
+import java.util.List;
 import java.util.UUID;
 import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
@@ -42,7 +42,7 @@ public final class PhantomPact {
         if(target==null||target==phantom||!target.isAlive()||allied(phantom,target)||target.isAlliedTo(phantom))return false;
         if(target instanceof Player player&&(player.isCreative()||player.isSpectator()))return false;
         Player owner=owner(phantom);if(owner==null||!owner.isAlive())return false;
-        if(target instanceof Player player&&!owner.canHarmPlayer(player))return false;
+        if(target instanceof Player player&&(!owner.canHarmPlayer(player)||!phantom.level().getServer().isPvpAllowed()))return false;
         return phantom.getPersistentData().getCompound(PACT).getCompound("Threats").getBoolean(target.getUUID().toString());
     }
     public static void playerHurt(Player player,LivingEntity attacker){
@@ -64,8 +64,17 @@ public final class PhantomPact {
         if(player==null||!player.isAlive()||player.isSpectator()){phantom.setTarget(null);return null;}
         if(phantom.getTarget()!=null&&!mayAttack(phantom,phantom.getTarget()))phantom.setTarget(null);
         if(phantom.getTarget()==null&&phantom.tickCount%10==0){
-            phantom.level().getEntitiesOfClass(LivingEntity.class,player.getBoundingBox().inflate(64),target->mayAttack(phantom,target))
-                    .stream().min(Comparator.comparingDouble(phantom::distanceToSqr)).ifPresent(phantom::setTarget);
+            // Threats are already identified by UUID. Resolving those loaded entities avoids
+            // scanning every nearby creature for every idle guardian twice each second.
+            var threats=pact.getCompound("Threats");LivingEntity nearest=null;double distance=Double.MAX_VALUE;
+            for(String key:List.copyOf(threats.getAllKeys())){
+                UUID id;
+                try{id=UUID.fromString(key);}catch(IllegalArgumentException invalid){threats.remove(key);continue;}
+                var entity=((ServerLevel)phantom.level()).getEntity(id);
+                if(entity instanceof LivingEntity target&&player.getBoundingBox().inflate(64).intersects(target.getBoundingBox())
+                        &&mayAttack(phantom,target)&&phantom.distanceToSqr(target)<distance){nearest=target;distance=phantom.distanceToSqr(target);}
+            }
+            if(nearest!=null)phantom.setTarget(nearest);
         }
         return player.blockPosition().above(10);
     }

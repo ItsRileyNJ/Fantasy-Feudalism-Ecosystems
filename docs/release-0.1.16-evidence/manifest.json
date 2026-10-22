@@ -1,0 +1,44 @@
+{
+  "dateUTC": "2026-10-22",
+  "minecraft": "1.21.1",
+  "neoforge": "21.1.262",
+  "java": "21.0.12.1+1",
+  "release": {
+    "file": "fantasy_feudalism_ecosystems-0.1.16.jar",
+    "bytes": 201908,
+    "sha256": "c315a3600871a190e594118e38aab8b021020c3cc984707ad38a96611d680bdf",
+    "productionClasses": 91,
+    "matchesCompiledProductionClasses": true,
+    "resourceJsonValid": true,
+    "testAndThirdPartyJarsExcluded": true
+  },
+  "mercenaries": {
+    "file": "fantasyfeudalism-mercenaries-1.15.7.jar",
+    "sha256": "32fba122dde2819abdd64a46ee350dc3e6f2533e34c8b7360700e2a8239d0a65"
+  },
+  "runtimeHashes": {
+    "server": "c315a3600871a190e594118e38aab8b021020c3cc984707ad38a96611d680bdf",
+    "client-owner": "c315a3600871a190e594118e38aab8b021020c3cc984707ad38a96611d680bdf",
+    "client-guest": "c315a3600871a190e594118e38aab8b021020c3cc984707ad38a96611d680bdf"
+  },
+  "serverSuites": {
+    "standalone": 156,
+    "combinedEcosystemsNamespace": 168,
+    "combinedMercenaryNamespace": 338,
+    "combinedCases": 506,
+    "mercenariesOnlyRetreatReference": 3
+  },
+  "liveRecordedChecks": 77,
+  "liveChecksByFile": {
+    "core-results.json": 10,
+    "mercenaries-results.json": 17,
+    "vanilla-results.json": 10,
+    "colony-results.json": 20,
+    "night-combat-results.json": 12,
+    "item-models-results.json": 5,
+    "frogs-results.json": 3
+  },
+  "additionalInventoryRaceTrials": 12,
+  "allRecordedChecksPassed": true,
+  "limitations": "Controlled loopback, two offline graphical clients, Mesa software rendering 960x540/30fps cap; not proof of all possible vanilla/mod-pack/hardware/network interactions."
+}

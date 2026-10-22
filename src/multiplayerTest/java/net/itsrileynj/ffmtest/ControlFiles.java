@@ -108,6 +108,7 @@ public final class ControlFiles {
             info.put("spawnType",mob.getSpawnType()==null?"":mob.getSpawnType().name());
             info.put("target",mob.getTarget()==null?-1:mob.getTarget().getId());info.put("noAi",mob.isNoAi());
             info.put("mainHand",stack(mob.getMainHandItem()));info.put("offHand",stack(mob.getOffhandItem()));
+            if(mob instanceof net.minecraft.world.entity.monster.WitherSkeleton)info.put("shieldDisabledUntil",mob.getPersistentData().getLong(WitherCombat.SHIELD_DISABLED));
             info.put("blocking",mob.isBlocking());info.put("usingItem",mob.isUsingItem());info.put("sprinting",mob.isSprinting());
         }
         if (entity instanceof net.minecraft.world.entity.animal.Wolf wolf) {
@@ -148,6 +149,13 @@ public final class ControlFiles {
         if(entity instanceof net.minecraft.world.entity.ambient.Bat bat){info.put("resting",bat.isResting());info.put("home",bat.getPersistentData().getCompound(BatResidents.HOME).toString());info.put("fertilizerUntil",bat.getPersistentData().getLong(BatFarming.NEXT));}
         if(entity instanceof net.minecraft.world.entity.monster.Phantom phantom){info.put("pactOwner",String.valueOf(PhantomPact.ownerId(phantom)));info.put("pact",phantom.getPersistentData().getCompound(PhantomPact.PACT).toString());}
         if(MercenaryHarness.isGuard(entity)) info.put("guard",MercenaryHarness.state(entity));
+        return info;
+    }
+    public static Map<String,Object> block(net.minecraft.world.level.Level level,JsonObject q){
+        var pos=new net.minecraft.core.BlockPos(q.get("x").getAsInt(),q.get("y").getAsInt(),q.get("z").getAsInt());var state=level.getBlockState(pos);
+        var info=new LinkedHashMap<String,Object>();info.put("block",BuiltInRegistries.BLOCK.getKey(state.getBlock()).toString());
+        var properties=new TreeMap<String,String>();state.getValues().forEach((key,value)->properties.put(key.getName(),value.toString()));info.put("properties",properties);
+        if(level.getBlockEntity(pos) instanceof net.minecraft.world.Container container){var slots=new ArrayList<Map<String,Object>>();for(int i=0;i<container.getContainerSize();i++)slots.add(stack(container.getItem(i)));info.put("slots",slots);}
         return info;
     }
     public static Map<String,Object> enclosure(net.minecraft.world.level.Level level,JsonObject q){

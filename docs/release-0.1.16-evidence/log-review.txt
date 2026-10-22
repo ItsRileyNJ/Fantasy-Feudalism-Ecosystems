@@ -1,0 +1,8 @@
+Final passing suites and final live server/client logs reviewed for ERROR, Exception, watchdog, mixin application and missing-model failures.
+Observed environmental/expected messages:
+- Mojang authentication/public-key/profile lookup UnknownHostException in this offline loopback cloud environment.
+- GameTest fresh worlds log missing server.properties before loading default settings.
+- Standalone optional @Pseudo Mercenary compatibility mixins report absent target-class lookup warnings when Mercenaries is not installed; all 156 standalone tests pass. With Mercenaries installed the targets resolve and both namespaces pass. These are not mixin injection/application failures.
+- Offline identity and synced-config replacement warnings during reconnects.
+No new crash report, watchdog crash, mixin injection/application failure, packet-handler exception or missing-model/render exception observed in completed final sessions. Both clients record empty renderErrors. No duplication or inventory divergence observed by completed conservation/race checks. A pre-existing client crash file dated 2026-10-21 is outside this audit session and retained outside release evidence.
+Final normal server stop saved players and all dimensions successfully.
