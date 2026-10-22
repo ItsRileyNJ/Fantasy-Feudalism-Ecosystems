@@ -1,0 +1,739 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "Fresh natural adult horses retain the full 150-minute deadline",
+      "passed": true,
+      "start": 787487,
+      "deadline": 967486,
+      "herd": [
+        {
+          "id": 9,
+          "uuid": "f7fac3b2-0436-4987-af4a-ce634f8761aa",
+          "type": "minecraft:horse",
+          "position": [
+            12.0,
+            64.0,
+            12.0
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 53.0,
+          "maxHealth": 24.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "baby": false,
+          "tamed": false,
+          "grazing": false,
+          "eatAnim": 0.0,
+          "age": 0,
+          "nextBreed": 967486,
+          "herd": "fc53e59a-238f-4adb-8126-84d8c632b2e8"
+        },
+        {
+          "id": 10,
+          "uuid": "c9f6e65b-1f4c-40a9-b104-61ae81b8ecea",
+          "type": "minecraft:horse",
+          "position": [
+            14.0,
+            64.0,
+            12.0
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 53.0,
+          "maxHealth": 26.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "baby": false,
+          "tamed": false,
+          "grazing": false,
+          "eatAnim": 0.0,
+          "age": 0,
+          "nextBreed": 967486,
+          "herd": "fc53e59a-238f-4adb-8126-84d8c632b2e8"
+        }
+      ]
+    },
+    {
+      "name": "Both clients render ordinary scheduled grazing while the owner keeps holding a golden carrot",
+      "passed": true,
+      "firstGrazeTick": 788126,
+      "elapsedTicks": 639,
+      "horse": 10,
+      "clients": {
+        "owner": {
+          "horse": {
+            "id": 10,
+            "uuid": "c9f6e65b-1f4c-40a9-b104-61ae81b8ecea",
+            "type": "minecraft:horse",
+            "position": [
+              14.14404296875,
+              64.0,
+              15.2294921875
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 26.0,
+            "maxHealth": 26.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "baby": false,
+            "tamed": false,
+            "grazing": true,
+            "eatAnim": 1.0
+          },
+          "pose": {
+            "eatAnim": 1.0,
+            "headX": 2.1488945,
+            "grazing": true,
+            "headY": 10.956321
+          }
+        },
+        "guest": {
+          "horse": {
+            "id": 10,
+            "uuid": "c9f6e65b-1f4c-40a9-b104-61ae81b8ecea",
+            "type": "minecraft:horse",
+            "position": [
+              14.14404296875,
+              64.0,
+              15.2294921875
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 26.0,
+            "maxHealth": 26.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "baby": false,
+            "tamed": false,
+            "grazing": true,
+            "eatAnim": 1.0
+          },
+          "pose": {
+            "headX": 2.2312956,
+            "grazing": true,
+            "headY": 11.0,
+            "eatAnim": 1.0
+          }
+        }
+      }
+    },
+    {
+      "name": "Both adults graze and consume real grass before breeding readiness",
+      "passed": true,
+      "observation": {
+        "grazes": {
+          "10": 1,
+          "9": 1,
+          "8": 1,
+          "7": 2,
+          "6": 1
+        },
+        "firstGrazes": {
+          "10": 788126,
+          "9": 788153,
+          "8": 787220,
+          "7": 786897,
+          "6": 787216
+        },
+        "births": {}
+      },
+      "pasture": {
+        "dirt": 1,
+        "grass": 1023
+      }
+    },
+    {
+      "name": "Two hours of normal world ticks produce repeated grazing but no premature foal",
+      "passed": true,
+      "elapsedTicks": 144004,
+      "observation": {
+        "grazes": {
+          "10": 214,
+          "9": 221,
+          "8": 1,
+          "7": 2,
+          "6": 1
+        },
+        "firstGrazes": {
+          "10": 788126,
+          "9": 788153,
+          "8": 787220,
+          "7": 786897,
+          "6": 787216
+        },
+        "births": {}
+      },
+      "horses": [
+        {
+          "id": 9,
+          "uuid": "f7fac3b2-0436-4987-af4a-ce634f8761aa",
+          "type": "minecraft:horse",
+          "position": [
+            20.432650524775422,
+            64.0,
+            25.455650143222407
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 24.0,
+          "maxHealth": 24.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "baby": false,
+          "tamed": false,
+          "grazing": false,
+          "eatAnim": 0.0,
+          "age": 0,
+          "nextBreed": 967486,
+          "herd": "fc53e59a-238f-4adb-8126-84d8c632b2e8"
+        },
+        {
+          "id": 10,
+          "uuid": "c9f6e65b-1f4c-40a9-b104-61ae81b8ecea",
+          "type": "minecraft:horse",
+          "position": [
+            23.41323457049527,
+            64.0,
+            20.38158634341918
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 26.0,
+          "maxHealth": 26.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "baby": false,
+          "tamed": false,
+          "grazing": false,
+          "eatAnim": 0.0,
+          "age": 0,
+          "nextBreed": 967486,
+          "herd": "fc53e59a-238f-4adb-8126-84d8c632b2e8"
+        }
+      ]
+    },
+    {
+      "name": "The full natural 150-minute clock produces exactly one untamed foal and resets both parents",
+      "passed": true,
+      "deadline": 967486,
+      "birthTick": 967644,
+      "elapsedTicks": 186001,
+      "foal": {
+        "id": 11,
+        "uuid": "7060f15d-e698-4dbf-80c7-e1d37f766fa7",
+        "type": "minecraft:horse",
+        "position": [
+          18.423485116486418,
+          64.0,
+          30.512105751794934
+        ],
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 24.762762,
+        "maxHealth": 24.762762,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "spawnType": "",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "baby": true,
+        "tamed": false,
+        "grazing": false,
+        "eatAnim": 0.0,
+        "age": -22052,
+        "nextBreed": 1147644,
+        "herd": "fc53e59a-238f-4adb-8126-84d8c632b2e8"
+      },
+      "parents": [
+        {
+          "id": 9,
+          "uuid": "f7fac3b2-0436-4987-af4a-ce634f8761aa",
+          "type": "minecraft:horse",
+          "position": [
+            27.654131150098614,
+            64.0,
+            29.28918889006107
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 24.0,
+          "maxHealth": 24.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "baby": false,
+          "tamed": false,
+          "grazing": false,
+          "eatAnim": 0.0,
+          "age": 156,
+          "nextBreed": 1147644,
+          "herd": "fc53e59a-238f-4adb-8126-84d8c632b2e8"
+        },
+        {
+          "id": 10,
+          "uuid": "c9f6e65b-1f4c-40a9-b104-61ae81b8ecea",
+          "type": "minecraft:horse",
+          "position": [
+            21.295225380049395,
+            64.0,
+            29.447824519104785
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 26.0,
+          "maxHealth": 26.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "baby": false,
+          "tamed": false,
+          "grazing": false,
+          "eatAnim": 0.0,
+          "age": 155,
+          "nextBreed": 1147644,
+          "herd": "fc53e59a-238f-4adb-8126-84d8c632b2e8"
+        }
+      ],
+      "observation": {
+        "grazes": {
+          "11": 16,
+          "10": 278,
+          "9": 287,
+          "8": 1,
+          "7": 2,
+          "6": 1
+        },
+        "firstGrazes": {
+          "11": 967989,
+          "10": 788126,
+          "9": 788153,
+          "8": 787220,
+          "7": 786897,
+          "6": 787216
+        },
+        "births": {
+          "11": 967644
+        }
+      }
+    },
+    {
+      "name": "Both graphical clients receive the same single foal without render errors",
+      "passed": true,
+      "clients": {
+        "owner": [
+          {
+            "id": 9,
+            "uuid": "f7fac3b2-0436-4987-af4a-ce634f8761aa",
+            "type": "minecraft:horse",
+            "position": [
+              27.654052734375,
+              64.0,
+              29.289306640625
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 24.0,
+            "maxHealth": 24.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "baby": false,
+            "tamed": false,
+            "grazing": false,
+            "eatAnim": 0.0
+          },
+          {
+            "id": 10,
+            "uuid": "c9f6e65b-1f4c-40a9-b104-61ae81b8ecea",
+            "type": "minecraft:horse",
+            "position": [
+              21.295166015625,
+              64.0,
+              29.44775390625
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 26.0,
+            "maxHealth": 26.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "baby": false,
+            "tamed": false,
+            "grazing": false,
+            "eatAnim": 0.0
+          },
+          {
+            "id": 11,
+            "uuid": "7060f15d-e698-4dbf-80c7-e1d37f766fa7",
+            "type": "minecraft:horse",
+            "position": [
+              20.101085937294897,
+              64.0,
+              30.172994760773307
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 24.762762,
+            "maxHealth": 24.762762,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "baby": true,
+            "tamed": false,
+            "grazing": false,
+            "eatAnim": 0.0
+          }
+        ],
+        "guest": [
+          {
+            "id": 9,
+            "uuid": "f7fac3b2-0436-4987-af4a-ce634f8761aa",
+            "type": "minecraft:horse",
+            "position": [
+              27.654052734375,
+              64.0,
+              29.289306640625
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 24.0,
+            "maxHealth": 24.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "baby": false,
+            "tamed": false,
+            "grazing": false,
+            "eatAnim": 0.0
+          },
+          {
+            "id": 10,
+            "uuid": "c9f6e65b-1f4c-40a9-b104-61ae81b8ecea",
+            "type": "minecraft:horse",
+            "position": [
+              21.295166015625,
+              64.0,
+              29.44775390625
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 26.0,
+            "maxHealth": 26.0,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "baby": false,
+            "tamed": false,
+            "grazing": false,
+            "eatAnim": 0.0
+          },
+          {
+            "id": 11,
+            "uuid": "7060f15d-e698-4dbf-80c7-e1d37f766fa7",
+            "type": "minecraft:horse",
+            "position": [
+              18.423583984375,
+              64.0,
+              30.51220703125
+            ],
+            "alive": true,
+            "removed": false,
+            "invisible": false,
+            "silent": false,
+            "hurtTime": 0,
+            "health": 24.762762,
+            "maxHealth": 24.762762,
+            "effects": [],
+            "effectDetails": [],
+            "effectParticles": [],
+            "spawnType": "",
+            "target": -1,
+            "noAi": false,
+            "mainHand": {
+              "item": "minecraft:air",
+              "count": 0,
+              "damage": 0
+            },
+            "baby": true,
+            "tamed": false,
+            "grazing": false,
+            "eatAnim": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "name": "The family remains stable without duplicate foals and the normal inventory still works",
+      "passed": true,
+      "horses": [
+        {
+          "id": 9,
+          "uuid": "f7fac3b2-0436-4987-af4a-ce634f8761aa",
+          "type": "minecraft:horse",
+          "position": [
+            18.467475353618212,
+            64.0,
+            29.888973386386663
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 24.0,
+          "maxHealth": 24.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "baby": false,
+          "tamed": false,
+          "grazing": false,
+          "eatAnim": 0.0,
+          "age": 0,
+          "nextBreed": 1147644,
+          "herd": "fc53e59a-238f-4adb-8126-84d8c632b2e8"
+        },
+        {
+          "id": 10,
+          "uuid": "c9f6e65b-1f4c-40a9-b104-61ae81b8ecea",
+          "type": "minecraft:horse",
+          "position": [
+            21.472102844739993,
+            64.0,
+            30.457572393633384
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 26.0,
+          "maxHealth": 26.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "NATURAL",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "baby": false,
+          "tamed": false,
+          "grazing": false,
+          "eatAnim": 0.0,
+          "age": 0,
+          "nextBreed": 1147644,
+          "herd": "fc53e59a-238f-4adb-8126-84d8c632b2e8"
+        },
+        {
+          "id": 11,
+          "uuid": "7060f15d-e698-4dbf-80c7-e1d37f766fa7",
+          "type": "minecraft:horse",
+          "position": [
+            21.729834719259845,
+            64.0,
+            29.03392590396074
+          ],
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 24.762762,
+          "maxHealth": 24.762762,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "spawnType": "",
+          "target": -1,
+          "noAi": false,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "baby": true,
+          "tamed": false,
+          "grazing": false,
+          "eatAnim": 0.0,
+          "age": -21884,
+          "nextBreed": 1147644,
+          "herd": "fc53e59a-238f-4adb-8126-84d8c632b2e8"
+        }
+      ]
+    }
+  ]
+}

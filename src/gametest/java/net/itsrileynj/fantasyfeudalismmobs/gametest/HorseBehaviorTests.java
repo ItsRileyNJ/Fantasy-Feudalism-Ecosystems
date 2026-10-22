@@ -67,7 +67,7 @@ public final class HorseBehaviorTests {
         h.assertTrue(horse.isEating(),"The native synchronized eating flag is set");
         for(int i=0;i<36;i++)goal.tick();
         h.assertBlockPresent(Blocks.DIRT,8,1,8);
-        h.assertFalse(horse.isInLove(),"Grazing before fourteen days does not start breeding");goal.stop();
+        h.assertFalse(horse.isInLove(),"Grazing before the automatic deadline does not start breeding");goal.stop();
         h.assertFalse(horse.isEating(),"Stopping restores normal movement and pose");
         h.setBlock(8,2,8,Blocks.SHORT_GRASS);graze(horse);
         h.assertBlockPresent(Blocks.AIR,8,2,8);h.succeed();
@@ -80,7 +80,7 @@ public final class HorseBehaviorTests {
         var foals=h.getLevel().getEntitiesOfClass(Horse.class,grouped.getBoundingBox().inflate(8),
                 child->child.isBaby()&&SpawnHerd.together(grouped,child));
         h.assertTrue(foals.size()==1,"A foal joins the second parent's herd when the first parent has no herd");
-        h.assertTrue(HorseLife.nextBreed(foals.getFirst())==h.getLevel().getGameTime()+336000,"A foal starts its own full automatic breeding cycle");
+        h.assertTrue(HorseLife.nextBreed(foals.getFirst())==h.getLevel().getGameTime()+180000,"A foal starts its own full automatic breeding cycle");
         h.succeed();
     }
 
@@ -114,16 +114,16 @@ public final class HorseBehaviorTests {
         h.succeedWhen(()->{
             h.assertTrue(seen[0]&&!horse.isEating(),"Normal timed grazing interrupts food-following and completes");
             h.assertTrue(h.getLevel().getBlockState(bite[0]).is(Blocks.DIRT),"The horse consumes real grass while the player continues holding a golden carrot");
-            h.assertFalse(horse.isInLove(),"Grazing before fourteen days must not prematurely start breeding");
-            h.assertTrue(HorseLife.nextBreed(horse)>h.getLevel().getGameTime()+330000,"The original fourteen-day deadline remains in force");
+            h.assertFalse(horse.isInLove(),"Grazing before the automatic deadline must not prematurely start breeding");
+            h.assertTrue(HorseLife.nextBreed(horse)>h.getLevel().getGameTime()+174000,"The original two-and-a-half-hour deadline remains in force");
             h.getLevel().getServer().getPlayerList().remove(player);
         });
     }
 
     @GameTest(template="test_empty",timeoutTicks=25)
-    public static void fourteenDayDeadlineSurvivesReloadAndHasExactBoundary(GameTestHelper h) {
+    public static void twoAndAHalfHourDeadlineSurvivesReloadAndHasExactBoundary(GameTestHelper h) {
         floor(h);var original=horse(h,8,8);original.setNoAi(true);
-        h.assertTrue(HorseLife.nextBreed(original)==h.getLevel().getGameTime()+336000,"First automatic breeding is fourteen complete Minecraft days away");
+        h.assertTrue(HorseLife.nextBreed(original)==h.getLevel().getGameTime()+180000,"First automatic breeding is two and a half hours away");
         long deadline=h.getLevel().getGameTime()+6;
         original.getPersistentData().putLong("ffm_horse_next_breed",deadline);
         var saved=original.saveWithoutId(new CompoundTag());original.discard();
@@ -131,6 +131,31 @@ public final class HorseBehaviorTests {
         h.assertTrue(HorseLife.nextBreed(loaded)==deadline,"Reload never resets the saved breeding deadline");
         h.runAfterDelay(4,()->h.assertFalse(HorseLife.ready(loaded),"The horse cannot breed before the deadline"));
         h.runAfterDelay(7,()->{h.assertTrue(HorseLife.ready(loaded),"The horse becomes eligible once the saved deadline passes");h.succeed();});
+    }
+
+    @GameTest(template="test_empty")
+    public static void legacyHorseTimersShortenOnceAndRetainElapsedTime(GameTestHelper h) {
+        floor(h);var horse=horse(h,8,8);horse.setNoAi(true);horse.setAge(0);
+        long now=h.getLevel().getGameTime();var tag=horse.saveWithoutId(new CompoundTag());horse.discard();
+        // A 0.1.11 horse has waited two hours of its old fourteen-day cycle.
+        var data=tag.getCompound("NeoForgeData");data.remove("ffm_horse_breed_interval");
+        data.putLong("ffm_horse_next_breed",now-144000+336000);
+        var loaded=EntityType.HORSE.create(h.getLevel());loaded.load(tag);h.getLevel().addFreshEntity(loaded);
+        h.assertTrue(HorseLife.BREED_INTERVAL==180000,"The new interval is exactly 150 minutes at twenty ticks per second");
+        h.assertTrue(HorseLife.nextBreed(loaded)==now+36000,"A horse that already waited two hours has only thirty minutes left");
+        for(int i=0;i<10;i++)HorseLife.initialize(loaded);
+        var saved=loaded.saveWithoutId(new CompoundTag());loaded.discard();
+        var again=EntityType.HORSE.create(h.getLevel());again.load(saved);h.getLevel().addFreshEntity(again);
+        h.assertTrue(HorseLife.nextBreed(again)==now+36000,"Repeated access and reload never subtract the adjustment again");h.succeed();
+    }
+
+    @GameTest(template="test_empty")
+    public static void alreadyElapsedLegacyCycleBecomesReadyWithoutRestarting(GameTestHelper h) {
+        floor(h);var horse=horse(h,8,8);horse.setNoAi(true);horse.setAge(0);
+        long now=h.getLevel().getGameTime();horse.getPersistentData().remove("ffm_horse_breed_interval");
+        horse.getPersistentData().putLong("ffm_horse_next_breed",now-200000+336000);
+        HorseLife.initialize(horse);
+        h.assertTrue(HorseLife.ready(horse)&&HorseLife.nextBreed(horse)==now-20000,"An old cycle older than 150 minutes becomes eligible immediately");h.succeed();
     }
 
     @GameTest(template="test_empty",timeoutTicks=520)
@@ -147,8 +172,8 @@ public final class HorseBehaviorTests {
                     child->child.isBaby()&&SpawnHerd.together(a,child));
             h.assertTrue(sawPair[0]&&foals.size()==1,"Scheduled grazing and ordinary mating AI produce exactly one foal");
             h.assertFalse(foals.getFirst().isTamed(),"Natural offspring remain untamed");
-            long reset=List.of(a,b,extra).stream().filter(parent->HorseLife.nextBreed(parent)>h.getLevel().getGameTime()+335000).count();
-            h.assertTrue(reset==2,"Exactly the two parents receive a fresh fourteen-day cycle");
+            long reset=List.of(a,b,extra).stream().filter(parent->HorseLife.nextBreed(parent)>h.getLevel().getGameTime()+179000).count();
+            h.assertTrue(reset==2,"Exactly the two parents receive a fresh two-and-a-half-hour cycle");
             h.assertTrue(List.of(a,b,extra).stream().noneMatch(Horse::isTamed),"Automatic breeding never silently tames the parents");
             h.assertFalse(HorseLife.ready(foals.getFirst()),"The foal cannot breed immediately");h.succeed();
         });

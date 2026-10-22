@@ -1,0 +1,6 @@
+horse-timer-0112-standalone.log
+[01:20:12] [Server thread/INFO] [minecraft/GameTestServer]: All 116 required tests passed :)
+BUILD SUCCESSFUL in 32s
+horse-timer-0112-combined.log
+[01:21:10] [Server thread/INFO] [minecraft/GameTestServer]: All 126 required tests passed :)
+BUILD SUCCESSFUL in 29s

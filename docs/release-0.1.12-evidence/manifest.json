@@ -1,0 +1,32 @@
+{
+  "artifact": {
+    "file": "fantasy_feudalism_mobs-0.1.12.jar",
+    "bytes": 140506,
+    "sha256": "5995cc2ab2a61dc18f56ee916ebe5d163dab7b58a04ed3696d8b6da149e14dee"
+  },
+  "minecraft": "1.21.1",
+  "neoforge": "21.1.262",
+  "java": 21,
+  "standalone_required_tests": 116,
+  "mobs_mercenaries_required_tests": 126,
+  "compatibility_mod": {
+    "file": "fantasyfeudalism-mercenaries-1.15.7.jar",
+    "sha256": "32fba122dde2819abdd64a46ee350dc3e6f2533e34c8b7360700e2a8239d0a65"
+  },
+  "packaging": "71 packaged main classes match compiled output; GameTests, templates, diagnostics and third-party JARs excluded.",
+  "live_multiplayer": {
+    "passed_checks": 7,
+    "dedicated_server": true,
+    "graphical_clients": 2,
+    "mercenaries": "1.15.7",
+    "resolution": "960x540",
+    "renderer": "Linux Mesa software rendering",
+    "byte_identical_release_on_all_instances": true,
+    "optional_loader_early_window_disabled": true,
+    "full_automatic_breeding_cycle": true,
+    "elapsed_world_ticks": 186001,
+    "deadline": 967486,
+    "birth_tick": 967644,
+    "accelerated_with": "Vanilla /tick sprint; no horse timers or AI forced."
+  }
+}

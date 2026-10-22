@@ -7,15 +7,27 @@ import net.minecraft.world.entity.animal.horse.Horse;
 
 /** Automatic breeding uses elapsed world ticks, including time spent unloaded. */
 public final class HorseLife {
-    public static final long BREED_INTERVAL = 14L * 24000;
+    public static final long BREED_INTERVAL = 150L * 60 * 20;
+    private static final long LEGACY_INTERVAL = 14L * 24000;
+    private static final String INTERVAL = "ffm_horse_breed_interval";
     private static final String NEXT_BREED = "ffm_horse_next_breed";
     private static final String MATE = "ffm_horse_mate";
 
     private HorseLife() {}
 
     public static void initialize(Horse horse) {
-        if (!horse.getPersistentData().contains(NEXT_BREED))
-            horse.getPersistentData().putLong(NEXT_BREED, horse.level().getGameTime() + BREED_INTERVAL);
+        var data=horse.getPersistentData();
+        if (!data.contains(NEXT_BREED)) {
+            data.putLong(NEXT_BREED, horse.level().getGameTime() + BREED_INTERVAL);
+            data.putLong(INTERVAL, BREED_INTERVAL);
+        } else {
+            long previous=data.contains(INTERVAL)?data.getLong(INTERVAL):LEGACY_INTERVAL;
+            if(previous!=BREED_INTERVAL) {
+                // Preserve the cycle's start and elapsed time; overdue horses stay eligible.
+                data.putLong(NEXT_BREED,data.getLong(NEXT_BREED)+BREED_INTERVAL-previous);
+                data.putLong(INTERVAL,BREED_INTERVAL);
+            }
+        }
     }
 
     public static long nextBreed(Horse horse) {
@@ -60,6 +72,7 @@ public final class HorseLife {
 
     private static void reset(Horse horse) {
         horse.getPersistentData().putLong(NEXT_BREED, horse.level().getGameTime() + BREED_INTERVAL);
+        horse.getPersistentData().putLong(INTERVAL, BREED_INTERVAL);
         horse.getPersistentData().remove(MATE);
     }
 }
