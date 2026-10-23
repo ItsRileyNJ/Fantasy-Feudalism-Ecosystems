@@ -2,6 +2,7 @@
 import json,pathlib,time
 from control import rpc,snapshot,wait_for,player,count
 from ecosystems_0_1_15 import enclosure,check,checks,OUT,ss,command,MOD,SIDES
+from enclosure_stability import sample
 state=json.loads(pathlib.Path('/workspace/multiplayer/ecosystems-015-restart.json').read_text())
 ids=set(state['ids']);allids=ids|{state['fourth']}
 def run():
@@ -42,9 +43,11 @@ def run():
   rpc('owner','interact',entity=bat['id'])
   wait_for(lambda:player(snapshot('server'),'FFMOwner')['inventory'][0].get('batUUID')==uid)
   rpc('server','teleport',player='FFMOwner',x=8.5,y=64,z=5.3,yaw=0,pitch=17)
+  wait_for(lambda:sum((a-b)**2 for a,b in zip(snapshot('owner')['player']['position'],[8.5,64,5.3]))<.01)
   rpc('owner','useBlock',x=8,y=64,z=8)
   states=enclosure(n,n);time.sleep(.4);ss('bats-'+str(n))
   check(f'Final visible models: exactly {n} stored bat(s), with no display shadows or roof clipping',states=states)
+  check(f'{n} enclosed bat(s) keep identical rendered poses across world ticks on both clients',poses=sample(n))
 
 if __name__=='__main__':
  try:run()

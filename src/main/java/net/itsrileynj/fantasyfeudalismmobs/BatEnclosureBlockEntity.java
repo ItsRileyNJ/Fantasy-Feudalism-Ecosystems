@@ -122,6 +122,10 @@ public final class BatEnclosureBlockEntity extends BlockEntity {
             displayBats=new ArrayList<>();
             for(var resident:residents)if(resident.inside){
                 Bat bat=EntityType.BAT.create(level);bat.load(resident.bat.copy());bat.setNoAi(true);bat.setResting(true);
+                // These copies never tick; saved flight rotations must not affect their hanging display pose.
+                bat.setYRot(0);bat.yRotO=0;bat.setXRot(0);bat.xRotO=0;
+                bat.yBodyRot=bat.yBodyRotO=0;bat.yHeadRot=bat.yHeadRotO=0;
+                bat.flyAnimationState.stop();
                 bat.restAnimationState.start(0);displayBats.add(bat);
             }
         }

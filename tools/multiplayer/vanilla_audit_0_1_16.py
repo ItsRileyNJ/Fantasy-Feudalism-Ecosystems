@@ -73,7 +73,11 @@ def run():
  wait_for(lambda:any(s['item']==MOD+'cooked_horse' and s['count']==1 for s in rpc('server','block',x=9,y=63,z=7)['slots']),timeout=18)
  check('A vanilla furnace cooks Raw Horse and a vanilla hopper extracts exactly one Cooked Horse')
  for side,name in [('owner','FFMOwner'),('guest','FFMGuest')]:
-  rpc('server','teleport',player=name,x=9,y=64,z=5,yaw=0,pitch=15);rpc(side,'useBlock',x=9,y=64,z=7)
+  rpc('server','teleport',player=name,x=9,y=64,z=5,yaw=0,pitch=15)
+  # Vanilla rejects block-use packets while its teleport acknowledgement is pending.
+  # Observe the client applying the teleport before sending the actual interaction.
+  wait_for(lambda side=side:sum((a-b)**2 for a,b in zip(snapshot(side)['player']['position'],[9,64,5]))<.01)
+  rpc(side,'useBlock',x=9,y=64,z=7)
   wait_for(lambda side=side:snapshot(side)['screen']=='FurnaceScreen')
   rpc(side,'screenshot',file='audit-016/furnace-'+side+'.png');rpc(side,'close')
  check('Both players can open and close the native furnace GUI after mod item automation')

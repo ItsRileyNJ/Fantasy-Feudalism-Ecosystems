@@ -1,0 +1,40 @@
+Compatibility check after the bat-enclosure display fix.
+Original assertions and supplied Mercenaries JAR unchanged.
+
+Combined Ecosystems namespace
+[03:14:29] [Server thread/INFO] [minecraft/GameTestServer]: All 168 required tests passed :)
+BUILD SUCCESSFUL in 48s
+
+Combined Mercenaries namespace
+[03:16:29] [Server thread/ERROR] [minecraft/LogTestReporter]: mountedcrossbowretreatrestartsacrossgrassystep failed at 8275734, -60, 14046205! Mounted combat must retreat off the grassy edge without a navigation lock: [FFM 1.15.7 mount debug: guard=2918, horse=2919, order=FOLLOW, Guard: noAI=false, inventoryOpen=false, commander=16.749 blocks, target=entity.minecraft.skeleton, underground=false, Horse: noAI=false, immobile=false, eating=false, standing=false, ground=true, saddled=true, leashed=false, ownerMatches=true, Control: passenger=guard, delegated=true, installed=true, serverControlled=true, attributeSpeed=0.225, speed=0.325, Navigation: MountedGuardNavigation, path=2/2, reachable=true, pause=none, lastBlocked=null, Movement: position=(8275757.977,-59.000,14046221.099), velocity=(0.000,-0.078,0.000), wanted=false, wantedSpeed=1.445, wantedPosition=(8275758.000,-59.000,14046221.000), footprintSafe=true, Goals: guard=[KitingCrossbowGoal], horse=[]]
+[03:17:10] [Server thread/INFO] [minecraft/GameTestServer]: 1 required tests failed :(
+BUILD FAILED in 2m 40s
+
+Mercenaries-only reference
+[03:19:47] [Server thread/ERROR] [minecraft/LogTestReporter]: mountedcrossbowretreatrestartsacrossgrassystep failed at 14907938, -60, -1832155! Mounted combat must retreat off the grassy edge without a navigation lock: [FFM 1.15.7 mount debug: guard=2664, horse=2665, order=FOLLOW, Guard: noAI=false, inventoryOpen=false, commander=16.570 blocks, target=entity.minecraft.skeleton, underground=false, Horse: noAI=false, immobile=false, eating=false, standing=false, ground=true, saddled=true, leashed=false, ownerMatches=true, Control: passenger=guard, delegated=true, installed=true, serverControlled=true, attributeSpeed=0.225, speed=0.000, Navigation: MountedGuardNavigation, path=none, pause=none, lastBlocked=null, Movement: position=(14907961.926,-59.000,-1832126.451), velocity=(0.000,-0.078,0.000), wanted=true, wantedSpeed=0.000, wantedPosition=(14907961.926,-59.000,-1832126.451), footprintSafe=true, Goals: guard=[KitingCrossbowGoal], horse=[]]
+[03:20:25] [Server thread/INFO] [minecraft/GameTestServer]: 1 required tests failed :(
+BUILD FAILED in 2m 35s
+
+Mercenaries-only reference settings.gradle:
+pluginManagement { repositories { gradlePluginPortal() } }
+rootProject.name = 'mercenaries-reference'
+
+Mercenaries-only reference build.gradle:
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+neoForge {
+    version = '21.1.262'
+    runs {
+        gameTestServer {
+            type = 'gameTestServer'
+            gameDirectory = file('run/reference')
+            systemProperty 'neoforge.enabledGameTestNamespaces', 'villagerscontract'
+        }
+    }
+}
+dependencies {
+    runtimeOnly files('/workspace/attachments/4d945a6b-1e1f-4f2f-a24a-53a9e1400967/fantasyfeudalism-mercenaries-1.15.7.jar')
+}

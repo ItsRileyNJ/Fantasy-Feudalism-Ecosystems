@@ -55,7 +55,9 @@ public final class ChickenBehaviorTests {
                 new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.WHEAT_SEEDS));
         player.moveTo(chicken.position().add(2.5,0,0));h.getLevel().addFreshEntity(player);
         h.succeedWhen(()->{
-            h.assertTrue(chicken.distanceToSqr(player)>25,"Normal AI must flee instead of following held seeds");
+            h.assertTrue(chicken.distanceToSqr(player)>25,"Normal AI must flee instead of following held seeds; chicken="
+                    +h.relativeVec(chicken.position())+", player="+h.relativeVec(player.position())
+                    +", path="+chicken.getNavigation().getPath()+", target="+chicken.getTarget());
             player.discard();
         });
     }

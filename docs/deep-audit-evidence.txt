@@ -1,0 +1,66 @@
+
+Initial regression run
+/tmp/deep-audit-before.log
+[03:34:34] [Server thread/ERROR] [minecraft/LogTestReporter]: ordinaryshearingstilldropswoolanddamagesthetool failed at 2825466, -60, 5679468! Native shearing and tool durability remain intact
+[03:34:34] [Server thread/ERROR] [minecraft/LogTestReporter]: wildandtamedspidersrejectcreativeandspectatortargets failed at 2825556, -60, 5679468! Spiders must reject CREATIVE even on retaliation/explicit targeting paths
+[03:34:45] [Server thread/ERROR] [minecraft/LogTestReporter]: normalaifleesevenwhenplayerholdsseeds failed at 2825421, -60, 5679974! Normal AI must flee instead of following held seeds
+[03:34:53] [Server thread/ERROR] [minecraft/LogTestReporter]: offlinespiderownercannotbypassserverpvpprotection failed at 2825646, -60, 5680204! Server PvP protection must also apply to offline owners' pets
+[03:34:55] [Server thread/INFO] [minecraft/GameTestServer]: 4 required tests failed :(
+BUILD FAILED in 1m 27s
+Final progress row: 158 passed, 4 failed, 0 pending/unrun of 162
+
+First fix run; mode-sensitive mock positive control was invalid
+/tmp/deep-audit-after.log
+[03:36:55] [Server thread/ERROR] [minecraft/LogTestReporter]: offlinespiderownercannotbypassserverpvpprotection failed at 9040268, -60, 1378208! Normal survival retaliation remains available when PvP is enabled
+[03:36:58] [Server thread/INFO] [minecraft/GameTestServer]: 1 required tests failed :(
+BUILD FAILED in 54s
+Final progress row: 161 passed, 1 failed, 0 pending/unrun of 162
+
+Final standalone run
+/tmp/deep-audit-final.log
+[03:39:05] [Server thread/INFO] [minecraft/GameTestServer]: All 162 required tests passed :)
+BUILD SUCCESSFUL in 50s
+Final progress row: 162 passed, 0 failed, 0 pending/unrun of 162
+
+Final combined Ecosystems namespace
+/workspace/Fantasy-Feudalism-Ecosystems/run/compatibility-trhszekm/ecosystems.log
+[03:41:02] [Server thread/INFO] [minecraft/GameTestServer]: All 174 required tests passed :)
+BUILD SUCCESSFUL in 1m 20s
+Final progress row: 174 passed, 0 failed, 0 pending/unrun of 174
+
+First native Mercenaries run; manually stopped as stalled
+/workspace/Fantasy-Feudalism-Ecosystems/run/compatibility-trhszekm/mercenaries.log
+BUILD FAILED in 6m 24s
+First diagnostic: [03:44:07] [Server thread/WARN] [ne.it.fa.ga.CompatibilityDiagnostics/]: Test harness progress diagnostic: name=idleguardwalkstoarrowsandlootleavingequipmentbehind, started=false, worldTime=19200, startTime=0, testTick=0, timeout=180, structure=BlockPos{x=8556855, y=-60, z=-13267629}
+Final progress row: 261 passed, 0 failed, 77 pending/unrun of 338
+
+Native Mercenaries diagnostic repeat; watchdog stopped
+/workspace/Fantasy-Feudalism-Ecosystems/run/compatibility-x54ohf9z/mercenaries.log
+[03:49:42] [Server thread/ERROR] [minecraft/LogTestReporter]: mountedcrossbowretreatrestartsacrossgrassystep failed at -872182, -60, -9645247! Mounted combat must retreat off the grassy edge without a navigation lock: [FFM 1.15.7 mount debug: guard=2861, horse=2862, order=FOLLOW, Guard: noAI=false, inventoryOpen=false, commander=16.269 blocks, target=entity.minecraft.skeleton, underground=false, Horse: noAI=false, immobile=false, eating=false, standing=false, ground=true, saddled=true, leashed=false, ownerMatches=true, Control: passenger=guard, delegated=true, installed=true, serverControlled=true, attributeSpeed=0.225, speed=0.325, Navigation: MountedGuardNavigation, path=2/2, reachable=true, pause=none, lastBlocked=null, Movement: position=(-872159.017,-59.000,-9645231.910), velocity=(0.000,-0.078,0.000), wanted=false, wantedSpeed=1.445, wantedPosition=(-872159.000,-59.000,-9645232.000), footprintSafe=true, Goals: guard=[KitingCrossbowGoal], horse=[]]
+First diagnostic: [03:49:45] [Server thread/WARN] [ne.it.fa.ga.CompatibilityDiagnostics/]: Test harness progress diagnostic: name=anormallyactivenitwitbecomesaguardthatautonomouslyfights, started=false, worldTime=25000, startTime=0, testTick=0, timeout=180, structure=BlockPos{x=-872187, y=-60, z=-9645193}
+Final progress row: 260 passed, 1 failed, 77 pending/unrun of 338
+
+Updated compatibility command successful repeat
+/workspace/Fantasy-Feudalism-Ecosystems/run/compatibility-igut6iza/ecosystems.log
+[03:55:25] [Server thread/INFO] [minecraft/GameTestServer]: All 174 required tests passed :)
+BUILD SUCCESSFUL in 1m 4s
+Final progress row: 174 passed, 0 failed, 0 pending/unrun of 174
+
+Final isolated solver comparison:
+10,000 seeded trajectories match bit for bit (including unreachable targets)
+round=0 baseline_ns=2703.9 optimized_ns=1145.3
+round=1 baseline_ns=2578.4 optimized_ns=938.1
+round=2 baseline_ns=2530.4 optimized_ns=1143.7
+round=3 baseline_ns=2605.6 optimized_ns=1288.8
+round=4 baseline_ns=2533.0 optimized_ns=1009.7
+round=5 baseline_ns=2514.4 optimized_ns=951.8
+round=6 baseline_ns=2589.0 optimized_ns=1056.6
+round=7 baseline_ns=2656.1 optimized_ns=1064.8
+Median after warmup: 2561.0 -> 1060.7 ns/solve (58.6% reduction)
+This is a solver microbenchmark, not a server TPS measurement.
+
+Graphical client check:
+Both production mods and ffm_multiplayer_test loaded. Client RPC reported TitleScreen and renderErrors=[]. Resource reload completed; subsequent renderErrors=[]. The screenshot taken immediately afterward showed the resource-loading overlay fading, so it is not evidence for in-world rendering. Client and display stopped. No dedicated server was started.
+
+JFR: /workspace/performance-audit/deep-audit-server.jfr
+1531 server-thread execution samples, 54 GC events; summed GC pauses 1.143627385 seconds, maximum pause 46.419732 ms. This records a GameTest fixture workload, not a production server benchmark.

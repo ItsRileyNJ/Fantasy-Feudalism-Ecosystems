@@ -9,6 +9,15 @@ import net.minecraft.world.phys.Vec3;
 /** Retain vanilla shot spread while correcting the gravity arc for the faster launch speed. */
 public final class SkeletonBallistics {
     private static final double DRAG = (double)0.99F;
+    // The solver only samples times in [0, 120]. Reuse the exact same powers
+    // instead of evaluating Math.pow again for every trajectory-search step.
+    private static final double[] DRAG_POWERS = dragPowers();
+
+    private static double[] dragPowers() {
+        double[] powers = new double[121];
+        for (int tick = 0; tick < powers.length; tick++) powers[tick] = Math.pow(DRAG, tick);
+        return powers;
+    }
 
     public static void accelerate(AbstractArrow arrow, AbstractSkeleton shooter) {
         Vec3 original = arrow.getDeltaMovement();
@@ -58,7 +67,7 @@ public final class SkeletonBallistics {
 
     private static double travelFactor(double time) {
         int whole = (int)time;
-        double power = Math.pow(DRAG, whole);
+        double power = DRAG_POWERS[whole];
         return (1 - power) / (1 - DRAG) + (time - whole) * power;
     }
     private SkeletonBallistics() {}

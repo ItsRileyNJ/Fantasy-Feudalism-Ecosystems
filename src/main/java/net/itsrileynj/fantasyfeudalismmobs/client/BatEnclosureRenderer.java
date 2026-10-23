@@ -21,7 +21,9 @@ public final class BatEnclosureRenderer implements BlockEntityRenderer<BatEnclos
             double x=bats.size()==1?.5:bats.size()==2?.32+i*.36:.24+i*.26;
             poses.translate(x-.5,.27,-.05);poses.scale(.55F,.55F,.55F);
             // Render just the model: world-position shadows and debug hitboxes do not belong inside a display.
-            Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(bats.get(i)).render(bats.get(i),0,partial,poses,buffers,light);
+            // Display bats never tick. A world partial tick would replay interpolation every tick
+            // and wind their animation clock backwards, making the hanging models shake.
+            Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(bats.get(i)).render(bats.get(i),0,0,poses,buffers,light);
             poses.popPose();
         }
     }

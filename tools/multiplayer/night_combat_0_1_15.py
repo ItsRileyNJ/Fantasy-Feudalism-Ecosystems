@@ -10,6 +10,7 @@ def check(name,**detail):
 def camera(side,name,x,z,tx,tz):
  yaw=math.degrees(math.atan2(-(tx-x),tz-z));rpc('server','teleport',player=name,x=x,y=64,z=z,yaw=yaw,pitch=4)
 def run():
+ rpc('server','setup')
  rpc('server','invulnerable',value=False)
  command('setblock 8 64 8 minecraft:air');command('setblock 9 64 8 minecraft:air');rpc('server','clear');command('time set 18000');command('difficulty hard');command('gamemode creative @a')
  for side,name,x,z in [('owner','FFMOwner',8,-2),('guest','FFMGuest',12,-2)]:camera(side,name,x,z,10,6)

@@ -1,5 +1,10 @@
 """Live combat and bounded combined-mod load; run after all Gradle/reference tests finish."""
 from control import *
+import argparse
+
+parser=argparse.ArgumentParser()
+parser.add_argument('--combat-timeout',type=float,default=25,help='Observation window; long-range vanilla spread can miss multiple shots')
+args=parser.parse_args()
 
 REPORT=TEST_ROOT/'mercenaries-results.json'
 checks=json.loads(REPORT.read_text())
@@ -13,8 +18,11 @@ try:
  for weapon,distance in [('bow',10),('crossbow',27)]:
   rpc('server','clear')
   guard=rpc('server','spawn',type='villagerscontract:defender',x=3+distance,y=64,z=1,owner='FFMOwner')
-  skeleton=rpc('server','spawn',type='minecraft:skeleton',x=3,y=64,z=1,weapon='minecraft:'+weapon)
+  skeleton=rpc('server','spawn',type='minecraft:skeleton',x=3,y=64,z=1,weapon='minecraft:'+weapon,seed=42)
+  # Start the combat deadline only after both clients track the combatants.
+  wait_for(lambda:all(byid(snapshot(side),guard['id']) and byid(snapshot(side),skeleton['id']) for side in ['owner','guest']))
   rpc('server','target',entity=skeleton['id'],target=guard['id'])
+  started=time.monotonic()
   def hit():
    s=snapshot('server');g=byid(s,guard['id'])
    if not g or not g['health']<g['maxHealth']:return False
@@ -22,8 +30,8 @@ try:
     c=snapshot(side);cg=byid(c,guard['id'])
     if not cg or not cg['health']<cg['maxHealth'] or c['renderErrors']:return False
    return g
-  g=wait_for(hit,timeout=25)
-  record('Live '+weapon+' skeleton AI hits a mercenary at '+str(distance)+' blocks and both graphical clients receive its health change',{'health':g['health'],'maxHealth':g['maxHealth']})
+  g=wait_for(hit,timeout=args.combat_timeout)
+  record('Live '+weapon+' skeleton AI hits a mercenary at '+str(distance)+' blocks and both graphical clients receive its health change',{'health':g['health'],'maxHealth':g['maxHealth'],'secondsToObservedHit':time.monotonic()-started,'observationLimitSeconds':args.combat_timeout,'seed':42})
  rpc('server','clear')
  for name,z in [('FFMOwner',0),('FFMGuest',2)]:rpc('server','teleport',player=name,x=32,y=64,z=z,yaw=90,pitch=5)
  rpc('server','stress',count=180)

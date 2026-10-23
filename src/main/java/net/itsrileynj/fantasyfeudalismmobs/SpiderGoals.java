@@ -67,6 +67,7 @@ public final class SpiderGoals {
 
     public static boolean mayAttack(Spider spider, LivingEntity target) {
         if (target == null || !target.isAlive()) return false;
+        if (target instanceof Player player && (player.isCreative() || player.isSpectator())) return false;
         if (!SpiderCompanion.isTamed(spider)) return !(target instanceof Player player && SpiderCompanion.protectedByFollower(player));
         if (SpiderCompanion.isSitting(spider)) return false;
         Player owner = SpiderCompanion.owner(spider);
@@ -75,8 +76,8 @@ public final class SpiderGoals {
                 && SpiderCompanion.data(other).getUUID("owner").equals(SpiderCompanion.data(spider).getUUID("owner"))) return false;
         if (target instanceof TamableAnimal pet && pet.isTame()
                 && SpiderCompanion.data(spider).getUUID("owner").equals(pet.getOwnerUUID())) return false;
-        return !(target instanceof Player player && owner != null
-                && (!owner.canHarmPlayer(player) || !spider.level().getServer().isPvpAllowed()));
+        return !(target instanceof Player player
+                && (!spider.level().getServer().isPvpAllowed() || owner != null && !owner.canHarmPlayer(player)));
     }
 
     private static class WildTarget<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {

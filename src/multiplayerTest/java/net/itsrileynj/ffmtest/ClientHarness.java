@@ -32,6 +32,32 @@ import net.neoforged.neoforge.client.event.*;
 
 @EventBusSubscriber(modid="ffm_multiplayer_test", value=Dist.CLIENT)
 public final class ClientHarness {
+    private static final Map<UUID,BatPoseProbe> ENCLOSURE_BAT_POSES=new HashMap<>();
+    private static final class BatPoseProbe {
+        private double[] first;
+        private int frames;
+        private double maxDelta;
+        private float minPartial=Float.POSITIVE_INFINITY,maxPartial=Float.NEGATIVE_INFINITY;
+        void record(net.minecraft.world.entity.ambient.Bat bat,net.minecraft.client.model.BatModel model,float partial){
+            var values=new ArrayList<Double>();
+            values.add((double)net.minecraft.util.Mth.rotLerp(partial,bat.yBodyRotO,bat.yBodyRot));
+            values.add((double)net.minecraft.util.Mth.rotLerp(partial,bat.yHeadRotO,bat.yHeadRot));
+            values.add((double)net.minecraft.util.Mth.lerp(partial,bat.xRotO,bat.getXRot()));
+            model.root().getAllParts().forEach(part->{
+                for(float value:new float[]{part.x,part.y,part.z,part.xRot,part.yRot,part.zRot,part.xScale,part.yScale,part.zScale})
+                    values.add((double)value);
+            });
+            double[] current=values.stream().mapToDouble(Double::doubleValue).toArray();
+            if(first==null)first=current.clone();
+            if(current.length!=first.length){RENDER_ERRORS.add("Enclosure bat model changed part count");return;}
+            for(int i=0;i<current.length;i++){
+                if(!Double.isFinite(current[i]))RENDER_ERRORS.add("Non-finite enclosure bat pose");
+                maxDelta=Math.max(maxDelta,Math.abs(current[i]-first[i]));
+            }
+            frames++;minPartial=Math.min(minPartial,partial);maxPartial=Math.max(maxPartial,partial);
+        }
+        Map<String,Object> snapshot(){return Map.of("frames",frames,"maxPoseDelta",maxDelta,"minPartial",minPartial,"maxPartial",maxPartial);}
+    }
     private static final Map<Integer,Integer> FROG_JUMP_FRAMES=new HashMap<>();
     private static final Map<Integer,Integer> WOLF_HURT=new HashMap<>();
     private static final Map<String,Integer> WOLF_SOUNDS=new java.util.concurrent.ConcurrentHashMap<>();
@@ -48,6 +74,10 @@ public final class ClientHarness {
     private static final Map<Integer,Map<String,Object>> SPIDER_POSES=new HashMap<>();
     @SubscribeEvent public static void frame(RenderFrameEvent.Post event) { frames++; }
     @SubscribeEvent public static void rendered(RenderLivingEvent.Post<?,?> event) {
+        if(event.getEntity() instanceof net.minecraft.world.entity.ambient.Bat bat
+                &&bat.level().getEntity(bat.getId())!=bat
+                &&event.getRenderer().getModel() instanceof net.minecraft.client.model.BatModel model)
+            ENCLOSURE_BAT_POSES.computeIfAbsent(bat.getUUID(),id->new BatPoseProbe()).record(bat,model,event.getPartialTick());
         if(event.getEntity() instanceof net.minecraft.world.entity.animal.frog.Frog frog
                 && frog.getPose()==net.minecraft.world.entity.Pose.LONG_JUMPING)
             {
@@ -132,6 +162,8 @@ public final class ClientHarness {
             case "block":return ControlFiles.block(mc.level,q);
             case "enclosure":return ControlFiles.enclosure(mc.level,q);
             case "snapshot":return snapshot(mc);
+            case "resetEnclosurePoseProbe":ENCLOSURE_BAT_POSES.clear();return true;
+            case "quit":mc.stop();return true;
             case "connect": {
                 if(mc.level!=null){mc.level.disconnect();mc.disconnect();}OBSERVED_ENTITIES.clear();
                 String address=q.has("address")?q.get("address").getAsString():"127.0.0.1:25577";
@@ -192,6 +224,9 @@ public final class ClientHarness {
         result.put("screen",mc.screen==null?"":mc.screen.getClass().getSimpleName());result.put("frames",frames);
         result.put("skeletonFrames",skeletonFrames);result.put("crossbowFrames",crossbowFrames);result.put("renderErrors",List.copyOf(RENDER_ERRORS));
         result.put("guardFrames",guardFrames);
+        var batPoses=new LinkedHashMap<String,Object>();ENCLOSURE_BAT_POSES.forEach((id,probe)->batPoses.put(id.toString(),probe.snapshot()));
+        result.put("enclosureBatPoses",batPoses);
+        result.put("loadingOverlay",mc.getOverlay()!=null);
         result.put("crossbowPoses",new HashMap<>(CROSSBOW_POSES));
         result.put("shieldPoses",new HashMap<>(SHIELD_POSES));
         result.put("spiderPoses",new HashMap<>(SPIDER_POSES));
