@@ -62,7 +62,7 @@ def main():
     (root / "run").mkdir(exist_ok=True)
     output = Path(tempfile.mkdtemp(prefix="compatibility-", dir=root / "run"))
     print(f"Mercenaries SHA-256: {expected}\nFresh worlds and logs: {output}", flush=True)
-    suites = {"ecosystems": ("fantasy_feudalism_mobs", 174), "mercenaries": ("villagerscontract", 338)}
+    suites = {"ecosystems": ("fantasy_feudalism_mobs", 188), "mercenaries": ("villagerscontract", 338)}
     for name, (namespace, minimum) in suites.items():
         if args.suite not in ("all", name):
             continue

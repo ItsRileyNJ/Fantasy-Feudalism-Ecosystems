@@ -6,9 +6,20 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.16.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.17.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.17 changes
+
+- A stray cat or your own cat within four blocks when you enter bed can settle beside you. After sleeping with it, wake up with **Rested** for six minutes: half the usual hunger exhaustion and 35% more natural healing. Its inventory icon is three blue Zs.
+- **Field Mice** are tiny white village wildlife with pink tails and two hearts. Each morning, villages try to fill a population of one mouse per three cats; fewer than three cats produce none. Existing and unloaded mice count toward the limit.
+- Each mouse eats one planted crop growth stage every two minutes, respecting `mobGriefing`. Mice flee players, cats, villagers, and Mercenaries within three blocks, then return to crops. Their escape speed is 10% below a cat's chase speed.
+- Cats hunt mice within fifteen blocks and kill them in one hit. Sit orders and sleeping take priority.
+
+See the [0.1.17 validation report](docs/RELEASE_0.1.17.md).
 
 ## Version 0.1.16 changes
+
+See the [plain-language changelog](CHANGELOG.md) for the latest bat, spider, performance, and compatibility follow-up.
 
 - Creeper vegetation respects `mobGriefing`; capturing a leashed bee returns its lead.
 - Axes disable wither skeleton shields for five seconds. Explicit command/conversion equipment survives initialization.

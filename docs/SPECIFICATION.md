@@ -374,3 +374,18 @@ Apples heal housed bats and show heart particles. Each bat independently produce
 ## 0.1.16 compatibility audit follow-up
 
 Creeper vegetation honors NeoForge entity-griefing permission and `mobGriefing`; explosion entity damage remains enabled. Bottling a leashed bee drops its existing lead once. Native axes disable sword-wither shields for 100 world ticks, with no immediate AI re-raise. Explicit command/conversion skeleton equipment, including named/enchanted items and offhand-only shields, is preserved; normal finalized spawns retain their configured distributions. Spider companions and phantom guardians honor server PvP permission. Frog shore landings retain their water destination. Resident bats reuse navigation and retry on a deadline; guardians resolve recorded attacker UUIDs instead of scanning unrelated nearby creatures. See [the audit report](RELEASE_0.1.16.md).
+
+
+## Cat and Field Mouse additions (0.1.17)
+
+The user's subsequent request and answers add these mechanics to the original specification:
+
+- A cat within four blocks when the player lies down may jump onto the bed and sleep beside them. Eligible cats are strays or cats tamed by that player; other players' pets are excluded. Sit orders remain respected.
+- Waking after actually sleeping beside the cat grants **Rested** for six minutes. Its inventory icon shows three blue Zs. It halves hunger exhaustion and increases native food-based regeneration by 35%.
+- Field Mice are very small, slightly smaller than silverfish, with white fur, pink tails and two hearts.
+- Villages try to spawn mice **once each day in the morning**, at a population of one mouse per three cats. Fewer than three cats permit no new mice.
+- Each mouse eats **one growth stage** from one planted crop, with an individual **two-minute** cooldown.
+- Mice flee players, cats, villagers and mercenaries within three blocks. Their escape movement speed is 10% slower than a cat's hunting movement speed.
+- Surviving mice return to planted crops to continue eating. Cats chase mice within fifteen blocks and kill them in one hit.
+
+Implementation uses native cat owner-resting behavior and morning gifts for tamed cats, standard mob effects, ordinary navigation and server-owned state. Natural healing still requires its usual food and gamerule conditions. Mice do not force chunks to load, and their crop eating honors `mobGriefing`. The morning census includes loaded village cats and saved mouse reservations; existing mice are not forcibly removed if cats later leave. Full sleeping uses vanilla's 100-tick sleep threshold, so an immediate bed visit gives no buff.

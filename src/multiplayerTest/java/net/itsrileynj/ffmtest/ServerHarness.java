@@ -214,6 +214,10 @@ public final class ServerHarness {
                     var p=server.getPlayerList().getPlayerByName(q.get("owner").getAsString());
                     wolf.setOwnerUUID(p.getUUID());wolf.setTame(true,true);
                 }
+                if(e instanceof net.minecraft.world.entity.animal.Cat cat&&q.has("owner")){
+                    var owner=server.getPlayerList().getPlayerByName(q.get("owner").getAsString());
+                    cat.setOwnerUUID(owner.getUUID());cat.setTame(true,true);cat.setOrderedToSit(false);
+                }
                 if(e instanceof Spider spider && q.has("owner")) {
                     ServerPlayer p=server.getPlayerList().getPlayerByName(q.get("owner").getAsString());
                     SpiderCompanion.tame(spider,p.getUUID());SpiderCompanion.setSitting(spider,false);

@@ -13,7 +13,9 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 public final class EcosystemsClient {
     @SubscribeEvent public static void renderers(EntityRenderersEvent.RegisterRenderers event){
         event.registerBlockEntityRenderer(FantasyFeudalismMobs.BAT_ENCLOSURE_ENTITY.get(),BatEnclosureRenderer::new);
+        event.registerEntityRenderer(FantasyFeudalismMobs.FIELD_MOUSE.get(),FieldMouseRenderer::new);
     }
+    @SubscribeEvent public static void layers(EntityRenderersEvent.RegisterLayerDefinitions event){event.registerLayerDefinition(FieldMouseRenderer.LAYER,FieldMouseModel::layer);}
     @SubscribeEvent public static void colors(net.neoforged.neoforge.client.event.RegisterColorHandlersEvent.Item event){
         event.register((stack,tint)->0xFFE3C447,FantasyFeudalismMobs.FERTILIZER.get());
     }

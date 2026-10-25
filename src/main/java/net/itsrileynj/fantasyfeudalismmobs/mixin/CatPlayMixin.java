@@ -1,6 +1,8 @@
 package net.itsrileynj.fantasyfeudalismmobs.mixin;
 
 import net.itsrileynj.fantasyfeudalismmobs.BabyCatPlay;
+import net.itsrileynj.fantasyfeudalismmobs.CatStrayNapGoal;
+import net.itsrileynj.fantasyfeudalismmobs.CatMouseHuntGoal;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
@@ -17,6 +19,8 @@ public abstract class CatPlayMixin extends TamableAnimal {
     @Inject(method="registerGoals",at=@At("TAIL"))
     private void ffm$play(CallbackInfo ci){
         Cat cat=(Cat)(Object)this;
+        goalSelector.addGoal(3,new CatStrayNapGoal(cat));
+        goalSelector.addGoal(4,new CatMouseHuntGoal(cat));
         goalSelector.addGoal(5,new AvoidEntityGoal<>(cat,Villager.class,
                 child->child instanceof Villager villager&&BabyCatPlay.chasing(villager,cat),6,0.9,1.1,
                 child->!cat.isTame()) {

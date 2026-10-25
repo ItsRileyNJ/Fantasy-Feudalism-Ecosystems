@@ -1,0 +1,46 @@
+
+=== cats-tests-initial.log ===
+[03:54:00] [Server thread/ERROR] [minecraft/LogTestReporter]: mousereturnstorememberedcropafterbeingmovedaway failed at -12583685, -60, 9542277! Real navigation returns the mouse to its crop and eats one stage
+[03:54:01] [Server thread/ERROR] [minecraft/LogTestReporter]: restedhalvesexhaustionandmilkremovalrestoresnormalrate failed at -12583955, -60, 9542323! Rested halves exhaustion from ordinary activity
+[03:54:02] [Server thread/ERROR] [minecraft/LogTestReporter]: owncatandstrayactuallyjoinbedsandgrantrestedonwake failed at -12583730, -60, 9542323! Players actually slept
+[03:54:10] [Server thread/ERROR] [minecraft/LogTestReporter]: actualcathuntkillsnearbymouseandsittingcatsdonothunt failed at -12583730, -60, 9542553! Normal cat AI finds and kills a mouse within fifteen blocks
+[03:54:20] [Server thread/INFO] [minecraft/GameTestServer]: 4 required tests failed :(
+BUILD FAILED in 41s
+
+=== cats-tests-diagnostic.log ===
+[03:55:10] [Server thread/ERROR] [minecraft/LogTestReporter]: mousereturnstorememberedcropafterbeingmovedaway failed at 13289823, -60, 9130756! Forage: mouse=(1.3289834140569873E7, -58.0, 9130764.49999984) path=Path(length=1) home=BlockPos{x=13289835, y=-58, z=9130764} next=0 time=3325
+[03:55:12] [Server thread/ERROR] [minecraft/LogTestReporter]: owncatandstrayactuallyjoinbedsandgrantrestedonwake failed at 13289778, -60, 9130802! Players actually slept: 0, 0
+[03:55:20] [Server thread/ERROR] [minecraft/LogTestReporter]: actualcathuntkillsnearbymouseandsittingcatsdonothunt failed at 13289778, -60, 9131032! Cat hunt: cat=(1.32897815E7, -58.0, 9131040.5) mouse=(1.32897895E7, -58.0, 9131040.5) health=4.0 target=null path=null canAttack=true sitting=false
+[03:55:29] [Server thread/INFO] [minecraft/GameTestServer]: 3 required tests failed :(
+BUILD FAILED in 39s
+
+=== cats-tests-speed-standalone.log ===
+[04:10:24] [Server thread/INFO] [minecraft/GameTestServer]: All 175 required tests passed :)
+BUILD SUCCESSFUL in 39s
+
+=== cats-tests-speed-combined.log ===
+[04:12:22] [Server thread/INFO] [minecraft/GameTestServer]: All 188 required tests passed :)
+BUILD SUCCESSFUL in 1m 45s
+
+=== cats-live-checks.log ===
+PASS Actual owned cat and stray walk onto occupied beds and settle beside two sleeping players
+PASS A normal morning wake grants six-minute Rested to both clients and their native inventories display the effect
+PASS Both graphical clients render the small white mouse with a pink tail and finite animated model parts
+PASS A real foraging mouse eats one crop stage and starts its individual two-minute timer
+PASS Mouse flees a real player approaching within three blocks, then returns to the crop without bypassing its cooldown
+PASS A real cat acquires a nearby running mouse and kills it during the chase
+PASS Mouse identity, meal deadline, crop memory, and active Rested effects are saved for a real restart
+
+=== cats-live-daylit.log ===
+PASS Actual owned cat and stray walk onto occupied beds and settle beside two sleeping players
+PASS A normal morning wake grants six-minute Rested to both clients and their native inventories display the effect
+PASS Both graphical clients render the small white mouse with a pink tail and finite animated model parts
+PASS A real foraging mouse eats one crop stage and starts its individual two-minute timer
+PASS Mouse flees a real player approaching within three blocks, then returns to the crop without bypassing its cooldown
+PASS A real cat acquires a nearby running mouse and kills it during the chase
+PASS Mouse identity, meal deadline, crop memory, and active Rested effects are saved for a real restart
+
+=== cats-live-restart-checks.log ===
+PASS Normal dedicated-server restart preserves mouse UUID/crop memory/cooldown and both players retain Rested; both clients reload resources
+
+Artifact SHA-256: a1138120f9bd21ed1dc973021f463af15088135fdb56035bd672505b8be344e4

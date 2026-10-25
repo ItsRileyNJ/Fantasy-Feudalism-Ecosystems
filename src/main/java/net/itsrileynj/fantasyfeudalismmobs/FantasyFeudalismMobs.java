@@ -23,6 +23,12 @@ import net.minecraft.world.item.CreativeModeTab;
 @Mod(FantasyFeudalismMobs.MOD_ID)
 public final class FantasyFeudalismMobs {
     public static final String MOD_ID = "fantasy_feudalism_mobs";
+    public static final DeferredRegister<net.minecraft.world.entity.EntityType<?>> ENTITIES=DeferredRegister.create(Registries.ENTITY_TYPE,MOD_ID);
+    public static final DeferredHolder<net.minecraft.world.entity.EntityType<?>,net.minecraft.world.entity.EntityType<FieldMouse>> FIELD_MOUSE=
+            ENTITIES.register("field_mouse",()->net.minecraft.world.entity.EntityType.Builder.of(FieldMouse::new,net.minecraft.world.entity.MobCategory.CREATURE)
+                    .sized(.35F,.22F).eyeHeight(.16F).clientTrackingRange(8).build(MOD_ID+":field_mouse"));
+    public static final DeferredRegister<net.minecraft.world.effect.MobEffect> EFFECTS=DeferredRegister.create(Registries.MOB_EFFECT,MOD_ID);
+    public static final DeferredHolder<net.minecraft.world.effect.MobEffect,RestedEffect> RESTED=EFFECTS.register("rested",RestedEffect::new);
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MOD_ID);
     public static final DeferredRegister.Blocks BLOCKS=DeferredRegister.createBlocks(MOD_ID);
     public static final DeferredBlock<BatEnclosureBlock> BAT_ENCLOSURE=BLOCKS.register("bat_enclosure",()->
@@ -58,9 +64,14 @@ public final class FantasyFeudalismMobs {
         BLOCKS.register(modEventBus);
         BLOCK_ENTITIES.register(modEventBus);
         ITEMS.register(modEventBus);
+        ENTITIES.register(modEventBus);
+        EFFECTS.register(modEventBus);
+        modEventBus.addListener((net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent event)->event.put(FIELD_MOUSE.get(),FieldMouse.createAttributes().build()));
         CREATIVE_TABS.register(modEventBus);
         modEventBus.addListener(FeudalEvents::spawnPlacements);
         container.registerConfig(ModConfig.Type.SERVER, FeudalConfig.SPEC);
         NeoForge.EVENT_BUS.register(FeudalEvents.class);
+        NeoForge.EVENT_BUS.register(CatRest.class);
+        NeoForge.EVENT_BUS.register(MouseVillages.class);
     }
 }

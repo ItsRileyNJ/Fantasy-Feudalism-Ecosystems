@@ -1,0 +1,186 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "Actual owned cat and stray walk onto occupied beds and settle beside two sleeping players",
+      "passed": true
+    },
+    {
+      "name": "A normal morning wake grants six-minute Rested to both clients and their native inventories display the effect",
+      "passed": true,
+      "effects": {
+        "owner": {
+          "visible": false,
+          "amplifier": 0,
+          "duration": 7196,
+          "particle": {
+            "type": "minecraft:entity_effect",
+            "rgb": 7911922,
+            "alpha": 1.0
+          },
+          "effect": "fantasy_feudalism_mobs:rested",
+          "ambient": false
+        },
+        "guest": {
+          "particle": {
+            "type": "minecraft:entity_effect",
+            "rgb": 7911922,
+            "alpha": 1.0
+          },
+          "effect": "fantasy_feudalism_mobs:rested",
+          "ambient": false,
+          "visible": false,
+          "amplifier": 0,
+          "duration": 7190
+        }
+      }
+    },
+    {
+      "name": "Both graphical clients render the small white mouse with a pink tail and finite animated model parts",
+      "passed": true
+    },
+    {
+      "name": "A real foraging mouse eats one crop stage and starts its individual two-minute timer",
+      "passed": true,
+      "mouse": {
+        "id": 21,
+        "uuid": "c8fad0be-c47a-44b7-9b9d-3132fbc6e36f",
+        "type": "fantasy_feudalism_mobs:field_mouse",
+        "position": [
+          13.5,
+          64.0,
+          10.5
+        ],
+        "pose": "STANDING",
+        "onGround": true,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 4.0,
+        "maxHealth": 4.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "nextMeal": 38945,
+        "cropHome": "BlockPos{x=14, y=64, z=10}",
+        "spawnType": "",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false
+      }
+    },
+    {
+      "name": "Mouse flees a real player approaching within three blocks, then returns to the crop without bypassing its cooldown",
+      "passed": true
+    },
+    {
+      "name": "A real cat acquires a nearby running mouse and kills it during the chase",
+      "passed": true
+    },
+    {
+      "name": "Mouse identity, meal deadline, crop memory, and active Rested effects are saved for a real restart",
+      "passed": true,
+      "mouse": {
+        "id": 23,
+        "uuid": "8ddfe3ce-2f59-4f0b-a683-3cac887df1e5",
+        "type": "fantasy_feudalism_mobs:field_mouse",
+        "position": [
+          13.5,
+          64.0,
+          10.5
+        ],
+        "pose": "STANDING",
+        "onGround": true,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 4.0,
+        "maxHealth": 4.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "nextMeal": 39172,
+        "cropHome": "BlockPos{x=14, y=64, z=10}",
+        "spawnType": "",
+        "target": -1,
+        "noAi": false,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false
+      }
+    },
+    {
+      "name": "Normal dedicated-server restart preserves mouse UUID/crop memory/cooldown and both players retain Rested; both clients reload resources",
+      "passed": true,
+      "mouse": {
+        "id": 1,
+        "uuid": "8ddfe3ce-2f59-4f0b-a683-3cac887df1e5",
+        "type": "fantasy_feudalism_mobs:field_mouse",
+        "position": [
+          13.5,
+          64.0,
+          10.5
+        ],
+        "pose": "STANDING",
+        "onGround": true,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 4.0,
+        "maxHealth": 4.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "nextMeal": 39172,
+        "cropHome": "BlockPos{x=14, y=64, z=10}",
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false
+      }
+    }
+  ]
+}

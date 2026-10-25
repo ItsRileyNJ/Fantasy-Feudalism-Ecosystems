@@ -4,6 +4,9 @@
   "package": "net.itsrileynj.fantasyfeudalismmobs.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "PlayerCatSleepMixin",
+    "CatOwnerNapMixin",
+    "RestedFoodMixin",
     "VillagerCatPlayMixin",
     "CatPlayMixin",
     "WolfMixin",

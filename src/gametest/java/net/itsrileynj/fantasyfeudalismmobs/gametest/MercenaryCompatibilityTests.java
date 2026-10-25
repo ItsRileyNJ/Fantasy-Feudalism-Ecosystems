@@ -29,6 +29,14 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @EventBusSubscriber(modid=FantasyFeudalismMobs.MOD_ID, bus=EventBusSubscriber.Bus.MOD)
 @PrefixGameTestTemplate(false)
 public final class MercenaryCompatibilityTests {
+    @GameTest(template="test_empty",templateNamespace=FantasyFeudalismMobs.MOD_ID,batch="mouse_guard_flee",timeoutTicks=120)
+    public static void fieldMouseFleesActualMercenaryGuard(GameTestHelper h){
+        Mob guard=guard(h);
+        var mouse=h.spawn(net.itsrileynj.fantasyfeudalismmobs.FantasyFeudalismMobs.FIELD_MOUSE.get(),6,2,8);
+        mouse.getRandom().setSeed(4);
+        h.assertTrue(net.itsrileynj.fantasyfeudalismmobs.FieldMouse.threat(guard),"The separate Mercenaries entity is a recognized threat");
+        h.succeedWhen(()->h.assertTrue(mouse.distanceToSqr(guard)>25,"A mouse genuinely flees the mercenary's position"));
+    }
     @SubscribeEvent public static void register(RegisterGameTestsEvent event) {
         if (ModList.get().isLoaded("villagerscontract")) event.register(MercenaryCompatibilityTests.class);
     }

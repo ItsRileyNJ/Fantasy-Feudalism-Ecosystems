@@ -59,6 +59,7 @@ public final class ClientHarness {
         Map<String,Object> snapshot(){return Map.of("frames",frames,"maxPoseDelta",maxDelta,"minPartial",minPartial,"maxPartial",maxPartial);}
     }
     private static final Map<Integer,Integer> FROG_JUMP_FRAMES=new HashMap<>();
+    private static final Map<Integer,Integer> MOUSE_RENDER_FRAMES=new HashMap<>();
     private static final Map<Integer,Integer> WOLF_HURT=new HashMap<>();
     private static final Map<String,Integer> WOLF_SOUNDS=new java.util.concurrent.ConcurrentHashMap<>();
     @SubscribeEvent public static void sound(net.neoforged.neoforge.client.event.sound.PlaySoundEvent event) {
@@ -74,6 +75,11 @@ public final class ClientHarness {
     private static final Map<Integer,Map<String,Object>> SPIDER_POSES=new HashMap<>();
     @SubscribeEvent public static void frame(RenderFrameEvent.Post event) { frames++; }
     @SubscribeEvent public static void rendered(RenderLivingEvent.Post<?,?> event) {
+        if(event.getEntity() instanceof net.itsrileynj.fantasyfeudalismmobs.FieldMouse mouse
+                &&event.getRenderer().getModel() instanceof HierarchicalModel<?> mouseModel){
+            MOUSE_RENDER_FRAMES.merge(mouse.getId(),1,Integer::sum);
+            mouseModel.root().getAllParts().forEach(part->{if(!Float.isFinite(part.xRot)||!Float.isFinite(part.yRot))RENDER_ERRORS.add("Non-finite mouse model pose");});
+        }
         if(event.getEntity() instanceof net.minecraft.world.entity.ambient.Bat bat
                 &&bat.level().getEntity(bat.getId())!=bat
                 &&event.getRenderer().getModel() instanceof net.minecraft.client.model.BatModel model)
@@ -222,6 +228,7 @@ public final class ClientHarness {
         var result=new LinkedHashMap<String,Object>();
         result.put("guiWidth",mc.getWindow().getGuiScaledWidth());result.put("guiHeight",mc.getWindow().getGuiScaledHeight());
         result.put("screen",mc.screen==null?"":mc.screen.getClass().getSimpleName());result.put("frames",frames);
+        result.put("mouseRenderFrames",new HashMap<>(MOUSE_RENDER_FRAMES));
         result.put("skeletonFrames",skeletonFrames);result.put("crossbowFrames",crossbowFrames);result.put("renderErrors",List.copyOf(RENDER_ERRORS));
         result.put("guardFrames",guardFrames);
         var batPoses=new LinkedHashMap<String,Object>();ENCLOSURE_BAT_POSES.forEach((id,probe)->batPoses.put(id.toString(),probe.snapshot()));

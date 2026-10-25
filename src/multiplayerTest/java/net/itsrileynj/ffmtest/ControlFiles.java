@@ -81,6 +81,7 @@ public final class ControlFiles {
         var info = entity(player);
         info.put("name", player.getName().getString()); info.put("health", player.getHealth());
         info.put("food",player.getFoodData().getFoodLevel());info.put("saturation",player.getFoodData().getSaturationLevel());
+        info.put("exhaustion",player.getFoodData().getExhaustionLevel());info.put("sleeping",player.isSleeping());info.put("sleepTimer",player.getSleepTimer());
         info.put("selected", player.getInventory().selected);
         var inventory = new ArrayList<Map<String,Object>>();
         for (int i = 0; i < player.getInventory().getContainerSize(); i++) inventory.add(stack(player.getInventory().getItem(i)));
@@ -104,6 +105,10 @@ public final class ControlFiles {
                     "visible",e.isVisible(),"ambient",e.isAmbient(),"particle",particle(e.getParticleOptions()))).toList());
             info.put("effectParticles",effectParticles(living));
         }
+        if(entity instanceof net.minecraft.world.entity.animal.Cat cat){
+            info.put("lying",cat.isLying());info.put("tamed",cat.isTame());info.put("owner",String.valueOf(cat.getOwnerUUID()));info.put("sitting",cat.isOrderedToSit());
+        }
+        if(entity instanceof FieldMouse mouse){info.put("nextMeal",mouse.nextMeal());info.put("cropHome",String.valueOf(mouse.cropHome()));}
         if(entity instanceof Mob mob) {
             info.put("spawnType",mob.getSpawnType()==null?"":mob.getSpawnType().name());
             info.put("target",mob.getTarget()==null?-1:mob.getTarget().getId());info.put("noAi",mob.isNoAi());
