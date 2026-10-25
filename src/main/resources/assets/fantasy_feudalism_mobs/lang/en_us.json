@@ -9,5 +9,7 @@
   "tooltip.fantasy_feudalism_mobs.bat_net.occupied": "Contains a bat. Use on a Bat Enclosure to move it in.",
   "item.fantasy_feudalism_mobs.fertilizer": "Fertilizer",
   "entity.fantasy_feudalism_mobs.field_mouse": "Field Mouse",
-  "effect.fantasy_feudalism_mobs.rested": "Rested"
+  "effect.fantasy_feudalism_mobs.rested": "Rested",
+  "subtitles.fantasy_feudalism_mobs.field_mouse.ambient": "Field Mouse squeaks",
+  "subtitles.fantasy_feudalism_mobs.field_mouse.hurt": "Field Mouse hurts"
 }

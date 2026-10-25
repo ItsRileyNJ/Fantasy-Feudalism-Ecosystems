@@ -36,6 +36,11 @@ public final class FieldMouse extends PathfinderMob {
     public FieldMouse(EntityType<? extends FieldMouse> type,Level level){super(type,level);setPersistenceRequired();}
     public static AttributeSupplier.Builder createAttributes(){return Mob.createMobAttributes()
             .add(Attributes.MAX_HEALTH,4).add(Attributes.MOVEMENT_SPEED,RUN_SPEED).add(Attributes.FOLLOW_RANGE,24);}
+    // Use Mob's random ambient scheduler with the same minimum interval as vanilla Animal.
+    @Override public int getAmbientSoundInterval(){return 120;}
+    @Override protected net.minecraft.sounds.SoundEvent getAmbientSound(){return FantasyFeudalismMobs.MOUSE_AMBIENT.get();}
+    @Override protected net.minecraft.sounds.SoundEvent getHurtSound(DamageSource source){return FantasyFeudalismMobs.MOUSE_HURT.get();}
+    @Override protected net.minecraft.sounds.SoundEvent getDeathSound(){return FantasyFeudalismMobs.MOUSE_HURT.get();}
     public long nextMeal(){return nextMeal;}
     public BlockPos cropHome(){return cropHome;}
     public BlockPos villageHome(){return villageHome;}

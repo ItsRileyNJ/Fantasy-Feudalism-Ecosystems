@@ -1,0 +1,18 @@
+Mouse Sounds/Mouse_Ambient_1.ogg: 11063 bytes, unchanged SHA-256 25dab0d8d74de09f20ea5b94abc58a34fa10fde3ad1729edb7b4ac0d250fabdd, full Vorbis decode passed
+Mouse Sounds/Mouse_Ambient_2.ogg: 9809 bytes, unchanged SHA-256 53282f834044543e1844cf07dc11afb1f4277f37fcfb900ecbdadd6fbc472252, full Vorbis decode passed
+Mouse Sounds/Mouse_Ambient_3.ogg: 12140 bytes, unchanged SHA-256 5c9085b2758e29820ba4d8897f599c9ed937f89ddf509910d8d4ac7d25434d26, full Vorbis decode passed
+Mouse Sounds/Mouse_Ambient_4.ogg: 10625 bytes, unchanged SHA-256 eae4ac45abc683ca6e44b63cdf291178d7e19ca0b733f8974f8b94e1e0374baa, full Vorbis decode passed
+Mouse Sounds/Mouse_Ambient_5.ogg: 11922 bytes, unchanged SHA-256 7acb8366a444ae06a8801c1332e92bf6391ace24e39f593ca7143694f7cff781, full Vorbis decode passed
+Mouse Sounds/Mouse_Hurt_1.ogg: 9103 bytes, unchanged SHA-256 a69fc8018240ca606a44fd2e487f2f7b154b67130601a2edc74531b9157e2995, full Vorbis decode passed
+Mouse Sounds/Mouse_Hurt_2.ogg: 8789 bytes, unchanged SHA-256 e0219c2cee0fadb81bebd9ab961108b94d3fd124b0a7b321544cc9653e772294, full Vorbis decode passed
+Mouse Sounds/Mouse_Hurt_3.ogg: 8953 bytes, unchanged SHA-256 bd2b2978b46618e958d63bc2b42c0349c35997d3f7d6ae018392505db65e56cf, full Vorbis decode passed
+
+=== mouse-sounds-standalone.log ===
+[04:25:24] [Server thread/INFO] [minecraft/GameTestServer]: All 176 required tests passed :)
+BUILD SUCCESSFUL in 39s
+
+=== mouse-sounds-combined.log ===
+[04:26:31] [Server thread/INFO] [minecraft/GameTestServer]: All 189 required tests passed :)
+BUILD SUCCESSFUL in 40s
+
+Release SHA-256: 8613dd5bd22d2a79cc605244fc699a021f0e4966f1d65710a3230f895f1b70e5

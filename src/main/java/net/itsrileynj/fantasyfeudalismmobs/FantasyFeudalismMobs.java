@@ -23,6 +23,11 @@ import net.minecraft.world.item.CreativeModeTab;
 @Mod(FantasyFeudalismMobs.MOD_ID)
 public final class FantasyFeudalismMobs {
     public static final String MOD_ID = "fantasy_feudalism_mobs";
+    public static final DeferredRegister<net.minecraft.sounds.SoundEvent> SOUNDS=DeferredRegister.create(Registries.SOUND_EVENT,MOD_ID);
+    public static final DeferredHolder<net.minecraft.sounds.SoundEvent,net.minecraft.sounds.SoundEvent> MOUSE_AMBIENT=SOUNDS.register("entity.field_mouse.ambient",()->
+            net.minecraft.sounds.SoundEvent.createVariableRangeEvent(net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(MOD_ID,"entity.field_mouse.ambient")));
+    public static final DeferredHolder<net.minecraft.sounds.SoundEvent,net.minecraft.sounds.SoundEvent> MOUSE_HURT=SOUNDS.register("entity.field_mouse.hurt",()->
+            net.minecraft.sounds.SoundEvent.createVariableRangeEvent(net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(MOD_ID,"entity.field_mouse.hurt")));
     public static final DeferredRegister<net.minecraft.world.entity.EntityType<?>> ENTITIES=DeferredRegister.create(Registries.ENTITY_TYPE,MOD_ID);
     public static final DeferredHolder<net.minecraft.world.entity.EntityType<?>,net.minecraft.world.entity.EntityType<FieldMouse>> FIELD_MOUSE=
             ENTITIES.register("field_mouse",()->net.minecraft.world.entity.EntityType.Builder.of(FieldMouse::new,net.minecraft.world.entity.MobCategory.CREATURE)
@@ -66,6 +71,7 @@ public final class FantasyFeudalismMobs {
         ITEMS.register(modEventBus);
         ENTITIES.register(modEventBus);
         EFFECTS.register(modEventBus);
+        SOUNDS.register(modEventBus);
         modEventBus.addListener((net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent event)->event.put(FIELD_MOUSE.get(),FieldMouse.createAttributes().build()));
         CREATIVE_TABS.register(modEventBus);
         modEventBus.addListener(FeudalEvents::spawnPlacements);

@@ -389,3 +389,8 @@ The user's subsequent request and answers add these mechanics to the original sp
 - Surviving mice return to planted crops to continue eating. Cats chase mice within fifteen blocks and kill them in one hit.
 
 Implementation uses native cat owner-resting behavior and morning gifts for tamed cats, standard mob effects, ordinary navigation and server-owned state. Natural healing still requires its usual food and gamerule conditions. Mice do not force chunks to load, and their crop eating honors `mobGriefing`. The morning census includes loaded village cats and saved mouse reservations; existing mice are not forcibly removed if cats later leave. Full sleeping uses vanilla's 100-tick sleep threshold, so an immediate bed visit gives no buff.
+
+
+## Field Mouse sounds (0.1.18)
+
+Use the user-supplied `Mouse Sounds.zip`: five `Mouse_Ambient` clips as randomly selected ambient calls at vanilla animal frequency, and three `Mouse_Hurt` clips when mice take damage. The hurt bank also covers fatal damage, since no separate death recordings were supplied. Keep the recordings unchanged.

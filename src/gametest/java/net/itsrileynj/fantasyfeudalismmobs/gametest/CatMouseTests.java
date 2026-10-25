@@ -21,6 +21,33 @@ import net.neoforged.neoforge.gametest.*;
 @GameTestHolder(FantasyFeudalismMobs.MOD_ID)
 @PrefixGameTestTemplate(false)
 public final class CatMouseTests {
+    private static java.util.List<net.minecraft.sounds.SoundEvent> soundPackets(ServerPlayer player){
+        var channel=(io.netty.channel.embedded.EmbeddedChannel)player.connection.getConnection().channel();channel.runPendingTasks();
+        var sounds=new java.util.ArrayList<net.minecraft.sounds.SoundEvent>();Object packet;
+        while((packet=channel.readOutbound())!=null){
+            if(packet instanceof net.minecraft.network.protocol.game.ClientboundSoundPacket sound)sounds.add(sound.getSound().value());
+            else if(packet instanceof net.minecraft.network.protocol.game.ClientboundSoundEntityPacket sound)sounds.add(sound.getSound().value());
+            io.netty.util.ReferenceCountUtil.release(packet);
+        }
+        return sounds;
+    }
+    @GameTest(template="test_empty",batch="mouse_sounds")
+    public static void mouseUsesAnimalAmbientTimingAndBroadcastsAmbientHurtAndFatalSounds(GameTestHelper h){
+        var p=player(h);var mouse=h.spawn(FantasyFeudalismMobs.FIELD_MOUSE.get(),8,2,8);mouse.setNoAi(true);
+        try{
+            soundPackets(p);mouse.ambientSoundTime=1000;mouse.baseTick();
+            h.assertTrue(soundPackets(p).contains(FantasyFeudalismMobs.MOUSE_AMBIENT.get()),"Native random ambient scheduler broadcasts the mouse ambient event to nearby players");
+            h.assertTrue(mouse.ambientSoundTime==-EntityType.COW.create(h.getLevel()).getAmbientSoundInterval(),"Ambient cooldown matches a vanilla animal");
+            mouse.hurt(h.getLevel().damageSources().generic(),.5F);
+            h.assertTrue(soundPackets(p).contains(FantasyFeudalismMobs.MOUSE_HURT.get()),"Nonfatal damage broadcasts a hurt sound");
+            mouse.setSilent(true);mouse.ambientSoundTime=1000;mouse.baseTick();mouse.invulnerableTime=0;mouse.hurt(h.getLevel().damageSources().generic(),.5F);
+            var silent=soundPackets(p);
+            h.assertFalse(silent.contains(FantasyFeudalismMobs.MOUSE_AMBIENT.get())||silent.contains(FantasyFeudalismMobs.MOUSE_HURT.get()),"Native Silent suppresses ambient and damage sounds");
+            mouse.setSilent(false);mouse.invulnerableTime=0;mouse.hurt(h.getLevel().damageSources().generic(),10);
+            h.assertFalse(mouse.isAlive(),"Final hit is fatal");
+            h.assertTrue(soundPackets(p).contains(FantasyFeudalismMobs.MOUSE_HURT.get()),"Fatal damage also uses the supplied hurt bank");h.succeed();
+        }finally{remove(p);}
+    }
     private static ServerPlayer player(GameTestHelper h){
         var cookie=net.minecraft.server.network.CommonListenerCookie.createInitial(new com.mojang.authlib.GameProfile(UUID.randomUUID(),"cat-test"),false);
         var p=new ServerPlayer(h.getLevel().getServer(),h.getLevel(),cookie.gameProfile(),cookie.clientInformation());

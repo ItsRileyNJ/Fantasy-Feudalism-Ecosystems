@@ -6,7 +6,14 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.17.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.18.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.18 changes
+
+- Field Mice now use the supplied five ambient squeaks and three hurt clips. Ambient calls use vanilla animal timing, with random selection among the clips. Hurt clips play for nonfatal and fatal damage.
+- Added subtitles for mouse calls and damage. The original uploaded Ogg files are unchanged.
+
+See the [sound validation report](docs/RELEASE_0.1.18.md).
 
 ## Version 0.1.17 changes
 

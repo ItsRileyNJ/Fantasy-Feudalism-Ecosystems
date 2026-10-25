@@ -1,0 +1,20 @@
+{
+  "entity.field_mouse.ambient": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.field_mouse.ambient",
+    "sounds": [
+      "fantasy_feudalism_mobs:entity/field_mouse/mouse_ambient_1",
+      "fantasy_feudalism_mobs:entity/field_mouse/mouse_ambient_2",
+      "fantasy_feudalism_mobs:entity/field_mouse/mouse_ambient_3",
+      "fantasy_feudalism_mobs:entity/field_mouse/mouse_ambient_4",
+      "fantasy_feudalism_mobs:entity/field_mouse/mouse_ambient_5"
+    ]
+  },
+  "entity.field_mouse.hurt": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.field_mouse.hurt",
+    "sounds": [
+      "fantasy_feudalism_mobs:entity/field_mouse/mouse_hurt_1",
+      "fantasy_feudalism_mobs:entity/field_mouse/mouse_hurt_2",
+      "fantasy_feudalism_mobs:entity/field_mouse/mouse_hurt_3"
+    ]
+  }
+}

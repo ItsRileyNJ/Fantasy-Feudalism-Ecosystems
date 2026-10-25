@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.18 — Field Mouse sounds
+
+- Added five random ambient mouse calls using the same timing as vanilla animals.
+- Added three hurt sounds, used when mice take damage, including fatal hits.
+- Added subtitles for mouse calls and hurt sounds. All eight uploaded recordings are used unchanged.
+
 ## 0.1.17 — cats, Rested, and Field Mice
 
 - Nearby strays and your own cats can join you in bed. Sleep beside one to wake with six minutes of **Rested**, reducing hunger exhaustion by half and improving natural healing by 35%. Look for three blue Zs in your inventory.
