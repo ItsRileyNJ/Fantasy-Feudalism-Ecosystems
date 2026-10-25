@@ -270,7 +270,7 @@ public final class ClientHarness {
             }
             result.put("horseMeatModels",meatModels);
             var newModels=new LinkedHashMap<String,Object>();
-            for(var item:List.of(FantasyFeudalismMobs.BAT_NET.get(),FantasyFeudalismMobs.BAT_ENCLOSURE_ITEM.get(),FantasyFeudalismMobs.FERTILIZER.get())){
+            for(var item:List.of(FantasyFeudalismMobs.BAT_NET.get(),FantasyFeudalismMobs.BAT_ENCLOSURE_ITEM.get(),FantasyFeudalismMobs.FERTILIZER.get(),FantasyFeudalismMobs.FIELD_MOUSE_SPAWN_EGG.get())){
                 var stack=new ItemStack(item);var baked=mc.getItemRenderer().getModel(stack,mc.level,mc.player,0);
                 newModels.put(net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(item).toString(),Map.of("missing",baked==mc.getModelManager().getMissingModel(),"tint",mc.getItemColors().getColor(stack,0),"quads",baked.getQuads(null,null,net.minecraft.util.RandomSource.create(0)).size()));
             }result.put("ecosystemModels",newModels);

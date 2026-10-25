@@ -1,0 +1,834 @@
+{
+  "environment": {
+    "minecraft": "1.21.1",
+    "neoforge": "21.1.262",
+    "cpuQuota": 4,
+    "heapLimitGiB": 2,
+    "graphicalClients": 0,
+    "JFR": true,
+    "warmupSeconds": 5,
+    "measuredSecondsPerRound": 25,
+    "rounds": 2,
+    "baselineSHA256": "8dd37a07f760016125c454cf913103eb798ed0ad5b822d71f7de99d0424b824e",
+    "optimizedSHA256": "deb9e0692db95a4fb487cec25580c59f55ba241c20f73fd621eda84e54215095",
+    "helperSHA256": "7ff351ecd72c2a5aa7ac04680831c88680f818baa31d521c21d74f5ed16d0e82"
+  },
+  "summary": {
+    "blocked": {
+      "before": {
+        "samples": 1018,
+        "meanMs": 1.8124008241650293,
+        "worstRunP99Ms": 3.278439,
+        "maximumMs": 11.33857,
+        "ticksOver50Ms": 0,
+        "permissionChecks": 203200,
+        "seconds": 50.88863717604545
+      },
+      "after": {
+        "samples": 1019,
+        "meanMs": 1.8057838910696762,
+        "worstRunP99Ms": 5.191204,
+        "maximumMs": 13.439485,
+        "ticksOver50Ms": 0,
+        "permissionChecks": 400,
+        "seconds": 50.94603470401489
+      }
+    },
+    "barren": {
+      "before": {
+        "samples": 1022,
+        "meanMs": 4.6723575988258315,
+        "worstRunP99Ms": 65.9328,
+        "maximumMs": 73.547611,
+        "ticksOver50Ms": 20,
+        "permissionChecks": 0,
+        "seconds": 51.13214100597543
+      },
+      "after": {
+        "samples": 1019,
+        "meanMs": 3.5755366918547593,
+        "worstRunP99Ms": 6.458505,
+        "maximumMs": 38.541146,
+        "ticksOver50Ms": 0,
+        "permissionChecks": 0,
+        "seconds": 50.93735080200713
+      }
+    },
+    "foraging": {
+      "before": {
+        "samples": 1021,
+        "meanMs": 1.9334912223310479,
+        "worstRunP99Ms": 9.058931,
+        "maximumMs": 152.136594,
+        "ticksOver50Ms": 2,
+        "permissionChecks": 0,
+        "seconds": 51.03433955000946
+      },
+      "after": {
+        "samples": 1019,
+        "meanMs": 1.3500162816486754,
+        "worstRunP99Ms": 4.918499,
+        "maximumMs": 21.947827,
+        "ticksOver50Ms": 0,
+        "permissionChecks": 0,
+        "seconds": 51.00400632902165
+      }
+    },
+    "threats": {
+      "before": {
+        "samples": 1020,
+        "meanMs": 2.6571914264705883,
+        "worstRunP99Ms": 5.65426,
+        "maximumMs": 26.191524,
+        "ticksOver50Ms": 0,
+        "permissionChecks": 0,
+        "seconds": 50.988158503052546
+      },
+      "after": {
+        "samples": 1017,
+        "meanMs": 2.5419316165191743,
+        "worstRunP99Ms": 5.002409,
+        "maximumMs": 11.357894,
+        "ticksOver50Ms": 0,
+        "permissionChecks": 39,
+        "seconds": 50.89132746701944
+      }
+    }
+  },
+  "before": {
+    "label": "baseline",
+    "results": [
+      {
+        "round": 0,
+        "scenario": "blocked",
+        "fixture": {
+          "scenario": "blocked",
+          "mice": 200
+        },
+        "cold": {
+          "tickSamples": 120,
+          "meanTickMs": 13.138814891666668,
+          "p50TickMs": 5.373158,
+          "p95TickMs": 36.567429,
+          "p99TickMs": 75.595115,
+          "maxTickMs": 284.83851,
+          "ticksOver50Ms": 4,
+          "tick": 687,
+          "gameTime": 41597,
+          "griefChecks": 24000,
+          "livingMice": 200,
+          "elapsedSeconds": 5.317536962975282,
+          "ticksAdvanced": 119,
+          "observedTicksPerSecond": 22.378781911356345,
+          "griefChecksDuringWindow": 23800
+        },
+        "steady": {
+          "tickSamples": 509,
+          "meanTickMs": 1.320399047151277,
+          "p50TickMs": 1.230111,
+          "p95TickMs": 1.604234,
+          "p99TickMs": 2.919382,
+          "maxTickMs": 9.199657,
+          "ticksOver50Ms": 0,
+          "tick": 1197,
+          "gameTime": 42107,
+          "griefChecks": 101800,
+          "livingMice": 200,
+          "elapsedSeconds": 25.446374856022885,
+          "ticksAdvanced": 508,
+          "observedTicksPerSecond": 19.963550913412792,
+          "griefChecksDuringWindow": 101600
+        }
+      },
+      {
+        "round": 0,
+        "scenario": "barren",
+        "fixture": {
+          "scenario": "barren",
+          "mice": 200
+        },
+        "cold": {
+          "tickSamples": 108,
+          "meanTickMs": 9.844390212962962,
+          "p50TickMs": 4.842851,
+          "p95TickMs": 20.022662,
+          "p99TickMs": 96.649396,
+          "maxTickMs": 198.813457,
+          "ticksOver50Ms": 3,
+          "tick": 1306,
+          "gameTime": 42216,
+          "griefChecks": 0,
+          "livingMice": 200,
+          "elapsedSeconds": 5.262818093993701,
+          "ticksAdvanced": 107,
+          "observedTicksPerSecond": 20.331312633076934,
+          "griefChecksDuringWindow": 0
+        },
+        "steady": {
+          "tickSamples": 510,
+          "meanTickMs": 4.57029454117647,
+          "p50TickMs": 3.19236,
+          "p95TickMs": 4.956555,
+          "p99TickMs": 64.266334,
+          "maxTickMs": 71.872726,
+          "ticksOver50Ms": 10,
+          "tick": 1817,
+          "gameTime": 42727,
+          "griefChecks": 0,
+          "livingMice": 200,
+          "elapsedSeconds": 25.541853930975776,
+          "ticksAdvanced": 509,
+          "observedTicksPerSecond": 19.928075752665407,
+          "griefChecksDuringWindow": 0
+        }
+      },
+      {
+        "round": 0,
+        "scenario": "foraging",
+        "fixture": {
+          "scenario": "foraging",
+          "mice": 200
+        },
+        "cold": {
+          "tickSamples": 102,
+          "meanTickMs": 1.6681049215686274,
+          "p50TickMs": 1.281422,
+          "p95TickMs": 1.595794,
+          "p99TickMs": 8.937963,
+          "maxTickMs": 23.118743,
+          "ticksOver50Ms": 0,
+          "tick": 1921,
+          "gameTime": 42831,
+          "griefChecks": 200,
+          "livingMice": 200,
+          "elapsedSeconds": 5.059095529024489,
+          "ticksAdvanced": 101,
+          "observedTicksPerSecond": 19.964042865084057,
+          "griefChecksDuringWindow": 0
+        },
+        "steady": {
+          "tickSamples": 510,
+          "meanTickMs": 1.3552436843137254,
+          "p50TickMs": 1.272502,
+          "p95TickMs": 1.713039,
+          "p99TickMs": 3.016231,
+          "maxTickMs": 7.36855,
+          "ticksOver50Ms": 0,
+          "tick": 2432,
+          "gameTime": 43342,
+          "griefChecks": 0,
+          "livingMice": 200,
+          "elapsedSeconds": 25.508171079010936,
+          "ticksAdvanced": 509,
+          "observedTicksPerSecond": 19.95439023924471,
+          "griefChecksDuringWindow": 0
+        }
+      },
+      {
+        "round": 0,
+        "scenario": "threats",
+        "fixture": {
+          "scenario": "threats",
+          "mice": 200
+        },
+        "cold": {
+          "tickSamples": 106,
+          "meanTickMs": 4.6885307735849056,
+          "p50TickMs": 2.67006,
+          "p95TickMs": 10.097363,
+          "p99TickMs": 44.499999,
+          "maxTickMs": 69.505779,
+          "ticksOver50Ms": 1,
+          "tick": 2539,
+          "gameTime": 43449,
+          "griefChecks": 200,
+          "livingMice": 200,
+          "elapsedSeconds": 5.109803289989941,
+          "ticksAdvanced": 105,
+          "observedTicksPerSecond": 20.548736231332832,
+          "griefChecksDuringWindow": 0
+        },
+        "steady": {
+          "tickSamples": 509,
+          "meanTickMs": 2.531349365422397,
+          "p50TickMs": 2.417828,
+          "p95TickMs": 3.074333,
+          "p99TickMs": 3.74492,
+          "maxTickMs": 11.570292,
+          "ticksOver50Ms": 0,
+          "tick": 3049,
+          "gameTime": 43959,
+          "griefChecks": 0,
+          "livingMice": 200,
+          "elapsedSeconds": 25.44015739002498,
+          "ticksAdvanced": 508,
+          "observedTicksPerSecond": 19.96842992013821,
+          "griefChecksDuringWindow": 0
+        }
+      },
+      {
+        "round": 1,
+        "scenario": "blocked",
+        "fixture": {
+          "scenario": "blocked",
+          "mice": 200
+        },
+        "cold": {
+          "tickSamples": 102,
+          "meanTickMs": 2.8817107647058826,
+          "p50TickMs": 2.384109,
+          "p95TickMs": 3.430263,
+          "p99TickMs": 9.764722,
+          "maxTickMs": 35.508625,
+          "ticksOver50Ms": 0,
+          "tick": 3152,
+          "gameTime": 44062,
+          "griefChecks": 20400,
+          "livingMice": 200,
+          "elapsedSeconds": 5.057766736019403,
+          "ticksAdvanced": 101,
+          "observedTicksPerSecond": 19.969287883665764,
+          "griefChecksDuringWindow": 20200
+        },
+        "steady": {
+          "tickSamples": 509,
+          "meanTickMs": 2.304402601178782,
+          "p50TickMs": 2.210864,
+          "p95TickMs": 2.674512,
+          "p99TickMs": 3.278439,
+          "maxTickMs": 11.33857,
+          "ticksOver50Ms": 0,
+          "tick": 3662,
+          "gameTime": 44572,
+          "griefChecks": 101800,
+          "livingMice": 200,
+          "elapsedSeconds": 25.442262320022564,
+          "ticksAdvanced": 508,
+          "observedTicksPerSecond": 19.966777860010268,
+          "griefChecksDuringWindow": 101600
+        }
+      },
+      {
+        "round": 1,
+        "scenario": "barren",
+        "fixture": {
+          "scenario": "barren",
+          "mice": 200
+        },
+        "cold": {
+          "tickSamples": 103,
+          "meanTickMs": 6.323667805825243,
+          "p50TickMs": 3.304403,
+          "p95TickMs": 4.458944,
+          "p99TickMs": 64.935811,
+          "maxTickMs": 183.016252,
+          "ticksOver50Ms": 3,
+          "tick": 3766,
+          "gameTime": 44676,
+          "griefChecks": 0,
+          "livingMice": 200,
+          "elapsedSeconds": 5.1592993040103465,
+          "ticksAdvanced": 102,
+          "observedTicksPerSecond": 19.77012652100159,
+          "griefChecksDuringWindow": 0
+        },
+        "steady": {
+          "tickSamples": 512,
+          "meanTickMs": 4.77402197265625,
+          "p50TickMs": 3.444443,
+          "p95TickMs": 4.248035,
+          "p99TickMs": 65.9328,
+          "maxTickMs": 73.547611,
+          "ticksOver50Ms": 10,
+          "tick": 4280,
+          "gameTime": 45190,
+          "griefChecks": 0,
+          "livingMice": 200,
+          "elapsedSeconds": 25.59028707499965,
+          "ticksAdvanced": 511,
+          "observedTicksPerSecond": 19.968513776432772,
+          "griefChecksDuringWindow": 0
+        }
+      },
+      {
+        "round": 1,
+        "scenario": "foraging",
+        "fixture": {
+          "scenario": "foraging",
+          "mice": 200
+        },
+        "cold": {
+          "tickSamples": 101,
+          "meanTickMs": 1.9099672475247524,
+          "p50TickMs": 1.377245,
+          "p95TickMs": 1.921036,
+          "p99TickMs": 13.147441,
+          "maxTickMs": 29.97324,
+          "ticksOver50Ms": 0,
+          "tick": 4382,
+          "gameTime": 45292,
+          "griefChecks": 200,
+          "livingMice": 200,
+          "elapsedSeconds": 5.059622479981044,
+          "ticksAdvanced": 100,
+          "observedTicksPerSecond": 19.764320440044894,
+          "griefChecksDuringWindow": 0
+        },
+        "steady": {
+          "tickSamples": 511,
+          "meanTickMs": 2.510607160469667,
+          "p50TickMs": 1.412314,
+          "p95TickMs": 6.34663,
+          "p99TickMs": 9.058931,
+          "maxTickMs": 152.136594,
+          "ticksOver50Ms": 2,
+          "tick": 4894,
+          "gameTime": 45804,
+          "griefChecks": 0,
+          "livingMice": 200,
+          "elapsedSeconds": 25.526168470998527,
+          "ticksAdvanced": 510,
+          "observedTicksPerSecond": 19.979496749754464,
+          "griefChecksDuringWindow": 0
+        }
+      },
+      {
+        "round": 1,
+        "scenario": "threats",
+        "fixture": {
+          "scenario": "threats",
+          "mice": 200
+        },
+        "cold": {
+          "tickSamples": 102,
+          "meanTickMs": 3.289739568627451,
+          "p50TickMs": 2.702622,
+          "p95TickMs": 4.767479,
+          "p99TickMs": 5.504697,
+          "maxTickMs": 32.318728,
+          "ticksOver50Ms": 0,
+          "tick": 4997,
+          "gameTime": 45907,
+          "griefChecks": 200,
+          "livingMice": 200,
+          "elapsedSeconds": 5.060129545017844,
+          "ticksAdvanced": 101,
+          "observedTicksPerSecond": 19.959963297667674,
+          "griefChecksDuringWindow": 0
+        },
+        "steady": {
+          "tickSamples": 511,
+          "meanTickMs": 2.7825409549902154,
+          "p50TickMs": 2.564031,
+          "p95TickMs": 3.733882,
+          "p99TickMs": 5.65426,
+          "maxTickMs": 26.191524,
+          "ticksOver50Ms": 0,
+          "tick": 5509,
+          "gameTime": 46419,
+          "griefChecks": 0,
+          "livingMice": 200,
+          "elapsedSeconds": 25.548001113027567,
+          "ticksAdvanced": 510,
+          "observedTicksPerSecond": 19.962422803400386,
+          "griefChecksDuringWindow": 0
+        }
+      }
+    ],
+    "cropFreeMorning96Cats": [
+      {
+        "spawned": 0,
+        "day": 1000,
+        "elapsedMs": 82.428803
+      },
+      {
+        "spawned": 0,
+        "day": 1001,
+        "elapsedMs": 47.612369
+      },
+      {
+        "spawned": 0,
+        "day": 1002,
+        "elapsedMs": 44.98588
+      },
+      {
+        "spawned": 0,
+        "day": 1003,
+        "elapsedMs": 27.409031
+      },
+      {
+        "spawned": 0,
+        "day": 1004,
+        "elapsedMs": 15.152354
+      }
+    ]
+  },
+  "after": {
+    "label": "optimized-20s",
+    "results": [
+      {
+        "round": 0,
+        "scenario": "blocked",
+        "fixture": {
+          "mice": 200,
+          "scenario": "blocked"
+        },
+        "cold": {
+          "tickSamples": 118,
+          "meanTickMs": 10.467790694915253,
+          "p50TickMs": 2.511234,
+          "p95TickMs": 47.788654,
+          "p99TickMs": 66.886998,
+          "maxTickMs": 158.395335,
+          "ticksOver50Ms": 5,
+          "tick": 2485,
+          "gameTime": 49856,
+          "griefChecks": 200,
+          "livingMice": 200,
+          "elapsedSeconds": 5.160149481991539,
+          "ticksAdvanced": 117,
+          "observedTicksPerSecond": 22.673761759871407,
+          "griefChecksDuringWindow": 195
+        },
+        "steady": {
+          "tickSamples": 510,
+          "meanTickMs": 1.2192243607843138,
+          "p50TickMs": 1.144781,
+          "p95TickMs": 1.648697,
+          "p99TickMs": 1.961854,
+          "maxTickMs": 9.856644,
+          "ticksOver50Ms": 0,
+          "tick": 2996,
+          "gameTime": 50367,
+          "griefChecks": 200,
+          "livingMice": 200,
+          "elapsedSeconds": 25.491233348002424,
+          "ticksAdvanced": 509,
+          "observedTicksPerSecond": 19.967648997253672,
+          "griefChecksDuringWindow": 200
+        }
+      },
+      {
+        "round": 0,
+        "scenario": "barren",
+        "fixture": {
+          "mice": 200,
+          "scenario": "barren"
+        },
+        "cold": {
+          "tickSamples": 104,
+          "meanTickMs": 6.957476692307693,
+          "p50TickMs": 5.072559,
+          "p95TickMs": 19.374553,
+          "p99TickMs": 30.272238,
+          "maxTickMs": 45.295558,
+          "ticksOver50Ms": 0,
+          "tick": 3101,
+          "gameTime": 50472,
+          "griefChecks": 0,
+          "livingMice": 200,
+          "elapsedSeconds": 5.062586409010692,
+          "ticksAdvanced": 103,
+          "observedTicksPerSecond": 20.345331749138047,
+          "griefChecksDuringWindow": 0
+        },
+        "steady": {
+          "tickSamples": 509,
+          "meanTickMs": 3.475643129666012,
+          "p50TickMs": 3.257869,
+          "p95TickMs": 4.469749,
+          "p99TickMs": 6.145651,
+          "maxTickMs": 17.56489,
+          "ticksOver50Ms": 0,
+          "tick": 3611,
+          "gameTime": 50982,
+          "griefChecks": 0,
+          "livingMice": 200,
+          "elapsedSeconds": 25.44420122401789,
+          "ticksAdvanced": 508,
+          "observedTicksPerSecond": 19.965256347700816,
+          "griefChecksDuringWindow": 0
+        }
+      },
+      {
+        "round": 0,
+        "scenario": "foraging",
+        "fixture": {
+          "mice": 200,
+          "scenario": "foraging"
+        },
+        "cold": {
+          "tickSamples": 103,
+          "meanTickMs": 1.9522147669902914,
+          "p50TickMs": 1.230257,
+          "p95TickMs": 3.151799,
+          "p99TickMs": 14.655216,
+          "maxTickMs": 26.679852,
+          "ticksOver50Ms": 0,
+          "tick": 3715,
+          "gameTime": 51086,
+          "griefChecks": 200,
+          "livingMice": 200,
+          "elapsedSeconds": 5.108885156019824,
+          "ticksAdvanced": 102,
+          "observedTicksPerSecond": 19.965216849670796,
+          "griefChecksDuringWindow": 195
+        },
+        "steady": {
+          "tickSamples": 508,
+          "meanTickMs": 1.2112359586614172,
+          "p50TickMs": 1.150457,
+          "p95TickMs": 1.415183,
+          "p99TickMs": 2.073339,
+          "maxTickMs": 7.204068,
+          "ticksOver50Ms": 0,
+          "tick": 4224,
+          "gameTime": 51595,
+          "griefChecks": 0,
+          "livingMice": 200,
+          "elapsedSeconds": 25.44221548200585,
+          "ticksAdvanced": 507,
+          "observedTicksPerSecond": 19.927509864798473,
+          "griefChecksDuringWindow": 0
+        }
+      },
+      {
+        "round": 0,
+        "scenario": "threats",
+        "fixture": {
+          "mice": 200,
+          "scenario": "threats"
+        },
+        "cold": {
+          "tickSamples": 107,
+          "meanTickMs": 4.499370084112149,
+          "p50TickMs": 3.136344,
+          "p95TickMs": 11.034076,
+          "p99TickMs": 22.334135,
+          "maxTickMs": 30.68051,
+          "ticksOver50Ms": 0,
+          "tick": 4332,
+          "gameTime": 51703,
+          "griefChecks": 177,
+          "livingMice": 200,
+          "elapsedSeconds": 5.1086068250006065,
+          "ticksAdvanced": 106,
+          "observedTicksPerSecond": 20.749296947507293,
+          "griefChecksDuringWindow": 173
+        },
+        "steady": {
+          "tickSamples": 508,
+          "meanTickMs": 2.5563191358267714,
+          "p50TickMs": 2.409956,
+          "p95TickMs": 3.393964,
+          "p99TickMs": 5.002409,
+          "maxTickMs": 11.357894,
+          "ticksOver50Ms": 0,
+          "tick": 4841,
+          "gameTime": 52212,
+          "griefChecks": 18,
+          "livingMice": 200,
+          "elapsedSeconds": 25.441045036015566,
+          "ticksAdvanced": 507,
+          "observedTicksPerSecond": 19.928426653947053,
+          "griefChecksDuringWindow": 18
+        }
+      },
+      {
+        "round": 1,
+        "scenario": "blocked",
+        "fixture": {
+          "mice": 200,
+          "scenario": "blocked"
+        },
+        "cold": {
+          "tickSamples": 102,
+          "meanTickMs": 2.7327581960784313,
+          "p50TickMs": 2.40452,
+          "p95TickMs": 3.890206,
+          "p99TickMs": 4.657221,
+          "maxTickMs": 15.995157,
+          "ticksOver50Ms": 0,
+          "tick": 4944,
+          "gameTime": 52315,
+          "griefChecks": 200,
+          "livingMice": 200,
+          "elapsedSeconds": 5.060593898000661,
+          "ticksAdvanced": 101,
+          "observedTicksPerSecond": 19.95813179949157,
+          "griefChecksDuringWindow": 195
+        },
+        "steady": {
+          "tickSamples": 509,
+          "meanTickMs": 2.3934957976424363,
+          "p50TickMs": 2.259364,
+          "p95TickMs": 2.778317,
+          "p99TickMs": 5.191204,
+          "maxTickMs": 13.439485,
+          "ticksOver50Ms": 0,
+          "tick": 5454,
+          "gameTime": 52825,
+          "griefChecks": 200,
+          "livingMice": 200,
+          "elapsedSeconds": 25.454801356012467,
+          "ticksAdvanced": 508,
+          "observedTicksPerSecond": 19.956942224576014,
+          "griefChecksDuringWindow": 200
+        }
+      },
+      {
+        "round": 1,
+        "scenario": "barren",
+        "fixture": {
+          "mice": 200,
+          "scenario": "barren"
+        },
+        "cold": {
+          "tickSamples": 102,
+          "meanTickMs": 3.9844035,
+          "p50TickMs": 3.704845,
+          "p95TickMs": 5.05567,
+          "p99TickMs": 10.053227,
+          "maxTickMs": 17.136902,
+          "ticksOver50Ms": 0,
+          "tick": 5557,
+          "gameTime": 52928,
+          "griefChecks": 0,
+          "livingMice": 200,
+          "elapsedSeconds": 5.058762303990079,
+          "ticksAdvanced": 101,
+          "observedTicksPerSecond": 19.965357913799714,
+          "griefChecksDuringWindow": 0
+        },
+        "steady": {
+          "tickSamples": 510,
+          "meanTickMs": 3.6752343843137254,
+          "p50TickMs": 3.432692,
+          "p95TickMs": 4.582032,
+          "p99TickMs": 6.458505,
+          "maxTickMs": 38.541146,
+          "ticksOver50Ms": 0,
+          "tick": 6068,
+          "gameTime": 53439,
+          "griefChecks": 0,
+          "livingMice": 200,
+          "elapsedSeconds": 25.493149577989243,
+          "ticksAdvanced": 509,
+          "observedTicksPerSecond": 19.96614809962399,
+          "griefChecksDuringWindow": 0
+        }
+      },
+      {
+        "round": 1,
+        "scenario": "foraging",
+        "fixture": {
+          "mice": 200,
+          "scenario": "foraging"
+        },
+        "cold": {
+          "tickSamples": 102,
+          "meanTickMs": 2.062407205882353,
+          "p50TickMs": 1.43153,
+          "p95TickMs": 4.514904,
+          "p99TickMs": 15.736806,
+          "maxTickMs": 21.443938,
+          "ticksOver50Ms": 0,
+          "tick": 6171,
+          "gameTime": 53542,
+          "griefChecks": 200,
+          "livingMice": 200,
+          "elapsedSeconds": 5.109871765016578,
+          "ticksAdvanced": 101,
+          "observedTicksPerSecond": 19.765662358000938,
+          "griefChecksDuringWindow": 195
+        },
+        "steady": {
+          "tickSamples": 511,
+          "meanTickMs": 1.4879818473581214,
+          "p50TickMs": 1.327097,
+          "p95TickMs": 1.851372,
+          "p99TickMs": 4.918499,
+          "maxTickMs": 21.947827,
+          "ticksOver50Ms": 0,
+          "tick": 6683,
+          "gameTime": 54054,
+          "griefChecks": 0,
+          "livingMice": 200,
+          "elapsedSeconds": 25.5617908470158,
+          "ticksAdvanced": 510,
+          "observedTicksPerSecond": 19.951653741801103,
+          "griefChecksDuringWindow": 0
+        }
+      },
+      {
+        "round": 1,
+        "scenario": "threats",
+        "fixture": {
+          "mice": 200,
+          "scenario": "threats"
+        },
+        "cold": {
+          "tickSamples": 102,
+          "meanTickMs": 2.874276264705882,
+          "p50TickMs": 2.665897,
+          "p95TickMs": 3.690605,
+          "p99TickMs": 5.321906,
+          "maxTickMs": 10.992096,
+          "ticksOver50Ms": 0,
+          "tick": 6786,
+          "gameTime": 54157,
+          "griefChecks": 175,
+          "livingMice": 200,
+          "elapsedSeconds": 5.060443441005191,
+          "ticksAdvanced": 101,
+          "observedTicksPerSecond": 19.958725194236667,
+          "griefChecksDuringWindow": 169
+        },
+        "steady": {
+          "tickSamples": 509,
+          "meanTickMs": 2.5275723634577605,
+          "p50TickMs": 2.429433,
+          "p95TickMs": 3.022677,
+          "p99TickMs": 4.06819,
+          "maxTickMs": 11.30529,
+          "ticksOver50Ms": 0,
+          "tick": 7296,
+          "gameTime": 54667,
+          "griefChecks": 21,
+          "livingMice": 200,
+          "elapsedSeconds": 25.45028243100387,
+          "ticksAdvanced": 508,
+          "observedTicksPerSecond": 19.960485757955585,
+          "griefChecksDuringWindow": 21
+        }
+      }
+    ],
+    "cropFreeMorning96Cats": [
+      {
+        "elapsedMs": 46.277031,
+        "day": 1005,
+        "spawned": 0
+      },
+      {
+        "elapsedMs": 11.780594,
+        "day": 1006,
+        "spawned": 0
+      },
+      {
+        "elapsedMs": 7.66182,
+        "day": 1007,
+        "spawned": 0
+      },
+      {
+        "elapsedMs": 5.625706,
+        "day": 1008,
+        "spawned": 0
+      },
+      {
+        "elapsedMs": 5.738204,
+        "day": 1009,
+        "spawned": 0
+      }
+    ]
+  }
+}

@@ -43,7 +43,7 @@ def run():
   assert tab
   rpc(side,'mouse',x=(s['guiWidth']-195)//2+27*tab['column']+13,y=(s['guiHeight']-136)//2+(-16 if tab['top'] else 152))
   rpc(side,'screenshot',file='ecosystems-015/creative-final.png');rpc(side,'close');rpc(side,'reload',timeout=60)
- check('Both real creative tabs render the repaired Bat Net and all six items, then reload resources successfully')
+ check('Both real creative tabs render the repaired Bat Net and Ecosystems items, then reload resources successfully')
  assert all(not snapshot(side)['renderErrors'] for side in SIDES)
  rpc('server','save');check('The final JAR saves and continues rendering after client resource reloads')
 if __name__=='__main__':

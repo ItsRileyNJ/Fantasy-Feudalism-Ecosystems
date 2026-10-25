@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.20 — mouse performance
+
+- Reduced crop searching and feeding checks to once every 20 seconds. Mice still detect nearby threats promptly, and successful feeding still has a two-minute cooldown.
+- Staggered expensive crop searches and reused remembered crops to reduce lag spikes when many mice are loaded.
+- Reused each village's farmland search and spread morning mouse spawning across server ticks. Saved pending work keeps its population limits after a restart.
+
+## 0.1.19 — Field Mouse spawn egg
+
+- Added a white-and-pink Field Mouse Spawn Egg to the Ecosystems and vanilla Spawn Eggs creative tabs.
+
 ## 0.1.18 — Field Mouse sounds
 
 - Added five random ambient mouse calls using the same timing as vanilla animals.

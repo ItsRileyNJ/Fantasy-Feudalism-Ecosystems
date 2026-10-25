@@ -21,6 +21,75 @@ import net.neoforged.neoforge.gametest.*;
 @GameTestHolder(FantasyFeudalismMobs.MOD_ID)
 @PrefixGameTestTemplate(false)
 public final class CatMouseTests {
+    public static final class GriefProbe {
+        private final UUID mouse;int checks;
+        GriefProbe(UUID mouse){this.mouse=mouse;}
+        @net.neoforged.bus.api.SubscribeEvent public void check(net.neoforged.neoforge.event.entity.EntityMobGriefingEvent event){
+            if(event.getEntity().getUUID().equals(mouse))checks++;
+        }
+    }
+    @GameTest(template="test_empty",batch="mouse_throttle",timeoutTicks=580)
+    public static void failedBitesBackOffButResumeAfterGriefingIsEnabled(GameTestHelper h){
+        floor(h);var level=h.getLevel();boolean old=level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
+        var pos=h.absolutePos(new BlockPos(8,2,8));h.setBlock(8,1,8,Blocks.FARMLAND);
+        h.setBlock(8,2,8,Blocks.WHEAT.defaultBlockState().setValue(CropBlock.AGE,7));
+        level.getGameRules().getRule(GameRules.RULE_MOBGRIEFING).set(false,level.getServer());
+        var mouse=h.spawn(FantasyFeudalismMobs.FIELD_MOUSE.get(),7,2,8);mouse.setCropHome(pos);
+        var probe=new GriefProbe(mouse.getUUID());net.neoforged.neoforge.common.NeoForge.EVENT_BUS.register(probe);
+        int[] denied={0};
+        h.runAtTickTime(350,()->{denied[0]=probe.checks;level.getGameRules().getRule(GameRules.RULE_MOBGRIEFING).set(true,level.getServer());});
+        h.runAtTickTime(520,()->{
+            try{
+                h.assertTrue(denied[0]==1,"A denied crop is not retried before twenty seconds: "+denied[0]);
+                h.assertTrue(level.getBlockState(pos).getValue(CropBlock.AGE)==6,"Mouse resumes ordinary feeding when permission returns");
+                h.assertTrue(probe.checks==2&&mouse.nextMeal()>level.getGameTime(),"The next twenty-second check succeeds and enters its full saved cooldown");h.succeed();
+            }finally{net.neoforged.neoforge.common.NeoForge.EVENT_BUS.unregister(probe);level.getGameRules().getRule(GameRules.RULE_MOBGRIEFING).set(old,level.getServer());}
+        });
+    }
+    @GameTest(template="test_empty",batch="mouse_search_fairness",timeoutTicks=260)
+    public static void sharedSearchBudgetStillLetsEveryMouseFindItsCrop(GameTestHelper h){
+        floor(h);var positions=new java.util.ArrayList<BlockPos>();var mice=new java.util.ArrayList<FieldMouse>();
+        for(int x:new int[]{2,6,10,14})for(int z:new int[]{2,6,10,14}){
+            h.setBlock(x+1,1,z,Blocks.FARMLAND);h.setBlock(x+1,2,z,Blocks.WHEAT.defaultBlockState().setValue(CropBlock.AGE,7));
+            positions.add(h.absolutePos(new BlockPos(x+1,2,z)));mice.add(h.spawn(FantasyFeudalismMobs.FIELD_MOUSE.get(),x,2,z));
+        }
+        h.runAtTickTime(200,()->{
+            // Crop choice is shared; fairness means every mouse feeds, not one mouse assigned to each plant.
+            for(FieldMouse mouse:mice)h.assertTrue(mouse.nextMeal()>h.getLevel().getGameTime(),
+                    "Mouse waiting for food: position="+mouse.position()+" home="+mouse.cropHome()+" deadline="+mouse.nextMeal()+" path="+mouse.getNavigation().getPath());
+            h.assertTrue(positions.stream().anyMatch(pos->h.getLevel().getBlockState(pos).getValue(CropBlock.AGE)<7),"Actual crop stages were eaten");
+            h.succeed();
+        });
+    }
+    @GameTest(template="test_empty",batch="mouse_morning_queue",timeoutTicks=80)
+    public static void morningSpawnsAreSpreadAcrossTicksAndPendingWorkSurvivesSaveLoad(GameTestHelper h){
+        floor(h);var level=h.getLevel();var original=MouseVillages.get(level);long oldTime=level.getDayTime();
+        boolean oldSpawn=level.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING);var home=bed(h,8);
+        level.getPoiManager().add(home,level.registryAccess().registryOrThrow(Registries.POINT_OF_INTEREST_TYPE).getHolderOrThrow(PoiTypes.HOME));
+        level.getPoiManager().take(type->type.is(PoiTypes.HOME),(type,pos)->pos.equals(home),home,1);
+        for(int x=4;x<14;x++)for(int z=11;z<15;z++){h.setBlock(x,1,z,Blocks.FARMLAND);h.setBlock(x,2,z,Blocks.WHEAT.defaultBlockState().setValue(CropBlock.AGE,7));}
+        for(int x=5;x<11;x++){var cat=h.spawn(EntityType.CAT,x,2,5);cat.setNoAi(true);}
+        var fresh=new MouseVillages();level.getDataStorage().set("ffm_field_mice",fresh);
+        long day=Math.max(original.lastMorning()+10,10000);level.setDayTime(day*24000);
+        level.getGameRules().getRule(GameRules.RULE_DOMOBSPAWNING).set(true,level.getServer());
+        int first=fresh.morning(level),sameTick=fresh.morning(level);
+        var saved=fresh.save(new CompoundTag(),level.registryAccess());
+        var restored=MouseVillages.load(saved,level.registryAccess());level.getDataStorage().set("ffm_field_mice",restored);
+        h.runAtTickTime(20,()->{
+            try{
+                h.assertTrue(first==1&&sameTick==0,"Six cats cannot create both mice on one server tick");
+                h.assertTrue(saved.getList("Pending",net.minecraft.nbt.Tag.TAG_COMPOUND).size()==1,"The remaining morning job is serialized");
+                h.assertTrue(restored.population(java.util.List.of(home))==2,"Restored work creates the second mouse without duplicating the first");
+                h.assertTrue(restored.lastMorning()==day&&restored.morning(level)==0,"Finishing a saved job cannot restart the morning census");h.succeed();
+            }finally{
+                for(var entry:restored.save(new CompoundTag(),level.registryAccess()).getList("Mice",net.minecraft.nbt.Tag.TAG_COMPOUND)){
+                    var entity=level.getEntity(((CompoundTag)entry).getUUID("Id"));if(entity!=null)entity.discard();
+                }
+                level.getDataStorage().set("ffm_field_mice",original);level.getPoiManager().remove(home);level.setDayTime(oldTime);
+                level.getGameRules().getRule(GameRules.RULE_DOMOBSPAWNING).set(oldSpawn,level.getServer());
+            }
+        });
+    }
     private static java.util.List<net.minecraft.sounds.SoundEvent> soundPackets(ServerPlayer player){
         var channel=(io.netty.channel.embedded.EmbeddedChannel)player.connection.getConnection().channel();channel.runPendingTasks();
         var sounds=new java.util.ArrayList<net.minecraft.sounds.SoundEvent>();Object packet;
@@ -217,7 +286,7 @@ public final class CatMouseTests {
     public static void mouseRunsFromNearbyVillager(GameTestHelper h){
         floor(h);var mouse=h.spawn(FantasyFeudalismMobs.FIELD_MOUSE.get(),8,2,8);mouse.getRandom().setSeed(4);
         var villager=h.spawn(EntityType.VILLAGER,10,2,8);villager.setNoAi(true);
-        h.succeedWhen(()->h.assertTrue(mouse.distanceToSqr(villager)>25,"A villager within three blocks triggers a real escape path"));
+        h.succeedWhen(()->h.assertTrue(mouse.distanceToSqr(villager)>25,"Villager escape: mouse="+mouse.position()+" villager="+villager.position()+" distance="+mouse.distanceTo(villager)+" path="+mouse.getNavigation().getPath()));
     }
     @GameTest(template="test_empty",batch="mouse_morning",timeoutTicks=120)
     public static void villageMiceSpawnOnlyAtMorningRatioAndDoNotDuplicateAfterUnload(GameTestHelper h){

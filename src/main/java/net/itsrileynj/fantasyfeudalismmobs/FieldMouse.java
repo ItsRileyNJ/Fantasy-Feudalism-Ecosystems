@@ -1,6 +1,5 @@
 package net.itsrileynj.fantasyfeudalismmobs;
 
-import java.util.Comparator;
 import java.util.EnumSet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -27,9 +26,11 @@ import net.neoforged.neoforge.event.EventHooks;
 /** A crop-seeking wildlife mob, not a silverfish replacement. All food/flee decisions are server-owned. */
 public final class FieldMouse extends PathfinderMob {
     public static final int EAT_COOLDOWN=2*60*20;
+    public static final int CROP_CHECK_INTERVAL=20*20;
     public static final double CAT_CHASE_SPEED=1.33;
     // LivingEntity applies an additional 30% attribute modifier to a sprinting cat.
     public static final double RUN_SPEED=(double).3F*CAT_CHASE_SPEED*(1+(double).3F)*.9;
+    private static final ResourceLocation MERCENARY_TYPE=ResourceLocation.fromNamespaceAndPath("villagerscontract","defender");
     private long nextMeal;
     private BlockPos cropHome;
     private BlockPos villageHome;
@@ -56,9 +57,9 @@ public final class FieldMouse extends PathfinderMob {
         goalSelector.addGoal(7,new RandomLookAroundGoal(this));
     }
     public static boolean threat(LivingEntity entity){
-        if(!entity.isAlive()||entity.isSpectator())return false;
+        if(entity instanceof FieldMouse||!entity.isAlive()||entity.isSpectator())return false;
         if(entity instanceof Player||entity instanceof Cat||entity instanceof Villager)return true;
-        return BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).equals(ResourceLocation.fromNamespaceAndPath("villagerscontract","defender"));
+        return BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).equals(MERCENARY_TYPE);
     }
     @Override public boolean hurt(DamageSource source,float amount){
         if(source.getDirectEntity() instanceof Cat)amount=Math.max(amount,getHealth()+getAbsorptionAmount());
@@ -69,18 +70,17 @@ public final class FieldMouse extends PathfinderMob {
         if(!(block instanceof CropBlock||block instanceof StemBlock||block instanceof NetherWartBlock
                 ||block instanceof CocoaBlock||block instanceof SweetBerryBushBlock||block instanceof PitcherCropBlock))return null;
         if(block instanceof PitcherCropBlock&&state.getValue(PitcherCropBlock.HALF)==DoubleBlockHalf.UPPER)return null;
-        for(var property:state.getProperties())if(property instanceof IntegerProperty age&&property.getName().equals("age"))return age;
-        return null;
+        return block.getStateDefinition().getProperty("age") instanceof IntegerProperty age?age:null;
     }
     public boolean eatCrop(BlockPos pos){
         if(!(level() instanceof ServerLevel server)||server.getGameTime()<nextMeal
                 ||!server.hasChunkAt(pos)||distanceToSqr(net.minecraft.world.phys.Vec3.atCenterOf(pos))>1.6*1.6)return false;
         var state=server.getBlockState(pos);var age=cropAge(state);
         if(age==null||state.getValue(age)<=0)return false;
+        if(!EventHooks.canEntityGrief(server,this))return false;
         var sight=server.clip(new net.minecraft.world.level.ClipContext(getEyePosition(),net.minecraft.world.phys.Vec3.atCenterOf(pos),
                 net.minecraft.world.level.ClipContext.Block.COLLIDER,net.minecraft.world.level.ClipContext.Fluid.NONE,this));
-        if(sight.getType()!=net.minecraft.world.phys.HitResult.Type.MISS&&!sight.getBlockPos().equals(pos)
-                ||!EventHooks.canEntityGrief(server,this))return false;
+        if(sight.getType()!=net.minecraft.world.phys.HitResult.Type.MISS&&!sight.getBlockPos().equals(pos))return false;
         int reduced=state.getValue(age)-1;
         server.setBlock(pos,state.setValue(age,reduced),3);
         if(state.is(Blocks.PITCHER_CROP)&&server.getBlockState(pos.above()).is(Blocks.PITCHER_CROP)){
@@ -103,12 +103,15 @@ public final class FieldMouse extends PathfinderMob {
         villageHome=tag.contains("VillageHome")?BlockPos.of(tag.getLong("VillageHome")):null;
     }
     private final class FleeGoal extends Goal {
-        private LivingEntity danger;private Path path;private int scan;
+        private LivingEntity danger;private Path path;private long nextScan;
         FleeGoal(){setFlags(EnumSet.of(Flag.MOVE,Flag.LOOK));}
         @Override public boolean canUse(){
-            if(scan-- >0)return false;scan=reducedTickDelay(5);
-            danger=level().getEntitiesOfClass(LivingEntity.class,getBoundingBox().inflate(3),
-                    e->threat(e)&&distanceToSqr(e)<=9).stream().min(Comparator.comparingDouble(FieldMouse.this::distanceToSqr)).orElse(null);
+            long now=level().getGameTime();
+            if(now<nextScan)return false;nextScan=now+10;
+            danger=null;double nearest=9;
+            for(var candidate:level().getEntitiesOfClass(LivingEntity.class,getBoundingBox().inflate(3),FieldMouse::threat)){
+                double distance=distanceToSqr(candidate);if(distance<=nearest){nearest=distance;danger=candidate;}
+            }
             if(danger==null)return false;
             var away=DefaultRandomPos.getPosAway(FieldMouse.this,12,4,danger.position());
             if(away==null||danger.distanceToSqr(away)<=danger.distanceToSqr(FieldMouse.this))return false;
@@ -119,36 +122,67 @@ public final class FieldMouse extends PathfinderMob {
         @Override public void stop(){danger=null;getNavigation().stop();}
     }
     private final class EatCropsGoal extends MoveToBlockGoal {
-        private boolean edibleOnly;
+        private boolean edibleOnly,waitingForBudget;
+        private BlockPos youngFallback;
+        private long nextSearch=-1,nextHomeCheck,nextTargetCheck,nextBite=-1;
         EatCropsGoal(){super(FieldMouse.this,.65,16,5);}
+        @Override public boolean canUse(){
+            long now=level().getGameTime();
+            if(nextSearch<0){nextSearch=now+Math.floorMod(getId()*31,20);nextHomeCheck=nextSearch;}
+            if(now<nextSearch){
+                if(now<nextHomeCheck)return false;nextHomeCheck=now+CROP_CHECK_INTERVAL;
+                return rememberedCrop();
+            }
+            waitingForBudget=false;boolean found=findNearestBlock();
+            nextSearch=now+(waitingForBudget?10+Math.floorMod(getId(),10):CROP_CHECK_INTERVAL);
+            nextHomeCheck=now+CROP_CHECK_INTERVAL;
+            return found;
+        }
         @Override public double acceptedDistance(){return 1.6;}
-        @Override protected int nextStartTick(PathfinderMob mob){return reducedTickDelay(100);}
         @Override protected BlockPos getMoveToTarget(){return blockPos;}
         @Override protected void moveMobToBlock(){getNavigation().moveTo(blockPos.getX()+.5,blockPos.getY(),blockPos.getZ()+.5,.65);}
         @Override protected boolean isValidTarget(LevelReader world,BlockPos pos){
             if(!world.hasChunkAt(pos))return false;
             var state=world.getBlockState(pos);var age=cropAge(state);
-            return age!=null&&(!edibleOnly||state.getValue(age)>0)&&world.getFluidState(pos).isEmpty();
+            if(age==null||!world.getFluidState(pos).isEmpty())return false;
+            if(edibleOnly&&state.getValue(age)==0){if(youngFallback==null)youngFallback=pos.immutable();return false;}
+            return true;
+        }
+        private boolean rememberedCrop(){
+            if(cropHome!=null&&isValidTarget(level(),cropHome)&&distanceToSqr(net.minecraft.world.phys.Vec3.atCenterOf(cropHome))<48*48){
+                var state=level().getBlockState(cropHome);var age=FieldMouse.cropAge(state);
+                if(level().getGameTime()<nextMeal||state.getValue(age)>0){blockPos=cropHome;return true;}
+            }
+            return false;
         }
         @Override protected boolean findNearestBlock(){
-            if(level().getGameTime()>=nextMeal){
-                edibleOnly=true;boolean found=super.findNearestBlock();edibleOnly=false;
-                if(found){cropHome=blockPos.immutable();return true;}
-            }
-            if(cropHome!=null&&isValidTarget(level(),cropHome)&&distanceToSqr(net.minecraft.world.phys.Vec3.atCenterOf(cropHome))<48*48){
-                blockPos=cropHome;return true;
-            }
-            if(super.findNearestBlock()){cropHome=blockPos.immutable();return true;}
+            if(rememberedCrop())return true;
+            if(!MouseWorkBudget.tryCropSearch((ServerLevel)level())){waitingForBudget=true;return false;}
+            youngFallback=null;edibleOnly=level().getGameTime()>=nextMeal;
+            boolean found=super.findNearestBlock();edibleOnly=false;
+            if(found){cropHome=blockPos.immutable();return true;}
+            if(youngFallback!=null){blockPos=youngFallback;cropHome=youngFallback;return true;}
             cropHome=null;return false;
         }
+        @Override public void start(){super.start();nextTargetCheck=level().getGameTime()+CROP_CHECK_INTERVAL;}
         @Override public boolean canContinueToUse(){
-            if(level().getGameTime()>=nextMeal&&tickCount%100==0&&FieldMouse.cropAge(level().getBlockState(blockPos))!=null
-                    &&level().getBlockState(blockPos).getValue(FieldMouse.cropAge(level().getBlockState(blockPos)))==0)return false;
-            return super.canContinueToUse();
+            long now=level().getGameTime();
+            if(now<nextTargetCheck)return true;
+            nextTargetCheck=now+CROP_CHECK_INTERVAL;
+            var state=level().getBlockState(blockPos);var age=FieldMouse.cropAge(state);
+            if(age==null||!super.canContinueToUse())return false;
+            return now<nextMeal||state.getValue(age)>0||now<nextSearch;
         }
         @Override public void tick(){
             super.tick();
-            if(isReachedTarget()){getNavigation().stop();eatCrop(blockPos);}
+            if(isReachedTarget()){
+                if(!getNavigation().isDone())getNavigation().stop();
+                long now=level().getGameTime();
+                if(nextBite<0)nextBite=now+Math.floorMod(getId(),40);
+                if(now>=nextMeal&&now>=nextBite){
+                    nextBite=eatCrop(blockPos)?nextMeal:now+CROP_CHECK_INTERVAL;
+                }
+            }
         }
         @Override public void stop(){super.stop();getNavigation().stop();}
     }

@@ -97,10 +97,10 @@ def run():
    s=snapshot(side);tab=next((t for t in s.get('creativeTabs',[]) if t['title']=='Fantasy Feudalism - Ecosystems'),None)
    if tab:break
    rpc(side,'mouse',x=s['guiWidth']/2+87,y=s['guiHeight']/2-108)
-  assert tab and {MOD+x for x in ['bee_bottle','raw_horse','cooked_horse','bat_net','bat_enclosure','fertilizer']}=={i['item'] for i in tab['items']},tab
+  assert tab and {MOD+x for x in ['bee_bottle','raw_horse','cooked_horse','bat_net','bat_enclosure','fertilizer','field_mouse_spawn_egg']}=={i['item'] for i in tab['items']},tab
   rpc(side,'mouse',x=(s['guiWidth']-195)//2+27*tab['column']+13,y=(s['guiHeight']-136)//2+(-16 if tab['top'] else 152))
   rpc(side,'screenshot',file='ecosystems-015/creative-items.png');rpc(side,'close')
- check('Both real creative menus expose all six Ecosystems items and render their models')
+ check('Both real creative menus expose all seven Ecosystems items and render their models')
  for side in SIDES:rpc(side,'reload',timeout=60)
  assert all(not snapshot(side)['renderErrors'] and not any(v['missing'] for v in snapshot(side)['ecosystemModels'].values()) for side in SIDES)
  check('Both clients reload resources and continue rendering without recorded model errors')

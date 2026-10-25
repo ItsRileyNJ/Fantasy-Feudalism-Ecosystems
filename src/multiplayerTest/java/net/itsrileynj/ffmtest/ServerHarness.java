@@ -79,6 +79,8 @@ public final class ServerHarness {
     public static Object execute(MinecraftServer server, JsonObject q) {
         ServerLevel level = server.overworld(); String action = q.get("action").getAsString();
         switch (action) {
+            case "mouseProfile": {var prepared=MousePerformanceHarness.fixture(server,q);TIMES.clear();return prepared;}
+            case "mouseProfileMetrics": return MousePerformanceHarness.metrics(server);
             case "auditFixture": return AuditHarness.fixture(server,q);
             case "block": return ControlFiles.block(level,q);
             case "enclosure": return ControlFiles.enclosure(level,q);
@@ -278,9 +280,12 @@ public final class ServerHarness {
             if(e instanceof ServerPlayer)continue;
             var info=ControlFiles.entity(e);if(e instanceof net.minecraft.world.entity.item.ItemEntity item)info.put("stack",ControlFiles.stack(item.getItem()));entities.add(info);
         }
-        result.put("entities",entities);var sorted=TIMES.stream().sorted().toList();
-        result.put("tickSamples",sorted.size());result.put("meanTickMs",sorted.stream().mapToDouble(Double::doubleValue).average().orElse(0));
-        result.put("p95TickMs",sorted.isEmpty()?0:sorted.get(Math.min(sorted.size()-1,(int)(sorted.size()*.95))));
-        result.put("maxTickMs",sorted.isEmpty()?0:sorted.getLast());return result;
+        result.put("entities",entities);result.putAll(timings());return result;
+    }
+    public static Map<String,Object> timings(){
+        var sorted=TIMES.stream().sorted().toList();var data=new LinkedHashMap<String,Object>();
+        data.put("tickSamples",sorted.size());data.put("meanTickMs",sorted.stream().mapToDouble(Double::doubleValue).average().orElse(0));
+        for(int percentile:new int[]{50,95,99})data.put("p"+percentile+"TickMs",sorted.isEmpty()?0:sorted.get(Math.min(sorted.size()-1,(int)(sorted.size()*percentile/100.0))));
+        data.put("maxTickMs",sorted.isEmpty()?0:sorted.getLast());data.put("ticksOver50Ms",sorted.stream().filter(ms->ms>50).count());return data;
     }
 }

@@ -45,6 +45,9 @@ public final class FantasyFeudalismMobs {
     public static final DeferredItem<Item> BAT_NET=ITEMS.register("bat_net",()->new BatNetItem(new Item.Properties()));
     public static final DeferredItem<BlockItem> BAT_ENCLOSURE_ITEM=ITEMS.register("bat_enclosure",()->new BlockItem(BAT_ENCLOSURE.get(),new Item.Properties()));
     public static final DeferredItem<Item> BEE_BOTTLE = ITEMS.registerSimpleItem("bee_bottle");
+    public static final DeferredItem<net.neoforged.neoforge.common.DeferredSpawnEggItem> FIELD_MOUSE_SPAWN_EGG=
+            ITEMS.register("field_mouse_spawn_egg",()->new net.neoforged.neoforge.common.DeferredSpawnEggItem(
+                    FIELD_MOUSE,0xF5F2ED,0xEDA0B3,new Item.Properties()));
     public static final DeferredItem<Item> RAW_HORSE = ITEMS.registerSimpleItem("raw_horse", new Item.Properties().food(Foods.MUTTON));
     public static final DeferredItem<Item> COOKED_HORSE = ITEMS.registerSimpleItem("cooked_horse", new Item.Properties().food(Foods.COOKED_MUTTON));
     public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS =
@@ -61,6 +64,7 @@ public final class FantasyFeudalismMobs {
                     output.accept(FERTILIZER.get());
                     output.accept(BAT_NET.get());
                     output.accept(BAT_ENCLOSURE_ITEM.get());
+                    output.accept(FIELD_MOUSE_SPAWN_EGG.get());
                 })
                 .build());
     }
@@ -74,6 +78,9 @@ public final class FantasyFeudalismMobs {
         SOUNDS.register(modEventBus);
         modEventBus.addListener((net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent event)->event.put(FIELD_MOUSE.get(),FieldMouse.createAttributes().build()));
         CREATIVE_TABS.register(modEventBus);
+        modEventBus.addListener((net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent event)->{
+            if(event.getTabKey().equals(net.minecraft.world.item.CreativeModeTabs.SPAWN_EGGS))event.accept(FIELD_MOUSE_SPAWN_EGG.get());
+        });
         modEventBus.addListener(FeudalEvents::spawnPlacements);
         container.registerConfig(ModConfig.Type.SERVER, FeudalConfig.SPEC);
         NeoForge.EVENT_BUS.register(FeudalEvents.class);

@@ -6,7 +6,19 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.18.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.20.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.20 changes
+
+- Mice check crops and retry feeding every **20 seconds**, while keeping responsive fleeing and the two-minute feeding cooldown.
+- Crop searches are staggered and shared across ticks. Morning spawning reuses a village's crop search and creates at most one mouse per server tick; pending morning work survives saving and reloading.
+
+See the [before-and-after performance report](docs/RELEASE_0.1.20.md) for measurements and remaining startup spikes.
+
+## Version 0.1.19 changes
+
+- Added a white-and-pink **Field Mouse Spawn Egg** to the Ecosystems and vanilla Spawn Eggs creative tabs. It uses normal spawn-egg and dispenser behavior.
+- Item ID: `fantasy_feudalism_mobs:field_mouse_spawn_egg`.
 
 ## Version 0.1.18 changes
 

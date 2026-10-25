@@ -394,3 +394,12 @@ Implementation uses native cat owner-resting behavior and morning gifts for tame
 ## Field Mouse sounds (0.1.18)
 
 Use the user-supplied `Mouse Sounds.zip`: five `Mouse_Ambient` clips as randomly selected ambient calls at vanilla animal frequency, and three `Mouse_Hurt` clips when mice take damage. The hurt bank also covers fatal damage, since no separate death recordings were supplied. Keep the recordings unchanged.
+
+## Field Mouse spawn egg (0.1.19)
+
+The user requested a Field Mouse Spawn Egg. Use the native spawn-egg item with white and pink colors matching the mouse, available in the Ecosystems and vanilla Spawn Eggs creative tabs.
+
+
+## Mouse performance timing (0.1.20)
+
+The user requested fewer checks, specifying **20 seconds for crop searching and feeding only**, with fleeing kept responsive. Crop/feeding polling uses 400 world ticks at normal speed. Successful feeding still has its individual 2,400-tick cooldown. Expensive searches and morning spawning are budgeted across server ticks; queued morning work is saved so spreading it out cannot duplicate population slots.
