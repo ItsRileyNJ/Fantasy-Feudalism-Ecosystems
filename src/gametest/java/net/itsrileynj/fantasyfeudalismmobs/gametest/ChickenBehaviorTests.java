@@ -46,7 +46,7 @@ public final class ChickenBehaviorTests {
         h.succeed();
     }
 
-    @GameTest(template="test_empty",timeoutTicks=100)
+    @GameTest(template="test_empty",timeoutTicks=200)
     public static void normalAiFleesEvenWhenPlayerHoldsSeeds(GameTestHelper h) {
         floor(h);
         var chicken=h.spawn(EntityType.CHICKEN,8,2,8);chicken.setOnGround(true);

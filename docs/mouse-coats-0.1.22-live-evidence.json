@@ -1,0 +1,388 @@
+{
+  "white_server": {
+    "id": 2,
+    "uuid": "4e0e4590-428d-45ea-ba6b-7a242cf9fc35",
+    "type": "fantasy_feudalism_mobs:field_mouse",
+    "position": [
+      7.7,
+      64.0,
+      8.0
+    ],
+    "pose": "STANDING",
+    "onGround": false,
+    "inWater": false,
+    "alive": true,
+    "removed": false,
+    "invisible": false,
+    "silent": false,
+    "hurtTime": 0,
+    "health": 4.0,
+    "maxHealth": 4.0,
+    "effects": [],
+    "effectDetails": [],
+    "effectParticles": [],
+    "variant": 0,
+    "nextMeal": 0,
+    "cropHome": "null",
+    "spawnType": "",
+    "target": -1,
+    "noAi": true,
+    "mainHand": {
+      "item": "minecraft:air",
+      "count": 0,
+      "damage": 0
+    },
+    "offHand": {
+      "item": "minecraft:air",
+      "count": 0,
+      "damage": 0
+    },
+    "blocking": false,
+    "usingItem": false,
+    "sprinting": false
+  },
+  "amber_server": {
+    "id": 3,
+    "uuid": "21baee4f-6272-466e-8e3f-67bb41150cf7",
+    "type": "fantasy_feudalism_mobs:field_mouse",
+    "position": [
+      8.5,
+      64.0,
+      8.0
+    ],
+    "pose": "STANDING",
+    "onGround": false,
+    "inWater": false,
+    "alive": true,
+    "removed": false,
+    "invisible": false,
+    "silent": false,
+    "hurtTime": 0,
+    "health": 4.0,
+    "maxHealth": 4.0,
+    "effects": [],
+    "effectDetails": [],
+    "effectParticles": [],
+    "variant": 1,
+    "nextMeal": 0,
+    "cropHome": "null",
+    "spawnType": "",
+    "target": -1,
+    "noAi": true,
+    "mainHand": {
+      "item": "minecraft:air",
+      "count": 0,
+      "damage": 0
+    },
+    "offHand": {
+      "item": "minecraft:air",
+      "count": 0,
+      "damage": 0
+    },
+    "blocking": false,
+    "usingItem": false,
+    "sprinting": false
+  },
+  "white_client": {
+    "id": 2,
+    "uuid": "4e0e4590-428d-45ea-ba6b-7a242cf9fc35",
+    "type": "fantasy_feudalism_mobs:field_mouse",
+    "position": [
+      7.7,
+      64.0,
+      8.0
+    ],
+    "pose": "STANDING",
+    "onGround": false,
+    "inWater": false,
+    "alive": true,
+    "removed": false,
+    "invisible": false,
+    "silent": false,
+    "hurtTime": 0,
+    "health": 4.0,
+    "maxHealth": 4.0,
+    "effects": [],
+    "effectDetails": [],
+    "effectParticles": [],
+    "variant": 0,
+    "nextMeal": 0,
+    "cropHome": "null",
+    "spawnType": "",
+    "target": -1,
+    "noAi": true,
+    "mainHand": {
+      "item": "minecraft:air",
+      "count": 0,
+      "damage": 0
+    },
+    "offHand": {
+      "item": "minecraft:air",
+      "count": 0,
+      "damage": 0
+    },
+    "blocking": false,
+    "usingItem": false,
+    "sprinting": false
+  },
+  "amber_client": {
+    "id": 3,
+    "uuid": "21baee4f-6272-466e-8e3f-67bb41150cf7",
+    "type": "fantasy_feudalism_mobs:field_mouse",
+    "position": [
+      8.5,
+      64.0,
+      8.0
+    ],
+    "pose": "STANDING",
+    "onGround": false,
+    "inWater": false,
+    "alive": true,
+    "removed": false,
+    "invisible": false,
+    "silent": false,
+    "hurtTime": 0,
+    "health": 4.0,
+    "maxHealth": 4.0,
+    "effects": [],
+    "effectDetails": [],
+    "effectParticles": [],
+    "variant": 1,
+    "nextMeal": 0,
+    "cropHome": "null",
+    "spawnType": "",
+    "target": -1,
+    "noAi": true,
+    "mainHand": {
+      "item": "minecraft:air",
+      "count": 0,
+      "damage": 0
+    },
+    "offHand": {
+      "item": "minecraft:air",
+      "count": 0,
+      "damage": 0
+    },
+    "blocking": false,
+    "usingItem": false,
+    "sprinting": false
+  },
+  "screenshot": "/workspace/multiplayer/control/owner/mouse-coats-0.1.22.png",
+  "after_reconnect": {
+    "id": 3,
+    "uuid": "21baee4f-6272-466e-8e3f-67bb41150cf7",
+    "type": "fantasy_feudalism_mobs:field_mouse",
+    "position": [
+      8.5,
+      64.0,
+      8.0
+    ],
+    "pose": "STANDING",
+    "onGround": false,
+    "inWater": false,
+    "alive": true,
+    "removed": false,
+    "invisible": false,
+    "silent": false,
+    "hurtTime": 0,
+    "health": 4.0,
+    "maxHealth": 4.0,
+    "effects": [],
+    "effectDetails": [],
+    "effectParticles": [],
+    "variant": 1,
+    "nextMeal": 0,
+    "cropHome": "null",
+    "spawnType": "",
+    "target": -1,
+    "noAi": true,
+    "mainHand": {
+      "item": "minecraft:air",
+      "count": 0,
+      "damage": 0
+    },
+    "offHand": {
+      "item": "minecraft:air",
+      "count": 0,
+      "damage": 0
+    },
+    "blocking": false,
+    "usingItem": false,
+    "sprinting": false
+  },
+  "native_client_egg_cat": {
+    "cat": {
+      "id": 6,
+      "uuid": "638fdd1b-d569-411d-8c83-9a6ab602ee62",
+      "type": "minecraft:cat",
+      "position": [
+        4.0,
+        64.0,
+        8.0
+      ],
+      "pose": "STANDING",
+      "onGround": false,
+      "inWater": false,
+      "alive": true,
+      "removed": false,
+      "invisible": false,
+      "silent": false,
+      "hurtTime": 0,
+      "health": 10.0,
+      "maxHealth": 10.0,
+      "effects": [],
+      "effectDetails": [],
+      "effectParticles": [],
+      "lying": false,
+      "tamed": false,
+      "owner": "null",
+      "sitting": false,
+      "spawnType": "",
+      "target": -1,
+      "noAi": false,
+      "mainHand": {
+        "item": "minecraft:air",
+        "count": 0,
+        "damage": 0
+      },
+      "offHand": {
+        "item": "minecraft:air",
+        "count": 0,
+        "damage": 0
+      },
+      "blocking": false,
+      "usingItem": false,
+      "sprinting": false
+    },
+    "passed": true
+  },
+  "native_client_egg_villager": {
+    "mouse": {
+      "id": 7,
+      "uuid": "4768a113-82a1-46cd-8e8f-1c66416f5729",
+      "type": "fantasy_feudalism_mobs:field_mouse",
+      "position": [
+        8.5,
+        64.0,
+        8.5
+      ],
+      "pose": "STANDING",
+      "onGround": true,
+      "inWater": false,
+      "alive": true,
+      "removed": false,
+      "invisible": false,
+      "silent": false,
+      "hurtTime": 0,
+      "health": 4.0,
+      "maxHealth": 4.0,
+      "effects": [],
+      "effectDetails": [],
+      "effectParticles": [],
+      "variant": 1,
+      "nextMeal": 0,
+      "cropHome": "null",
+      "spawnType": "SPAWN_EGG",
+      "target": -1,
+      "noAi": false,
+      "mainHand": {
+        "item": "minecraft:air",
+        "count": 0,
+        "damage": 0
+      },
+      "offHand": {
+        "item": "minecraft:air",
+        "count": 0,
+        "damage": 0
+      },
+      "blocking": false,
+      "usingItem": false,
+      "sprinting": false
+    },
+    "villager": {
+      "id": 8,
+      "uuid": "3c74b27a-646f-48cf-8b7e-3a8735cf4f75",
+      "type": "minecraft:villager",
+      "position": [
+        10.0,
+        64.0,
+        8.0
+      ],
+      "pose": "STANDING",
+      "onGround": false,
+      "inWater": false,
+      "alive": true,
+      "removed": false,
+      "invisible": false,
+      "silent": false,
+      "hurtTime": 0,
+      "health": 20.0,
+      "maxHealth": 20.0,
+      "effects": [],
+      "effectDetails": [],
+      "effectParticles": [],
+      "spawnType": "",
+      "target": -1,
+      "noAi": true,
+      "mainHand": {
+        "item": "minecraft:air",
+        "count": 0,
+        "damage": 0
+      },
+      "offHand": {
+        "item": "minecraft:air",
+        "count": 0,
+        "damage": 0
+      },
+      "blocking": false,
+      "usingItem": false,
+      "sprinting": false,
+      "baby": false,
+      "playCat": "",
+      "playUntil": 0
+    },
+    "escaped": {
+      "id": 7,
+      "uuid": "4768a113-82a1-46cd-8e8f-1c66416f5729",
+      "type": "fantasy_feudalism_mobs:field_mouse",
+      "position": [
+        6.436606985993417,
+        64.0,
+        3.685571212158004
+      ],
+      "pose": "STANDING",
+      "onGround": true,
+      "inWater": false,
+      "alive": true,
+      "removed": false,
+      "invisible": false,
+      "silent": false,
+      "hurtTime": 0,
+      "health": 4.0,
+      "maxHealth": 4.0,
+      "effects": [],
+      "effectDetails": [],
+      "effectParticles": [],
+      "variant": 1,
+      "nextMeal": 0,
+      "cropHome": "null",
+      "spawnType": "SPAWN_EGG",
+      "target": -1,
+      "noAi": false,
+      "mainHand": {
+        "item": "minecraft:air",
+        "count": 0,
+        "damage": 0
+      },
+      "offHand": {
+        "item": "minecraft:air",
+        "count": 0,
+        "damage": 0
+      },
+      "blocking": false,
+      "usingItem": false,
+      "sprinting": false
+    },
+    "passed": true
+  }
+}

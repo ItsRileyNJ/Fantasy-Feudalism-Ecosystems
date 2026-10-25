@@ -230,12 +230,12 @@ public final class CatMouseTests {
         h.succeedWhen(()->h.assertFalse(mouse.isAlive(),"Cat hunt: cat="+cat.position()+" mouse="+mouse.position()+" health="+mouse.getHealth()+" target="+cat.getTarget()+" path="+cat.getNavigation().getPath()+" canAttack="+cat.canAttack(mouse)+" sitting="+cat.isOrderedToSit()));
     }
     @GameTest(template="test_empty")
-    public static void catHuntRangeIsFifteenBlocks(GameTestHelper h){
+    public static void catHuntRangeIsSixteenBlocks(GameTestHelper h){
         var cat=h.spawn(EntityType.CAT,1,2,8);cat.setNoAi(true);
-        var mouse=h.spawn(FantasyFeudalismMobs.FIELD_MOUSE.get(),16,2,8);mouse.setNoAi(true);
-        h.assertTrue(new CatMouseHuntGoal(cat).canUse(),"A mouse exactly fifteen blocks away can be hunted");
+        var mouse=h.spawn(FantasyFeudalismMobs.FIELD_MOUSE.get(),17,2,8);mouse.setNoAi(true);
+        h.assertTrue(new CatMouseHuntGoal(cat).canUse(),"A mouse exactly sixteen blocks away can be hunted");
         mouse.setPos(mouse.getX()+.1,mouse.getY(),mouse.getZ());
-        h.assertFalse(new CatMouseHuntGoal(cat).canUse(),"A mouse beyond fifteen blocks is not acquired");h.succeed();
+        h.assertFalse(new CatMouseHuntGoal(cat).canUse(),"A mouse beyond sixteen blocks is not acquired");h.succeed();
     }
     @GameTest(template="test_empty",batch="mouse_crops")
     public static void mouseEatsExactlyOneStageHonorsGriefingAndPersistsCooldown(GameTestHelper h){
@@ -248,7 +248,7 @@ public final class CatMouseTests {
             h.assertFalse(mouse.eatCrop(pos),"mobGriefing=false blocks crop damage");
             level.getGameRules().getRule(GameRules.RULE_MOBGRIEFING).set(true,level.getServer());
             h.assertTrue(mouse.eatCrop(pos)&&level.getBlockState(pos).getValue(CropBlock.AGE)==6,"Exactly one stage is eaten");
-            h.assertTrue(mouse.nextMeal()==level.getGameTime()+2400,"Cooldown is exactly two minutes of world ticks");
+            h.assertTrue(mouse.nextMeal()==level.getGameTime()+1800,"Cooldown is exactly ninety seconds of world ticks");
             h.assertFalse(mouse.eatCrop(pos),"A second bite before the deadline is rejected");
             var restored=FantasyFeudalismMobs.FIELD_MOUSE.get().create(level);restored.load(mouse.saveWithoutId(new CompoundTag()));
             h.assertTrue(restored.nextMeal()==mouse.nextMeal()&&!restored.eatCrop(pos),"Save/load preserves the individual cooldown");
@@ -256,13 +256,13 @@ public final class CatMouseTests {
             h.assertTrue(second.eatCrop(pos)&&level.getBlockState(pos).getValue(CropBlock.AGE)==5,"Another mouse has an independent meal timer");h.succeed();
         }finally{level.getGameRules().getRule(GameRules.RULE_MOBGRIEFING).set(grief,level.getServer());}
     }
-    @GameTest(template="test_empty",timeoutTicks=2500,batch="mouse_full_cooldown")
-    public static void mouseCanEatAgainOnlyAfterTwoFullMinutes(GameTestHelper h){
+    @GameTest(template="test_empty",timeoutTicks=1850,batch="mouse_full_cooldown")
+    public static void mouseCanEatAgainOnlyAfterNinetySeconds(GameTestHelper h){
         var pos=h.absolutePos(new BlockPos(8,2,8));h.setBlock(8,1,8,Blocks.FARMLAND);h.setBlock(8,2,8,Blocks.WHEAT.defaultBlockState().setValue(CropBlock.AGE,7));
         var mouse=h.spawn(FantasyFeudalismMobs.FIELD_MOUSE.get(),8,2,8);mouse.setNoAi(true);
         h.assertTrue(mouse.eatCrop(pos),"First bite succeeds");
-        h.runAtTickTime(2398,()->h.assertFalse(mouse.eatCrop(pos),"A bite before two minutes is rejected"));
-        h.runAtTickTime(2402,()->{h.assertTrue(mouse.eatCrop(pos),"Bite after the deadline succeeds");h.assertTrue(h.getLevel().getBlockState(pos).getValue(CropBlock.AGE)==5,"Only two stages eaten");h.succeed();});
+        h.runAtTickTime(1798,()->h.assertFalse(mouse.eatCrop(pos),"A bite before ninety seconds is rejected"));
+        h.runAtTickTime(1802,()->{h.assertTrue(mouse.eatCrop(pos),"Bite after the deadline succeeds");h.assertTrue(h.getLevel().getBlockState(pos).getValue(CropBlock.AGE)==5,"Only two stages eaten");h.succeed();});
     }
     @GameTest(template="test_empty",batch="mouse_pitcher")
     public static void mouseReducesBothPitcherHalvesWithoutBreakingOrDroppingThePlant(GameTestHelper h){

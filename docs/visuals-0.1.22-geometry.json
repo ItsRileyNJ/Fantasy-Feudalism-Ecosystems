@@ -1,0 +1,133 @@
+{
+  "previous_overlapping_same_facing_surfaces": [
+    [
+      6,
+      "north",
+      8,
+      "north"
+    ],
+    [
+      6,
+      "south",
+      11,
+      "south"
+    ],
+    [
+      6,
+      "east",
+      8,
+      "east"
+    ],
+    [
+      6,
+      "east",
+      9,
+      "east"
+    ],
+    [
+      6,
+      "east",
+      10,
+      "east"
+    ],
+    [
+      6,
+      "east",
+      11,
+      "east"
+    ],
+    [
+      6,
+      "west",
+      8,
+      "west"
+    ],
+    [
+      6,
+      "west",
+      9,
+      "west"
+    ],
+    [
+      6,
+      "west",
+      10,
+      "west"
+    ],
+    [
+      6,
+      "west",
+      11,
+      "west"
+    ],
+    [
+      15,
+      "north",
+      17,
+      "north"
+    ],
+    [
+      15,
+      "south",
+      20,
+      "south"
+    ],
+    [
+      15,
+      "east",
+      17,
+      "east"
+    ],
+    [
+      15,
+      "east",
+      18,
+      "east"
+    ],
+    [
+      15,
+      "east",
+      19,
+      "east"
+    ],
+    [
+      15,
+      "east",
+      20,
+      "east"
+    ],
+    [
+      15,
+      "west",
+      17,
+      "west"
+    ],
+    [
+      15,
+      "west",
+      18,
+      "west"
+    ],
+    [
+      15,
+      "west",
+      19,
+      "west"
+    ],
+    [
+      15,
+      "west",
+      20,
+      "west"
+    ]
+  ],
+  "final_overlapping_same_facing_surfaces": [],
+  "previous_elements": 34,
+  "final_elements": 42,
+  "previous_faces": 200,
+  "final_faces": 166,
+  "net_models": "native handheld sprite; no custom cuboids",
+  "bat_roof_underside": 0.875,
+  "native_resting_foot_y_model_pixels": 9.5,
+  "display_anchor_y_at_scale_one": 0.3760125
+}

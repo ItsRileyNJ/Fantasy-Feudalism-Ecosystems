@@ -1,0 +1,25 @@
+Standalone
+[07:13:44] [Server thread/INFO] [minecraft/GameTestServer]: All 198 required tests passed :)
+BUILD SUCCESSFUL in 43s
+
+Mercenaries 1.15.7
+[07:16:01] [Server thread/INFO] [minecraft/GameTestServer]: All 211 required tests passed :)
+BUILD SUCCESSFUL in 1m 26s
+
+Release: build/libs/fantasy_feudalism_ecosystems-0.1.22.jar
+
+Bytes: 341697
+
+SHA-256: 05bd8097525b206d71fce82d07f46ed1672ed4f827c6b4b674eeb1cccbdbb6a9
+
+All six new/updated texture PNG dimensions and item alpha transparency verified in the release archive.
+
+Native advancement JSON files: 17. No GameTests, test structures, or multiplayer harness classes in release.
+
+Live with Mercenaries: both coats synchronized/rendered; amber survived reconnect; a real client egg mouse was hunted/killed by a cat and another fled a villager.
+
+Live with Mercenaries: one/two/three native captured bats rendered with fixed poses; four facings and oblique interior inspected; net/raw/cooked sprites rendered; native reload passed.
+
+Static model audit: overlapping same-facing surfaces 20 -> 0; faces 200 -> 166.
+
+After testing: client disconnected/quit, enclosure removed, test entities and force-load tickets cleared, all dimensions saved and server stopped; owned Xorg display stopped.

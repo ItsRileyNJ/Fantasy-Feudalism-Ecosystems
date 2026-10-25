@@ -3,6 +3,9 @@ package net.itsrileynj.fantasyfeudalismmobs;
 import java.util.EnumSet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerLevel;
@@ -16,6 +19,8 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
@@ -25,7 +30,9 @@ import net.neoforged.neoforge.event.EventHooks;
 
 /** A crop-seeking wildlife mob, not a silverfish replacement. All food/flee decisions are server-owned. */
 public final class FieldMouse extends PathfinderMob {
-    public static final int EAT_COOLDOWN=2*60*20;
+    public static final int WHITE=0,AMBER=1;
+    private static final EntityDataAccessor<Integer> VARIANT=SynchedEntityData.defineId(FieldMouse.class,EntityDataSerializers.INT);
+    public static final int EAT_COOLDOWN=90*20;
     public static final int CROP_CHECK_INTERVAL=20*20;
     public static final double CAT_CHASE_SPEED=1.33;
     // LivingEntity applies an additional 30% attribute modifier to a sprinting cat.
@@ -35,6 +42,15 @@ public final class FieldMouse extends PathfinderMob {
     private BlockPos cropHome;
     private BlockPos villageHome;
     public FieldMouse(EntityType<? extends FieldMouse> type,Level level){super(type,level);setPersistenceRequired();}
+    @Override protected void defineSynchedData(SynchedEntityData.Builder builder){
+        super.defineSynchedData(builder);builder.define(VARIANT,WHITE);
+    }
+    public int getVariant(){return entityData.get(VARIANT);}
+    public void setVariant(int variant){entityData.set(VARIANT,variant==AMBER?AMBER:WHITE);}
+    @Override public SpawnGroupData finalizeSpawn(ServerLevelAccessor level,DifficultyInstance difficulty,MobSpawnType reason,SpawnGroupData group){
+        var result=super.finalizeSpawn(level,difficulty,reason,group);
+        setVariant(getRandom().nextBoolean()?AMBER:WHITE);return result;
+    }
     public static AttributeSupplier.Builder createAttributes(){return Mob.createMobAttributes()
             .add(Attributes.MAX_HEALTH,4).add(Attributes.MOVEMENT_SPEED,RUN_SPEED).add(Attributes.FOLLOW_RANGE,24);}
     // Use Mob's random ambient scheduler with the same minimum interval as vanilla Animal.
@@ -52,13 +68,19 @@ public final class FieldMouse extends PathfinderMob {
         goalSelector.addGoal(1,new FleeGoal());
         goalSelector.addGoal(3,new EatCropsGoal());
         goalSelector.addGoal(6,new WaterAvoidingRandomStrollGoal(this,.55){
-            @Override public boolean canUse(){return cropHome==null&&super.canUse();}
+            @Override protected net.minecraft.world.phys.Vec3 getPosition(){
+                if(cropHome==null)return super.getPosition();
+                // Ordinary idle movement stays near the remembered food, without searching for more crops.
+                var pos=DefaultRandomPos.getPos(FieldMouse.this,3,2);
+                return pos!=null&&pos.distanceToSqr(net.minecraft.world.phys.Vec3.atCenterOf(cropHome))<=16?pos:null;
+            }
         });
         goalSelector.addGoal(7,new RandomLookAroundGoal(this));
     }
     public static boolean threat(LivingEntity entity){
         if(entity instanceof FieldMouse||!entity.isAlive()||entity.isSpectator())return false;
-        if(entity instanceof Player||entity instanceof Cat||entity instanceof Villager)return true;
+        if(entity instanceof Player player)return !player.isCreative();
+        if(entity instanceof Cat||entity instanceof Villager)return true;
         return BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).equals(MERCENARY_TYPE);
     }
     @Override public boolean hurt(DamageSource source,float amount){
@@ -93,12 +115,14 @@ public final class FieldMouse extends PathfinderMob {
         return true;
     }
     @Override public void addAdditionalSaveData(CompoundTag tag){
-        super.addAdditionalSaveData(tag);tag.putLong("NextMeal",nextMeal);
+        super.addAdditionalSaveData(tag);tag.putLong("NextMeal",nextMeal);tag.putInt("MealInterval",EAT_COOLDOWN);tag.putInt("Variant",getVariant());
         if(cropHome!=null)tag.putLong("CropHome",cropHome.asLong());
         if(villageHome!=null)tag.putLong("VillageHome",villageHome.asLong());
     }
     @Override public void readAdditionalSaveData(CompoundTag tag){
-        super.readAdditionalSaveData(tag);nextMeal=tag.getLong("NextMeal");
+        super.readAdditionalSaveData(tag);nextMeal=tag.getLong("NextMeal");setVariant(tag.getInt("Variant"));
+        // Preserve elapsed time when upgrading the previous two-minute feeding timer.
+        if(nextMeal>0&&!tag.contains("MealInterval"))nextMeal-=30*20;
         cropHome=tag.contains("CropHome")?BlockPos.of(tag.getLong("CropHome")):null;
         villageHome=tag.contains("VillageHome")?BlockPos.of(tag.getLong("VillageHome")):null;
     }
@@ -117,12 +141,12 @@ public final class FieldMouse extends PathfinderMob {
             if(away==null||danger.distanceToSqr(away)<=danger.distanceToSqr(FieldMouse.this))return false;
             path=getNavigation().createPath(away.x,away.y,away.z,0);return path!=null;
         }
-        @Override public boolean canContinueToUse(){return danger!=null&&danger.isAlive()&&!getNavigation().isDone();}
+        @Override public boolean canContinueToUse(){return danger!=null&&threat(danger)&&!getNavigation().isDone();}
         @Override public void start(){getNavigation().moveTo(path,1);}
         @Override public void stop(){danger=null;getNavigation().stop();}
     }
     private final class EatCropsGoal extends MoveToBlockGoal {
-        private boolean edibleOnly,waitingForBudget;
+        private boolean edibleOnly,waitingForBudget,settled;
         private BlockPos youngFallback;
         private long nextSearch=-1,nextHomeCheck,nextTargetCheck,nextBite=-1;
         EatCropsGoal(){super(FieldMouse.this,.65,16,5);}
@@ -164,8 +188,9 @@ public final class FieldMouse extends PathfinderMob {
             if(youngFallback!=null){blockPos=youngFallback;cropHome=youngFallback;return true;}
             cropHome=null;return false;
         }
-        @Override public void start(){super.start();nextTargetCheck=level().getGameTime()+CROP_CHECK_INTERVAL;}
+        @Override public void start(){settled=false;super.start();nextTargetCheck=level().getGameTime()+CROP_CHECK_INTERVAL;}
         @Override public boolean canContinueToUse(){
+            if(settled)return false;
             long now=level().getGameTime();
             if(now<nextTargetCheck)return true;
             nextTargetCheck=now+CROP_CHECK_INTERVAL;
@@ -179,9 +204,12 @@ public final class FieldMouse extends PathfinderMob {
                 if(!getNavigation().isDone())getNavigation().stop();
                 long now=level().getGameTime();
                 if(nextBite<0)nextBite=now+Math.floorMod(getId(),40);
-                if(now>=nextMeal&&now>=nextBite){
+                if(now<nextMeal)settled=true;
+                else if(now>=nextBite){
                     nextBite=eatCrop(blockPos)?nextMeal:now+CROP_CHECK_INTERVAL;
+                    settled=true;
                 }
+                // A settled visit releases movement/look control for idle wandering and head turns.
             }
         }
         @Override public void stop(){super.stop();getNavigation().stop();}

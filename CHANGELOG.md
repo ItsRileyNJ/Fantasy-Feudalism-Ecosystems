@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.22 — mice, enclosures, and item artwork
+
+- Improved white mouse fur with soft shading and added an amber/light-brown variant. Both have pink tails and spawn equally often.
+- Mice now ignore Creative and Spectator players and stop fleeing when a player switches into either mode.
+- Mice wander and look around near crops between visits, with a 90-second feeding cooldown. Cats detect mice within 16 blocks; spawn-egg mice are hunted and flee villagers normally.
+- Bats hang from enclosure ceilings with staggered positions. Added shaded, dirtied interior wood and fixed overlapping slat surfaces that caused z-fighting.
+- Replaced the Bat Net's custom 3D model with a flat sprite matching the reference. Updated raw and cooked horse meat icons from the supplied references.
+
 ## 0.1.21 — achievements
 
 - Added seventeen achievements for Ecosystems mechanics, including Watch Dog and Master Naturalist.

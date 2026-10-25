@@ -1,0 +1,689 @@
+{
+  "count_1": {
+    "home": {
+      "inside": 1,
+      "residents": 1,
+      "display": 0,
+      "ids": [
+        "05f90bd8-5181-48c7-9b43-6f99055cbbf3"
+      ]
+    },
+    "poses": {
+      "05f90bd8-5181-48c7-9b43-6f99055cbbf3": {
+        "maxPartial": 0.0,
+        "frames": 39,
+        "minPartial": 0.0,
+        "maxPoseDelta": 0.0
+      }
+    },
+    "screenshot": "/workspace/multiplayer/control/owner/visuals-022/bats-1.png"
+  },
+  "count_2": {
+    "home": {
+      "inside": 2,
+      "residents": 2,
+      "display": 0,
+      "ids": [
+        "05f90bd8-5181-48c7-9b43-6f99055cbbf3",
+        "1782e669-6236-4149-9d36-51b3e8fb4722"
+      ]
+    },
+    "poses": {
+      "05f90bd8-5181-48c7-9b43-6f99055cbbf3": {
+        "maxPartial": 0.0,
+        "frames": 41,
+        "minPartial": 0.0,
+        "maxPoseDelta": 0.0
+      },
+      "1782e669-6236-4149-9d36-51b3e8fb4722": {
+        "maxPartial": 0.0,
+        "frames": 41,
+        "minPartial": 0.0,
+        "maxPoseDelta": 0.0
+      }
+    },
+    "screenshot": "/workspace/multiplayer/control/owner/visuals-022/bats-2.png"
+  },
+  "count_3": {
+    "home": {
+      "inside": 3,
+      "residents": 3,
+      "display": 0,
+      "ids": [
+        "05f90bd8-5181-48c7-9b43-6f99055cbbf3",
+        "1782e669-6236-4149-9d36-51b3e8fb4722",
+        "6158fcc9-7cda-4fa7-a350-3e1dd11db7e6"
+      ]
+    },
+    "poses": {
+      "05f90bd8-5181-48c7-9b43-6f99055cbbf3": {
+        "maxPartial": 0.0,
+        "frames": 41,
+        "minPartial": 0.0,
+        "maxPoseDelta": 0.0
+      },
+      "1782e669-6236-4149-9d36-51b3e8fb4722": {
+        "maxPartial": 0.0,
+        "frames": 41,
+        "minPartial": 0.0,
+        "maxPoseDelta": 0.0
+      },
+      "6158fcc9-7cda-4fa7-a350-3e1dd11db7e6": {
+        "maxPartial": 0.0,
+        "frames": 41,
+        "minPartial": 0.0,
+        "maxPoseDelta": 0.0
+      }
+    },
+    "screenshot": "/workspace/multiplayer/control/owner/visuals-022/bats-3.png"
+  },
+  "facing_north": {
+    "home": {
+      "inside": 3,
+      "residents": 3,
+      "display": 0,
+      "ids": [
+        "05f90bd8-5181-48c7-9b43-6f99055cbbf3",
+        "1782e669-6236-4149-9d36-51b3e8fb4722",
+        "6158fcc9-7cda-4fa7-a350-3e1dd11db7e6"
+      ]
+    },
+    "screenshot": "/workspace/multiplayer/control/owner/visuals-022/enclosure-north.png"
+  },
+  "facing_east": {
+    "home": {
+      "inside": 3,
+      "residents": 3,
+      "display": 0,
+      "ids": [
+        "05f90bd8-5181-48c7-9b43-6f99055cbbf3",
+        "1782e669-6236-4149-9d36-51b3e8fb4722",
+        "6158fcc9-7cda-4fa7-a350-3e1dd11db7e6"
+      ]
+    },
+    "screenshot": "/workspace/multiplayer/control/owner/visuals-022/enclosure-east.png"
+  },
+  "facing_south": {
+    "home": {
+      "inside": 3,
+      "residents": 3,
+      "display": 0,
+      "ids": [
+        "05f90bd8-5181-48c7-9b43-6f99055cbbf3",
+        "1782e669-6236-4149-9d36-51b3e8fb4722",
+        "6158fcc9-7cda-4fa7-a350-3e1dd11db7e6"
+      ]
+    },
+    "screenshot": "/workspace/multiplayer/control/owner/visuals-022/enclosure-south.png"
+  },
+  "facing_west": {
+    "home": {
+      "inside": 3,
+      "residents": 3,
+      "display": 0,
+      "ids": [
+        "05f90bd8-5181-48c7-9b43-6f99055cbbf3",
+        "1782e669-6236-4149-9d36-51b3e8fb4722",
+        "6158fcc9-7cda-4fa7-a350-3e1dd11db7e6"
+      ]
+    },
+    "screenshot": "/workspace/multiplayer/control/owner/visuals-022/enclosure-west.png"
+  },
+  "inventory_screenshot": "/workspace/multiplayer/control/owner/visuals-022/items.png",
+  "client": {
+    "guiWidth": 427,
+    "guiHeight": 240,
+    "screen": "InventoryScreen",
+    "frames": 2741,
+    "mouseRenderFrames": {},
+    "skeletonFrames": 0,
+    "crossbowFrames": 0,
+    "renderErrors": [],
+    "guardFrames": 0,
+    "enclosureBatPoses": {
+      "05f90bd8-5181-48c7-9b43-6f99055cbbf3": {
+        "maxPartial": 0.0,
+        "frames": 158,
+        "minPartial": 0.0,
+        "maxPoseDelta": 0.0
+      },
+      "1782e669-6236-4149-9d36-51b3e8fb4722": {
+        "maxPartial": 0.0,
+        "frames": 158,
+        "minPartial": 0.0,
+        "maxPoseDelta": 0.0
+      },
+      "6158fcc9-7cda-4fa7-a350-3e1dd11db7e6": {
+        "maxPartial": 0.0,
+        "frames": 158,
+        "minPartial": 0.0,
+        "maxPoseDelta": 0.0
+      }
+    },
+    "loadingOverlay": false,
+    "crossbowPoses": {},
+    "shieldPoses": {},
+    "spiderPoses": {},
+    "frogJumpFrames": {},
+    "horsePoses": {},
+    "wolfPoses": {},
+    "wolfHurtMax": {},
+    "wolfSounds": {},
+    "connected": true,
+    "player": {
+      "id": 1,
+      "uuid": "52d3a8c5-c3b6-391c-93f6-861ad99dcec8",
+      "type": "minecraft:player",
+      "position": [
+        6.0,
+        64.0,
+        8.5
+      ],
+      "pose": "STANDING",
+      "onGround": true,
+      "inWater": false,
+      "alive": true,
+      "removed": false,
+      "invisible": false,
+      "silent": false,
+      "hurtTime": 0,
+      "health": 20.0,
+      "maxHealth": 20.0,
+      "effects": [],
+      "effectDetails": [],
+      "effectParticles": [],
+      "name": "FFMOwner",
+      "food": 20,
+      "saturation": 5.0,
+      "exhaustion": 0.0,
+      "sleeping": false,
+      "sleepTimer": 0,
+      "selected": 0,
+      "inventory": [
+        {
+          "item": "fantasy_feudalism_mobs:bat_net",
+          "count": 1,
+          "damage": 0
+        },
+        {
+          "item": "fantasy_feudalism_mobs:raw_horse",
+          "count": 1,
+          "damage": 0
+        },
+        {
+          "item": "fantasy_feudalism_mobs:cooked_horse",
+          "count": 1,
+          "damage": 0
+        },
+        {
+          "item": "fantasy_feudalism_mobs:bat_enclosure",
+          "count": 1,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        }
+      ],
+      "cursor": {
+        "item": "minecraft:air",
+        "count": 0,
+        "damage": 0
+      },
+      "menu": {
+        "type": "InventoryMenu",
+        "id": 0,
+        "state": 11,
+        "slots": [
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "fantasy_feudalism_mobs:bat_net",
+            "count": 1,
+            "damage": 0
+          },
+          {
+            "item": "fantasy_feudalism_mobs:raw_horse",
+            "count": 1,
+            "damage": 0
+          },
+          {
+            "item": "fantasy_feudalism_mobs:cooked_horse",
+            "count": 1,
+            "damage": 0
+          },
+          {
+            "item": "fantasy_feudalism_mobs:bat_enclosure",
+            "count": 1,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          }
+        ]
+      }
+    },
+    "entities": [],
+    "horseMeatModels": {
+      "fantasy_feudalism_mobs:raw_horse": {
+        "missing": false,
+        "sprite": "fantasy_feudalism_mobs:item/raw_horse"
+      },
+      "fantasy_feudalism_mobs:cooked_horse": {
+        "missing": false,
+        "sprite": "fantasy_feudalism_mobs:item/cooked_horse"
+      }
+    },
+    "ecosystemModels": {
+      "fantasy_feudalism_mobs:bat_net": {
+        "tint": -1,
+        "missing": false,
+        "quads": 105
+      },
+      "fantasy_feudalism_mobs:bat_enclosure": {
+        "tint": -1,
+        "missing": false,
+        "quads": 166
+      },
+      "fantasy_feudalism_mobs:fertilizer": {
+        "tint": -1850297,
+        "missing": false,
+        "quads": 34
+      },
+      "fantasy_feudalism_mobs:field_mouse_spawn_egg": {
+        "tint": -658707,
+        "missing": false,
+        "quads": 75
+      }
+    },
+    "beeBottleModelMissing": false,
+    "beeBottleSprite": "minecraft:item/glass_bottle"
+  },
+  "reload": true
+}

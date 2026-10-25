@@ -176,7 +176,13 @@ public final class AdvancementTests {
         h.onEachTick(()->{
             if(done[0])return;
             if(complete(p,"thats_where_id_be")){done[0]=true;remove(p);h.succeed();return;}
-            if(ticks[0]++%20==0)skeleton.performRangedAttack(p,1);
+            if(ticks[0]++%20==0){
+                // Isolate range/flight from vanilla's random shot spread, which can miss every shot in a short test.
+                var arrow=new Arrow(h.getLevel(),skeleton,new ItemStack(Items.ARROW),new ItemStack(Items.BOW));
+                double dx=p.getX()-arrow.getX(),dz=p.getZ()-arrow.getZ();
+                arrow.shoot(dx,p.getY(1.0/3)-arrow.getY()+Math.hypot(dx,dz)*.2F,dz,1.6F,0);
+                h.getLevel().addFreshEntity(arrow);
+            }
         });
         h.runAtTickTime(310,()->{if(!done[0]){try{h.assertTrue(complete(p,"thats_where_id_be"),"Native skeleton arrow must actually reach and hit its target at maximum range");}finally{done[0]=true;remove(p);}}});
     }

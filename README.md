@@ -6,7 +6,18 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.21.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.22.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.22 changes
+
+- Field Mice have softly shaded white fur and a new amber/light-brown coat, both with pink ears, feet, noses, and tails. New natural and spawn-egg mice have an equal chance of either coat; their color saves and synchronizes in multiplayer.
+- Mice ignore Creative and Spectator players, including ending an active escape when a player changes to either mode. Survival and Adventure players still scare mice.
+
+- Cats spot mice within **16 blocks**, including mice spawned by eggs. Mice have a **90-second feeding cooldown** and wander and look around their remembered crops between visits.
+- Enclosure bats hang from the ceiling with staggered positions. The interior has shaded, dirtied wood, and overlapping side-slat surfaces were removed to fix z-fighting.
+- The Bat Net uses a flat wooden-and-mesh item sprite matching the supplied reference. Raw and cooked horse meat have new reference-based icons.
+
+See the [mouse, enclosure, and item validation report](docs/RELEASE_0.1.22.md).
 
 ## Version 0.1.21 changes
 

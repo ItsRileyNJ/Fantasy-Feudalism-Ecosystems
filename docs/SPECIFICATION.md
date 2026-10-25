@@ -410,3 +410,15 @@ The user requested fewer checks, specifying **20 seconds for crop searching and 
 The user approved proposals 2–9, 11–13, and 15–18. Proposal 15 is named **Watch Dog**. Proposals 1 (joining a world), 10 (Green Thumb), and 14 (Watchful Wings) are excluded. Two additional challenges are **That's where I'd be**, earned by being hit by a skeleton arrow fired from its absolute maximum range (35 blocks), and **Everyone's got a plan until...**, earned by dying to one Enderman hit from full health. The latter requires increasing ordinary Hard Enderman melee damage enough to one-shot an unarmored player at twenty health; Easy/Normal retain the previous damage.
 
 Achievements use native advancement progress and notifications. Master Naturalist requires all sixteen other approved achievements. No automatic join reward or additional item/experience reward is added. See RELEASE_0.1.21.md for every trigger.
+
+
+## Mouse appearance and player modes (0.1.22)
+
+The user requested improved white mouse fur, an amber/light-brown variant, and mice that do not flee Creative or Spectator players. Both coats use softly varied Minecraft pixel textures and pink tails. New mice select either coat with equal probability during native spawn initialization, including village spawning and spawn eggs. Color is saved and synchronized to clients. Old mice without saved coat data remain white. Survival/Adventure players, cats, villagers, and Mercenaries remain threats; switching into Creative/Spectator ends an existing player escape.
+
+
+### Further confirmed changes in 0.1.22
+
+Cats detect Field Mice within sixteen blocks. The per-mouse feeding cooldown is ninety seconds (1,800 ticks), with crop searching/feeding attempts still checked every twenty seconds. Existing two-minute saved deadlines are shortened by thirty seconds once while preserving elapsed time. Mice wander and turn their heads around remembered crops between visits. Spawn-egg mice use normal hunting and fleeing rules, including villagers.
+
+Enclosure bats attach their feet to the ceiling, with varied horizontal/depth positions and angles rather than a straight row. Interior faces have shaded, dirtied wood, and intersecting slat surfaces are removed. The Bat Net uses the user's reference as a flat item sprite without custom 3D cuboids, including its occupied model. Raw and cooked horse meat icons follow their respective supplied reference images.

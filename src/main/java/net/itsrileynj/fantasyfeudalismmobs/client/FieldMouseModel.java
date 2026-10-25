@@ -6,7 +6,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
 
-/** A small white mouse with rounded-looking ears, black eyes and an articulated pink tail. */
+/** A small mouse with rounded-looking ears, black eyes and an articulated pink tail. */
 public final class FieldMouseModel extends HierarchicalModel<FieldMouse> {
     private final ModelPart root,head,tail;
     private final ModelPart[] feet;
