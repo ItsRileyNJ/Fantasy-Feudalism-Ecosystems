@@ -422,3 +422,13 @@ The user requested improved white mouse fur, an amber/light-brown variant, and m
 Cats detect Field Mice within sixteen blocks. The per-mouse feeding cooldown is ninety seconds (1,800 ticks), with crop searching/feeding attempts still checked every twenty seconds. Existing two-minute saved deadlines are shortened by thirty seconds once while preserving elapsed time. Mice wander and turn their heads around remembered crops between visits. Spawn-egg mice use normal hunting and fleeing rules, including villagers.
 
 Enclosure bats attach their feet to the ceiling, with varied horizontal/depth positions and angles rather than a straight row. Interior faces have shaded, dirtied wood, and intersecting slat surfaces are removed. The Bat Net uses the user's reference as a flat item sprite without custom 3D cuboids, including its occupied model. Raw and cooked horse meat icons follow their respective supplied reference images.
+
+
+## Supplied Blockbench bat box (0.1.23)
+
+Integrate the uploaded `Batbox Model.json` as the Bat Enclosure model. Preserve its element bounds, rotations, and UVs. The export has no assigned textures; the user permits custom textures but requires spruce-plank colors. Use custom spruce-colored wood and existing custom dirtied lining. The four small protruding squares on the front are nails and must match the cauldron's color; their material uses the native cauldron-side texture. Hang bats under the flat roof, clear of the angled rear baffle.
+
+
+## Occupied Bat Net artwork (0.1.24)
+
+The user supplied a bat-in-net reference for the occupied item. Show this flat sprite whenever the net holds a captured bat, reverting to the original empty-net sprite when the captured data is cleared after a successful transfer. Reuse the existing occupied item-model predicate; preserve existing capture/transfer mechanics.

@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.24 — occupied Bat Net artwork
+
+- The Bat Net shows the supplied bat-in-net sprite after capture and switches back to its original empty sprite when the bat leaves the net.
+
+## 0.1.23 — Blockbench bat box
+
+- Replaced the enclosure shape with the supplied Blockbench model.
+- Added custom wood grain using the spruce plank palette, a dirtied interior, and cauldron-colored front nails.
+- Adjusted hanging bat spacing to fit the new roof and angled rear baffle.
+
 ## 0.1.22 — mice, enclosures, and item artwork
 
 - Improved white mouse fur with soft shading and added an amber/light-brown variant. Both have pink tails and spawn equally often.

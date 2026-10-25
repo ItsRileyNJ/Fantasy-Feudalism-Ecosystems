@@ -1,0 +1,38 @@
+{
+  "empty": {
+    "sprite": "fantasy_feudalism_mobs:item/bat_net",
+    "occupied": false,
+    "customRenderer": false
+  },
+  "captured": {
+    "sprite": "fantasy_feudalism_mobs:item/bat_net_occupied",
+    "occupied": true,
+    "customRenderer": false
+  },
+  "occupied_screenshot": "/workspace/multiplayer/control/owner/occupied-net-024/occupied.png",
+  "reload": true,
+  "after_reload": {
+    "sprite": "fantasy_feudalism_mobs:item/bat_net_occupied",
+    "occupied": true,
+    "customRenderer": false
+  },
+  "after_reconnect": {
+    "sprite": "fantasy_feudalism_mobs:item/bat_net_occupied",
+    "occupied": true,
+    "customRenderer": false
+  },
+  "emptied": {
+    "sprite": "fantasy_feudalism_mobs:item/bat_net",
+    "occupied": false,
+    "customRenderer": false
+  },
+  "home": {
+    "inside": 1,
+    "residents": 1,
+    "display": 0,
+    "ids": [
+      "10f40895-9374-4765-9c18-e4c647d97062"
+    ]
+  },
+  "empty_screenshot": "/workspace/multiplayer/control/owner/occupied-net-024/empty-again.png"
+}

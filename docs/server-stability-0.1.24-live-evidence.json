@@ -1,0 +1,341 @@
+[
+  {
+    "name": "Competing real-client captures produce one captured bat, with synchronized owner and observer sprites",
+    "passed": true,
+    "winner": "owner",
+    "bat": "4d32d6c0-9c13-4db9-b704-be9dee46f14b",
+    "models": {
+      "owner": {
+        "sprite": "fantasy_feudalism_mobs:item/bat_net_occupied",
+        "customRenderer": false,
+        "occupied": true
+      },
+      "guest": {
+        "occupied": true,
+        "customRenderer": false,
+        "sprite": "fantasy_feudalism_mobs:item/bat_net_occupied"
+      }
+    },
+    "mercenary": {
+      "id": 3,
+      "uuid": "45d9cfc5-7fc4-4801-b315-cd86bca28d4f",
+      "type": "villagerscontract:defender",
+      "position": [
+        10.0,
+        64.0,
+        8.0
+      ],
+      "pose": "STANDING",
+      "onGround": false,
+      "inWater": false,
+      "alive": true,
+      "removed": false,
+      "invisible": false,
+      "silent": false,
+      "hurtTime": 0,
+      "health": 30.0,
+      "maxHealth": 30.0,
+      "effects": [],
+      "effectDetails": [],
+      "effectParticles": [],
+      "spawnType": "",
+      "target": -1,
+      "noAi": true,
+      "mainHand": {
+        "item": "minecraft:crossbow",
+        "count": 1,
+        "damage": 0
+      },
+      "offHand": {
+        "item": "minecraft:air",
+        "count": 0,
+        "damage": 0
+      },
+      "blocking": false,
+      "usingItem": false,
+      "sprinting": false,
+      "guard": {
+        "needsContract": false,
+        "isGuardCaptain": false,
+        "hunger": 20,
+        "skin": 5,
+        "order": "FOLLOW",
+        "supplies": [
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          }
+        ],
+        "weapons": [
+          {
+            "item": "minecraft:iron_sword",
+            "count": 1,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:shield",
+            "count": 1,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:crossbow",
+            "count": 1,
+            "damage": 0
+          }
+        ],
+        "redeemer": "52d3a8c5-c3b6-391c-93f6-861ad99dcec8"
+      }
+    }
+  },
+  {
+    "name": "Successful transfer preserves the original UUID and resets the sprite on both clients",
+    "passed": true,
+    "home": {
+      "inside": 1,
+      "residents": 1,
+      "display": 0,
+      "ids": [
+        "4d32d6c0-9c13-4db9-b704-be9dee46f14b"
+      ]
+    }
+  },
+  {
+    "name": "Both clients observe a second occupied net before restart",
+    "passed": true,
+    "bat": "0851602a-05a5-466b-962a-2e80186acbdf",
+    "models": {
+      "owner": {
+        "sprite": "fantasy_feudalism_mobs:item/bat_net_occupied",
+        "customRenderer": false,
+        "occupied": true
+      },
+      "guest": {
+        "occupied": true,
+        "customRenderer": false,
+        "sprite": "fantasy_feudalism_mobs:item/bat_net_occupied"
+      }
+    }
+  },
+  {
+    "name": "Dedicated-server restart preserves enclosure and captured-item identities without duplicate world bats",
+    "passed": true,
+    "home": {
+      "inside": 1,
+      "residents": 1,
+      "display": 0,
+      "ids": [
+        "4d32d6c0-9c13-4db9-b704-be9dee46f14b"
+      ]
+    },
+    "models": {
+      "owner": {
+        "sprite": "fantasy_feudalism_mobs:item/bat_net_occupied",
+        "customRenderer": false,
+        "occupied": true
+      },
+      "guest": {
+        "occupied": true,
+        "customRenderer": false,
+        "sprite": "fantasy_feudalism_mobs:item/bat_net_occupied"
+      }
+    }
+  },
+  {
+    "name": "A full enclosure rejects repeated inserts without losing the bat or resetting its occupied sprite",
+    "passed": true,
+    "home": {
+      "inside": 3,
+      "residents": 3,
+      "display": 0,
+      "ids": [
+        "4d32d6c0-9c13-4db9-b704-be9dee46f14b",
+        "0851602a-05a5-466b-962a-2e80186acbdf",
+        "d8e84417-2f16-408f-9e1e-5c79ad05cfea"
+      ]
+    },
+    "models": {
+      "owner": {
+        "sprite": "fantasy_feudalism_mobs:item/bat_net_occupied",
+        "customRenderer": false,
+        "occupied": true
+      },
+      "guest": {
+        "occupied": true,
+        "customRenderer": false,
+        "sprite": "fantasy_feudalism_mobs:item/bat_net_occupied"
+      }
+    }
+  },
+  {
+    "name": "Both clients reload resources and render three roof-attached bats correctly with Mercenaries installed",
+    "passed": true,
+    "observations": {
+      "owner": {
+        "0851602a-05a5-466b-962a-2e80186acbdf": {
+          "roofY": 0.875,
+          "feet": [
+            0.5,
+            0.875,
+            0.5
+          ],
+          "frames": 64,
+          "home": "8, 65, 8",
+          "maxRoofError": 0.0
+        },
+        "4d32d6c0-9c13-4db9-b704-be9dee46f14b": {
+          "roofY": 0.875,
+          "feet": [
+            0.26,
+            0.875,
+            0.30999994
+          ],
+          "frames": 64,
+          "home": "8, 65, 8",
+          "maxRoofError": 0.0
+        },
+        "d8e84417-2f16-408f-9e1e-5c79ad05cfea": {
+          "roofY": 0.875,
+          "feet": [
+            0.74,
+            0.875,
+            0.3900001
+          ],
+          "frames": 64,
+          "home": "8, 65, 8",
+          "maxRoofError": 0.0
+        }
+      },
+      "guest": {
+        "0851602a-05a5-466b-962a-2e80186acbdf": {
+          "roofY": 0.875,
+          "maxRoofError": 0.0,
+          "home": "8, 65, 8",
+          "frames": 70,
+          "feet": [
+            0.5,
+            0.875,
+            0.5
+          ]
+        },
+        "4d32d6c0-9c13-4db9-b704-be9dee46f14b": {
+          "roofY": 0.875,
+          "maxRoofError": 0.0,
+          "home": "8, 65, 8",
+          "frames": 70,
+          "feet": [
+            0.26,
+            0.875,
+            0.30999994
+          ]
+        },
+        "d8e84417-2f16-408f-9e1e-5c79ad05cfea": {
+          "roofY": 0.875,
+          "maxRoofError": 0.0,
+          "home": "8, 65, 8",
+          "frames": 70,
+          "feet": [
+            0.74,
+            0.875,
+            0.3900001
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "All four original bat identities are conserved across both enclosures and nets return to their empty sprites",
+    "passed": true,
+    "bats": [
+      "4d32d6c0-9c13-4db9-b704-be9dee46f14b",
+      "0851602a-05a5-466b-962a-2e80186acbdf",
+      "d8e84417-2f16-408f-9e1e-5c79ad05cfea",
+      "1bb55fb1-08f7-402e-8bf8-7c4bb903232c"
+    ]
+  }
+]

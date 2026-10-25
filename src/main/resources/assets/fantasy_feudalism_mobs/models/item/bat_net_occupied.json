@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "fantasy_feudalism_mobs:item/bat_net"
+    "layer0": "fantasy_feudalism_mobs:item/bat_net_occupied"
   }
 }

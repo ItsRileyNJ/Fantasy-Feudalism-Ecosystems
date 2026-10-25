@@ -1,0 +1,11 @@
+Build: build multiplayerTestJar — BUILD SUCCESSFUL.
+Asset structure: all 17 original element bounds, rotations, face directions and UVs preserved; no unresolved #missing faces.
+Custom 32x32 exterior PNG: every RGB color belongs to the vanilla spruce-plank palette.
+Front nails: native minecraft:block/cauldron_side texture.
+Dedicated-server/client with Mercenaries 1.15.7: real capture/insertion, 1/2/3 stable hanging bats, all four facings, native client placement, resource reload — PASS.
+Release excludes GameTests, test structures, and the separate multiplayer harness.
+build/libs/fantasy_feudalism_ecosystems-0.1.23.jar
+Bytes: 342823
+SHA-256: 968a9d36ae437ba7f6bfbcbb3bc019ef388ceeeda7c9a85a0c64a6a9ec9f5f4e
+
+Follow-up native foot-vertex probe: PASS. Roof Y=0.875; max rounding error 1.1920928955078125e-07 blocks; minimum 36 frames per bat/case. All 1/2/3-bat layouts and four directions checked; three distinct depth offsets. Release JAR SHA-256 unchanged.

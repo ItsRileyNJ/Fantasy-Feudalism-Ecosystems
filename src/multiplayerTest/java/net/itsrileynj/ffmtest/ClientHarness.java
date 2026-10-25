@@ -75,6 +75,8 @@ public final class ClientHarness {
     private static final Map<Integer,Map<String,Object>> SPIDER_POSES=new HashMap<>();
     @SubscribeEvent public static void frame(RenderFrameEvent.Post event) { frames++; }
     @SubscribeEvent public static void rendered(RenderLivingEvent.Post<?,?> event) {
+        if(event.getEntity() instanceof net.minecraft.world.entity.ambient.Bat bat && event.getRenderer().getModel() instanceof net.minecraft.client.model.BatModel model)
+            BatAttachmentProbe.record(bat,model,event.getPoseStack());
         if(event.getEntity() instanceof net.itsrileynj.fantasyfeudalismmobs.FieldMouse mouse
                 &&event.getRenderer().getModel() instanceof HierarchicalModel<?> mouseModel){
             MOUSE_RENDER_FRAMES.merge(mouse.getId(),1,Integer::sum);
@@ -162,6 +164,14 @@ public final class ClientHarness {
     private static Object execute(Minecraft mc,JsonObject q)throws Exception {
         String action=q.get("action").getAsString();
         switch(action) {
+            case "heldItemModel": {
+                var holder=q.has("player")?mc.level.players().stream().filter(p->p.getGameProfile().getName().equals(q.get("player").getAsString())).findFirst().orElseThrow():mc.player;
+                var stack=holder.getMainHandItem();var model=mc.getItemRenderer().getModel(stack,mc.level,holder,0);
+                return Map.of("sprite",model.getParticleIcon().contents().name().toString(),"customRenderer",model.isCustomRenderer(),
+                        "occupied",net.itsrileynj.fantasyfeudalismmobs.BatNetItem.captured(stack)!=null);
+            }
+            case "installBatAttachmentProbe":return BatAttachmentProbe.install(mc);
+            case "batAttachmentProbe":return BatAttachmentProbe.snapshot();
             case "cleanView":mc.options.hideGui=q.get("value").getAsBoolean();mc.gui.getChat().clearMessages(true);mc.getTutorial().stop();return true;
             case "watchEffectParticles":EffectParticleProbe.watch(q.get("entity").getAsInt());return true;
             case "effectParticleProbe":return EffectParticleProbe.snapshot();

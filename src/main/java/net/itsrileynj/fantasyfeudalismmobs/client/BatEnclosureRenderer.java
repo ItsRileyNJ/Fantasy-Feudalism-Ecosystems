@@ -9,9 +9,10 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 
 /** Uses vanilla hanging bat models; display bats are never added as world entities. */
 public final class BatEnclosureRenderer implements BlockEntityRenderer<BatEnclosureBlockEntity> {
-    private static final double[][] SINGLE={{.5,.52,5}};
-    private static final double[][] PAIR={{.32,.43,-12},{.68,.60,15}};
-    private static final double[][] TRIO={{.24,.43,-12},{.50,.62,17},{.76,.48,-7}};
+    // Keep hanging bats under the flat roof, clear of the supplied model's rear angled baffle.
+    private static final double[][] SINGLE={{.5,.42,5}};
+    private static final double[][] PAIR={{.33,.32,-8},{.67,.49,10}};
+    private static final double[][] TRIO={{.26,.31,-5},{.50,.50,12},{.74,.39,5}};
     public BatEnclosureRenderer(BlockEntityRendererProvider.Context context){}
     @Override public void render(BatEnclosureBlockEntity home,float partial,PoseStack poses,MultiBufferSource buffers,int light,int overlay){
         if(home.getLevel()!=null)light=net.minecraft.client.renderer.LevelRenderer.getLightColor(home.getLevel(),

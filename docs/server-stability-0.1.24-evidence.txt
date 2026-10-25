@@ -1,0 +1,8 @@
+Mercenaries-loaded fresh-world automated suite:
+[08:10:17] [Server thread/INFO] [minecraft/GameTestServer]: All 211 required tests passed :)
+BUILD SUCCESSFUL in 51s
+
+Two-client bat/net dedicated-server scenarios: 7/7 passed.
+Two-client Mercenaries scenarios including second dedicated-server restart: 14/14 passed.
+Release SHA-256: 0c46fc3f9df893623ff56d96db7f60bb2ce44ef9deaf977b997cc22efa45b054
+Test/probe/helper classes and test structure excluded from release.

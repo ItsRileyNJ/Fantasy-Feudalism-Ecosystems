@@ -6,7 +6,20 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.22.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.24.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.24 changes
+
+- The Bat Net switches to the supplied bat-in-net artwork while occupied and returns to the original sprite when emptied into an enclosure. Both states use flat item sprites.
+
+See the [occupied-net validation report](docs/RELEASE_0.1.24.md).
+
+## Version 0.1.23 changes
+
+- The Bat Enclosure uses the supplied Blockbench bat box geometry, with custom spruce-colored wood, dirtied interior surfaces, and cauldron-colored front nails.
+- Repositioned hanging bats to fit beneath the flat roof and stay clear of the model's angled rear baffle.
+
+See the [model integration report](docs/RELEASE_0.1.23.md).
 
 ## Version 0.1.22 changes
 
