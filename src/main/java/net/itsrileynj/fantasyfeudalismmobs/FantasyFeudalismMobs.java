@@ -86,5 +86,6 @@ public final class FantasyFeudalismMobs {
         NeoForge.EVENT_BUS.register(FeudalEvents.class);
         NeoForge.EVENT_BUS.register(CatRest.class);
         NeoForge.EVENT_BUS.register(MouseVillages.class);
+        NeoForge.EVENT_BUS.register(EcosystemAchievements.class);
     }
 }

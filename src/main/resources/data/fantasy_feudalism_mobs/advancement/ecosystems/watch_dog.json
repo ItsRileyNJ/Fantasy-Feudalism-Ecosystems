@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:bone"
+    },
+    "title": {
+      "translate": "advancement.fantasy_feudalism_mobs.watch_dog.title"
+    },
+    "description": {
+      "translate": "advancement.fantasy_feudalism_mobs.watch_dog.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "earned": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "earned"
+    ]
+  ],
+  "parent": "fantasy_feudalism_mobs:ecosystems/bottled_buzz"
+}

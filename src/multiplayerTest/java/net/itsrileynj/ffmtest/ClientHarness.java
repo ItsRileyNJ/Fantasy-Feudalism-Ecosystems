@@ -205,6 +205,8 @@ public final class ClientHarness {
                 return true;
             }
             case "attack":mc.gameMode.attack(mc.player,target(mc,q));return true;
+            case "advancements":mc.setScreen(new net.minecraft.client.gui.screens.advancements.AdvancementsScreen(mc.player.connection.getAdvancements()));return true;
+            case "respawn":mc.player.respawn();mc.setScreen(null);return true;
             case "inventory":mc.setScreen(new InventoryScreen(mc.player));return true;
             case "close":if(mc.player!=null)mc.player.closeContainer();else mc.setScreen(null);return true;
             case "click": {

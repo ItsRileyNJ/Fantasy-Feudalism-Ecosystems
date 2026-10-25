@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:hay_block"
+    },
+    "title": {
+      "translate": "advancement.fantasy_feudalism_mobs.new_arrival.title"
+    },
+    "description": {
+      "translate": "advancement.fantasy_feudalism_mobs.new_arrival.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "earned": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "earned"
+    ]
+  ],
+  "parent": "fantasy_feudalism_mobs:ecosystems/bottled_buzz"
+}

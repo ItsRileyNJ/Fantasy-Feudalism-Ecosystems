@@ -99,6 +99,15 @@ public final class ServerHarness {
             }
             case "mercenary": return MercenaryHarness.execute(server,q);
             case "snapshot": return snapshot(server);
+            case "advancementState": {
+                var p=player(server,q);var progress=new TreeMap<String,Object>();
+                var names=new TreeSet<>(EcosystemAchievements.GOALS);names.add("master_naturalist");
+                for(var name:names){var holder=server.getAdvancements().get(EcosystemAchievements.id(name));
+                    if(holder==null)throw new IllegalStateException("Missing advancement: "+name);
+                    var status=p.getAdvancements().getOrStartProgress(holder);
+                    progress.put(name,Map.of("done",status.isDone(),"remaining",status.getRemainingCriteria(),"completed",status.getCompletedCriteria()));
+                }return progress;
+            }
             case "naturalSilverfish": return List.copyOf(NATURAL_SILVERFISH);
             case "horseObservation": return Map.of("firstGrazes",Map.copyOf(HORSE_FIRST_GRAZE),"grazes",Map.copyOf(HORSE_GRAZES),"births",Map.copyOf(HORSE_BIRTHS));
             case "pasture": {

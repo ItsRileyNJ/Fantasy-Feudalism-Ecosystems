@@ -22,6 +22,8 @@ public abstract class WitherSkeletonMixin extends AbstractSkeleton {
         if(attacker.canDisableShield()){
             getPersistentData().putLong(WitherCombat.SHIELD_DISABLED,level().getGameTime()+100);
             stopUsingItem();level().broadcastEntityEvent(this,(byte)30);
+            if(attacker instanceof net.minecraft.world.entity.player.Player player&&attacker.getMainHandItem().getItem() instanceof net.minecraft.world.item.AxeItem)
+                net.itsrileynj.fantasyfeudalismmobs.EcosystemAchievements.grant(player,"shield_breaker");
         }
     }
     @Override protected void hurtCurrentlyUsedShield(float amount){

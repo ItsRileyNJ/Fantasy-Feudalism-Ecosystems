@@ -66,6 +66,7 @@ public final class SpiderCompanion {
         spider.setHealth(spider.getMaxHealth());
         spider.setPersistenceRequired();
         setSitting(spider, true); // Same initial order as a newly tamed vanilla wolf.
+        EcosystemAchievements.spiderTamed(spider,owner);
     }
 
     public static void applyTameAttributes(Spider spider) {
@@ -142,6 +143,7 @@ public final class SpiderCompanion {
             giveFilledBottle(player, hand, held, poison);
         }
         data(spider).putLong(key, now + HARVEST_COOLDOWN);
+        EcosystemAchievements.grant(player,silk?"silk_supplier":"venom_on_tap");
         return true;
     }
 

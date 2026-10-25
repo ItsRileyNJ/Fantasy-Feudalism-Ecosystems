@@ -6,7 +6,15 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.20.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.21.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.21 changes
+
+- Added seventeen approved achievements for companions, bat farming, cat sleep, livestock protection, automatic horse births, and combat, including **Watch Dog** and **Master Naturalist**.
+- **That's where I'd be** requires being hit by a skeleton arrow fired from its maximum 35-block range. **Everyone's got a plan until...** requires dying to one Enderman hit while at full health.
+- On Hard, an unarmored player at the usual twenty health can now be killed by one ordinary Enderman melee hit. Armor, effects, shields, and totems retain their normal protections; Easy and Normal damage are unchanged.
+
+See the [achievement list and validation report](docs/RELEASE_0.1.21.md).
 
 ## Version 0.1.20 changes
 

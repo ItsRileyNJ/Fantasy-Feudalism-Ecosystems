@@ -25,6 +25,7 @@ public final class BatFarming {
             bat.getPersistentData().putLong(NEXT,level.getGameTime()+COOLDOWN);
             var drop=new ItemEntity(level,at.x,at.y,at.z,new ItemStack(FantasyFeudalismMobs.FERTILIZER.get()));
             drop.setDefaultPickUpDelay();level.addFreshEntity(drop);
+            EcosystemAchievements.grant(player,"natural_helpers");
         }
     }
     public static InteractionResult interact(Player player,InteractionHand hand,Bat bat){

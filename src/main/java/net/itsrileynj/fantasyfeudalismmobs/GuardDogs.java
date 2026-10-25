@@ -68,6 +68,7 @@ public final class GuardDogs {
         if(hunter instanceof Wolf wolf)WolfPacks.ateSheep(wolf);
         else feedFox((Fox)hunter);
         dog.setHealth(Math.max(1,dog.getHealth()-FATIGUE));
+        EcosystemAchievements.owner(dog,dog.getOwnerUUID(),"watch_dog");
         return true;
     }
 

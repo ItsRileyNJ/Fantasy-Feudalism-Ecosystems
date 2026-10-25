@@ -72,6 +72,7 @@ public final class FeudalEvents {
         if (event.getEntity() instanceof AbstractArrow arrow && arrow.getOwner() instanceof AbstractSkeleton skeleton
                 && !event.loadedFromDisk() && !arrow.getPersistentData().getBoolean("ffm_faster")) {
             WitherCombat.prepareArrow(arrow);
+            EcosystemAchievements.arrowFired(arrow,skeleton);
             SkeletonBallistics.accelerate(arrow, skeleton);
             arrow.getPersistentData().putBoolean("ffm_faster", true);
             if (arrow instanceof Arrow tipped && arrow.getWeaponItem() != null && arrow.getWeaponItem().getItem() instanceof CrossbowItem) {
@@ -107,6 +108,7 @@ public final class FeudalEvents {
                         new ItemStack(FantasyFeudalismMobs.BEE_BOTTLE.get()));
                 if(bee.isLeashed())bee.dropLeash(true,true);
                 bee.discard();
+                EcosystemAchievements.grant(player,"bottled_buzz");
             }
             event.setCanceled(true);
             event.setCancellationResult(InteractionResult.sidedSuccess(event.getLevel().isClientSide));
@@ -138,7 +140,8 @@ public final class FeudalEvents {
         if (event.getEntity() instanceof Zombie && event.getSource().getEntity() instanceof Silverfish)
             event.setAmount(event.getAmount() * 2.0F);
         if (event.getEntity() instanceof Player && event.getSource().getEntity() instanceof EnderMan)
-            event.setAmount(event.getAmount() * 1.35F);
+            event.setAmount(event.getAmount() * (event.getEntity().level().getDifficulty()==net.minecraft.world.Difficulty.HARD
+                    &&event.getSource().getDirectEntity() instanceof EnderMan?2F:1.35F));
         if (event.getSource().getEntity() instanceof Phantom phantom && !PhantomPact.bound(phantom) && event.getEntity() instanceof Player player && player.getHealth() > 8)
             event.setCanceled(true);
     }

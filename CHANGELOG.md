@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.21 — achievements
+
+- Added seventeen achievements for Ecosystems mechanics, including Watch Dog and Master Naturalist.
+- Added “That's where I'd be” for taking a skeleton arrow fired from maximum range and “Everyone's got a plan until...” for dying to one Enderman hit from full health.
+- Increased Hard Enderman melee damage enough to kill an unarmored player from twenty health. Easy and Normal are unchanged.
+
 ## 0.1.20 — mouse performance
 
 - Reduced crop searching and feeding checks to once every 20 seconds. Mice still detect nearby threats promptly, and successful feeding still has a two-minute cooldown.

@@ -183,7 +183,8 @@ public final class CatMouseTests {
                 h.assertTrue(CatRest.sharingBed(stray,other),"Stray really settles on the other bed: "+stray.position()+" lying="+stray.isLying());
                 h.assertTrue(owner.getSleepTimer()>=100&&other.getSleepTimer()>=100,"Players actually slept: "+owner.getSleepTimer()+", "+other.getSleepTimer());
                 owner.stopSleepInBed(false,true);other.stopSleepInBed(false,true);
-                h.assertTrue(owner.hasEffect(FantasyFeudalismMobs.RESTED)&&other.hasEffect(FantasyFeudalismMobs.RESTED),"Both valid sleepers receive Rested");h.succeed();
+                h.assertTrue(owner.hasEffect(FantasyFeudalismMobs.RESTED)&&other.hasEffect(FantasyFeudalismMobs.RESTED),"Both valid sleepers receive Rested");
+                h.assertTrue(AdvancementTests.complete(owner,"cat_nap")&&AdvancementTests.complete(other,"cat_nap"),"Actual cat-assisted sleep awards Cat Nap to both eligible sleepers");h.succeed();
             }finally{
                 level.getGameRules().getRule(GameRules.RULE_PLAYERS_SLEEPING_PERCENTAGE).set(percent,level.getServer());remove(owner);remove(other);
                 level.setDayTime(dayTime);

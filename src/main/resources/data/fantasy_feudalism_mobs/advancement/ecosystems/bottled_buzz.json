@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "id": "fantasy_feudalism_mobs:bee_bottle"
+    },
+    "title": {
+      "translate": "advancement.fantasy_feudalism_mobs.bottled_buzz.title"
+    },
+    "description": {
+      "translate": "advancement.fantasy_feudalism_mobs.bottled_buzz.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "minecraft:textures/block/moss_block.png"
+  },
+  "criteria": {
+    "earned": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "earned"
+    ]
+  ]
+}

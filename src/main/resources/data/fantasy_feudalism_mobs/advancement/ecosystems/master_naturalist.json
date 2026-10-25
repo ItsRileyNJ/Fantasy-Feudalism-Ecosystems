@@ -1,0 +1,118 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:enchanted_book"
+    },
+    "title": {
+      "translate": "advancement.fantasy_feudalism_mobs.master_naturalist.title"
+    },
+    "description": {
+      "translate": "advancement.fantasy_feudalism_mobs.master_naturalist.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "bottled_buzz": {
+      "trigger": "minecraft:impossible"
+    },
+    "friendly_fangs": {
+      "trigger": "minecraft:impossible"
+    },
+    "eight_legged_alliance": {
+      "trigger": "minecraft:impossible"
+    },
+    "silk_supplier": {
+      "trigger": "minecraft:impossible"
+    },
+    "venom_on_tap": {
+      "trigger": "minecraft:impossible"
+    },
+    "night_collector": {
+      "trigger": "minecraft:impossible"
+    },
+    "full_house": {
+      "trigger": "minecraft:impossible"
+    },
+    "natural_helpers": {
+      "trigger": "minecraft:impossible"
+    },
+    "cat_nap": {
+      "trigger": "minecraft:impossible"
+    },
+    "pest_control": {
+      "trigger": "minecraft:impossible"
+    },
+    "night_pact": {
+      "trigger": "minecraft:impossible"
+    },
+    "watch_dog": {
+      "trigger": "minecraft:impossible"
+    },
+    "new_arrival": {
+      "trigger": "minecraft:impossible"
+    },
+    "shield_breaker": {
+      "trigger": "minecraft:impossible"
+    },
+    "thats_where_id_be": {
+      "trigger": "minecraft:impossible"
+    },
+    "everyones_got_a_plan_until": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "bottled_buzz"
+    ],
+    [
+      "friendly_fangs"
+    ],
+    [
+      "eight_legged_alliance"
+    ],
+    [
+      "silk_supplier"
+    ],
+    [
+      "venom_on_tap"
+    ],
+    [
+      "night_collector"
+    ],
+    [
+      "full_house"
+    ],
+    [
+      "natural_helpers"
+    ],
+    [
+      "cat_nap"
+    ],
+    [
+      "pest_control"
+    ],
+    [
+      "night_pact"
+    ],
+    [
+      "watch_dog"
+    ],
+    [
+      "new_arrival"
+    ],
+    [
+      "shield_breaker"
+    ],
+    [
+      "thats_where_id_be"
+    ],
+    [
+      "everyones_got_a_plan_until"
+    ]
+  ],
+  "parent": "fantasy_feudalism_mobs:ecosystems/bottled_buzz"
+}

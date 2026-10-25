@@ -1,0 +1,2096 @@
+{
+  "fresh": {
+    "FFMOwner": {
+      "bottled_buzz": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "cat_nap": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "eight_legged_alliance": {
+        "remaining": [
+          "cave",
+          "regular"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "everyones_got_a_plan_until": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "friendly_fangs": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "full_house": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "master_naturalist": {
+        "remaining": [
+          "new_arrival",
+          "night_collector",
+          "everyones_got_a_plan_until",
+          "bottled_buzz",
+          "full_house",
+          "thats_where_id_be",
+          "eight_legged_alliance",
+          "watch_dog",
+          "venom_on_tap",
+          "cat_nap",
+          "night_pact",
+          "natural_helpers",
+          "pest_control",
+          "silk_supplier",
+          "shield_breaker",
+          "friendly_fangs"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "natural_helpers": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "new_arrival": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "night_collector": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "night_pact": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "pest_control": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "shield_breaker": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "silk_supplier": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "thats_where_id_be": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "venom_on_tap": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "watch_dog": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      }
+    },
+    "FFMGuest": {
+      "bottled_buzz": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "cat_nap": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "eight_legged_alliance": {
+        "remaining": [
+          "cave",
+          "regular"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "everyones_got_a_plan_until": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "friendly_fangs": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "full_house": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "master_naturalist": {
+        "remaining": [
+          "new_arrival",
+          "night_collector",
+          "everyones_got_a_plan_until",
+          "bottled_buzz",
+          "full_house",
+          "thats_where_id_be",
+          "eight_legged_alliance",
+          "watch_dog",
+          "venom_on_tap",
+          "cat_nap",
+          "night_pact",
+          "natural_helpers",
+          "pest_control",
+          "silk_supplier",
+          "shield_breaker",
+          "friendly_fangs"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "natural_helpers": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "new_arrival": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "night_collector": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "night_pact": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "pest_control": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "shield_breaker": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "silk_supplier": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "thats_where_id_be": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "venom_on_tap": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "watch_dog": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      }
+    }
+  },
+  "guest_without_root": {
+    "bottled_buzz": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "cat_nap": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "eight_legged_alliance": {
+      "remaining": [
+        "cave",
+        "regular"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "everyones_got_a_plan_until": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "friendly_fangs": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "full_house": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "master_naturalist": {
+      "remaining": [
+        "new_arrival",
+        "night_collector",
+        "everyones_got_a_plan_until",
+        "bottled_buzz",
+        "full_house",
+        "thats_where_id_be",
+        "eight_legged_alliance",
+        "watch_dog",
+        "venom_on_tap",
+        "cat_nap",
+        "night_pact",
+        "natural_helpers",
+        "silk_supplier",
+        "shield_breaker",
+        "friendly_fangs"
+      ],
+      "completed": [
+        "pest_control"
+      ],
+      "done": false
+    },
+    "natural_helpers": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "new_arrival": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "night_collector": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "night_pact": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "pest_control": {
+      "remaining": [],
+      "completed": [
+        "earned"
+      ],
+      "done": true
+    },
+    "shield_breaker": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "silk_supplier": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "thats_where_id_be": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "venom_on_tap": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "watch_dog": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    }
+  },
+  "owner_gui": {
+    "guiWidth": 427,
+    "guiHeight": 240,
+    "screen": "AdvancementsScreen",
+    "frames": 491,
+    "mouseRenderFrames": {},
+    "skeletonFrames": 0,
+    "crossbowFrames": 0,
+    "renderErrors": [],
+    "guardFrames": 0,
+    "enclosureBatPoses": {},
+    "loadingOverlay": false,
+    "crossbowPoses": {},
+    "shieldPoses": {},
+    "spiderPoses": {},
+    "frogJumpFrames": {},
+    "horsePoses": {},
+    "wolfPoses": {},
+    "wolfHurtMax": {},
+    "wolfSounds": {},
+    "connected": true,
+    "player": {
+      "id": 1,
+      "uuid": "52d3a8c5-c3b6-391c-93f6-861ad99dcec8",
+      "type": "minecraft:player",
+      "position": [
+        4.0,
+        64.0,
+        4.0
+      ],
+      "pose": "STANDING",
+      "onGround": true,
+      "inWater": false,
+      "alive": true,
+      "removed": false,
+      "invisible": false,
+      "silent": false,
+      "hurtTime": 0,
+      "health": 15.532871,
+      "maxHealth": 20.0,
+      "effects": [
+        "fantasy_feudalism_mobs:rested"
+      ],
+      "effectDetails": [
+        {
+          "duration": 3139,
+          "amplifier": 0,
+          "visible": false,
+          "ambient": false,
+          "effect": "fantasy_feudalism_mobs:rested",
+          "particle": {
+            "type": "minecraft:entity_effect",
+            "rgb": 7911922,
+            "alpha": 1.0
+          }
+        }
+      ],
+      "effectParticles": [],
+      "name": "FFMOwner",
+      "food": 10,
+      "saturation": 0.0,
+      "exhaustion": 0.0,
+      "sleeping": false,
+      "sleepTimer": 0,
+      "selected": 0,
+      "inventory": [
+        {
+          "item": "fantasy_feudalism_mobs:bee_bottle",
+          "count": 1,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        }
+      ],
+      "cursor": {
+        "item": "minecraft:air",
+        "count": 0,
+        "damage": 0
+      },
+      "menu": {
+        "type": "InventoryMenu",
+        "id": 0,
+        "state": 3,
+        "slots": [
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "fantasy_feudalism_mobs:bee_bottle",
+            "count": 1,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          }
+        ]
+      }
+    },
+    "entities": [
+      {
+        "id": 54,
+        "uuid": "1f039e49-cc58-30d0-a564-dac0d0b0d263",
+        "type": "minecraft:player",
+        "position": [
+          10.0,
+          64.0,
+          4.0
+        ],
+        "pose": "STANDING",
+        "onGround": true,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 20.0,
+        "maxHealth": 20.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": []
+      },
+      {
+        "id": 56,
+        "uuid": "8cd62827-6bfe-4bec-90e1-3605679fcb9d",
+        "type": "minecraft:cat",
+        "position": [
+          10.0,
+          64.0,
+          6.0
+        ],
+        "pose": "STANDING",
+        "onGround": false,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 10.0,
+        "maxHealth": 10.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "lying": false,
+        "tamed": true,
+        "owner": "1f039e49-cc58-30d0-a564-dac0d0b0d263",
+        "sitting": false,
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false
+      }
+    ],
+    "horseMeatModels": {
+      "fantasy_feudalism_mobs:raw_horse": {
+        "sprite": "fantasy_feudalism_mobs:item/raw_horse",
+        "missing": false
+      },
+      "fantasy_feudalism_mobs:cooked_horse": {
+        "sprite": "fantasy_feudalism_mobs:item/cooked_horse",
+        "missing": false
+      }
+    },
+    "ecosystemModels": {
+      "fantasy_feudalism_mobs:bat_net": {
+        "quads": 32,
+        "tint": -1,
+        "missing": false
+      },
+      "fantasy_feudalism_mobs:bat_enclosure": {
+        "quads": 200,
+        "tint": -1,
+        "missing": false
+      },
+      "fantasy_feudalism_mobs:fertilizer": {
+        "quads": 34,
+        "tint": -1850297,
+        "missing": false
+      },
+      "fantasy_feudalism_mobs:field_mouse_spawn_egg": {
+        "quads": 75,
+        "tint": -658707,
+        "missing": false
+      }
+    },
+    "beeBottleModelMissing": false,
+    "beeBottleSprite": "minecraft:item/glass_bottle"
+  },
+  "owner_screenshot": "/workspace/multiplayer/control/owner/achievements-0.1.21-owner.png",
+  "guest_gui": {
+    "guiWidth": 427,
+    "guiHeight": 240,
+    "screen": "AdvancementsScreen",
+    "frames": 47,
+    "mouseRenderFrames": {},
+    "skeletonFrames": 0,
+    "crossbowFrames": 0,
+    "renderErrors": [],
+    "guardFrames": 0,
+    "enclosureBatPoses": {},
+    "loadingOverlay": false,
+    "crossbowPoses": {},
+    "shieldPoses": {},
+    "spiderPoses": {},
+    "frogJumpFrames": {},
+    "horsePoses": {},
+    "wolfPoses": {},
+    "wolfHurtMax": {},
+    "wolfSounds": {},
+    "connected": true,
+    "player": {
+      "id": 54,
+      "uuid": "1f039e49-cc58-30d0-a564-dac0d0b0d263",
+      "type": "minecraft:player",
+      "position": [
+        10.0,
+        64.0,
+        4.0
+      ],
+      "pose": "STANDING",
+      "onGround": true,
+      "inWater": false,
+      "alive": true,
+      "removed": false,
+      "invisible": false,
+      "silent": false,
+      "hurtTime": 0,
+      "health": 20.0,
+      "maxHealth": 20.0,
+      "effects": [
+        "fantasy_feudalism_mobs:rested"
+      ],
+      "effectDetails": [
+        {
+          "duration": 3447,
+          "amplifier": 0,
+          "visible": false,
+          "ambient": false,
+          "effect": "fantasy_feudalism_mobs:rested",
+          "particle": {
+            "type": "minecraft:entity_effect",
+            "rgb": 7911922,
+            "alpha": 1.0
+          }
+        }
+      ],
+      "effectParticles": [],
+      "name": "FFMGuest",
+      "food": 20,
+      "saturation": 5.0,
+      "exhaustion": 0.0,
+      "sleeping": false,
+      "sleepTimer": 0,
+      "selected": 0,
+      "inventory": [
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        }
+      ],
+      "cursor": {
+        "item": "minecraft:air",
+        "count": 0,
+        "damage": 0
+      },
+      "menu": {
+        "type": "InventoryMenu",
+        "id": 0,
+        "state": 1,
+        "slots": [
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          }
+        ]
+      }
+    },
+    "entities": [
+      {
+        "id": 1,
+        "uuid": "52d3a8c5-c3b6-391c-93f6-861ad99dcec8",
+        "type": "minecraft:player",
+        "position": [
+          4.0,
+          64.0,
+          4.0
+        ],
+        "pose": "STANDING",
+        "onGround": true,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 15.532871,
+        "maxHealth": 20.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": []
+      },
+      {
+        "id": 56,
+        "uuid": "8cd62827-6bfe-4bec-90e1-3605679fcb9d",
+        "type": "minecraft:cat",
+        "position": [
+          10.0,
+          64.0,
+          6.0
+        ],
+        "pose": "STANDING",
+        "onGround": false,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 10.0,
+        "maxHealth": 10.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "lying": false,
+        "tamed": true,
+        "owner": "1f039e49-cc58-30d0-a564-dac0d0b0d263",
+        "sitting": false,
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false
+      }
+    ],
+    "horseMeatModels": {
+      "fantasy_feudalism_mobs:raw_horse": {
+        "sprite": "fantasy_feudalism_mobs:item/raw_horse",
+        "missing": false
+      },
+      "fantasy_feudalism_mobs:cooked_horse": {
+        "sprite": "fantasy_feudalism_mobs:item/cooked_horse",
+        "missing": false
+      }
+    },
+    "ecosystemModels": {
+      "fantasy_feudalism_mobs:bat_net": {
+        "quads": 32,
+        "tint": -1,
+        "missing": false
+      },
+      "fantasy_feudalism_mobs:bat_enclosure": {
+        "quads": 200,
+        "tint": -1,
+        "missing": false
+      },
+      "fantasy_feudalism_mobs:fertilizer": {
+        "quads": 34,
+        "tint": -1850297,
+        "missing": false
+      },
+      "fantasy_feudalism_mobs:field_mouse_spawn_egg": {
+        "quads": 75,
+        "tint": -658707,
+        "missing": false
+      }
+    },
+    "beeBottleModelMissing": false,
+    "beeBottleSprite": "minecraft:item/glass_bottle"
+  },
+  "guest_screenshot": "/workspace/multiplayer/control/guest/achievements-0.1.21-guest.png",
+  "fatal": {
+    "successful": true,
+    "target": {
+      "id": 1,
+      "uuid": "52d3a8c5-c3b6-391c-93f6-861ad99dcec8",
+      "type": "minecraft:player",
+      "position": [
+        4.0,
+        64.0,
+        4.0
+      ],
+      "pose": "STANDING",
+      "onGround": true,
+      "inWater": false,
+      "alive": false,
+      "removed": false,
+      "invisible": false,
+      "silent": false,
+      "hurtTime": 10,
+      "health": 0.0,
+      "maxHealth": 20.0,
+      "effects": [],
+      "effectDetails": [],
+      "effectParticles": []
+    }
+  },
+  "owner_after_fatal": {
+    "bottled_buzz": {
+      "remaining": [],
+      "completed": [
+        "earned"
+      ],
+      "done": true
+    },
+    "cat_nap": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "eight_legged_alliance": {
+      "remaining": [
+        "cave",
+        "regular"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "everyones_got_a_plan_until": {
+      "remaining": [],
+      "completed": [
+        "earned"
+      ],
+      "done": true
+    },
+    "friendly_fangs": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "full_house": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "master_naturalist": {
+      "remaining": [
+        "new_arrival",
+        "night_collector",
+        "full_house",
+        "thats_where_id_be",
+        "eight_legged_alliance",
+        "watch_dog",
+        "venom_on_tap",
+        "cat_nap",
+        "night_pact",
+        "natural_helpers",
+        "pest_control",
+        "silk_supplier",
+        "shield_breaker",
+        "friendly_fangs"
+      ],
+      "completed": [
+        "everyones_got_a_plan_until",
+        "bottled_buzz"
+      ],
+      "done": false
+    },
+    "natural_helpers": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "new_arrival": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "night_collector": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "night_pact": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "pest_control": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "shield_breaker": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "silk_supplier": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "thats_where_id_be": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "venom_on_tap": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    },
+    "watch_dog": {
+      "remaining": [
+        "earned"
+      ],
+      "completed": [],
+      "done": false
+    }
+  },
+  "reconnected": {
+    "FFMOwner": {
+      "bottled_buzz": {
+        "remaining": [],
+        "completed": [
+          "earned"
+        ],
+        "done": true
+      },
+      "cat_nap": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "eight_legged_alliance": {
+        "remaining": [
+          "cave",
+          "regular"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "everyones_got_a_plan_until": {
+        "remaining": [],
+        "completed": [
+          "earned"
+        ],
+        "done": true
+      },
+      "friendly_fangs": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "full_house": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "master_naturalist": {
+        "remaining": [
+          "new_arrival",
+          "night_collector",
+          "full_house",
+          "thats_where_id_be",
+          "eight_legged_alliance",
+          "watch_dog",
+          "venom_on_tap",
+          "cat_nap",
+          "night_pact",
+          "natural_helpers",
+          "pest_control",
+          "silk_supplier",
+          "shield_breaker",
+          "friendly_fangs"
+        ],
+        "completed": [
+          "everyones_got_a_plan_until",
+          "bottled_buzz"
+        ],
+        "done": false
+      },
+      "natural_helpers": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "new_arrival": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "night_collector": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "night_pact": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "pest_control": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "shield_breaker": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "silk_supplier": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "thats_where_id_be": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "venom_on_tap": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "watch_dog": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      }
+    },
+    "FFMGuest": {
+      "bottled_buzz": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "cat_nap": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "eight_legged_alliance": {
+        "remaining": [
+          "cave",
+          "regular"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "everyones_got_a_plan_until": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "friendly_fangs": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "full_house": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "master_naturalist": {
+        "remaining": [
+          "new_arrival",
+          "night_collector",
+          "everyones_got_a_plan_until",
+          "bottled_buzz",
+          "full_house",
+          "thats_where_id_be",
+          "eight_legged_alliance",
+          "watch_dog",
+          "venom_on_tap",
+          "cat_nap",
+          "night_pact",
+          "natural_helpers",
+          "silk_supplier",
+          "shield_breaker",
+          "friendly_fangs"
+        ],
+        "completed": [
+          "pest_control"
+        ],
+        "done": false
+      },
+      "natural_helpers": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "new_arrival": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "night_collector": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "night_pact": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "pest_control": {
+        "remaining": [],
+        "completed": [
+          "earned"
+        ],
+        "done": true
+      },
+      "shield_breaker": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "silk_supplier": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "thats_where_id_be": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "venom_on_tap": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      },
+      "watch_dog": {
+        "remaining": [
+          "earned"
+        ],
+        "completed": [],
+        "done": false
+      }
+    }
+  }
+}

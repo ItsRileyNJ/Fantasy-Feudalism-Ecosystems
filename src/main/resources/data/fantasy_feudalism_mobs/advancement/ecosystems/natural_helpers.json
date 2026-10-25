@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "id": "fantasy_feudalism_mobs:fertilizer"
+    },
+    "title": {
+      "translate": "advancement.fantasy_feudalism_mobs.natural_helpers.title"
+    },
+    "description": {
+      "translate": "advancement.fantasy_feudalism_mobs.natural_helpers.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "earned": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "earned"
+    ]
+  ],
+  "parent": "fantasy_feudalism_mobs:ecosystems/night_collector"
+}

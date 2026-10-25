@@ -52,7 +52,10 @@ public final class CatRest {
             }
         }
         player.getPersistentData().remove(SESSION);
-        if(earned)player.addEffect(new MobEffectInstance(FantasyFeudalismMobs.RESTED,RestedEffect.DURATION,0,false,false,true));
+        if(earned){
+            player.addEffect(new MobEffectInstance(FantasyFeudalismMobs.RESTED,RestedEffect.DURATION,0,false,false,true));
+            EcosystemAchievements.grant(player,"cat_nap");
+        }
     }
     private CatRest(){}
 }

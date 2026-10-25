@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:string"
+    },
+    "title": {
+      "translate": "advancement.fantasy_feudalism_mobs.silk_supplier.title"
+    },
+    "description": {
+      "translate": "advancement.fantasy_feudalism_mobs.silk_supplier.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "earned": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "earned"
+    ]
+  ],
+  "parent": "fantasy_feudalism_mobs:ecosystems/friendly_fangs"
+}

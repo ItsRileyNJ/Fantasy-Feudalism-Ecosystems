@@ -403,3 +403,10 @@ The user requested a Field Mouse Spawn Egg. Use the native spawn-egg item with w
 ## Mouse performance timing (0.1.20)
 
 The user requested fewer checks, specifying **20 seconds for crop searching and feeding only**, with fleeing kept responsive. Crop/feeding polling uses 400 world ticks at normal speed. Successful feeding still has its individual 2,400-tick cooldown. Expensive searches and morning spawning are budgeted across server ticks; queued morning work is saved so spreading it out cannot duplicate population slots.
+
+
+## Approved achievements (0.1.21)
+
+The user approved proposals 2–9, 11–13, and 15–18. Proposal 15 is named **Watch Dog**. Proposals 1 (joining a world), 10 (Green Thumb), and 14 (Watchful Wings) are excluded. Two additional challenges are **That's where I'd be**, earned by being hit by a skeleton arrow fired from its absolute maximum range (35 blocks), and **Everyone's got a plan until...**, earned by dying to one Enderman hit from full health. The latter requires increasing ordinary Hard Enderman melee damage enough to one-shot an unarmored player at twenty health; Easy/Normal retain the previous damage.
+
+Achievements use native advancement progress and notifications. Master Naturalist requires all sixteen other approved achievements. No automatic join reward or additional item/experience reward is added. See RELEASE_0.1.21.md for every trigger.

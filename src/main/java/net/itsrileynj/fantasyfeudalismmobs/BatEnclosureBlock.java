@@ -41,7 +41,10 @@ public final class BatEnclosureBlock extends BaseEntityBlock {
         if(stack.getItem() instanceof BatNetItem&&BatNetItem.captured(stack)!=null){
             if(player.isSpectator())return ItemInteractionResult.FAIL;
             if(level.isClientSide)return ItemInteractionResult.SUCCESS;
-            if(level.getBlockEntity(pos) instanceof BatEnclosureBlockEntity home&&home.insert(stack))return ItemInteractionResult.CONSUME;
+            if(level.getBlockEntity(pos) instanceof BatEnclosureBlockEntity home&&home.insert(stack)){
+                if(home.residentCount()==3)EcosystemAchievements.grant(player,"full_house");
+                return ItemInteractionResult.CONSUME;
+            }
             return ItemInteractionResult.FAIL;
         }
         if(stack.is(net.minecraft.world.item.Items.APPLE)){

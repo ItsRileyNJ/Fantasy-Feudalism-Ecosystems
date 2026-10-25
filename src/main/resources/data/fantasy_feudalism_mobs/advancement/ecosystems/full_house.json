@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "id": "fantasy_feudalism_mobs:bat_enclosure"
+    },
+    "title": {
+      "translate": "advancement.fantasy_feudalism_mobs.full_house.title"
+    },
+    "description": {
+      "translate": "advancement.fantasy_feudalism_mobs.full_house.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "earned": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "earned"
+    ]
+  ],
+  "parent": "fantasy_feudalism_mobs:ecosystems/night_collector"
+}

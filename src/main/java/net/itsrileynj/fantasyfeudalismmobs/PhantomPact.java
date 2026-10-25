@@ -29,6 +29,7 @@ public final class PhantomPact {
         var tag=new CompoundTag();tag.putUUID("Owner",player.getUUID());
         tag.putLong("Sunrise",NightCycle.nextSunrise(player.level()));tag.put("Threats",new CompoundTag());
         phantom.getPersistentData().put(PACT,tag);phantom.setTarget(null);phantom.setLastHurtByMob(null);eye.consume(1,player);
+        EcosystemAchievements.grant(player,"night_pact");
         return InteractionResult.CONSUME;
     }
     public static boolean allied(Phantom phantom,Entity other){

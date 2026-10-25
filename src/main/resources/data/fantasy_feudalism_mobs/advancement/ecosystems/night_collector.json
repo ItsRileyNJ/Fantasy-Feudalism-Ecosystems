@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "id": "fantasy_feudalism_mobs:bat_net"
+    },
+    "title": {
+      "translate": "advancement.fantasy_feudalism_mobs.night_collector.title"
+    },
+    "description": {
+      "translate": "advancement.fantasy_feudalism_mobs.night_collector.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "earned": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "earned"
+    ]
+  ],
+  "parent": "fantasy_feudalism_mobs:ecosystems/bottled_buzz"
+}

@@ -1,0 +1,16 @@
+Standalone
+[06:38:08] [Server thread/INFO] [minecraft/GameTestServer]: All 190 required tests passed :)
+BUILD SUCCESSFUL in 54s
+
+Mercenaries 1.15.7
+[06:40:55] [Server thread/INFO] [minecraft/GameTestServer]: All 203 required tests passed :)
+BUILD SUCCESSFUL in 2m 37s
+
+Release archive: build/libs/fantasy_feudalism_ecosystems-0.1.21.jar
+
+SHA-256: 1bda5ce29fef6040bffdc821103eb917d3a85e34b22c0a586828b01d64a7c11a
+
+Native advancement JSON files in release: 17; test classes/helper/structure excluded.
+
+Dedicated-server/two-client checks: PASS. Actual bee capture; owned cat mouse kill; no join advancement; player-specific credit; Hard Enderman full-health death and respawn; native advancement screens; saved progress after reconnecting.
+Both clients and server saved/disconnected/stopped after testing; disposable entities and force-load tickets cleared.

@@ -38,7 +38,7 @@ public final class BatNetItem extends Item {
         saved.getCompound("ForgeData").remove(BatResidents.HOME);
         BatColonies.get(level).release(bat.getUUID());
         CustomData.update(DataComponents.CUSTOM_DATA,stack,tag->tag.put(CAPTURED,saved));
-        bat.discard();return InteractionResult.CONSUME;
+        bat.discard();EcosystemAchievements.grant(player,"night_collector");return InteractionResult.CONSUME;
     }
     @Override public void appendHoverText(ItemStack stack,TooltipContext context,List<Component> tooltip,TooltipFlag flag){
         tooltip.add(Component.translatable(captured(stack)==null?"tooltip.fantasy_feudalism_mobs.bat_net.empty":"tooltip.fantasy_feudalism_mobs.bat_net.occupied"));
