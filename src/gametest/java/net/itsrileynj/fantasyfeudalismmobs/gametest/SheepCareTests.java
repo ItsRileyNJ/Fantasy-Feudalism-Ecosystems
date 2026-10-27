@@ -89,11 +89,11 @@ public final class SheepCareTests {
     }
 
     @GameTest(template="test_empty")
-    public static void adultsAndLambsGetExactlyThreeWinningGrazingRolls(GameTestHelper h) {
+    public static void adultsGetThirtyWinningRollsAndLambsKeepThree(GameTestHelper h) {
         var sheep=sheep(h);var goal=new EatBlockGoal(sheep);
         for(boolean baby:new boolean[]{false,true}) {
             sheep.setBaby(baby);sheep.getRandom().setSeed(12345);var expected=RandomSource.create(12345);
-            for(int i=0;i<6000;i++)h.assertTrue(goal.canUse()==(expected.nextInt(baby?50:1000)<3),"Grazing uses three winning native rolls for both ages");
+            for(int i=0;i<6000;i++)h.assertTrue(goal.canUse()==(expected.nextInt(baby?50:1000)<(baby?3:30)),"Adults use 30 in 1000; lambs retain 3 in 50");
         }
         h.succeed();
     }

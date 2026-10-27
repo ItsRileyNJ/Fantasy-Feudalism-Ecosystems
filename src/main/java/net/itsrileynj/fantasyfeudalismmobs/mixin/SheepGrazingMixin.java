@@ -32,8 +32,8 @@ public abstract class SheepGrazingMixin {
     }
 
     @Redirect(method="canUse", at=@At(value="INVOKE", target="Lnet/minecraft/util/RandomSource;nextInt(I)I"))
-    private int ffm$grazeThreeTimesAsOften(RandomSource random, int bound) {
+    private int ffm$grazingChance(RandomSource random, int bound) {
         int roll=random.nextInt(bound);
-        return mob instanceof Sheep ? (roll<3?0:1) : roll;
+        return mob instanceof Sheep ? (roll<(mob.isBaby()?3:30)?0:1) : roll;
     }
 }

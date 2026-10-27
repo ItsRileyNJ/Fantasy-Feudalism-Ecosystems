@@ -436,7 +436,7 @@ The user supplied a bat-in-net reference for the occupied item. Show this flat s
 
 ## Confirmed sheep changes (0.1.25)
 
-- All vanilla sheep, including spawn-egg sheep and player-bred lambs, get three winning grazing rolls instead of one per native grazing check. The normal eating animation, grass requirements, mob-griefing hooks and baby growth remain native.
+- Adult sheep get 30 winning rolls out of 1,000 per native grazing check; lambs retain three winning rolls out of 50. This applies to all vanilla sheep, including spawn-egg sheep and player-bred lambs. The normal eating animation, grass requirements, mob-griefing hooks and baby growth remain native.
 - Sheared sheep require three completed grass/short-grass meals to regain wool; interrupted or unsuccessful attempts do not count. Saved progress persists across unloading and restarts. A new shearing starts at zero.
 - Warm means biome base temperature at least 0.8 (plains and warmer). Exposed sheared sheep are cold below this threshold, or when native rain actually reaches them in a warmer biome. Rainless deserts do not become wet merely because global weather is rainy.
 - A roof above the sheep protects it in every biome, including transparent glass, leaves and slabs recognized by the native rain-blocking heightmap.

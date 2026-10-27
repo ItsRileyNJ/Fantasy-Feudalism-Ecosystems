@@ -19,7 +19,7 @@ See the [pig behavior report](docs/RELEASE_0.1.26.md).
 
 ## Version 0.1.25 changes
 
-- Sheep attempt grazing three times as often and need three successful grazes to regrow wool.
+- Sheep need three successful grazes to regrow wool. Current grazing chances per native check are 30 in 1,000 for adults and 3 in 50 for lambs.
 - Sheared sheep exposed to cool biomes or actual rain shiver, move 25% slower and stop grazing. A roof provides shelter in every biome.
 - Previously cold sheep need 30 uninterrupted seconds in warm, dry conditions to recover. Grazing progress and recovery survive saves.
 
