@@ -29,8 +29,9 @@ public abstract class SheepModelMixin extends QuadrupedModel<Sheep> {
         if(!((SheepState)sheep).ffm$isCold()||!sheep.isAlive())return;
         // Around three trembles per second, interpolated by the native render age.
         float shake=Mth.sin(age*.95F);
-        head.x+=.35F*shake;head.yRot+=.09F*shake;head.zRot+=.04F*shake;
-        body.x+=.2F*shake;body.zRot+=.045F*shake;
+        // Keep the fast head/leg tremble, with one quarter of the lateral sway and roll.
+        head.x+=.0875F*shake;head.yRot+=.09F*shake;head.zRot+=.01F*shake;
+        body.x+=.05F*shake;body.zRot+=.01125F*shake;
         rightFrontLeg.zRot+=.025F*shake;leftFrontLeg.zRot+=.025F*shake;
         rightHindLeg.zRot+=.025F*shake;leftHindLeg.zRot+=.025F*shake;
     }

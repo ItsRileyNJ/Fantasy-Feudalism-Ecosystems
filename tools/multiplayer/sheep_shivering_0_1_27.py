@@ -22,7 +22,7 @@ def measured(sheep):
     for side,poses in samples.items():
         headRange=max(p['head']['x'] for p in poses)-min(p['head']['x'] for p in poses)
         bodyRange=max(p['body']['zRot'] for p in poses)-min(p['body']['zRot'] for p in poses)
-        assert headRange>.4 and bodyRange>.05,(side,headRange,bodyRange)
+        assert .10<headRange<.18 and .013<bodyRange<.023,(side,headRange,bodyRange)
         result[side]={'samples':len(poses),'headTravelModelPixels':headRange,'bodyRollRangeRadians':bodyRange}
     return result
 def reset_pose(sheep,side):

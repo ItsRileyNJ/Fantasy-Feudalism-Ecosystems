@@ -1,0 +1,63 @@
+[
+  {
+    "name": "Sheared sheep visibly move their head and body on snow in snowy taiga on both clients",
+    "passed": true,
+    "measurements": {
+      "owner": {
+        "samples": 12,
+        "headTravelModelPixels": 0.16953732999999999,
+        "bodyRollRangeRadians": 0.021797657999999998
+      },
+      "guest": {
+        "samples": 12,
+        "headTravelModelPixels": 0.16798917600000002,
+        "bodyRollRangeRadians": 0.021598608999999998
+      }
+    }
+  },
+  {
+    "name": "A woolled sheep rendered beside a cold sheep retains its exact normal pose",
+    "passed": true
+  },
+  {
+    "name": "Actual rain in a warm plains biome starts cold and visible shivering on both clients",
+    "passed": true,
+    "measurements": {
+      "owner": {
+        "samples": 12,
+        "headTravelModelPixels": 0.17038517,
+        "bodyRollRangeRadians": 0.021906666499999998
+      },
+      "guest": {
+        "samples": 12,
+        "headTravelModelPixels": 0.15002511400000001,
+        "bodyRollRangeRadians": 0.019288944000000002
+      }
+    }
+  },
+  {
+    "name": "Rain shelter retains shivering halfway through recovery and restores all model offsets after thirty seconds",
+    "passed": true,
+    "elapsedServerTicks": 611
+  },
+  {
+    "name": "Both clients retain visible motion after resource reload",
+    "passed": true,
+    "measurements": {
+      "owner": {
+        "samples": 12,
+        "headTravelModelPixels": 0.17356913000000002,
+        "bodyRollRangeRadians": 0.022316033
+      },
+      "guest": {
+        "samples": 12,
+        "headTravelModelPixels": 0.17358976399999998,
+        "bodyRollRangeRadians": 0.022318684999999998
+      }
+    }
+  },
+  {
+    "name": "Sheltered and woolled sheep have no leftover pose offsets or rendering errors",
+    "passed": true
+  }
+]
