@@ -142,6 +142,19 @@ public final class SheepCareTests {
         } finally { level.setWeatherParameters(6000,0,raining,thunder);level.setRainLevel(rain); }
     }
 
+    @GameTest(template="test_empty",batch="sheep_taiga_snow")
+    public static void snowUnderfootDoesNotShelterShearedSheepInSnowyTaiga(GameTestHelper h) {
+        h.setBiome(Biomes.SNOWY_TAIGA);var sheep=sheep(h);h.setBlock(8,5,8,Blocks.AIR);
+        var base=h.absolutePos(new BlockPos(8,2,8));
+        for(int layers=1;layers<=8;layers++) {
+            h.setBlock(8,2,8,Blocks.SNOW.defaultBlockState().setValue(net.minecraft.world.level.block.SnowLayerBlock.LAYERS,layers));
+            sheep.moveTo(base.getX()+.5,base.getY()+(layers-1)/8.0,base.getZ()+.5);
+            h.assertTrue(SheepCare.exposedToCold(sheep),"Snow underfoot must not count as a roof: layers="+layers+" height="+h.getLevel().getHeight(net.minecraft.world.level.levelgen.Heightmap.Types.MOTION_BLOCKING,base.getX(),base.getZ()));
+        }
+        h.setBlock(8,5,8,Blocks.SPRUCE_LEAVES);
+        h.assertFalse(SheepCare.exposedToCold(sheep),"Spruce leaves overhead still provide actual shelter");h.succeed();
+    }
+
     @GameTest(template="test_empty",batch="sheep_shelter_transition",timeoutTicks=680)
     public static void shelterNeedsThirtySecondsAndRecoverySurvivesReload(GameTestHelper h) {
         h.setBiome(Biomes.SNOWY_PLAINS);var sheep=sheep(h);meal(h,sheep);meal(h,sheep);

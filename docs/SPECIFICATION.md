@@ -440,7 +440,7 @@ The user supplied a bat-in-net reference for the occupied item. Show this flat s
 - Sheared sheep require three completed grass/short-grass meals to regain wool; interrupted or unsuccessful attempts do not count. Saved progress persists across unloading and restarts. A new shearing starts at zero.
 - Warm means biome base temperature at least 0.8 (plains and warmer). Exposed sheared sheep are cold below this threshold, or when native rain actually reaches them in a warmer biome. Rainless deserts do not become wet merely because global weather is rainy.
 - A roof above the sheep protects it in every biome, including transparent glass, leaves and slabs recognized by the native rain-blocking heightmap.
-- Cold sheep visibly shiver, move 25% slower and cannot graze. Cold causes no health damage or powder-snow freezing.
+- Cold sheep visibly shiver with a head, body and leg tremble, move 25% slower and cannot graze. The tremble runs at about three cycles per second using interpolated render time, and all model offsets reset on each render so warm sheep remain still. Cold causes no health damage or powder-snow freezing.
 - Once cold, sheep require 600 consecutive server ticks (30 seconds at 20 TPS) without cold exposure to warm up. Renewed exposure resets recovery. Cold, the recovery deadline and wool progress survive saves. Wool immediately restores insulation.
 - Weather checks run once per second per sheep, staggered by entity ID. Recognizing shelter and finishing recovery can therefore take up to one extra second. Conditions also update immediately on shearing or loading.
 

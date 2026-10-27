@@ -44,6 +44,7 @@
   "client": [
     "WolfModelMixin",
     "SheepRendererMixin",
+    "SheepModelMixin",
     "PigDigModelMixin",
     "SkeletonModelMixin",
     "SpiderRendererMixin",

@@ -6,7 +6,14 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.26.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.27.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.27 changes
+
+- Cold sheared sheep now visibly tremble through their head, body and legs, in addition to the native freezing tremor. This applies in snowy taiga and when exposed to rain.
+- Adult sheep use a 30-in-1,000 grazing chance; lambs retain 3 in 50. Cold sheep still stop grazing and need 30 seconds of warm, dry shelter to recover.
+
+See the [shivering validation report](docs/RELEASE_0.1.27.md).
 
 ## Version 0.1.26 changes
 

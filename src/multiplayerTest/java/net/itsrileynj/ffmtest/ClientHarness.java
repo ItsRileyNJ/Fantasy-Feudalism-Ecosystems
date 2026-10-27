@@ -61,6 +61,7 @@ public final class ClientHarness {
     private static final Map<Integer,Integer> FROG_JUMP_FRAMES=new HashMap<>();
     private static final Map<Integer,Integer> MOUSE_RENDER_FRAMES=new HashMap<>();
     private static final Map<Integer,Integer> SHEEP_RENDER_FRAMES=new HashMap<>();
+    private static final Map<Integer,Map<String,Object>> SHEEP_POSES=new HashMap<>();
     private static final Map<Integer,Map<String,Object>> PIG_POSES=new HashMap<>();
     private static final Map<Integer,Integer> WOLF_HURT=new HashMap<>();
     private static final Map<String,Integer> WOLF_SOUNDS=new java.util.concurrent.ConcurrentHashMap<>();
@@ -94,6 +95,20 @@ public final class ClientHarness {
         }
         if(event.getEntity() instanceof net.minecraft.world.entity.animal.Sheep sheep)
             SHEEP_RENDER_FRAMES.merge(sheep.getId(),1,Integer::sum);
+        if(event.getEntity() instanceof net.minecraft.world.entity.animal.Sheep sheep
+                &&event.getRenderer().getModel() instanceof net.minecraft.client.model.SheepModel<?> model) {
+            try {
+                var pose=new LinkedHashMap<String,Object>();
+                pose.put("cold",((net.itsrileynj.fantasyfeudalismmobs.SheepState)sheep).ffm$isCold());
+                for(String name:List.of("head","body","rightFrontLeg","leftFrontLeg")) {
+                    var field=net.minecraft.client.model.QuadrupedModel.class.getDeclaredField(name);field.setAccessible(true);
+                    var part=(net.minecraft.client.model.geom.ModelPart)field.get(model);
+                    if(!Float.isFinite(part.zRot)||!Float.isFinite(part.x))RENDER_ERRORS.add("Non-finite sheep shiver pose");
+                    pose.put(name,Map.of("x",part.x,"zRot",part.zRot,"restX",part.getInitialPose().x,"restZRot",part.getInitialPose().zRot));
+                }
+                SHEEP_POSES.put(sheep.getId(),pose);
+            } catch(ReflectiveOperationException error) {RENDER_ERRORS.add(error.toString());}
+        }
         if(event.getEntity() instanceof net.minecraft.world.entity.ambient.Bat bat && event.getRenderer().getModel() instanceof net.minecraft.client.model.BatModel model)
             BatAttachmentProbe.record(bat,model,event.getPoseStack());
         if(event.getEntity() instanceof net.itsrileynj.fantasyfeudalismmobs.FieldMouse mouse
@@ -261,6 +276,7 @@ public final class ClientHarness {
         result.put("screen",mc.screen==null?"":mc.screen.getClass().getSimpleName());result.put("frames",frames);
         result.put("mouseRenderFrames",new HashMap<>(MOUSE_RENDER_FRAMES));
         result.put("sheepRenderFrames",new HashMap<>(SHEEP_RENDER_FRAMES));
+        result.put("sheepPoses",new HashMap<>(SHEEP_POSES));
         result.put("pigPoses",new HashMap<>(PIG_POSES));
         result.put("skeletonFrames",skeletonFrames);result.put("crossbowFrames",crossbowFrames);result.put("renderErrors",List.copyOf(RENDER_ERRORS));
         result.put("guardFrames",guardFrames);
@@ -289,8 +305,9 @@ public final class ClientHarness {
                 var info=ControlFiles.entity(e);
                 if(e instanceof net.minecraft.world.entity.animal.Sheep sheep) {
                     var renderer=mc.getEntityRenderDispatcher().getRenderer(sheep);
-                    var shaking=renderer.getClass().getDeclaredMethod("isShaking",net.minecraft.world.entity.animal.Sheep.class);
-                    shaking.setAccessible(true);info.put("shivering",shaking.invoke(renderer,sheep));
+                    var nativeShaking=LivingEntityRenderer.class.getDeclaredMethod("isShaking",net.minecraft.world.entity.LivingEntity.class);
+                    nativeShaking.setAccessible(true);var shaking=nativeShaking.invoke(renderer,sheep);
+                    info.put("shivering",shaking);info.put("nativeShivering",shaking);
                 }
                 if(e instanceof Spider spider) {
                     var texture=mc.getEntityRenderDispatcher().getRenderer(spider).getTextureLocation(spider);
