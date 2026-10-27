@@ -1,0 +1,376 @@
+[
+  {
+    "name": "Both clients receive cold metadata, reduced speed and the native shivering renderer",
+    "passed": true,
+    "sheep": "783c6261-ef68-4df0-a1f9-0fc5d80e7677",
+    "clients": {
+      "owner": {
+        "id": 4,
+        "uuid": "783c6261-ef68-4df0-a1f9-0fc5d80e7677",
+        "type": "minecraft:sheep",
+        "position": [
+          8.5,
+          64.0,
+          8.5
+        ],
+        "pose": "STANDING",
+        "onGround": false,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "cold": true,
+        "sheared": true,
+        "speed": 0.17250000312924385,
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false,
+        "shivering": true
+      },
+      "guest": {
+        "id": 4,
+        "uuid": "783c6261-ef68-4df0-a1f9-0fc5d80e7677",
+        "type": "minecraft:sheep",
+        "position": [
+          8.5,
+          64.0,
+          8.5
+        ],
+        "pose": "STANDING",
+        "onGround": false,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "cold": true,
+        "sheared": true,
+        "speed": 0.17250000312924385,
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false,
+        "shivering": true
+      }
+    }
+  },
+  {
+    "name": "Glass shelter preserves cold and shivering halfway through the thirty-second recovery",
+    "passed": true,
+    "clients": {
+      "owner": {
+        "id": 4,
+        "uuid": "783c6261-ef68-4df0-a1f9-0fc5d80e7677",
+        "type": "minecraft:sheep",
+        "position": [
+          8.5,
+          64.0,
+          8.5
+        ],
+        "pose": "STANDING",
+        "onGround": false,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "cold": true,
+        "sheared": true,
+        "speed": 0.17250000312924385,
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false,
+        "shivering": true
+      },
+      "guest": {
+        "id": 4,
+        "uuid": "783c6261-ef68-4df0-a1f9-0fc5d80e7677",
+        "type": "minecraft:sheep",
+        "position": [
+          8.5,
+          64.0,
+          8.5
+        ],
+        "pose": "STANDING",
+        "onGround": false,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "cold": true,
+        "sheared": true,
+        "speed": 0.17250000312924385,
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false,
+        "shivering": true
+      }
+    }
+  },
+  {
+    "name": "Both clients stop shivering and regain normal speed after thirty seconds of shelter",
+    "passed": true,
+    "elapsedServerTicks": 615,
+    "clients": {
+      "owner": {
+        "id": 4,
+        "uuid": "783c6261-ef68-4df0-a1f9-0fc5d80e7677",
+        "type": "minecraft:sheep",
+        "position": [
+          8.5,
+          64.0,
+          8.5
+        ],
+        "pose": "STANDING",
+        "onGround": false,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "cold": false,
+        "sheared": true,
+        "speed": 0.23000000417232513,
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false,
+        "shivering": false
+      },
+      "guest": {
+        "id": 4,
+        "uuid": "783c6261-ef68-4df0-a1f9-0fc5d80e7677",
+        "type": "minecraft:sheep",
+        "position": [
+          8.5,
+          64.0,
+          8.5
+        ],
+        "pose": "STANDING",
+        "onGround": false,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "cold": false,
+        "sheared": true,
+        "speed": 0.23000000417232513,
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false,
+        "shivering": false
+      }
+    }
+  },
+  {
+    "name": "Resource reload and renewed outdoor exposure preserve correct rendering and synchronization",
+    "passed": true,
+    "clients": {
+      "owner": {
+        "id": 4,
+        "uuid": "783c6261-ef68-4df0-a1f9-0fc5d80e7677",
+        "type": "minecraft:sheep",
+        "position": [
+          8.5,
+          64.0,
+          8.5
+        ],
+        "pose": "STANDING",
+        "onGround": false,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "cold": true,
+        "sheared": true,
+        "speed": 0.17250000312924385,
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false,
+        "shivering": true
+      },
+      "guest": {
+        "id": 4,
+        "uuid": "783c6261-ef68-4df0-a1f9-0fc5d80e7677",
+        "type": "minecraft:sheep",
+        "position": [
+          8.5,
+          64.0,
+          8.5
+        ],
+        "pose": "STANDING",
+        "onGround": false,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "cold": true,
+        "sheared": true,
+        "speed": 0.17250000312924385,
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false,
+        "shivering": true
+      }
+    }
+  },
+  {
+    "name": "Both clients render sheep without errors while Mercenaries is installed",
+    "passed": true
+  }
+]

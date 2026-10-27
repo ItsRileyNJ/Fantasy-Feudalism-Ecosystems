@@ -17,6 +17,9 @@
     "WolfTamingMixin",
     "ChickenMixin",
     "CowMixin",
+    "SheepMixin",
+    "PigMixin",
+    "SheepGrazingMixin",
     "HorseMixin",
     "HorseGrowthMixin",
     "HorseMatingMixin",
@@ -40,6 +43,8 @@
   ],
   "client": [
     "WolfModelMixin",
+    "SheepRendererMixin",
+    "PigDigModelMixin",
     "SkeletonModelMixin",
     "SpiderRendererMixin",
     "CaveSpiderRendererMixin",

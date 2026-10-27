@@ -432,3 +432,25 @@ Integrate the uploaded `Batbox Model.json` as the Bat Enclosure model. Preserve 
 ## Occupied Bat Net artwork (0.1.24)
 
 The user supplied a bat-in-net reference for the occupied item. Show this flat sprite whenever the net holds a captured bat, reverting to the original empty-net sprite when the captured data is cleared after a successful transfer. Reuse the existing occupied item-model predicate; preserve existing capture/transfer mechanics.
+
+
+## Confirmed sheep changes (0.1.25)
+
+- All vanilla sheep, including spawn-egg sheep and player-bred lambs, get three winning grazing rolls instead of one per native grazing check. The normal eating animation, grass requirements, mob-griefing hooks and baby growth remain native.
+- Sheared sheep require three completed grass/short-grass meals to regain wool; interrupted or unsuccessful attempts do not count. Saved progress persists across unloading and restarts. A new shearing starts at zero.
+- Warm means biome base temperature at least 0.8 (plains and warmer). Exposed sheared sheep are cold below this threshold, or when native rain actually reaches them in a warmer biome. Rainless deserts do not become wet merely because global weather is rainy.
+- A roof above the sheep protects it in every biome, including transparent glass, leaves and slabs recognized by the native rain-blocking heightmap.
+- Cold sheep visibly shiver, move 25% slower and cannot graze. Cold causes no health damage or powder-snow freezing.
+- Once cold, sheep require 600 consecutive server ticks (30 seconds at 20 TPS) without cold exposure to warm up. Renewed exposure resets recovery. Cold, the recovery deadline and wool progress survive saves. Wool immediately restores insulation.
+- Weather checks run once per second per sheep, staggered by entity ID. Recognizing shelter and finishing recovery can therefore take up to one extra second. Conditions also update immediately on shearing or loading.
+
+
+## Confirmed pig changes (0.1.26)
+
+- Adult pigs attempt to dig about every two minutes (2,400 ticks with ±200 ticks of staggering). Only the soil under their feet is checked; there is no terrain search.
+- Podzol gives an 80% find chance, rooted dirt 50%, and coarse dirt 15%. Other blocks cannot produce mushrooms. Soil is left intact.
+- A successful dig drops exactly one vanilla mushroom, with an 80% brown / 20% red split. There are no extra rewards for a longer animation or an interrupted dig.
+- Digging uses a three-second synchronized snout-down, bobbing, alternating-front-leg animation. Panic, swimming, riding, leashing and breeding take priority. Saved cooldowns prevent reloads from granting extra digging attempts.
+- Piglets can automatically seek edible mushroom drops within six blocks, respecting pickup delays and player-reserved items. Players may feed either mushroom color directly. One consumed mushroom removes 20% of remaining growth time. Adults do not eat mushrooms or use them for breeding; native carrots, potatoes and beetroots retain their behavior.
+- Adult pigs loosely regroup beyond 15 blocks from a stable nearby adult, returning to ordinary wandering within 11 blocks. This is a loose herd, with no hard physical boundary or pig group-size cap. Herd searches run at five-second intervals, staggered after the first check.
+- Player-bred piglets save both parent UUIDs and follow a nearby living parent until adulthood. Spawn-egg piglets and orphaned/separated piglets can follow a nearby adult. Following does not load parent chunks; riding, panic, temptation, breeding and leashing retain priority.

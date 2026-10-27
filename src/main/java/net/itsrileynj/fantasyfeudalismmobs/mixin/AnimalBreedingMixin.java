@@ -28,5 +28,6 @@ public abstract class AnimalBreedingMixin {
         }
         ffm$automaticBirth=false;
         HorseLife.born((Animal)(Object)this, mate, child);
+        net.itsrileynj.fantasyfeudalismmobs.PigLife.born((Animal)(Object)this,mate,child);
     }
 }

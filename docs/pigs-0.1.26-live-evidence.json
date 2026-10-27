@@ -1,0 +1,121 @@
+[
+  {
+    "name": "A real client spawn egg creates a pig whose lowered-snouted digging animation synchronizes on both clients; idle pigs keep their normal pose",
+    "passed": true,
+    "pig": "b65a3f8e-99c8-422e-a200-0fa294ac5245",
+    "clients": {
+      "owner": {
+        "digging": true,
+        "amount": 1.0,
+        "head": {
+          "xRot": 0.7615653,
+          "y": 15.825399,
+          "restY": 12.0
+        },
+        "body": {
+          "xRot": 1.6507964,
+          "y": 11.232428,
+          "restY": 11.0
+        },
+        "rightFrontLeg": {
+          "xRot": 0.14038977,
+          "y": 18.0,
+          "restY": 18.0
+        },
+        "leftFrontLeg": {
+          "xRot": -0.6403898,
+          "y": 18.0,
+          "restY": 18.0
+        }
+      },
+      "guest": {
+        "digging": true,
+        "amount": 1.0,
+        "head": {
+          "xRot": 0.5301313,
+          "restY": 12.0,
+          "y": 15.150383
+        },
+        "body": {
+          "xRot": 1.6507964,
+          "restY": 11.0,
+          "y": 10.750274
+        },
+        "rightFrontLeg": {
+          "xRot": 0.0123129785,
+          "restY": 18.0,
+          "y": 18.0
+        },
+        "leftFrontLeg": {
+          "xRot": -0.512313,
+          "restY": 18.0,
+          "y": 18.0
+        }
+      }
+    }
+  },
+  {
+    "name": "Both clients return to the native idle pose after a complete dig",
+    "passed": true,
+    "clients": {
+      "owner": {
+        "digging": false,
+        "amount": 2.9206262e-08,
+        "head": {
+          "xRot": 2.0584626e-08,
+          "y": 12.0,
+          "restY": 12.0
+        },
+        "body": {
+          "xRot": 1.5707964,
+          "y": 11.0,
+          "restY": 11.0
+        },
+        "rightFrontLeg": {
+          "xRot": 1.5467195e-09,
+          "y": 18.0,
+          "restY": 18.0
+        },
+        "leftFrontLeg": {
+          "xRot": -1.6149794e-08,
+          "y": 18.0,
+          "restY": 18.0
+        }
+      },
+      "guest": {
+        "digging": false,
+        "amount": 1.6093523e-08,
+        "head": {
+          "xRot": 1.2390839e-08,
+          "restY": 12.0,
+          "y": 12.0
+        },
+        "body": {
+          "xRot": 1.5707964,
+          "restY": 11.0,
+          "y": 11.0
+        },
+        "rightFrontLeg": {
+          "xRot": 7.592519e-10,
+          "restY": 18.0,
+          "y": 18.0
+        },
+        "leftFrontLeg": {
+          "xRot": -8.806007e-09,
+          "restY": 18.0,
+          "y": 18.0
+        }
+      }
+    }
+  },
+  {
+    "name": "A real Survival client feeds one mushroom and removes twenty percent of remaining piglet growth",
+    "passed": true,
+    "beforeAge": -23989,
+    "afterAge": -19189
+  },
+  {
+    "name": "Resource reload and adult-to-piglet transition render without errors on both clients with Mercenaries installed",
+    "passed": true
+  }
+]

@@ -6,7 +6,24 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.24.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.26.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.26 changes
+
+- Adult pigs dig on podzol, rooted dirt and coarse dirt about every two minutes, with a snout-down pawing animation.
+- Dig success chances are 80%, 50% and 15%, respectively. Each success drops one mushroom: 80% brown, 20% red.
+- Piglets eat nearby dropped mushrooms or accept hand-fed mushrooms; each removes 20% of remaining growth time.
+- Adult pigs loosely regroup beyond about 15 blocks. Bred piglets remember both parents and follow family until adulthood.
+
+See the [pig behavior report](docs/RELEASE_0.1.26.md).
+
+## Version 0.1.25 changes
+
+- Sheep attempt grazing three times as often and need three successful grazes to regrow wool.
+- Sheared sheep exposed to cool biomes or actual rain shiver, move 25% slower and stop grazing. A roof provides shelter in every biome.
+- Previously cold sheep need 30 uninterrupted seconds in warm, dry conditions to recover. Grazing progress and recovery survive saves.
+
+See the [sheep behavior report](docs/RELEASE_0.1.25.md).
 
 ## Version 0.1.24 changes
 

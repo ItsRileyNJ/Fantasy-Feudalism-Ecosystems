@@ -60,6 +60,8 @@ public final class ClientHarness {
     }
     private static final Map<Integer,Integer> FROG_JUMP_FRAMES=new HashMap<>();
     private static final Map<Integer,Integer> MOUSE_RENDER_FRAMES=new HashMap<>();
+    private static final Map<Integer,Integer> SHEEP_RENDER_FRAMES=new HashMap<>();
+    private static final Map<Integer,Map<String,Object>> PIG_POSES=new HashMap<>();
     private static final Map<Integer,Integer> WOLF_HURT=new HashMap<>();
     private static final Map<String,Integer> WOLF_SOUNDS=new java.util.concurrent.ConcurrentHashMap<>();
     @SubscribeEvent public static void sound(net.neoforged.neoforge.client.event.sound.PlaySoundEvent event) {
@@ -75,6 +77,23 @@ public final class ClientHarness {
     private static final Map<Integer,Map<String,Object>> SPIDER_POSES=new HashMap<>();
     @SubscribeEvent public static void frame(RenderFrameEvent.Post event) { frames++; }
     @SubscribeEvent public static void rendered(RenderLivingEvent.Post<?,?> event) {
+        if(event.getEntity() instanceof net.minecraft.world.entity.animal.Pig pig
+                &&event.getRenderer().getModel() instanceof net.minecraft.client.model.PigModel<?> model) {
+            try {
+                var pose=new LinkedHashMap<String,Object>();
+                pose.put("digging",((net.itsrileynj.fantasyfeudalismmobs.PigState)pig).ffm$digging());
+                pose.put("amount",((net.itsrileynj.fantasyfeudalismmobs.PigState)pig).ffm$digAmount(event.getPartialTick()));
+                for(String name:List.of("head","body","rightFrontLeg","leftFrontLeg")) {
+                    var field=net.minecraft.client.model.QuadrupedModel.class.getDeclaredField(name);field.setAccessible(true);
+                    var part=(net.minecraft.client.model.geom.ModelPart)field.get(model);
+                    if(!Float.isFinite(part.xRot)||!Float.isFinite(part.y))RENDER_ERRORS.add("Non-finite digging pig pose");
+                    pose.put(name,Map.of("y",part.y,"xRot",part.xRot,"restY",part.getInitialPose().y));
+                }
+                PIG_POSES.put(pig.getId(),pose);
+            } catch(ReflectiveOperationException error) {RENDER_ERRORS.add(error.toString());}
+        }
+        if(event.getEntity() instanceof net.minecraft.world.entity.animal.Sheep sheep)
+            SHEEP_RENDER_FRAMES.merge(sheep.getId(),1,Integer::sum);
         if(event.getEntity() instanceof net.minecraft.world.entity.ambient.Bat bat && event.getRenderer().getModel() instanceof net.minecraft.client.model.BatModel model)
             BatAttachmentProbe.record(bat,model,event.getPoseStack());
         if(event.getEntity() instanceof net.itsrileynj.fantasyfeudalismmobs.FieldMouse mouse
@@ -241,6 +260,8 @@ public final class ClientHarness {
         result.put("guiWidth",mc.getWindow().getGuiScaledWidth());result.put("guiHeight",mc.getWindow().getGuiScaledHeight());
         result.put("screen",mc.screen==null?"":mc.screen.getClass().getSimpleName());result.put("frames",frames);
         result.put("mouseRenderFrames",new HashMap<>(MOUSE_RENDER_FRAMES));
+        result.put("sheepRenderFrames",new HashMap<>(SHEEP_RENDER_FRAMES));
+        result.put("pigPoses",new HashMap<>(PIG_POSES));
         result.put("skeletonFrames",skeletonFrames);result.put("crossbowFrames",crossbowFrames);result.put("renderErrors",List.copyOf(RENDER_ERRORS));
         result.put("guardFrames",guardFrames);
         var batPoses=new LinkedHashMap<String,Object>();ENCLOSURE_BAT_POSES.forEach((id,probe)->batPoses.put(id.toString(),probe.snapshot()));
@@ -266,6 +287,11 @@ public final class ClientHarness {
             result.put("player",ControlFiles.player(mc.player));var entities=new ArrayList<Map<String,Object>>();
             for(Entity e:mc.level.entitiesForRendering())if(e!=mc.player){
                 var info=ControlFiles.entity(e);
+                if(e instanceof net.minecraft.world.entity.animal.Sheep sheep) {
+                    var renderer=mc.getEntityRenderDispatcher().getRenderer(sheep);
+                    var shaking=renderer.getClass().getDeclaredMethod("isShaking",net.minecraft.world.entity.animal.Sheep.class);
+                    shaking.setAccessible(true);info.put("shivering",shaking.invoke(renderer,sheep));
+                }
                 if(e instanceof Spider spider) {
                     var texture=mc.getEntityRenderDispatcher().getRenderer(spider).getTextureLocation(spider);
                     info.put("texture",texture.toString());
