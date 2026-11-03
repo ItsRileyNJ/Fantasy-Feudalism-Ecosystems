@@ -458,3 +458,12 @@ The user supplied a bat-in-net reference for the occupied item. Show this flat s
 ## Confirmed creeper air preservation (0.1.30)
 
 Creeper explosions must not affect any air blocks. This overrides the earlier moss-carpet, fern and tall-grass placement behavior. Explosions now only convert existing eligible blocks to their mossy variants; normal air, cave air and void air retain their exact states. Conversion keeps compatible block properties and honors the conversion toggle, mobGriefing and NeoForge entity-griefing permissions. Native entity damage and block-destruction protection remain in place. Normal and charged-size explosions do not create vegetation in empty space.
+
+## Confirmed rain and creeper crop growth (0.1.31)
+
+- Actual rain reaching a crop speeds its natural growth by 15%. Global rainy weather alone is insufficient beneath a roof or in a rainless biome. Growth still requires the crop's native light, soil, space and maturity checks. Native growth-permission hooks remain active.
+- Supported rain growth includes wheat, carrots, potatoes, beetroot, torchflowers, pitcher crops, melon/pumpkin stems, nether wart, cocoa, sweet berries, sugar cane and cactus. Modded CropBlock subclasses using the native growth gate also inherit the bonus. Crops are handled during their existing random ticks; there is no per-world crop scan.
+- Random growth gates use a winning chance of 1.15 divided by the native random bound, capped at certainty. Rain does not replace a crop's normal growth gate or turn growth into a guaranteed tick. Sugar cane and cactus get a 15% chance of an additional native age tick with a recursion guard and native height/space checks.
+- Creeper explosions advance existing supported crops by up to two age stages within the actual blast radius, capped at the crop's maximum. Existing properties such as cocoa facing are preserved. This also supports tagged modded crops with an integer age property.
+- Explosions do not create fruit, extend cane/cactus columns, or fill air with new pitcher upper halves. Single-block pitcher crops stop at age two until an upper half already exists; an existing two-block pitcher updates both halves consistently. This preserves the previously requested rule that no air blocks are affected.
+- Creeper crop growth respects mobGriefing and NeoForge entity-griefing permission. It remains active when the moss-only conversion setting is disabled. Existing explosion entity damage and block-destruction protection remain unchanged.

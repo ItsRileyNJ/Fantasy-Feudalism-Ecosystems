@@ -32,8 +32,8 @@ public final class CreeperVegetation {
         return to.hasProperty(property) ? to.setValue(property, from.getValue(property)) : to;
     }
 
-    public static void convertExisting(Level level, Vec3 center, float radius) {
-        if (!FeudalConfig.CREEPER_BLOCK_CONVERSION.get()) return;
+    public static void affectExisting(Level level, Vec3 center, float radius) {
+        boolean mossConversion=FeudalConfig.CREEPER_BLOCK_CONVERSION.get();
         BlockPos origin = BlockPos.containing(center);
         int reach = (int)Math.ceil(radius);
         for (BlockPos pos : BlockPos.betweenClosed(origin.offset(-reach, -reach, -reach), origin.offset(reach, reach, reach))) {
@@ -41,6 +41,8 @@ public final class CreeperVegetation {
             BlockState before = level.getBlockState(pos);
             // Never fill air, including cave air and void air. Only mossify an existing block.
             if (before.isAir()) continue;
+            if (CropGrowth.advanceExisting(level, pos, 2)) continue;
+            if (!mossConversion) continue;
             BlockState after = mossy(before);
             if (after != before) level.setBlock(pos, after, Block.UPDATE_ALL);
         }

@@ -6,7 +6,14 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.30.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.31.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.31 changes
+
+- Rain speeds up exposed crop growth by 15%, while normal growth conditions still apply.
+- Creeper explosions advance existing crops by up to two stages without filling air or spawning fruit.
+
+See the [crop growth report](docs/RELEASE_0.1.31.md).
 
 ## Version 0.1.30 changes
 
@@ -265,7 +272,7 @@ Choose a fresh test directory for each combined run: Mercenaries' built-in villa
 | Horses | Persistent spawn-group herds, sheep-style grazing, automatic grass-triggered breeding after a 150-minute cooldown, and adult-only horse meat drops. Foals grow three times more slowly (60 minutes at 20 TPS). Manual breeding stays vanilla. |
 | Cows | Newly spawned groups stay together as persistent herds, walking back when separated. |
 | Chickens | Flee Survival/Adventure players within three blocks, at 95% of normal player ground sprint speed. |
-| Creepers | Natural spawn weights reduced by 60%; explosions retain entity damage but do not destroy blocks. They convert applicable existing blocks to mossy variants and leave all air spaces untouched. Killed creepers additionally drop 1–2 moss blocks. |
+| Creepers | Natural spawn weights reduced by 60%; explosions retain entity damage but do not destroy blocks. They convert applicable existing blocks to mossy variants, advance existing crops by up to two stages, and leave all air spaces untouched. Killed creepers additionally drop 1–2 moss blocks. |
 | Skeleton families | Detect and shoot up to 35 blocks; projectiles are 40% faster. Equipment: 80% bows, 15% crossbows, 5% swords. Sword users have melee AI and use 80% stone / 20% iron swords. Crossbows use vanilla charging/firing AI and pillager-style two-handed hold/charge poses, including the idle hold. Ranged skeletons retain valid targets unless a player is within five blocks; expired targets and players who switch to Creative or Spectator mode are released. |
 | Endermen | Deal 35% more damage to players, disengage and teleport away after one successful hit, and can immediately be provoked again. Block pickup is disabled by default. |
 | Zombie families | Natural groups of 4–9; independently randomized 80–120% speed and attack damage. Speed doubles below three hearts and returns to the individual baseline when healed. |
@@ -287,7 +294,7 @@ endermanBlockPickup = false
 blazeAerialDashing = true
 ```
 
-Disabling creeper conversion leaves the protection against block destruction in place. Air spaces stay untouched with conversion enabled or disabled. No gameplay commands, advancements or custom sounds are added. The mod adds Bee Bottles, Raw Horse and Cooked Horse, with furnace and smoker recipes for horse meat.
+Disabling creeper conversion leaves the protection against block destruction in place. Air spaces stay untouched with conversion enabled or disabled. The moss-conversion setting does not disable creeper crop growth. No gameplay commands, advancements or custom sounds are added. The mod adds Bee Bottles, Raw Horse and Cooked Horse, with furnace and smoker recipes for horse meat.
 
 ## Development and verification
 

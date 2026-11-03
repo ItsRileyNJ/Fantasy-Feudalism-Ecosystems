@@ -280,7 +280,7 @@ public final class FeudalEvents {
     public static void explosion(ExplosionEvent.Detonate event) {
         if (event.getExplosion().getDirectSourceEntity() instanceof Creeper) {
             event.getAffectedBlocks().clear();
-            if (!event.getLevel().isClientSide && net.neoforged.neoforge.event.EventHooks.canEntityGrief(event.getLevel(),event.getExplosion().getDirectSourceEntity())) CreeperVegetation.convertExisting(event.getLevel(), event.getExplosion().center(), event.getExplosion().radius());
+            if (!event.getLevel().isClientSide && net.neoforged.neoforge.event.EventHooks.canEntityGrief(event.getLevel(),event.getExplosion().getDirectSourceEntity())) CreeperVegetation.affectExisting(event.getLevel(), event.getExplosion().center(), event.getExplosion().radius());
         }
     }
 
