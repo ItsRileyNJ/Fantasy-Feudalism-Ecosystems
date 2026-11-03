@@ -6,7 +6,15 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.31.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.33.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.33 changes
+
+- Halved the existing creeper natural-spawn weight, from 40% to 20% of vanilla.
+
+## Version 0.1.32 changes
+
+- Reduced the zombie low-health rage speed bonus from 100% to 25%.
 
 ## Version 0.1.31 changes
 
@@ -272,10 +280,10 @@ Choose a fresh test directory for each combined run: Mercenaries' built-in villa
 | Horses | Persistent spawn-group herds, sheep-style grazing, automatic grass-triggered breeding after a 150-minute cooldown, and adult-only horse meat drops. Foals grow three times more slowly (60 minutes at 20 TPS). Manual breeding stays vanilla. |
 | Cows | Newly spawned groups stay together as persistent herds, walking back when separated. |
 | Chickens | Flee Survival/Adventure players within three blocks, at 95% of normal player ground sprint speed. |
-| Creepers | Natural spawn weights reduced by 60%; explosions retain entity damage but do not destroy blocks. They convert applicable existing blocks to mossy variants, advance existing crops by up to two stages, and leave all air spaces untouched. Killed creepers additionally drop 1–2 moss blocks. |
+| Creepers | Natural spawn weights reduced by 80%; explosions retain entity damage but do not destroy blocks. They convert applicable existing blocks to mossy variants, advance existing crops by up to two stages, and leave all air spaces untouched. Killed creepers additionally drop 1–2 moss blocks. |
 | Skeleton families | Detect and shoot up to 35 blocks; projectiles are 40% faster. Equipment: 80% bows, 15% crossbows, 5% swords. Sword users have melee AI and use 80% stone / 20% iron swords. Crossbows use vanilla charging/firing AI and pillager-style two-handed hold/charge poses, including the idle hold. Ranged skeletons retain valid targets unless a player is within five blocks; expired targets and players who switch to Creative or Spectator mode are released. |
 | Endermen | Deal 35% more damage to players, disengage and teleport away after one successful hit, and can immediately be provoked again. Block pickup is disabled by default. |
-| Zombie families | Natural groups of 4–9; independently randomized 80–120% speed and attack damage. Speed doubles below three hearts and returns to the individual baseline when healed. |
+| Zombie families | Natural groups of 4–9; independently randomized 80–120% speed and attack damage. Speed increases by 25% below three hearts and returns to the individual baseline when healed. |
 | Phantoms | Attack players only at four hearts or less. Those spawned on Hard receive infinite Swiftness I. |
 | Armor-wearing undead | One eligibility roll per mob: Easy 20%, Normal 35%, Hard 60%. Material weights: leather 50%, chainmail 25%, iron 20%, gold 5%; vanilla armor-slot selection. Each piece has a 50% unenchanted / 35% level I / 15% level II enchantment distribution, using applicable vanilla enchanting-table enchantments. |
 | Blazes | Alternate four-block sideways dashes over ten ticks, respecting collisions. After the five-second cooldown, roll a 20% chance each second while they have an attack target. |

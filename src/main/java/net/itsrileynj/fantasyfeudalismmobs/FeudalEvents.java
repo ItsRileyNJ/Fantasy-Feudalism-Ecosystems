@@ -306,7 +306,7 @@ public final class FeudalEvents {
             int weight = original.getWeight().asInt();
             int min = original.minCount, max = original.maxCount;
             if (original.type == EntityType.SPIDER || original.type == EntityType.CAVE_SPIDER) weight = Math.max(1, Math.round(weight * 0.5F));
-            else if (original.type == EntityType.CREEPER) weight = Math.max(1, Math.round(weight * 0.4F));
+            else if (original.type == EntityType.CREEPER) weight = Math.max(1, Math.round(weight * 0.2F));
             else if (original.type == EntityType.GHAST) { weight = Math.max(1, Math.round(weight * 0.8F)); min = max = 3; }
             else if (isZombie(original.type)) { min = 4; max = 9; }
             else continue;

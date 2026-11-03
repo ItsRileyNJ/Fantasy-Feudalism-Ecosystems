@@ -467,3 +467,12 @@ Creeper explosions must not affect any air blocks. This overrides the earlier mo
 - Creeper explosions advance existing supported crops by up to two age stages within the actual blast radius, capped at the crop's maximum. Existing properties such as cocoa facing are preserved. This also supports tagged modded crops with an integer age property.
 - Explosions do not create fruit, extend cane/cactus columns, or fill air with new pitcher upper halves. Single-block pitcher crops stop at age two until an upper half already exists; an existing two-block pitcher updates both halves consistently. This preserves the previously requested rule that no air blocks are affected.
 - Creeper crop growth respects mobGriefing and NeoForge entity-griefing permission. It remains active when the moss-only conversion setting is disabled. Existing explosion entity damage and block-destruction protection remain unchanged.
+
+## Confirmed zombie rage tuning (0.1.32)
+
+The low-health zombie speed boost is reduced from doubling movement speed to a 25% bonus. It activates below six health points (three hearts), does not stack, and is removed when health reaches six or higher. Individual spawn speed/damage variation and the native baby speed bonus remain unchanged. This applies to the existing zombie-family behavior, including husks, drowned, zombie villagers and zombified piglins.
+
+
+## Confirmed creeper spawn tuning (0.1.33)
+
+Halve the previous creeper natural-spawn weight: the multiplier changes from 0.4 to 0.2 of the incoming biome/mod spawn-list weight. A weight of 100 now becomes 20 rather than 40, an 80% reduction from vanilla. Preserve the existing minimum weight of one, spawn-group sizes, vanilla spawn conditions, mob caps and stable spawn-entry identity. Actual counts still depend on the weighted spawn pool and world conditions. Spawn eggs, commands and spawners are unchanged.

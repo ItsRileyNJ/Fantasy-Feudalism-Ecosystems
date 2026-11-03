@@ -460,7 +460,7 @@ public final class FeudalGameTests {
             h.assertTrue(attack >= zombie.getAttributeBaseValue(Attributes.ATTACK_DAMAGE) * 0.8 - 1e-6
                     && attack <= zombie.getAttributeBaseValue(Attributes.ATTACK_DAMAGE) * 1.2 + 1e-6, "Damage range " + type);
             zombie.setHealth(5.9F); MobRules.updateZombie(zombie); MobRules.updateZombie(zombie);
-            near(h, zombie.getAttributeValue(Attributes.MOVEMENT_SPEED), baseline * 2, "Low-health speed does not stack");
+            near(h, zombie.getAttributeValue(Attributes.MOVEMENT_SPEED), baseline * 1.25, "Low-health speed is 25% faster and does not stack");
             zombie.setHealth(6); MobRules.updateZombie(zombie);
             near(h, zombie.getAttributeValue(Attributes.MOVEMENT_SPEED), baseline, "Three-heart threshold"); zombie.discard();
         }
@@ -546,7 +546,7 @@ public final class FeudalGameTests {
         NeoForge.EVENT_BUS.post(event);
         for (var data : event.getSpawnerDataList()) {
             if (data.type == EntityType.SPIDER) near(h, data.getWeight().asInt(), 50, "Spider weight");
-            if (data.type == EntityType.CREEPER) near(h, data.getWeight().asInt(), 40, "Creeper weight");
+            if (data.type == EntityType.CREEPER) near(h, data.getWeight().asInt(), 20, "Creeper weight is half the previous 40");
             if (data.type == EntityType.GHAST) {
                 near(h, data.getWeight().asInt(), 40, "Ghast weight");
                 h.assertTrue(data.minCount == 3 && data.maxCount == 3, "Three-ghast groups");

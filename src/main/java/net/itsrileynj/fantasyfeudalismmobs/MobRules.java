@@ -65,7 +65,7 @@ public final class MobRules {
         var speed = zombie.getAttribute(Attributes.MOVEMENT_SPEED);
         if (zombie.getHealth() < 6.0F) {
             if (!speed.hasModifier(LOW_HEALTH)) speed.addTransientModifier(
-                    new AttributeModifier(LOW_HEALTH, 1.0, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+                    new AttributeModifier(LOW_HEALTH, 0.25, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
         } else speed.removeModifier(LOW_HEALTH);
     }
 
