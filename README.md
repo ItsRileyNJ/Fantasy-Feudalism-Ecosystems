@@ -6,7 +6,13 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.29.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.30.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.30 changes
+
+- Creeper explosions only mossify existing eligible blocks. Air stays untouched, preventing floating moss and vegetation towers.
+
+See the [creeper air-preservation report](docs/RELEASE_0.1.30.md).
 
 ## Version 0.1.29 changes
 
@@ -106,7 +112,7 @@ See the [0.1.17 validation report](docs/RELEASE_0.1.17.md).
 
 See the [plain-language changelog](CHANGELOG.md) for the latest bat, spider, performance, and compatibility follow-up.
 
-- Creeper vegetation respects `mobGriefing`; capturing a leashed bee returns its lead.
+- Creeper moss conversion respects `mobGriefing`; capturing a leashed bee returns its lead.
 - Axes disable wither skeleton shields for five seconds. Explicit command/conversion equipment survives initialization.
 - Spider companions and phantom guardians honor server PvP permissions. Frogs finish shoreline escapes into water.
 - Bat navigation retries and phantom threat lookup perform less repeated work. Dedicated-server, vanilla, Mercenaries and two-client regression results are in [the audit report](docs/RELEASE_0.1.16.md).
@@ -259,7 +265,7 @@ Choose a fresh test directory for each combined run: Mercenaries' built-in villa
 | Horses | Persistent spawn-group herds, sheep-style grazing, automatic grass-triggered breeding after a 150-minute cooldown, and adult-only horse meat drops. Foals grow three times more slowly (60 minutes at 20 TPS). Manual breeding stays vanilla. |
 | Cows | Newly spawned groups stay together as persistent herds, walking back when separated. |
 | Chickens | Flee Survival/Adventure players within three blocks, at 95% of normal player ground sprint speed. |
-| Creepers | Natural spawn weights reduced by 60%; explosions retain entity damage but do not destroy blocks. They convert applicable blocks to mossy variants and plant vegetation with 75% eligible-position coverage, biased 50/35/15 toward moss carpet / ferns / tall grass. Vanilla survival rules restrict which plants fit each position. Killed creepers additionally drop 1–2 moss blocks. |
+| Creepers | Natural spawn weights reduced by 60%; explosions retain entity damage but do not destroy blocks. They convert applicable existing blocks to mossy variants and leave all air spaces untouched. Killed creepers additionally drop 1–2 moss blocks. |
 | Skeleton families | Detect and shoot up to 35 blocks; projectiles are 40% faster. Equipment: 80% bows, 15% crossbows, 5% swords. Sword users have melee AI and use 80% stone / 20% iron swords. Crossbows use vanilla charging/firing AI and pillager-style two-handed hold/charge poses, including the idle hold. Ranged skeletons retain valid targets unless a player is within five blocks; expired targets and players who switch to Creative or Spectator mode are released. |
 | Endermen | Deal 35% more damage to players, disengage and teleport away after one successful hit, and can immediately be provoked again. Block pickup is disabled by default. |
 | Zombie families | Natural groups of 4–9; independently randomized 80–120% speed and attack damage. Speed doubles below three hearts and returns to the individual baseline when healed. |
@@ -281,7 +287,7 @@ endermanBlockPickup = false
 blazeAerialDashing = true
 ```
 
-Disabling creeper conversion keeps the vegetation and the protection against block destruction. No gameplay commands, advancements or custom sounds are added. The mod adds Bee Bottles, Raw Horse and Cooked Horse, with furnace and smoker recipes for horse meat.
+Disabling creeper conversion leaves the protection against block destruction in place. Air spaces stay untouched with conversion enabled or disabled. No gameplay commands, advancements or custom sounds are added. The mod adds Bee Bottles, Raw Horse and Cooked Horse, with furnace and smoker recipes for horse meat.
 
 ## Development and verification
 

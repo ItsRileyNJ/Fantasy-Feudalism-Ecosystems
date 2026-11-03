@@ -6,7 +6,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.phys.Vec3;
 
 public final class CreeperVegetation {
@@ -33,35 +32,17 @@ public final class CreeperVegetation {
         return to.hasProperty(property) ? to.setValue(property, from.getValue(property)) : to;
     }
 
-    public static void grow(Level level, Vec3 center, float radius) {
+    public static void convertExisting(Level level, Vec3 center, float radius) {
+        if (!FeudalConfig.CREEPER_BLOCK_CONVERSION.get()) return;
         BlockPos origin = BlockPos.containing(center);
         int reach = (int)Math.ceil(radius);
-        if (FeudalConfig.CREEPER_BLOCK_CONVERSION.get()) {
-            for (BlockPos pos : BlockPos.betweenClosed(origin.offset(-reach, -reach, -reach), origin.offset(reach, reach, reach))) {
-                if (Vec3.atCenterOf(pos).distanceToSqr(center) > radius * radius || !level.hasChunkAt(pos)) continue;
-                BlockState before = level.getBlockState(pos);
-                BlockState after = mossy(before);
-                if (after != before) level.setBlock(pos, after, Block.UPDATE_ALL);
-            }
-        }
         for (BlockPos pos : BlockPos.betweenClosed(origin.offset(-reach, -reach, -reach), origin.offset(reach, reach, reach))) {
-            if (Vec3.atCenterOf(pos).distanceToSqr(center) > radius * radius || !level.hasChunkAt(pos)
-                    || !level.isEmptyBlock(pos) || level.random.nextFloat() >= 0.75F) continue;
-            BlockState carpet = Blocks.MOSS_CARPET.defaultBlockState();
-            BlockState fern = Blocks.FERN.defaultBlockState();
-            BlockState grass = Blocks.TALL_GRASS.defaultBlockState();
-            boolean c = carpet.canSurvive(level, pos);
-            boolean f = fern.canSurvive(level, pos);
-            boolean g = level.isEmptyBlock(pos.above()) && grass.canSurvive(level, pos);
-            int total = (c ? 50 : 0) + (f ? 35 : 0) + (g ? 15 : 0);
-            if (total == 0) continue;
-            int roll = level.random.nextInt(total);
-            if (c && roll < 50) level.setBlock(pos, carpet, Block.UPDATE_ALL);
-            else if (f && roll < (c ? 50 : 0) + 35) level.setBlock(pos, fern, Block.UPDATE_ALL);
-            else {
-                level.setBlock(pos, grass, Block.UPDATE_ALL);
-                level.setBlock(pos.above(), grass.setValue(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER), Block.UPDATE_ALL);
-            }
+            if (Vec3.atCenterOf(pos).distanceToSqr(center) > radius * radius || !level.hasChunkAt(pos)) continue;
+            BlockState before = level.getBlockState(pos);
+            // Never fill air, including cave air and void air. Only mossify an existing block.
+            if (before.isAir()) continue;
+            BlockState after = mossy(before);
+            if (after != before) level.setBlock(pos, after, Block.UPDATE_ALL);
         }
     }
     private CreeperVegetation() {}

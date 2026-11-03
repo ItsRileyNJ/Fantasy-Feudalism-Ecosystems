@@ -489,23 +489,41 @@ public final class FeudalGameTests {
         h.getLevel().explode(creeper, creeper.getX(), creeper.getY(), creeper.getZ(), 3, Level.ExplosionInteraction.MOB);
         h.assertBlockPresent(Blocks.MOSSY_COBBLESTONE, new BlockPos(8, 1, 8));
         h.assertBlockPresent(Blocks.DIAMOND_BLOCK, new BlockPos(9, 1, 8));
-        int plants = 0;
-        for (int x = 5; x <= 11; x++) for (int z = 5; z <= 11; z++) if (!h.getBlockState(new BlockPos(x, 2, z)).isAir()) plants++;
-        h.assertTrue(plants > 0, "Creeper explosion plants vegetation"); h.succeed();
+        for (int x = 5; x <= 11; x++) for (int z = 5; z <= 11; z++)
+            h.assertTrue(h.getBlockState(new BlockPos(x, 2, z)).isAir(), "Creeper explosions leave air above the ground untouched");
+        h.succeed();
     }
 
     @GameTest(template = "test_empty")
-    public static void creeperConversionTogglePreservesVegetation(GameTestHelper h) {
+    public static void creeperConversionToggleLeavesBlocksAndAirUntouched(GameTestHelper h) {
         floor(h); Creeper creeper = mob(h, EntityType.CREEPER, 8, 8); h.setBlock(new BlockPos(8, 1, 8), Blocks.COBBLESTONE);
         try {
             FeudalConfig.CREEPER_BLOCK_CONVERSION.set(false);
             h.getLevel().explode(creeper, creeper.getX(), creeper.getY(), creeper.getZ(), 3, Level.ExplosionInteraction.MOB);
             h.assertBlockPresent(Blocks.COBBLESTONE, new BlockPos(8, 1, 8));
-            h.assertTrue(!h.getBlockState(new BlockPos(7, 2, 8)).isAir()
-                    || !h.getBlockState(new BlockPos(8, 2, 7)).isAir()
-                    || !h.getBlockState(new BlockPos(9, 2, 8)).isAir()
-                    || !h.getBlockState(new BlockPos(8, 2, 9)).isAir(), "Conversion toggle must retain planting");
+            for (int x = 5; x <= 11; x++) for (int z = 5; z <= 11; z++)
+                h.assertTrue(h.getBlockState(new BlockPos(x, 2, z)).isAir(), "Disabled conversion must leave air untouched too");
         } finally { FeudalConfig.CREEPER_BLOCK_CONVERSION.set(true); }
+        h.succeed();
+    }
+
+    @GameTest(template = "test_empty")
+    public static void repeatedCreeperExplosionsPreserveEveryAirVariant(GameTestHelper h) {
+        floor(h);
+        h.setBlock(8, 3, 8, Blocks.CAVE_AIR);
+        h.setBlock(9, 3, 8, Blocks.VOID_AIR);
+        h.setBlock(7, 1, 8, Blocks.AIR); // A hole beside real ground must stay empty too.
+        var air = new HashMap<BlockPos, net.minecraft.world.level.block.state.BlockState>();
+        for (BlockPos pos : BlockPos.betweenClosed(new BlockPos(2, -4, 2), new BlockPos(14, 8, 14))) {
+            var state = h.getBlockState(pos);
+            if (state.isAir()) air.put(pos.immutable(), state);
+        }
+        Creeper creeper = mob(h, EntityType.CREEPER, 8, 8);
+        for (float radius : new float[]{3, 3, 6}) {
+            h.getLevel().explode(creeper, creeper.getX(), creeper.getY(), creeper.getZ(), radius, Level.ExplosionInteraction.MOB);
+            air.forEach((pos, before) -> h.assertTrue(h.getBlockState(pos) == before,
+                    "Repeated normal/charged-size explosions must preserve the exact air state at " + pos));
+        }
         h.succeed();
     }
 
