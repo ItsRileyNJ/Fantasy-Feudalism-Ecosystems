@@ -92,7 +92,7 @@ public final class CropGrowthTests {
             for(Block block:List.of(Blocks.BEETROOTS,Blocks.TORCHFLOWER_CROP,Blocks.PUMPKIN_STEM,Blocks.PITCHER_CROP)) {
                 weather(level,false);int dry=grows(level,pos,block.defaultBlockState(),20000,1234);
                 weather(level,true);int wet=grows(level,pos,block.defaultBlockState(),20000,1234);double ratio=(double)wet/dry;
-                h.assertTrue(dry>0&&ratio>1.09&&ratio<1.21,"Rain preserves native subtype gates while boosting growth for "+block+": "+dry+" -> "+wet); 
+                h.assertTrue(dry>0&&ratio>1.09&&ratio<1.21,"Rain preserves native subtype gates while boosting growth for "+block+": "+dry+" -> "+wet);
             }
             h.succeed();
         } finally { weather(level,false); }
