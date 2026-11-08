@@ -46,5 +46,13 @@
   "advancement.fantasy_feudalism_mobs.everyones_got_a_plan_until.title": "Everyone's got a plan until...",
   "advancement.fantasy_feudalism_mobs.everyones_got_a_plan_until.description": "Be killed by a single Enderman hit while at full health.",
   "advancement.fantasy_feudalism_mobs.master_naturalist.title": "Master Naturalist",
-  "advancement.fantasy_feudalism_mobs.master_naturalist.description": "Complete every other Ecosystems achievement."
+  "advancement.fantasy_feudalism_mobs.master_naturalist.description": "Complete every other Ecosystems achievement.",
+  "entity.fantasy_feudalism_mobs.robin": "Robin",
+  "item.fantasy_feudalism_mobs.robin_spawn_egg": "Robin Spawn Egg",
+  "entity.fantasy_feudalism_mobs.blue_jay": "Blue Jay",
+  "item.fantasy_feudalism_mobs.blue_jay_spawn_egg": "Blue Jay Spawn Egg",
+  "entity.fantasy_feudalism_mobs.goldfinch": "Goldfinch",
+  "item.fantasy_feudalism_mobs.goldfinch_spawn_egg": "Goldfinch Spawn Egg",
+  "entity.fantasy_feudalism_mobs.crow": "Crow",
+  "item.fantasy_feudalism_mobs.crow_spawn_egg": "Crow Spawn Egg"
 }

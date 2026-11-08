@@ -476,3 +476,16 @@ The low-health zombie speed boost is reduced from doubling movement speed to a 2
 ## Confirmed creeper spawn tuning (0.1.33)
 
 Halve the previous creeper natural-spawn weight: the multiplier changes from 0.4 to 0.2 of the incoming biome/mod spawn-list weight. A weight of 100 now becomes 20 rather than 40, an 80% reduction from vanilla. Preserve the existing minimum weight of one, spawn-group sizes, vanilla spawn conditions, mob caps and stable spawn-entry identity. Actual counts still depend on the weighted spawn pool and world conditions. Spawn eggs, commands and spawners are unchanged.
+
+
+## Confirmed forest birds (0.1.34)
+
+- Import the supplied Robin, Blue Jay, Goldfinch and Crow Blockbench geometry, preserving the originals under docs/model-sources/birds. The files have no textures or animation groups; add native articulated head, wings, legs and tail and custom textures matching the supplied reference.
+- All birds flap while flying, make quick bird-like head movements and alternate their legs while walking. Grounded wings fold along their bodies. Blue jays retain the crest; crows retain their longer tail/beak and larger wing tips.
+- Robins and goldfinches naturally attempt flocks of 3–6; blue jays and crows naturally spawn individually. Native group limits and biome spawn entries agree. Spawn eggs create one bird normally.
+- Warm forests mean forest, flower forest, birch forest, old-growth birch forest, dark forest and cherry grove. Only crows spawn in taiga, snowy taiga, old-growth pine taiga and old-growth spruce taiga. Jungles are excluded. Biome tags can be extended by data packs.
+- Survival and Adventure players within four blocks cause flight. Creative and Spectator players are ignored. Damaging a bird also causes escape. Player checks use a short five-tick deadline, and path/landing work uses bounded candidates and retry deadlines.
+- Birds prefer flight to reach new areas. After landing they normally wait four to eight seconds before another flight and take short ground walks of at most two horizontal blocks. Flock regrouping requests flight rather than long ground walks.
+- The complete bird stays at most 15 blocks above terrain beneath it. The height calculation ignores leaves and strips tree logs from the top of the ground-height column. Terrain heights are cached per loaded column for one world tick. Flight nodes, direct paths, destinations and server movement enforce the limit; no chunks are loaded to search for ground. External placement above the ceiling recovers by descent rather than teleporting through foliage.
+- Flight uses native flying navigation and movement; ground walking uses native ground navigation. Landings have a brief settling window to avoid repeatedly taking off just before reaching the ground. Birds can escape water and do not take fall damage. Flock identity and ambient-flight deadlines survive saves; interrupted saved flight cannot leave a bird permanently hovering.
+- These are passive, untamed wildlife, with no breeding or feeding mechanic added. Small birds have three hearts; crows have four. Native parrot ambient/hurt/death sounds provide placeholders until species recordings are supplied. Loot tables are empty. Natural creature caps, loaded chunks, light, space and biome conditions still apply.

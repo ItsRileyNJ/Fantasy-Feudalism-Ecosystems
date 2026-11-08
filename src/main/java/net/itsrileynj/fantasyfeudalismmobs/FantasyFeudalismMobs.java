@@ -54,6 +54,7 @@ public final class FantasyFeudalismMobs {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MOD_ID);
 
     static {
+        Birds.bootstrap();
         CREATIVE_TABS.register("fantasy_feudal_mobs", () -> CreativeModeTab.builder()
                 .title(Component.translatable("itemGroup." + MOD_ID))
                 .icon(() -> BEE_BOTTLE.get().getDefaultInstance())
@@ -65,6 +66,7 @@ public final class FantasyFeudalismMobs {
                     output.accept(BAT_NET.get());
                     output.accept(BAT_ENCLOSURE_ITEM.get());
                     output.accept(FIELD_MOUSE_SPAWN_EGG.get());
+                    for(var egg:Birds.EGGS)output.accept(egg.get());
                 })
                 .build());
     }
@@ -77,9 +79,13 @@ public final class FantasyFeudalismMobs {
         EFFECTS.register(modEventBus);
         SOUNDS.register(modEventBus);
         modEventBus.addListener((net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent event)->event.put(FIELD_MOUSE.get(),FieldMouse.createAttributes().build()));
+        modEventBus.addListener(Birds::attributes);
+        modEventBus.addListener(Birds::placements);
         CREATIVE_TABS.register(modEventBus);
         modEventBus.addListener((net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent event)->{
-            if(event.getTabKey().equals(net.minecraft.world.item.CreativeModeTabs.SPAWN_EGGS))event.accept(FIELD_MOUSE_SPAWN_EGG.get());
+            if(event.getTabKey().equals(net.minecraft.world.item.CreativeModeTabs.SPAWN_EGGS)) {
+                event.accept(FIELD_MOUSE_SPAWN_EGG.get());for(var egg:Birds.EGGS)event.accept(egg.get());
+            }
         });
         modEventBus.addListener(FeudalEvents::spawnPlacements);
         container.registerConfig(ModConfig.Type.SERVER, FeudalConfig.SPEC);

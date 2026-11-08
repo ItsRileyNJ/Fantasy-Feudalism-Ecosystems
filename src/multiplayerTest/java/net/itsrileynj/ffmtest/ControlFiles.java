@@ -108,6 +108,11 @@ public final class ControlFiles {
         if(entity instanceof net.minecraft.world.entity.animal.Cat cat){
             info.put("lying",cat.isLying());info.put("tamed",cat.isTame());info.put("owner",String.valueOf(cat.getOwnerUUID()));info.put("sitting",cat.isOrderedToSit());
         }
+        if(entity instanceof ForestBird bird) {
+            info.put("birdKind",bird.kind().id);info.put("flying",bird.flightActive());info.put("noGravity",bird.isNoGravity());
+            info.put("flightAmount",bird.flightAmount(1));
+            if(!bird.level().isClientSide) {info.put("flock",bird.flock()==null?"":bird.flock().toString());info.put("nextFlight",bird.nextFlight());info.put("navigation",bird.getNavigation().getClass().getSimpleName());info.put("aboveGround",bird.getY()+bird.getBbHeight()-BirdAltitude.surfaceY(bird.level(),bird.getBlockX(),bird.getBlockZ()));}
+        }
         if(entity instanceof FieldMouse mouse){info.put("variant",mouse.getVariant());info.put("nextMeal",mouse.nextMeal());info.put("cropHome",String.valueOf(mouse.cropHome()));}
         if(entity instanceof net.minecraft.world.entity.animal.Pig pig) {
             var state=(net.itsrileynj.fantasyfeudalismmobs.PigState)pig;

@@ -14,8 +14,12 @@ public final class EcosystemsClient {
     @SubscribeEvent public static void renderers(EntityRenderersEvent.RegisterRenderers event){
         event.registerBlockEntityRenderer(FantasyFeudalismMobs.BAT_ENCLOSURE_ENTITY.get(),BatEnclosureRenderer::new);
         event.registerEntityRenderer(FantasyFeudalismMobs.FIELD_MOUSE.get(),FieldMouseRenderer::new);
+        for(var type:Birds.TYPES) {
+            BirdKind kind=Birds.kind(type.get());event.registerEntityRenderer(type.get(),context->new ForestBirdRenderer(context,kind));
+        }
     }
-    @SubscribeEvent public static void layers(EntityRenderersEvent.RegisterLayerDefinitions event){event.registerLayerDefinition(FieldMouseRenderer.LAYER,FieldMouseModel::layer);}
+    @SubscribeEvent public static void layers(EntityRenderersEvent.RegisterLayerDefinitions event){event.registerLayerDefinition(FieldMouseRenderer.LAYER,FieldMouseModel::layer);
+        for(BirdKind kind:BirdKind.values())event.registerLayerDefinition(ForestBirdRenderer.layer(kind),()->ForestBirdGeometry.layer(kind));}
     @SubscribeEvent public static void colors(net.neoforged.neoforge.client.event.RegisterColorHandlersEvent.Item event){
         event.register((stack,tint)->0xFFE3C447,FantasyFeudalismMobs.FERTILIZER.get());
     }

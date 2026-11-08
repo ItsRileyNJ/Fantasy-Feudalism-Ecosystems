@@ -6,7 +6,16 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.33.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.34.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.34 changes
+
+- Added robins, blue jays, goldfinches and crows using the supplied Blockbench models and reference colors.
+- Birds flap their wings in flight, make quick head movements, and walk short distances after landing. They usually fly to new areas and stay within 15 blocks of ground level, ignoring trees and leaves.
+- Robins and goldfinches spawn in flocks of 3–6 in temperate forests. Blue jays spawn individually there; crows spawn individually in spruce forests.
+- Birds fly away from Survival/Adventure players within four blocks, while ignoring Creative/Spectator players. Each species has a spawn egg.
+
+See the [bird validation report](docs/RELEASE_0.1.34.md).
 
 ## Version 0.1.33 changes
 

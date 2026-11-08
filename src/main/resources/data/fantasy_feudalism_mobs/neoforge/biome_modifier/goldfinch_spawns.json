@@ -1,0 +1,12 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#fantasy_feudalism_mobs:warm_forest_birds",
+  "spawners": [
+    {
+      "type": "fantasy_feudalism_mobs:goldfinch",
+      "weight": 6,
+      "minCount": 3,
+      "maxCount": 6
+    }
+  ]
+}

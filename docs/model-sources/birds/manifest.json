@@ -1,0 +1,26 @@
+[
+  {
+    "kind": "ROBIN",
+    "source": "Robin.bbmodel",
+    "sha256": "1ec6cccf08aa9c1c4f65d8ae3503592916ac8de973cdc58954cfc92c6b23aadd",
+    "cubes": 12
+  },
+  {
+    "kind": "BLUE_JAY",
+    "source": "Blue Jay.bbmodel",
+    "sha256": "492bb206e6f8f6277d0986b1fe4004538ccc4c5dd249abe4c224ddb197932559",
+    "cubes": 13
+  },
+  {
+    "kind": "GOLDFINCH",
+    "source": "Goldfinch.bbmodel",
+    "sha256": "82b74a55ddb19aea26685ecd5fe3556bd71b51845f6da7744770eabe74627c5f",
+    "cubes": 12
+  },
+  {
+    "kind": "CROW",
+    "source": "Crow.bbmodel",
+    "sha256": "0f193c615a25f49757c7e9cbffb8e993ba4e6cfecf641694e42fc3d0db00764d",
+    "cubes": 16
+  }
+]

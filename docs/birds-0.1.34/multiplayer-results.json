@@ -1,0 +1,414 @@
+[
+  {
+    "name": "All four supplied bird models render on both clients alongside Mercenaries",
+    "passed": true,
+    "birds": [
+      {
+        "id": 3,
+        "uuid": "e8d5062a-d4c1-4599-8f19-81f963836711",
+        "type": "fantasy_feudalism_mobs:robin",
+        "position": [
+          5.5,
+          64.0,
+          9.5
+        ],
+        "pose": "STANDING",
+        "onGround": false,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 6.0,
+        "maxHealth": 6.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "birdKind": "robin",
+        "flying": false,
+        "noGravity": false,
+        "flightAmount": 0.0,
+        "flock": "",
+        "nextFlight": 107675,
+        "navigation": "GroundPathNavigation",
+        "aboveGround": 0.5299999713897705,
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false
+      },
+      {
+        "id": 4,
+        "uuid": "1ffcec02-e740-4e75-b5e9-87badde3c668",
+        "type": "fantasy_feudalism_mobs:blue_jay",
+        "position": [
+          7.5,
+          64.0,
+          9.5
+        ],
+        "pose": "STANDING",
+        "onGround": false,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 6.0,
+        "maxHealth": 6.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "birdKind": "blue_jay",
+        "flying": false,
+        "noGravity": false,
+        "flightAmount": 0.0,
+        "flock": "",
+        "nextFlight": 107670,
+        "navigation": "GroundPathNavigation",
+        "aboveGround": 0.6399999856948853,
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false
+      },
+      {
+        "id": 5,
+        "uuid": "607b47dc-f4a1-46b4-b8c6-0d2085bdfe1b",
+        "type": "fantasy_feudalism_mobs:goldfinch",
+        "position": [
+          9.5,
+          64.0,
+          9.5
+        ],
+        "pose": "STANDING",
+        "onGround": false,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 6.0,
+        "maxHealth": 6.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "birdKind": "goldfinch",
+        "flying": false,
+        "noGravity": false,
+        "flightAmount": 0.0,
+        "flock": "",
+        "nextFlight": 107629,
+        "navigation": "GroundPathNavigation",
+        "aboveGround": 0.47999998927116394,
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false
+      },
+      {
+        "id": 6,
+        "uuid": "258b84ca-bce1-474a-9a48-e8a8d83ebae5",
+        "type": "fantasy_feudalism_mobs:crow",
+        "position": [
+          11.5,
+          64.0,
+          9.5
+        ],
+        "pose": "STANDING",
+        "onGround": false,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "birdKind": "crow",
+        "flying": false,
+        "noGravity": false,
+        "flightAmount": 0.0,
+        "flock": "",
+        "nextFlight": 107679,
+        "navigation": "GroundPathNavigation",
+        "aboveGround": 0.6600000262260437,
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false
+      }
+    ]
+  },
+  {
+    "name": "Both clients observe actual wing flaps, quick head turns and ground-walking leg motion for every species",
+    "passed": true,
+    "observations": {
+      "owner": {
+        "3": {
+          "frames": 3306,
+          "kind": "robin",
+          "finite": true,
+          "groundFrames": 1705,
+          "flightFrames": 1506,
+          "headYawRange": 2.4000000953674316,
+          "flyingWingRange": 1.7999993562698364,
+          "walkingLegRange": 0.48642104864120483,
+          "latest": {
+            "wingLeft": -0.8389805,
+            "flight": 0.775001,
+            "wingRight": 0.8389805,
+            "leg": -0.4665541,
+            "headYaw": 0.6402263,
+            "bodyPitch": 0.124000005
+          }
+        },
+        "4": {
+          "frames": 3525,
+          "kind": "blue_jay",
+          "finite": true,
+          "groundFrames": 1759,
+          "flightFrames": 1646,
+          "headYawRange": 2.4000000953674316,
+          "flyingWingRange": 1.799999713897705,
+          "walkingLegRange": 0.39119961857795715,
+          "latest": {
+            "wingLeft": -0.36448705,
+            "flight": 0.92500097,
+            "wingRight": 0.36448705,
+            "leg": -0.6475,
+            "headYaw": -0.94220614,
+            "bodyPitch": 0.148
+          }
+        },
+        "5": {
+          "frames": 3524,
+          "kind": "goldfinch",
+          "finite": true,
+          "groundFrames": 1743,
+          "flightFrames": 1663,
+          "headYawRange": 2.4000000953674316,
+          "flyingWingRange": 1.7999987602233887,
+          "walkingLegRange": 0.482318177819252,
+          "latest": {
+            "wingLeft": -0.122792244,
+            "flight": 1.0,
+            "wingRight": 0.122792244,
+            "leg": -0.7,
+            "headYaw": 1.0553788,
+            "bodyPitch": 0.16
+          }
+        },
+        "6": {
+          "frames": 3523,
+          "kind": "crow",
+          "finite": true,
+          "groundFrames": 1810,
+          "flightFrames": 1601,
+          "headYawRange": 2.4000000953674316,
+          "flyingWingRange": 1.8044017553329468,
+          "walkingLegRange": 0.4123523682355881,
+          "latest": {
+            "wingLeft": -1.15,
+            "flight": 0.0,
+            "wingRight": 1.15,
+            "leg": 5.381928e-13,
+            "headYaw": 1.0062914,
+            "bodyPitch": 0.0
+          }
+        }
+      },
+      "guest": {
+        "3": {
+          "frames": 3316,
+          "kind": "robin",
+          "finite": true,
+          "groundFrames": 1715,
+          "flightFrames": 1504,
+          "headYawRange": 2.4000000953674316,
+          "flyingWingRange": 1.7999963760375977,
+          "walkingLegRange": 0.503335639834404,
+          "latest": {
+            "headYaw": 0.85798687,
+            "leg": -0.20491472,
+            "wingRight": 0.7840718,
+            "flight": 0.4780012,
+            "wingLeft": -0.7840718,
+            "bodyPitch": 0.07648048
+          }
+        },
+        "4": {
+          "frames": 3524,
+          "kind": "blue_jay",
+          "finite": true,
+          "groundFrames": 1759,
+          "flightFrames": 1644,
+          "headYawRange": 2.4000000953674316,
+          "flyingWingRange": 1.8004633784294128,
+          "walkingLegRange": 0.3907078355550766,
+          "latest": {
+            "headYaw": -0.72256726,
+            "leg": -0.4396021,
+            "wingRight": 0.75929934,
+            "flight": 0.6280012,
+            "wingLeft": -0.75929934,
+            "bodyPitch": 0.100480475
+          }
+        },
+        "5": {
+          "frames": 3524,
+          "kind": "goldfinch",
+          "finite": true,
+          "groundFrames": 1743,
+          "flightFrames": 1662,
+          "headYawRange": 2.4000000953674316,
+          "flyingWingRange": 1.8044891357421875,
+          "walkingLegRange": 0.4759274423122406,
+          "latest": {
+            "headYaw": 0.58316064,
+            "leg": -0.5446021,
+            "wingRight": 0.24505436,
+            "flight": 0.7780012,
+            "wingLeft": -0.24505436,
+            "bodyPitch": 0.12448047
+          }
+        },
+        "6": {
+          "frames": 3522,
+          "kind": "crow",
+          "finite": true,
+          "groundFrames": 1813,
+          "flightFrames": 1597,
+          "headYawRange": 2.4000000953674316,
+          "flyingWingRange": 1.7999929189682007,
+          "walkingLegRange": 0.39082807302474976,
+          "latest": {
+            "headYaw": 1.0062914,
+            "leg": 1.7342399e-13,
+            "wingRight": 1.15,
+            "flight": 0.0,
+            "wingLeft": -1.15,
+            "bodyPitch": 0.0
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "A real Survival player within four blocks makes a landed bird take off",
+    "passed": true,
+    "crow": {
+      "id": 6,
+      "uuid": "258b84ca-bce1-474a-9a48-e8a8d83ebae5",
+      "type": "fantasy_feudalism_mobs:crow",
+      "position": [
+        9.40038586388964,
+        65.35840741831464,
+        2.4855419749004004
+      ],
+      "pose": "STANDING",
+      "onGround": false,
+      "inWater": false,
+      "alive": true,
+      "removed": false,
+      "invisible": false,
+      "silent": false,
+      "hurtTime": 0,
+      "health": 8.0,
+      "maxHealth": 8.0,
+      "effects": [],
+      "effectDetails": [],
+      "effectParticles": [],
+      "birdKind": "crow",
+      "flying": true,
+      "noGravity": true,
+      "flightAmount": 0.0,
+      "flock": "",
+      "nextFlight": 111181,
+      "navigation": "BirdFlightNavigation",
+      "aboveGround": 2.018407444540685,
+      "spawnType": "",
+      "target": -1,
+      "noAi": false,
+      "mainHand": {
+        "item": "minecraft:air",
+        "count": 0,
+        "damage": 0
+      },
+      "offHand": {
+        "item": "minecraft:air",
+        "count": 0,
+        "damage": 0
+      },
+      "blocking": false,
+      "usingItem": false,
+      "sprinting": false
+    }
+  },
+  {
+    "name": "Flight and landing cycles remain below fifteen blocks above terrain",
+    "passed": true,
+    "maxObservedAboveGround": 3.786750840569738
+  },
+  {
+    "name": "Resource reload retains all four renderers and textures without errors on either client",
+    "passed": true
+  },
+  {
+    "name": "A dedicated server with Mercenaries saves the new bird entities without errors",
+    "passed": true
+  }
+]
