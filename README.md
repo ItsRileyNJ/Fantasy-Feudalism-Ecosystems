@@ -6,7 +6,25 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.37.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.41.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.41 changes
+
+- Creeper explosions restore moss carpet, ferns and short grass only in the first air block above suitable solid ground.
+- Vegetation never stacks, floats, replaces crops or grows on farmland, water or waterlogged supports. Existing crop growth and mossy block conversion remain active.
+
+## Version 0.1.40 changes
+
+- Reworked goldfinch colors and markings to match the supplied reference more closely: cleaner yellow, neutral black wings and cap, cream belly, and broader yellow shoulders.
+- Added stronger blue jay wing shading and mapped its wing sections onto the detailed feather areas.
+
+## Version 0.1.39 changes
+
+- Removed an added box below the blue jay’s head that caused chest overlap and z-fighting. The dark chest marking now uses the original model’s geometry.
+
+## Version 0.1.38 changes
+
+- Robins, blue jays, goldfinches and crows each drop one feather when killed.
 
 ## Version 0.1.37 changes
 

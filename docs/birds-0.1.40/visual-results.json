@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "birdKinds": [
+    "blue_jay",
+    "goldfinch"
+  ],
+  "angles": [
+    "front",
+    "quarter",
+    "side"
+  ],
+  "renderErrors": []
+}

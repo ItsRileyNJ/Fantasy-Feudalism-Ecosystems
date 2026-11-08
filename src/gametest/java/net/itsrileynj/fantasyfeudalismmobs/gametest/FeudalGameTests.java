@@ -491,25 +491,25 @@ public final class FeudalGameTests {
         h.assertBlockPresent(Blocks.MOSSY_COBBLESTONE, new BlockPos(8, 1, 8));
         h.assertBlockPresent(Blocks.DIAMOND_BLOCK, new BlockPos(9, 1, 8));
         for (int x = 5; x <= 11; x++) for (int z = 5; z <= 11; z++)
-            h.assertTrue(h.getBlockState(new BlockPos(x, 2, z)).isAir(), "Creeper explosions leave air above the ground untouched");
+            CreeperSurfaceTests.safeAir(h,new BlockPos(x,2,z),Blocks.AIR.defaultBlockState());
         h.succeed();
     }
 
     @GameTest(template = "test_empty")
-    public static void creeperConversionToggleLeavesBlocksAndAirUntouched(GameTestHelper h) {
+    public static void creeperConversionTogglePreservesBlocksWhileVegetationStaysOnGround(GameTestHelper h) {
         floor(h); Creeper creeper = mob(h, EntityType.CREEPER, 8, 8); h.setBlock(new BlockPos(8, 1, 8), Blocks.COBBLESTONE);
         try {
             FeudalConfig.CREEPER_BLOCK_CONVERSION.set(false);
             h.getLevel().explode(creeper, creeper.getX(), creeper.getY(), creeper.getZ(), 3, Level.ExplosionInteraction.MOB);
             h.assertBlockPresent(Blocks.COBBLESTONE, new BlockPos(8, 1, 8));
             for (int x = 5; x <= 11; x++) for (int z = 5; z <= 11; z++)
-                h.assertTrue(h.getBlockState(new BlockPos(x, 2, z)).isAir(), "Disabled conversion must leave air untouched too");
+                CreeperSurfaceTests.safeAir(h,new BlockPos(x,2,z),Blocks.AIR.defaultBlockState());
         } finally { FeudalConfig.CREEPER_BLOCK_CONVERSION.set(true); }
         h.succeed();
     }
 
     @GameTest(template = "test_empty")
-    public static void repeatedCreeperExplosionsPreserveEveryAirVariant(GameTestHelper h) {
+    public static void repeatedCreeperExplosionsPreserveUnsupportedAndSpecialAir(GameTestHelper h) {
         floor(h);
         h.setBlock(8, 3, 8, Blocks.CAVE_AIR);
         h.setBlock(9, 3, 8, Blocks.VOID_AIR);
@@ -522,8 +522,7 @@ public final class FeudalGameTests {
         Creeper creeper = mob(h, EntityType.CREEPER, 8, 8);
         for (float radius : new float[]{3, 3, 6}) {
             h.getLevel().explode(creeper, creeper.getX(), creeper.getY(), creeper.getZ(), radius, Level.ExplosionInteraction.MOB);
-            air.forEach((pos, before) -> h.assertTrue(h.getBlockState(pos) == before,
-                    "Repeated normal/charged-size explosions must preserve the exact air state at " + pos));
+            air.forEach((pos,before)->CreeperSurfaceTests.safeAir(h,pos,before));
         }
         h.succeed();
     }

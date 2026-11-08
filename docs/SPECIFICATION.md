@@ -515,3 +515,28 @@ Halve the previous creeper natural-spawn weight: the multiplier changes from 0.4
 - This automatically applies the foliage mod's native entity collision and pathfinding rules on both server and client. Landing begins in flight mode; the existing final descent switches flight off, restoring leaf support before gravity settles the bird. Taking off disables leaf support immediately.
 - The hook is optional and introduces no required mod dependency. Without Passable Foliage, vanilla leaf collision remains unchanged. Respect Passable Foliage's own player-only and pathfinding settings; those settings can disable non-player pass-through or its pathfinding changes.
 - Uploaded target is PassableFoliage-1.21.1-NeoForge-9.3.2.jar. That mod requires Kiwi 15.2 or newer. The user also supplied Kiwi 15.8.7; all 264 required Ecosystems tests pass with both uploaded mods and Mercenaries 1.15.7 installed together.
+
+
+## Confirmed bird feather drops (0.1.38)
+
+Robins, blue jays, goldfinches and crows each drop exactly one vanilla feather on death through their native entity loot tables. No player-kill requirement or Looting multiplier is added. Native mob-loot game rules and loot hooks still apply. This supersedes the original empty bird loot tables.
+
+
+## Confirmed blue jay chest correction (0.1.39)
+
+Remove the importer-added necklace box below the blue jay’s head. Preserve the dark chest marking by dividing the original chest cube into adjacent white and navy sections, without altering its outer dimensions or adding overlapping faces on its exterior. Keep the supplied Blockbench source unchanged.
+
+
+## Confirmed goldfinch reference texture (0.1.40)
+
+Rework only goldfinch materials toward the supplied reference: clean bright yellow head and breast, neutral black wings and crown, pale cream belly, an off-white wing bar, muted orange-ochre beak and charcoal feet/tail. Increase the yellow shoulder marking and color the upper section of the original head as the crown, replacing the added cap overlay. Preserve the original outer geometry, front-only eyes and all other species’ texture pixels.
+
+Blue jay wing materials also gain layered blue feather shading and darker edges, with light grey definition in the white wing bars. Shift only the wing UV sampling into the detailed regions of those materials. Preserve robin/crow texture pixels and other blue jay materials.
+
+
+## Confirmed surface-only creeper vegetation (0.1.41)
+
+- This overrides the blanket air preservation rule only for the normal air block directly above suitable solid ground. Restore moss carpet, ferns and single-block short grass; do not place two-block tall grass or any stacked/floating growth. Cave air and void air remain untouched.
+- Suitable ground must have an empty fluid state and a sturdy upper face, and be dirt/grass terrain, native overworld base stone, moss block, sand, red sand, gravel, cobblestone or stone bricks (including mossy full-block variants). Exclude crops, farmland, block entities, leaves and existing vegetation as supports. Never replace an occupied target or water, and never decorate waterlogged supports.
+- Retain the original 75% coverage chance and 50:35:15 moss-carpet/fern/grass weights, renormalized over plants that satisfy native survival checks. Short grass replaces tall grass to enforce the single-air-block limit. Repeated normal and charged-size blasts cannot stack growth.
+- Existing mossy block conversion and two-stage crop advancement run before the separate surface-vegetation pass. The moss-conversion toggle still governs block conversion only, as originally specified. Native mob-griefing permissions gate all effects; entity damage and block-destruction protection remain unchanged. Work is bounded to loaded positions within the explosion radius.
