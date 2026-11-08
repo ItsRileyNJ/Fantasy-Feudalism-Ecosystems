@@ -23,6 +23,7 @@ public final class AdvancementTests {
         var p=new ServerPlayer(h.getLevel().getServer(),h.getLevel(),cookie.gameProfile(),cookie.clientInformation());
         var connection=new net.minecraft.network.Connection(net.minecraft.network.protocol.PacketFlow.SERVERBOUND);
         new io.netty.channel.embedded.EmbeddedChannel(connection);
+        net.neoforged.neoforge.network.registration.NetworkRegistry.configureMockConnection(connection);
         h.getLevel().getServer().getPlayerList().placeNewPlayer(connection,p,cookie);
         p.setGameMode(net.minecraft.world.level.GameType.SURVIVAL);
         for(int i=0;i<61;i++)p.tick(); // Let native post-login damage immunity expire.

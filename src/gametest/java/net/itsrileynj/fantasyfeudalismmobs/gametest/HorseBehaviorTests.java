@@ -104,7 +104,7 @@ public final class HorseBehaviorTests {
     @GameTest(template="test_empty",timeoutTicks=950,batch="ffm_horse_temptation")
     public static void ordinaryGrazingIsNotStarvedByAPlayerHoldingHorseFood(GameTestHelper h) {
         floor(h);var horse=horse(h,8,8);horse.setAge(0);
-        var player=h.makeMockServerPlayerInLevel();player.moveTo(h.absoluteVec(new Vec3(8,2,11)));
+        var player=TestPlayers.creative(h);player.moveTo(h.absoluteVec(new Vec3(8,2,11)));
         player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND,new ItemStack(Items.GOLDEN_CARROT));
         boolean[] seen={false};BlockPos[] bite={null};
         h.runAfterDelay(20,()->h.assertTrue(horse.goalSelector.getAvailableGoals().stream()

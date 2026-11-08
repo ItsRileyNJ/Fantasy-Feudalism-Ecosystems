@@ -11,7 +11,7 @@ import net.minecraft.world.phys.Vec3;
 
 /** Loaded-column terrain heights, cached only for the current world tick. */
 public final class BirdAltitude {
-    public static final int MAX_ABOVE_GROUND=15;
+    public static final int MAX_ABOVE_GROUND=20;
     private static final Map<Level,Frame> CACHE=new WeakHashMap<>();
     private static final class Frame { long tick=Long.MIN_VALUE;final Long2IntOpenHashMap heights=new Long2IntOpenHashMap(); }
     private BirdAltitude() {}

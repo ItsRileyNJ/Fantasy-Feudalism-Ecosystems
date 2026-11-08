@@ -66,6 +66,7 @@ public final class FeudalGameTests {
         var player = new ServerPlayer(h.getLevel().getServer(), h.getLevel(), cookie.gameProfile(), cookie.clientInformation());
         var connection = new Connection(PacketFlow.SERVERBOUND);
         new EmbeddedChannel(connection);
+        net.neoforged.neoforge.network.registration.NetworkRegistry.configureMockConnection(connection);
         h.getLevel().getServer().getPlayerList().placeNewPlayer(connection, player, cookie);
         return player;
     }
@@ -273,7 +274,7 @@ public final class FeudalGameTests {
 
     @GameTest(template = "test_empty")
     public static void spiderNeutralityAndSitOrders(GameTestHelper h) {
-        floor(h); ServerPlayer owner = h.makeMockServerPlayerInLevel(); owner.moveTo(h.absoluteVec(new Vec3(6, 2, 6)));
+        floor(h); ServerPlayer owner = TestPlayers.creative(h); owner.moveTo(h.absoluteVec(new Vec3(6, 2, 6)));
         Spider pet = pet(h, false, owner.getUUID()); Spider wild = mob(h, EntityType.CAVE_SPIDER, 8, 8);
         h.assertTrue(SpiderCompanion.protectedByFollower(owner), "Following pet protects owner");
         wild.setTarget(owner); h.assertTrue(wild.getTarget() == null, "Wild cave spider remains neutral");
@@ -344,7 +345,7 @@ public final class FeudalGameTests {
         var first = mob(h, EntityType.IRON_GOLEM, 12, 12); var next = mob(h, EntityType.IRON_GOLEM, 14, 14);
         skeleton.setTarget(first); skeleton.setTarget(next);
         h.assertTrue(skeleton.getTarget() == first, "Ranged skeleton keeps its living target");
-        ServerPlayer player = h.makeMockServerPlayerInLevel(); player.moveTo(skeleton.position().add(4, 0, 0));
+        ServerPlayer player = TestPlayers.creative(h); player.moveTo(skeleton.position().add(4, 0, 0));
         skeleton.setTarget(next); h.assertTrue(skeleton.getTarget() == next, "Player inside five blocks permits retargeting");
         player.getServer().getPlayerList().remove(player); h.succeed();
     }
@@ -691,7 +692,7 @@ public final class FeudalGameTests {
 
     @GameTest(template = "test_empty")
     public static void ownerFollowTeleportsSafely(GameTestHelper h) {
-        floor(h); ServerPlayer owner = h.makeMockServerPlayerInLevel(); owner.moveTo(h.absoluteVec(new Vec3(14, 2, 14)));
+        floor(h); ServerPlayer owner = TestPlayers.creative(h); owner.moveTo(h.absoluteVec(new Vec3(14, 2, 14)));
         Spider spider = pet(h, false, owner.getUUID());
         h.assertTrue(spider.canBeLeashed(), "Tamed spider can be leashed like a wolf");
         Goal follow = spider.goalSelector.getAvailableGoals().stream().map(WrappedGoal::getGoal)

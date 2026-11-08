@@ -56,7 +56,6 @@ for row,(kind,filename) in enumerate(KINDS):
         overlay(lines,'head','orange_face',[-1.15,-1.5,-2.03,2.3,1.5,.03],1,row)
     elif kind=='GOLDFINCH':overlay(lines,'head','black_cap',[-2.015,-4.035,-2.015,4.03,.04,4.03],5,row)
     for name,x in [('left',-1.65),('right',1.05)]:overlay(lines,'head',name+'_front_eye',[x,-2.85,-2.065,.6,.75,.04],5,row)
-    for name,x in [('left',-2.035),('right',2)]:overlay(lines,'head',name+'_side_eye',[x,-2.85,-1.7,.035,.75,.55],5,row)
     lines.append('        }')
 lines+=['        }','        return LayerDefinition.create(mesh,256,128);','    }','}']
 OUT.write_text('\n'.join(lines)+'\n')

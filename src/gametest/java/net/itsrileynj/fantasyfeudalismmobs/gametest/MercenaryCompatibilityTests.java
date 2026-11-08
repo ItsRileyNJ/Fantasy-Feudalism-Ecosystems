@@ -180,7 +180,7 @@ public final class MercenaryCompatibilityTests {
         });
     }
     private static void rejectedPrediction(GameTestHelper h,boolean swap) {
-        Mob guard=guard(h);var player=h.makeMockServerPlayerInLevel();
+        Mob guard=guard(h);var player=TestPlayers.creative(h);
         NetworkRegistry.configureMockConnection(player.connection.getConnection());
         try {
             player.moveTo(guard.position().add(1,0,0));

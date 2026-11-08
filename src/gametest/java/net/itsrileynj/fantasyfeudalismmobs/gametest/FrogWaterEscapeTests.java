@@ -25,7 +25,7 @@ public final class FrogWaterEscapeTests {
     }
     private static void escape(GameTestHelper h,int pond) {
         var frog=fixture(h,pond);double startX=frog.getX(),startY=frog.getY();
-        var player=h.makeMockServerPlayerInLevel();player.moveTo(h.absoluteVec(new Vec3(2,2,8)));
+        var player=TestPlayers.creative(h);player.moveTo(h.absoluteVec(new Vec3(2,2,8)));
         boolean[] jumped={false},rose={false},walked={false};
         h.onEachTick(()->{
             if(frog.getPose()==Pose.LONG_JUMPING)jumped[0]=true;
@@ -50,6 +50,7 @@ public final class FrogWaterEscapeTests {
         var player=new net.minecraft.server.level.ServerPlayer(h.getLevel().getServer(),h.getLevel(),cookie.gameProfile(),cookie.clientInformation());
         var connection=new net.minecraft.network.Connection(net.minecraft.network.protocol.PacketFlow.SERVERBOUND);
         new io.netty.channel.embedded.EmbeddedChannel(connection);
+        net.neoforged.neoforge.network.registration.NetworkRegistry.configureMockConnection(connection);
         h.getLevel().getServer().getPlayerList().placeNewPlayer(connection,player,cookie);
         player.moveTo(h.absoluteVec(new Vec3(2,2,8)));
         var escape=new FrogWaterEscape();
@@ -66,7 +67,7 @@ public final class FrogWaterEscapeTests {
     @GameTest(template="test_empty",batch="ffm_frog_protected")
     public static void breedingAndCoveredWaterDoNotInterruptNativeAi(GameTestHelper h){
         var frog=fixture(h,8);frog.setNoAi(true);
-        var player=h.makeMockServerPlayerInLevel();player.moveTo(h.absoluteVec(new Vec3(2,2,8)));
+        var player=TestPlayers.creative(h);player.moveTo(h.absoluteVec(new Vec3(2,2,8)));
         frog.setInLove(player);
         h.assertFalse(new FrogWaterEscape().tick(frog),"Love mode keeps native breeding AI available");
         frog.resetLove();frog.getBrain().setMemory(MemoryModuleType.IS_PREGNANT,net.minecraft.util.Unit.INSTANCE);

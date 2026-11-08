@@ -61,7 +61,7 @@ public final class SpawnRegressionTests {
             var at = new BlockPos(x * 16, pos.getY(), z * 16);
             level.structureManager().addReferenceForStructure(SectionPos.of(at), structure, origin.toLong(), level.getChunkAt(at));
         }
-        var observer = h.makeMockServerPlayerInLevel(); observer.moveTo(pos.getX() + 40, pos.getY(), pos.getZ());
+        var observer = TestPlayers.creative(h); observer.moveTo(pos.getX() + 40, pos.getY(), pos.getZ());
         level.setBlock(observer.blockPosition().below(), Blocks.STONE.defaultBlockState(), 3);
         h.runAfterDelay(10, () -> {
             var pack = new ArrayList<Silverfish>();

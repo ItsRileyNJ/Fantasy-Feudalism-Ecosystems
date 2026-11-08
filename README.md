@@ -6,7 +6,25 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.34.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.37.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.37 changes
+
+- Added an optional Passable Foliage integration: birds use its native Leaf Walker support while perched and disable it during flight. Other mobs keep their existing behavior.
+- Passable Foliage remains optional; when installed it also requires Kiwi. All 264 automated tests and five two-client checks passed with Mercenaries, Passable Foliage 9.3.2 and Kiwi 15.8.7. See the [compatibility report](docs/RELEASE_0.1.37.md).
+
+## Version 0.1.36 changes
+
+- Birds cruise for 20–35 seconds, usually 6–12 blocks above terrain, with a 20-block ceiling.
+- Birds prefer higher perches such as tree canopies and settle onto them without hovering above the surface.
+- Added feather shading, removed side-facing eyes, and made flying legs trail backward.
+
+## Version 0.1.35 changes
+
+- Robins now spawn in pairs of two and coordinate their flights. Partners stay together, remember each other after saving, and can find a new partner if one dies.
+- Lone robins wait for company before ordinary flights, but still fly to escape danger. Goldfinch flocks remain 3–6.
+
+See the [robin pair validation report](docs/RELEASE_0.1.35.md).
 
 ## Version 0.1.34 changes
 

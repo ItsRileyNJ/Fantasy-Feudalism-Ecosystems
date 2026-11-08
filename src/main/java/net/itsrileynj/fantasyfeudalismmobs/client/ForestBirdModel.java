@@ -21,8 +21,8 @@ public final class ForestBirdModel extends HierarchicalModel<ForestBird> {
         float flap=Mth.sin(age*(entity.kind()==BirdKind.CROW?1.15F:1.8F)+entity.getId()*.7F);
         leftWing.zRot=Mth.lerp(flying,-1.15F,.15F+flap*.9F);rightWing.zRot=-leftWing.zRot;
         leftWing.xRot=rightWing.xRot=(1-flying)*.12F;
-        leftLeg.xRot=Mth.lerp(flying,Mth.cos(walk*2.5F)*amount*1.1F,-.7F);
-        rightLeg.xRot=Mth.lerp(flying,Mth.cos(walk*2.5F+Mth.PI)*amount*1.1F,-.7F);
+        leftLeg.xRot=Mth.lerp(flying,Mth.cos(walk*2.5F)*amount*1.1F,.9F);
+        rightLeg.xRot=Mth.lerp(flying,Mth.cos(walk*2.5F+Mth.PI)*amount*1.1F,.9F);
         head.yRot=Mth.clamp(yaw*Mth.DEG_TO_RAD,-1.2F,1.2F);
         head.xRot=Mth.clamp(pitch*Mth.DEG_TO_RAD,-.5F,.5F)-flying*.1F;
         bird.xRot=flying*.16F;

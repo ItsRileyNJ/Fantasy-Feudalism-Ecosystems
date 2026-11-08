@@ -111,6 +111,9 @@ public final class ControlFiles {
         if(entity instanceof ForestBird bird) {
             info.put("birdKind",bird.kind().id);info.put("flying",bird.flightActive());info.put("noGravity",bird.isNoGravity());
             info.put("flightAmount",bird.flightAmount(1));
+            var below=bird.blockPosition().below();var support=bird.level().getBlockState(below);
+            info.put("leavesBelow",support.is(net.minecraft.tags.BlockTags.LEAVES));
+            info.put("supportCollisionEmpty",support.getCollisionShape(bird.level(),below,net.minecraft.world.phys.shapes.CollisionContext.of(bird)).isEmpty());
             if(!bird.level().isClientSide) {info.put("flock",bird.flock()==null?"":bird.flock().toString());info.put("nextFlight",bird.nextFlight());info.put("navigation",bird.getNavigation().getClass().getSimpleName());info.put("aboveGround",bird.getY()+bird.getBbHeight()-BirdAltitude.surfaceY(bird.level(),bird.getBlockX(),bird.getBlockZ()));}
         }
         if(entity instanceof FieldMouse mouse){info.put("variant",mouse.getVariant());info.put("nextMeal",mouse.nextMeal());info.put("cropHome",String.valueOf(mouse.cropHome()));}

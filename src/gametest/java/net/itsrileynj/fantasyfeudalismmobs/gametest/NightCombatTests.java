@@ -32,6 +32,7 @@ public final class NightCombatTests {
         var id=UUID.randomUUID();var cookie=CommonListenerCookie.createInitial(new GameProfile(id,"eco-"+id.toString().substring(0,8)),false);
         var p=new ServerPlayer(h.getLevel().getServer(),h.getLevel(),cookie.gameProfile(),cookie.clientInformation());
         var connection=new Connection(PacketFlow.SERVERBOUND);new EmbeddedChannel(connection);
+        net.neoforged.neoforge.network.registration.NetworkRegistry.configureMockConnection(connection);
         h.getLevel().getServer().getPlayerList().placeNewPlayer(connection,p,cookie);
         p.setGameMode(GameType.SURVIVAL);p.moveTo(h.absoluteVec(new Vec3(x,2,z)));return p;
     }

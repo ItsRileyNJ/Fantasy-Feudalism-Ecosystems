@@ -27,6 +27,13 @@ public final class ForestBirdTests {
             for(int y=12;y<16;y++)if(h.getBlockState(new BlockPos(x,y,z)).is(Blocks.BARRIER))h.setBlock(x,y,z,Blocks.AIR);
         }
     }
+    /** Long flights need more room than the original two-second flight fixture. */
+    private static void flightFloor(GameTestHelper h) {
+        for(int x=-24;x<64;x++)for(int z=-24;z<64;z++) {
+            h.setBlock(x,1,z,Blocks.GRASS_BLOCK);
+            for(int y=2;y<=23;y++)if(h.getBlockState(new BlockPos(x,y,z)).is(Blocks.BARRIER))h.setBlock(x,y,z,Blocks.AIR);
+        }
+    }
     private static ForestBird bird(GameTestHelper h,EntityType<ForestBird> type,int x,int z,boolean ai) {
         var bird=h.spawn(type,x,2,z);bird.setNoAi(!ai);bird.setOnGround(true);return bird;
     }
@@ -46,7 +53,7 @@ public final class ForestBirdTests {
             var list=h.getLevel().getEntitiesOfClass(ForestBird.class,new AABB(support).inflate(2),b->b.getType()==type);
             h.assertTrue(list.size()==1,"Each egg produces exactly one bird");
             var bird=list.getFirst();h.assertTrue(bird.kind()==BirdKind.values()[i]&&bird.getMaxHealth()==(i==3?8:6),"The native species and attributes match");
-            h.assertTrue(bird.getMaxSpawnClusterSize()==(bird.kind().flocking?6:1),"Native pack limits match flocking and solitary species");
+            h.assertTrue(bird.getMaxSpawnClusterSize()==(bird.kind()==BirdKind.ROBIN?2:bird.kind().flocking?6:1),"Native pack limits match flocking and solitary species");
             h.assertTrue(bird.getNavigation() instanceof GroundPathNavigation,"Ground movement starts with walking navigation");
         }
         h.succeed();
@@ -55,7 +62,7 @@ public final class ForestBirdTests {
     public static void temperateBiomesHaveSmallBirdFlocksAndSingleBlueJays(GameTestHelper h) {
         for(var biome:List.of(Biomes.FOREST,Biomes.FLOWER_FOREST,Biomes.BIRCH_FOREST,Biomes.OLD_GROWTH_BIRCH_FOREST,Biomes.DARK_FOREST,Biomes.CHERRY_GROVE)) {
             h.setBiome(biome);
-            h.assertTrue(entry(h,Birds.ROBIN.get(),3,6)&&entry(h,Birds.GOLDFINCH.get(),3,6),"Native biome lists contain robin/goldfinch flocks of three to six");
+            h.assertTrue(entry(h,Birds.ROBIN.get(),2,2)&&entry(h,Birds.GOLDFINCH.get(),3,6),"Native biome lists contain robin pairs and goldfinch flocks of three to six");
             h.assertTrue(entry(h,Birds.BLUE_JAY.get(),1,1)&&!entry(h,Birds.CROW.get(),1,1),"Blue jays are solitary; crows are not in temperate forests");
         }
         h.succeed();
@@ -64,10 +71,10 @@ public final class ForestBirdTests {
     public static void crowsSpawnInAllSpruceForestsAndJunglesAreExcluded(GameTestHelper h) {
         for(var biome:List.of(Biomes.TAIGA,Biomes.SNOWY_TAIGA,Biomes.OLD_GROWTH_PINE_TAIGA,Biomes.OLD_GROWTH_SPRUCE_TAIGA)) {
             h.setBiome(biome);h.assertTrue(entry(h,Birds.CROW.get(),1,1),"Crows have native spruce-biome entries");
-            h.assertFalse(entry(h,Birds.ROBIN.get(),3,6),"Robin flocks do not spawn in spruce forests");
+            h.assertFalse(entry(h,Birds.ROBIN.get(),2,2),"Robin flocks do not spawn in spruce forests");
         }
         for(var biome:List.of(Biomes.JUNGLE,Biomes.PLAINS,Biomes.DESERT)) {
-            h.setBiome(biome);for(var type:Birds.TYPES)h.assertFalse(entry(h,type.get(),type==Birds.ROBIN||type==Birds.GOLDFINCH?3:1,type==Birds.ROBIN||type==Birds.GOLDFINCH?6:1),"No bird entries outside their requested biome sets");
+            h.setBiome(biome);for(var type:Birds.TYPES)h.assertFalse(entry(h,type.get(),type==Birds.ROBIN?2:type==Birds.GOLDFINCH?3:1,type==Birds.ROBIN?2:type==Birds.GOLDFINCH?6:1),"No bird entries outside their requested biome sets");
         }
         h.succeed();
     }
@@ -84,13 +91,14 @@ public final class ForestBirdTests {
     public static void robinAndGoldfinchSpawnGroupsShareSavedFlocksWithoutExceedingSix(GameTestHelper h) {
         floor(h);
         for(var type:List.of(Birds.ROBIN.get(),Birds.GOLDFINCH.get())) {
-            SpawnGroupData data=null;UUID first=null,second=null;
+            SpawnGroupData data=null;UUID previous=null;int cap=type==Birds.ROBIN.get()?2:6;
             for(int i=0;i<8;i++) {
                 var b=bird(h,type,4+i,8,false);data=b.finalizeSpawn(h.getLevel(),h.getLevel().getCurrentDifficultyAt(b.blockPosition()),MobSpawnType.NATURAL,data);
-                if(i==0)first=b.flock();if(i==6)second=b.flock();
-                h.assertTrue(b.flock().equals(i<6?first:second),"Natural group identity caps at six birds");
+                if(i%cap==0) {
+                    h.assertTrue(!b.flock().equals(previous),"The next group starts a different identity at the species cap");
+                    previous=b.flock();
+                } else h.assertTrue(b.flock().equals(previous),"Members share the capped natural group identity");
             }
-            h.assertFalse(first.equals(second),"A seventh bird starts a new flock");
         }
         for(var type:List.of(Birds.CROW.get(),Birds.BLUE_JAY.get())) {
             var b=bird(h,type,8,12,false);b.finalizeSpawn(h.getLevel(),h.getLevel().getCurrentDifficultyAt(b.blockPosition()),MobSpawnType.NATURAL,null);
@@ -119,9 +127,9 @@ public final class ForestBirdTests {
         h.assertTrue(flock.equals(loaded.flock())&&loaded.nextFlight()==next,"Flock identity and ambient-flight deadline survive reload");
         h.assertTrue(!loaded.flightActive()&&!loaded.isNoGravity()&&loaded.getNavigation() instanceof GroundPathNavigation,"Reload cannot leave a bird permanently hovering");h.succeed();
     }
-    @GameTest(template="test_empty",batch="bird_live_flee",timeoutTicks=360)
+    @GameTest(template="test_empty",batch="bird_live_flee",timeoutTicks=1000)
     public static void actualBirdAiTakesOffFromAPlayerThenLands(GameTestHelper h) {
-        floor(h);var b=bird(h,Birds.BLUE_JAY.get(),10,10,true);var start=b.position();double[] peak={start.y};
+        flightFloor(h);var b=bird(h,Birds.BLUE_JAY.get(),10,10,true);var start=b.position();double[] peak={start.y};
         ServerPlayer p=AdvancementTests.player(h);p.moveTo(start.add(-2,0,0));
         h.onEachTick(()->peak[0]=Math.max(peak[0],b.getY()));
         h.runAfterDelay(35,()->{
@@ -153,17 +161,17 @@ public final class ForestBirdTests {
         h.assertTrue(BirdAltitude.surfaceY(h.getLevel(),ground.getX(),ground.getZ())==ground.getY(),"Leaves cannot raise the terrain height");
         var trunk=h.absolutePos(new BlockPos(10,2,8));
         h.assertTrue(BirdAltitude.surfaceY(h.getLevel(),trunk.getX(),trunk.getZ())==trunk.getY(),"Tree trunks cannot raise the terrain height either");
-        h.assertTrue(!BirdAltitude.allowed(b,ground.getX()+.5,ground.getY()+15,ground.getZ()+.5),"The complete bird stays below the fifteen-block limit");
-        b.setFlying(true);var path=b.getNavigation().createPath(new BlockPos(ground.getX(),ground.getY()+18,ground.getZ()),0);
+        h.assertTrue(!BirdAltitude.allowed(b,ground.getX()+.5,ground.getY()+BirdAltitude.MAX_ABOVE_GROUND,ground.getZ()+.5),"The complete bird stays below the twenty-block limit");
+        b.setFlying(true);var path=b.getNavigation().createPath(new BlockPos(ground.getX(),ground.getY()+BirdAltitude.MAX_ABOVE_GROUND+3,ground.getZ()),0);
         h.assertTrue(path==null||!path.canReach(),"Native flight pathfinding rejects targets above the ceiling");h.succeed();
     }
     @GameTest(template="test_empty",batch="bird_ceiling",timeoutTicks=100)
-    public static void upwardSteeringCannotPushBirdsAboveFifteenBlocks(GameTestHelper h) {
+    public static void upwardSteeringCannotPushBirdsAboveTwentyBlocks(GameTestHelper h) {
         floor(h);var b=bird(h,Birds.BLUE_JAY.get(),18,18,false);b.setFlying(true);
         double max=BirdAltitude.maxFeet(b,b.getX(),b.getZ());b.moveTo(b.getX(),max-.1,b.getZ());
         for(int i=0;i<30;i++) {
             b.setDeltaMovement(0,.4,0);b.travel(Vec3.ZERO);
-            h.assertTrue(b.getY()+b.getBbHeight()<=BirdAltitude.surfaceY(h.getLevel(),b.getBlockX(),b.getBlockZ())+15+.00001,"Upward momentum must respect the complete-body ceiling");
+            h.assertTrue(b.getY()+b.getBbHeight()<=BirdAltitude.surfaceY(h.getLevel(),b.getBlockX(),b.getBlockZ())+BirdAltitude.MAX_ABOVE_GROUND+.00001,"Upward momentum must respect the complete-body ceiling");
         }
         h.succeed();
     }
@@ -176,6 +184,79 @@ public final class ForestBirdTests {
             h.assertTrue(walk.canUse(),"A landed bird must select a real short walk");
             walk.start();var target=b.getNavigation().getTargetPos();
             h.assertTrue(target!=null&&Vec3.atBottomCenterOf(target).subtract(start).multiply(1,0,1).lengthSqr()<=4.01,"Ground walking is limited to a couple of blocks");walk.stop();
+        });
+    }
+
+    @GameTest(template="test_empty",batch="robin_pairs")
+    public static void robinPairsAreExclusiveAndPersistAcrossReload(GameTestHelper h) {
+        floor(h);var a=bird(h,Birds.ROBIN.get(),8,8,true);var b=bird(h,Birds.ROBIN.get(),10,8,true);var c=bird(h,Birds.ROBIN.get(),12,8,true);
+        a.findPartner();c.findPartner();
+        h.assertTrue(a.partner()==b&&b.partner()==a&&c.partner()==null,"Each robin has one reciprocal partner; a third cannot join");
+        var first=a.saveWithoutId(new CompoundTag());var second=b.saveWithoutId(new CompoundTag());a.discard();b.discard();
+        var loadedA=Birds.ROBIN.get().create(h.getLevel());var loadedB=Birds.ROBIN.get().create(h.getLevel());
+        loadedA.load(first);loadedB.load(second);h.getLevel().addFreshEntity(loadedA);h.getLevel().addFreshEntity(loadedB);
+        h.assertTrue(loadedA.partner()==loadedB&&loadedB.partner()==loadedA,"Both saved partner UUIDs recover after reload");
+        loadedB.kill();loadedA.findPartner();
+        h.assertTrue(loadedA.partner()==c&&c.partner()==loadedA,"A surviving robin can pair with another unpaired robin");h.succeed();
+    }
+    @GameTest(template="test_empty",batch="robin_pairs")
+    public static void solitaryRobinsWaitForCompanyButStillEscapeThreats(GameTestHelper h) {
+        floor(h);var b=bird(h,Birds.ROBIN.get(),8,8,true);b.flyToward(b.position().add(5,0,0));
+        var goal=new BirdGoals.Flight(b);
+        h.assertFalse(goal.canUse(),"A lone grounded robin does not start ambient solo flights");
+        ServerPlayer p=AdvancementTests.player(h);
+        p.moveTo(b.position().add(2,0,0));
+        h.runAfterDelay(6,()->{
+            try { h.assertTrue(goal.canUse(),"A lone robin can still escape a nearby Survival player");h.succeed(); }
+            finally { AdvancementTests.remove(p); }
+        });
+    }
+    @GameTest(template="test_empty",batch="robin_live_pair",timeoutTicks=1000)
+    public static void pairedRobinsTakeOffTogetherAndRemainClose(GameTestHelper h) {
+        flightFloor(h);var a=bird(h,Birds.ROBIN.get(),16,16,true);var b=bird(h,Birds.ROBIN.get(),18,16,true);
+        a.findPartner();a.flyToward(a.position().add(8,0,0));
+        boolean[] together={false};double[] farthest={0};
+        h.onEachTick(()->{
+            if(a.flightActive()&&b.flightActive()&&a.getY()>h.absolutePos(new BlockPos(16,2,16)).getY()+.4&&b.getY()>h.absolutePos(new BlockPos(18,2,16)).getY()+.4) {
+                h.assertTrue(a.cruiseUntil()==b.cruiseUntil(),"Robin partners share a cruise deadline so landing does not restart their flight");
+                together[0]=true;farthest[0]=Math.max(farthest[0],a.distanceToSqr(b));
+            }
+        });
+        h.succeedWhen(()->{
+            h.assertTrue(together[0],"The pair must take off and gain height together");
+            h.assertTrue(farthest[0]<=64,"Paired flight remains within eight blocks: "+farthest[0]);
+            h.assertTrue(h.getTick()>45&&a.onGround()&&b.onGround()&&!a.flightActive()&&!b.flightActive(),"Both partners land after coordinated flight: a="+a.position()+" ground="+a.onGround()+" flight="+a.flightActive()+" landing="+a.landingFlight()+" b="+b.position()+" ground="+b.onGround()+" flight="+b.flightActive()+" landing="+b.landingFlight());
+        });
+    }
+
+    @GameTest(template="test_empty",batch="bird_cruise",timeoutTicks=1000)
+    public static void birdsCruiseAboveGroundForLongerThenSettleWithoutLowHovering(GameTestHelper h) {
+        flightFloor(h);var b=bird(h,Birds.BLUE_JAY.get(),18,18,true);b.flyToward(b.position().add(8,0,0));
+        double[] peak={0};int[] low={0},longestLow={0};boolean[] sustained={false};
+        h.onEachTick(()->{
+            double altitude=b.getY()-BirdAltitude.surfaceY(h.getLevel(),b.getBlockX(),b.getBlockZ());peak[0]=Math.max(peak[0],altitude);
+            if(h.getTick()>60&&b.flightActive()&&altitude<1.3)low[0]++;else low[0]=0;
+            longestLow[0]=Math.max(longestLow[0],low[0]);
+        });
+        h.runAfterDelay(200,()->{
+            h.assertTrue(b.flightActive()&&!b.landingFlight()&&peak[0]>=5,"A bird cruises for at least ten seconds well above the ground: peak="+peak[0]);sustained[0]=true;
+        });
+        h.succeedWhen(()->{
+            h.assertTrue(sustained[0]&&h.getTick()>400&&b.onGround()&&!b.flightActive(),"Longer flight must eventually finish on support: "+b.position());
+            h.assertTrue(longestLow[0]<=40,"Final descent must not hover just above support for long periods: "+longestLow[0]);
+        });
+    }
+    @GameTest(template="test_empty",batch="bird_perches",timeoutTicks=800)
+    public static void landingChoosesTreeCanopiesBeforeNearbyBareGround(GameTestHelper h) {
+        floor(h);
+        for(int x=14;x<=22;x++)for(int z=14;z<=22;z++)h.setBlock(x,7,z,Blocks.OAK_LEAVES);
+        var b=bird(h,Birds.CROW.get(),18,18,false);b.moveTo(b.getX(),h.absolutePos(new BlockPos(18,11,18)).getY(),b.getZ());b.setOnGround(false);
+        var goal=new BirdGoals.Flight(b);goal.start();h.onEachTick(goal::tick);
+        h.succeedWhen(()->{
+            var target=b.getNavigation().getTargetPos();
+            h.assertTrue(b.landingFlight()&&target!=null,"Flight must select a landing approach after cruising");
+            h.assertTrue(h.relativePos(target).getY()==8,"Higher tree leaves are preferred over reachable bare ground: "+h.relativePos(target));
+            goal.stop();
         });
     }
 

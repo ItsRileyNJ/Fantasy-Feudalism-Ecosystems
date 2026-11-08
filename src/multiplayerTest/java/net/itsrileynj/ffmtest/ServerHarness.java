@@ -79,6 +79,26 @@ public final class ServerHarness {
     public static Object execute(MinecraftServer server, JsonObject q) {
         ServerLevel level = server.overworld(); String action = q.get("action").getAsString();
         switch (action) {
+            case "birdFoliage": {
+                String phase=q.get("phase").getAsString();
+                var result=new ArrayList<Map<String,Object>>();
+                if(phase.equals("fixture")) {
+                    for(int i=0;i<Birds.TYPES.size();i++) {
+                        int x=5+i*3;
+                        for(int dx=-1;dx<=1;dx++)for(int dz=-1;dz<=1;dz++)level.setBlockAndUpdate(new BlockPos(x+dx,67,9+dz),Blocks.OAK_LEAVES.defaultBlockState());
+                        var bird=Birds.TYPES.get(i).get().create(level);bird.moveTo(x+.5,68,9.5,180,0);bird.setNoAi(true);bird.setPersistenceRequired();bird.setOnGround(true);level.addFreshEntity(bird);result.add(ControlFiles.entity(bird));
+                    }
+                } else {
+                    for(var id:q.getAsJsonArray("entities")) {
+                        var bird=(ForestBird)level.getEntity(id.getAsInt());
+                        bird.moveTo(bird.getX(),68,bird.getZ());bird.setDeltaMovement(net.minecraft.world.phys.Vec3.ZERO);
+                        bird.setFlying(!phase.equals("perch"));
+                        if(phase.equals("cross"))bird.move(MoverType.SELF,new net.minecraft.world.phys.Vec3(0,-1.25,0));
+                        result.add(ControlFiles.entity(bird));
+                    }
+                }
+                return result;
+            }
             case "mouseProfile": {var prepared=MousePerformanceHarness.fixture(server,q);TIMES.clear();return prepared;}
             case "mouseProfileMetrics": return MousePerformanceHarness.metrics(server);
             case "auditFixture": return AuditHarness.fixture(server,q);

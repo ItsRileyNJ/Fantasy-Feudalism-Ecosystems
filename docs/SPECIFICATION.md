@@ -489,3 +489,29 @@ Halve the previous creeper natural-spawn weight: the multiplier changes from 0.4
 - The complete bird stays at most 15 blocks above terrain beneath it. The height calculation ignores leaves and strips tree logs from the top of the ground-height column. Terrain heights are cached per loaded column for one world tick. Flight nodes, direct paths, destinations and server movement enforce the limit; no chunks are loaded to search for ground. External placement above the ceiling recovers by descent rather than teleporting through foliage.
 - Flight uses native flying navigation and movement; ground walking uses native ground navigation. Landings have a brief settling window to avoid repeatedly taking off just before reaching the ground. Birds can escape water and do not take fall damage. Flock identity and ambient-flight deadlines survive saves; interrupted saved flight cannot leave a bird permanently hovering.
 - These are passive, untamed wildlife, with no breeding or feeding mechanic added. Small birds have three hearts; crows have four. Native parrot ambient/hurt/death sounds provide placeholders until species recordings are supplied. Loot tables are empty. Natural creature caps, loaded chunks, light, space and biome conditions still apply.
+
+
+## Confirmed robin pairs (0.1.35)
+
+- Replace robin natural flocks of 3–6 with groups of exactly two; goldfinches retain 3–6. Native pack limits and biome entries both cap robins at two. Native creature caps and available space can still prevent a complete pair from spawning.
+- Nearby unpaired robins form exclusive reciprocal pairs, preferring members of their original flock. This also lets existing and spawn-egg robins find company. Searches use only loaded entities within 16 horizontal and six vertical blocks, at most once every five seconds.
+- Paired robins coordinate takeoff timing. One leads and the other follows near it, and followers seek landing sites near their partner. Existing terrain-relative flight limits and short walks remain active.
+- Lone robins wait for a partner before ambient takeoffs. Emergency fleeing, swimming/falling recovery and existing player-mode rules remain active even without a partner.
+- Partner UUIDs survive saves. Known dead partners are released immediately; unavailable partners are given 30 seconds to return before the loaded robin can pair again. Pair lookups never load chunks. Leashed, mounted or AI-disabled partners do not trigger ordinary paired takeoffs.
+
+
+## Confirmed extended bird flight and appearance (0.1.36)
+
+- Birds cruise for 20–35 seconds before seeking a perch, rather than starting landing attempts after two seconds. Cruise targets normally sit 6–12 blocks above terrain; the complete-body ceiling is now 20 blocks, still ignoring leaves and trunks.
+- Landing considers nearby loaded supports and tries the highest reachable candidates first, including tree leaves. Searches have 12 sampled columns and at most six path attempts. Nearby ground remains a fallback.
+- Native flight paths end at air-block centers. The final clear descent releases gravity so birds settle onto the actual support instead of endlessly aiming at a point half a block above it. Stalled, obstructed or expired landing approaches are discarded and retried.
+- Robin partners regroup during longer flights and choose nearby landing destinations. Short walks choose supported, reachable destinations within two horizontal blocks.
+- Flying legs trail backward. Wing, head and ground-walking animations remain active. Bird feather materials have stronger pixel shading and mottling, and eye overlays are front-facing only; all side-eye geometry is removed.
+
+
+## Confirmed Passable Foliage integration (0.1.37)
+
+- With Passable Foliage installed, birds must pass through leaves in flight and stand on them after landing. Integrate with the mod's existing hasLeafWalker check: return false while the bird's synchronized flight state is active, and true when it settles onto a perch or walks. Do not equip an item, change leaf blocks, or affect other entity types.
+- This automatically applies the foliage mod's native entity collision and pathfinding rules on both server and client. Landing begins in flight mode; the existing final descent switches flight off, restoring leaf support before gravity settles the bird. Taking off disables leaf support immediately.
+- The hook is optional and introduces no required mod dependency. Without Passable Foliage, vanilla leaf collision remains unchanged. Respect Passable Foliage's own player-only and pathfinding settings; those settings can disable non-player pass-through or its pathfinding changes.
+- Uploaded target is PassableFoliage-1.21.1-NeoForge-9.3.2.jar. That mod requires Kiwi 15.2 or newer. The user also supplied Kiwi 15.8.7; all 264 required Ecosystems tests pass with both uploaded mods and Mercenaries 1.15.7 installed together.

@@ -1,0 +1,1474 @@
+[
+  {
+    "name": "Both real clients connect with Kiwi, Passable Foliage and Mercenaries and see all four birds supported on leaves",
+    "passed": true,
+    "observations": {
+      "owner": [
+        {
+          "id": 10,
+          "uuid": "2926977a-7e02-4525-a067-507e0fcb7b20",
+          "type": "fantasy_feudalism_mobs:robin",
+          "position": [
+            5.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "robin",
+          "flying": false,
+          "noGravity": false,
+          "flightAmount": 0.0,
+          "leavesBelow": true,
+          "supportCollisionEmpty": false,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        },
+        {
+          "id": 11,
+          "uuid": "12781169-e766-4621-8686-18c3b3e02b88",
+          "type": "fantasy_feudalism_mobs:blue_jay",
+          "position": [
+            8.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "blue_jay",
+          "flying": false,
+          "noGravity": false,
+          "flightAmount": 0.0,
+          "leavesBelow": true,
+          "supportCollisionEmpty": false,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        },
+        {
+          "id": 12,
+          "uuid": "78dcbcd2-bf4c-4938-968f-2b4b451f347e",
+          "type": "fantasy_feudalism_mobs:goldfinch",
+          "position": [
+            11.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "goldfinch",
+          "flying": false,
+          "noGravity": false,
+          "flightAmount": 0.0,
+          "leavesBelow": true,
+          "supportCollisionEmpty": false,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        },
+        {
+          "id": 13,
+          "uuid": "d93a14f6-6e38-4970-aef7-e8a933de3818",
+          "type": "fantasy_feudalism_mobs:crow",
+          "position": [
+            14.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "crow",
+          "flying": false,
+          "noGravity": false,
+          "flightAmount": 0.0,
+          "leavesBelow": true,
+          "supportCollisionEmpty": false,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        }
+      ],
+      "guest": [
+        {
+          "id": 10,
+          "uuid": "2926977a-7e02-4525-a067-507e0fcb7b20",
+          "type": "fantasy_feudalism_mobs:robin",
+          "position": [
+            5.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "robin",
+          "flying": false,
+          "noGravity": false,
+          "flightAmount": 0.0,
+          "leavesBelow": true,
+          "supportCollisionEmpty": false,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        },
+        {
+          "id": 11,
+          "uuid": "12781169-e766-4621-8686-18c3b3e02b88",
+          "type": "fantasy_feudalism_mobs:blue_jay",
+          "position": [
+            8.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "blue_jay",
+          "flying": false,
+          "noGravity": false,
+          "flightAmount": 0.0,
+          "leavesBelow": true,
+          "supportCollisionEmpty": false,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        },
+        {
+          "id": 12,
+          "uuid": "78dcbcd2-bf4c-4938-968f-2b4b451f347e",
+          "type": "fantasy_feudalism_mobs:goldfinch",
+          "position": [
+            11.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "goldfinch",
+          "flying": false,
+          "noGravity": false,
+          "flightAmount": 0.0,
+          "leavesBelow": true,
+          "supportCollisionEmpty": false,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        },
+        {
+          "id": 13,
+          "uuid": "d93a14f6-6e38-4970-aef7-e8a933de3818",
+          "type": "fantasy_feudalism_mobs:crow",
+          "position": [
+            14.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "crow",
+          "flying": false,
+          "noGravity": false,
+          "flightAmount": 0.0,
+          "leavesBelow": true,
+          "supportCollisionEmpty": false,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        }
+      ]
+    },
+    "guard": {
+      "id": 14,
+      "uuid": "abb2c69c-9e53-4ed1-873c-c09edb1e9269",
+      "type": "villagerscontract:defender",
+      "position": [
+        18.0,
+        64.0,
+        12.0
+      ],
+      "pose": "STANDING",
+      "onGround": false,
+      "inWater": false,
+      "alive": true,
+      "removed": false,
+      "invisible": false,
+      "silent": false,
+      "hurtTime": 0,
+      "health": 30.0,
+      "maxHealth": 30.0,
+      "effects": [],
+      "effectDetails": [],
+      "effectParticles": [],
+      "spawnType": "",
+      "target": -1,
+      "noAi": true,
+      "mainHand": {
+        "item": "minecraft:crossbow",
+        "count": 1,
+        "damage": 0
+      },
+      "offHand": {
+        "item": "minecraft:air",
+        "count": 0,
+        "damage": 0
+      },
+      "blocking": false,
+      "usingItem": false,
+      "sprinting": false,
+      "guard": {
+        "needsContract": false,
+        "isGuardCaptain": false,
+        "hunger": 20,
+        "skin": 2,
+        "order": "FOLLOW",
+        "supplies": [
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          }
+        ],
+        "weapons": [
+          {
+            "item": "minecraft:iron_sword",
+            "count": 1,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:shield",
+            "count": 1,
+            "damage": 0
+          },
+          {
+            "item": "minecraft:crossbow",
+            "count": 1,
+            "damage": 0
+          }
+        ],
+        "redeemer": "52d3a8c5-c3b6-391c-93f6-861ad99dcec8"
+      }
+    }
+  },
+  {
+    "name": "Taking off makes leaf collision empty for every bird on both clients",
+    "passed": true,
+    "observations": {
+      "owner": [
+        {
+          "id": 10,
+          "uuid": "2926977a-7e02-4525-a067-507e0fcb7b20",
+          "type": "fantasy_feudalism_mobs:robin",
+          "position": [
+            5.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "robin",
+          "flying": true,
+          "noGravity": true,
+          "flightAmount": 0.6,
+          "leavesBelow": true,
+          "supportCollisionEmpty": true,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        },
+        {
+          "id": 11,
+          "uuid": "12781169-e766-4621-8686-18c3b3e02b88",
+          "type": "fantasy_feudalism_mobs:blue_jay",
+          "position": [
+            8.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "blue_jay",
+          "flying": true,
+          "noGravity": true,
+          "flightAmount": 0.6,
+          "leavesBelow": true,
+          "supportCollisionEmpty": true,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        },
+        {
+          "id": 12,
+          "uuid": "78dcbcd2-bf4c-4938-968f-2b4b451f347e",
+          "type": "fantasy_feudalism_mobs:goldfinch",
+          "position": [
+            11.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "goldfinch",
+          "flying": true,
+          "noGravity": true,
+          "flightAmount": 0.6,
+          "leavesBelow": true,
+          "supportCollisionEmpty": true,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        },
+        {
+          "id": 13,
+          "uuid": "d93a14f6-6e38-4970-aef7-e8a933de3818",
+          "type": "fantasy_feudalism_mobs:crow",
+          "position": [
+            14.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "crow",
+          "flying": true,
+          "noGravity": true,
+          "flightAmount": 0.6,
+          "leavesBelow": true,
+          "supportCollisionEmpty": true,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        }
+      ],
+      "guest": [
+        {
+          "id": 10,
+          "uuid": "2926977a-7e02-4525-a067-507e0fcb7b20",
+          "type": "fantasy_feudalism_mobs:robin",
+          "position": [
+            5.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "robin",
+          "flying": true,
+          "noGravity": true,
+          "flightAmount": 0.75,
+          "leavesBelow": true,
+          "supportCollisionEmpty": true,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        },
+        {
+          "id": 11,
+          "uuid": "12781169-e766-4621-8686-18c3b3e02b88",
+          "type": "fantasy_feudalism_mobs:blue_jay",
+          "position": [
+            8.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "blue_jay",
+          "flying": true,
+          "noGravity": true,
+          "flightAmount": 0.75,
+          "leavesBelow": true,
+          "supportCollisionEmpty": true,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        },
+        {
+          "id": 12,
+          "uuid": "78dcbcd2-bf4c-4938-968f-2b4b451f347e",
+          "type": "fantasy_feudalism_mobs:goldfinch",
+          "position": [
+            11.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "goldfinch",
+          "flying": true,
+          "noGravity": true,
+          "flightAmount": 0.75,
+          "leavesBelow": true,
+          "supportCollisionEmpty": true,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        },
+        {
+          "id": 13,
+          "uuid": "d93a14f6-6e38-4970-aef7-e8a933de3818",
+          "type": "fantasy_feudalism_mobs:crow",
+          "position": [
+            14.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": true,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "crow",
+          "flying": true,
+          "noGravity": true,
+          "flightAmount": 0.75,
+          "leavesBelow": true,
+          "supportCollisionEmpty": true,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "Actual server movement carries all four flying birds through the leaf canopy",
+    "passed": true,
+    "birds": [
+      {
+        "id": 10,
+        "uuid": "2926977a-7e02-4525-a067-507e0fcb7b20",
+        "type": "fantasy_feudalism_mobs:robin",
+        "position": [
+          5.5,
+          66.75,
+          9.5
+        ],
+        "pose": "STANDING",
+        "onGround": false,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 6.0,
+        "maxHealth": 6.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "birdKind": "robin",
+        "flying": true,
+        "noGravity": true,
+        "flightAmount": 0.0,
+        "leavesBelow": false,
+        "supportCollisionEmpty": true,
+        "flock": "",
+        "nextFlight": 113263,
+        "navigation": "BirdFlightNavigation",
+        "aboveGround": 3.2799999713897705,
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false
+      },
+      {
+        "id": 11,
+        "uuid": "12781169-e766-4621-8686-18c3b3e02b88",
+        "type": "fantasy_feudalism_mobs:blue_jay",
+        "position": [
+          8.5,
+          66.75,
+          9.5
+        ],
+        "pose": "STANDING",
+        "onGround": false,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 6.0,
+        "maxHealth": 6.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "birdKind": "blue_jay",
+        "flying": true,
+        "noGravity": true,
+        "flightAmount": 0.0,
+        "leavesBelow": false,
+        "supportCollisionEmpty": true,
+        "flock": "",
+        "nextFlight": 113226,
+        "navigation": "BirdFlightNavigation",
+        "aboveGround": 3.3899999856948853,
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false
+      },
+      {
+        "id": 12,
+        "uuid": "78dcbcd2-bf4c-4938-968f-2b4b451f347e",
+        "type": "fantasy_feudalism_mobs:goldfinch",
+        "position": [
+          11.5,
+          66.75,
+          9.5
+        ],
+        "pose": "STANDING",
+        "onGround": false,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 6.0,
+        "maxHealth": 6.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "birdKind": "goldfinch",
+        "flying": true,
+        "noGravity": true,
+        "flightAmount": 0.0,
+        "leavesBelow": false,
+        "supportCollisionEmpty": true,
+        "flock": "",
+        "nextFlight": 113247,
+        "navigation": "BirdFlightNavigation",
+        "aboveGround": 3.229999989271164,
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false
+      },
+      {
+        "id": 13,
+        "uuid": "d93a14f6-6e38-4970-aef7-e8a933de3818",
+        "type": "fantasy_feudalism_mobs:crow",
+        "position": [
+          14.5,
+          66.75,
+          9.5
+        ],
+        "pose": "STANDING",
+        "onGround": false,
+        "inWater": false,
+        "alive": true,
+        "removed": false,
+        "invisible": false,
+        "silent": false,
+        "hurtTime": 0,
+        "health": 8.0,
+        "maxHealth": 8.0,
+        "effects": [],
+        "effectDetails": [],
+        "effectParticles": [],
+        "birdKind": "crow",
+        "flying": true,
+        "noGravity": true,
+        "flightAmount": 0.0,
+        "leavesBelow": false,
+        "supportCollisionEmpty": true,
+        "flock": "",
+        "nextFlight": 113275,
+        "navigation": "BirdFlightNavigation",
+        "aboveGround": 3.4100000262260437,
+        "spawnType": "",
+        "target": -1,
+        "noAi": true,
+        "mainHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "offHand": {
+          "item": "minecraft:air",
+          "count": 0,
+          "damage": 0
+        },
+        "blocking": false,
+        "usingItem": false,
+        "sprinting": false
+      }
+    ]
+  },
+  {
+    "name": "Returning to a perch restores leaf support on both clients",
+    "passed": true,
+    "observations": {
+      "owner": [
+        {
+          "id": 10,
+          "uuid": "2926977a-7e02-4525-a067-507e0fcb7b20",
+          "type": "fantasy_feudalism_mobs:robin",
+          "position": [
+            5.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": false,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "robin",
+          "flying": false,
+          "noGravity": false,
+          "flightAmount": 0.25000006,
+          "leavesBelow": true,
+          "supportCollisionEmpty": false,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        },
+        {
+          "id": 11,
+          "uuid": "12781169-e766-4621-8686-18c3b3e02b88",
+          "type": "fantasy_feudalism_mobs:blue_jay",
+          "position": [
+            8.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": false,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "blue_jay",
+          "flying": false,
+          "noGravity": false,
+          "flightAmount": 0.25000006,
+          "leavesBelow": true,
+          "supportCollisionEmpty": false,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        },
+        {
+          "id": 12,
+          "uuid": "78dcbcd2-bf4c-4938-968f-2b4b451f347e",
+          "type": "fantasy_feudalism_mobs:goldfinch",
+          "position": [
+            11.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": false,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "goldfinch",
+          "flying": false,
+          "noGravity": false,
+          "flightAmount": 0.25000006,
+          "leavesBelow": true,
+          "supportCollisionEmpty": false,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        },
+        {
+          "id": 13,
+          "uuid": "d93a14f6-6e38-4970-aef7-e8a933de3818",
+          "type": "fantasy_feudalism_mobs:crow",
+          "position": [
+            14.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": false,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "crow",
+          "flying": false,
+          "noGravity": false,
+          "flightAmount": 0.25000006,
+          "leavesBelow": true,
+          "supportCollisionEmpty": false,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        }
+      ],
+      "guest": [
+        {
+          "id": 10,
+          "uuid": "2926977a-7e02-4525-a067-507e0fcb7b20",
+          "type": "fantasy_feudalism_mobs:robin",
+          "position": [
+            5.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": false,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "robin",
+          "flying": false,
+          "noGravity": false,
+          "flightAmount": 0.25000006,
+          "leavesBelow": true,
+          "supportCollisionEmpty": false,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        },
+        {
+          "id": 11,
+          "uuid": "12781169-e766-4621-8686-18c3b3e02b88",
+          "type": "fantasy_feudalism_mobs:blue_jay",
+          "position": [
+            8.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": false,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "blue_jay",
+          "flying": false,
+          "noGravity": false,
+          "flightAmount": 0.25000006,
+          "leavesBelow": true,
+          "supportCollisionEmpty": false,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        },
+        {
+          "id": 12,
+          "uuid": "78dcbcd2-bf4c-4938-968f-2b4b451f347e",
+          "type": "fantasy_feudalism_mobs:goldfinch",
+          "position": [
+            11.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": false,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 6.0,
+          "maxHealth": 6.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "goldfinch",
+          "flying": false,
+          "noGravity": false,
+          "flightAmount": 0.25000006,
+          "leavesBelow": true,
+          "supportCollisionEmpty": false,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        },
+        {
+          "id": 13,
+          "uuid": "d93a14f6-6e38-4970-aef7-e8a933de3818",
+          "type": "fantasy_feudalism_mobs:crow",
+          "position": [
+            14.5,
+            68.0,
+            9.5
+          ],
+          "pose": "STANDING",
+          "onGround": false,
+          "inWater": false,
+          "alive": true,
+          "removed": false,
+          "invisible": false,
+          "silent": false,
+          "hurtTime": 0,
+          "health": 8.0,
+          "maxHealth": 8.0,
+          "effects": [],
+          "effectDetails": [],
+          "effectParticles": [],
+          "birdKind": "crow",
+          "flying": false,
+          "noGravity": false,
+          "flightAmount": 0.25000006,
+          "leavesBelow": true,
+          "supportCollisionEmpty": false,
+          "spawnType": "",
+          "target": -1,
+          "noAi": true,
+          "mainHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "offHand": {
+            "item": "minecraft:air",
+            "count": 0,
+            "damage": 0
+          },
+          "blocking": false,
+          "usingItem": false,
+          "sprinting": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "No bird rendering errors occur during flight and perch transitions",
+    "passed": true
+  }
+]

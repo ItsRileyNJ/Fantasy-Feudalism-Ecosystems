@@ -146,6 +146,11 @@ dependencies {
     if (compatibilityMod.isPresent()) {
         localRuntime files(compatibilityMod.get())
     }
+    // Optional real-mod fixtures; never packaged or published as dependencies.
+    if (providers.gradleProperty('foliageMod').isPresent()) {
+        localRuntime files(providers.gradleProperty('foliageMod').get())
+        localRuntime files(providers.gradleProperty('kiwiMod').get())
+    }
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"

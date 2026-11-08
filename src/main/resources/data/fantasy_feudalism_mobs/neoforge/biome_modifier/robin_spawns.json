@@ -5,8 +5,8 @@
     {
       "type": "fantasy_feudalism_mobs:robin",
       "weight": 6,
-      "minCount": 3,
-      "maxCount": 6
+      "minCount": 2,
+      "maxCount": 2
     }
   ]
 }

@@ -38,8 +38,6 @@ public final class ForestBirdGeometry {
         head.addOrReplaceChild("orange_face",CubeListBuilder.create().texOffs(32,0).addBox(-1.15F,-1.5F,-2.03F,2.3F,1.5F,0.03F),PartPose.ZERO);
         head.addOrReplaceChild("left_front_eye",CubeListBuilder.create().texOffs(160,0).addBox(-1.65F,-2.85F,-2.065F,0.6F,0.75F,0.04F),PartPose.ZERO);
         head.addOrReplaceChild("right_front_eye",CubeListBuilder.create().texOffs(160,0).addBox(1.05F,-2.85F,-2.065F,0.6F,0.75F,0.04F),PartPose.ZERO);
-        head.addOrReplaceChild("left_side_eye",CubeListBuilder.create().texOffs(160,0).addBox(-2.035F,-2.85F,-1.7F,0.035F,0.75F,0.55F),PartPose.ZERO);
-        head.addOrReplaceChild("right_side_eye",CubeListBuilder.create().texOffs(160,0).addBox(2F,-2.85F,-1.7F,0.035F,0.75F,0.55F),PartPose.ZERO);
         }
         case BLUE_JAY -> {
         left_leg.addOrReplaceChild("cube_0",CubeListBuilder.create().texOffs(128,32).addBox(-0.5F,2F,-1.8F,1F,0.5F,2.5F),PartPose.ZERO);
@@ -69,8 +67,6 @@ public final class ForestBirdGeometry {
         body.addOrReplaceChild("necklace",CubeListBuilder.create().texOffs(32,32).addBox(-2F,-6.5F,-2.03F,4F,0.6F,4.04F),PartPose.ZERO);
         head.addOrReplaceChild("left_front_eye",CubeListBuilder.create().texOffs(160,32).addBox(-1.65F,-2.85F,-2.065F,0.6F,0.75F,0.04F),PartPose.ZERO);
         head.addOrReplaceChild("right_front_eye",CubeListBuilder.create().texOffs(160,32).addBox(1.05F,-2.85F,-2.065F,0.6F,0.75F,0.04F),PartPose.ZERO);
-        head.addOrReplaceChild("left_side_eye",CubeListBuilder.create().texOffs(160,32).addBox(-2.035F,-2.85F,-1.7F,0.035F,0.75F,0.55F),PartPose.ZERO);
-        head.addOrReplaceChild("right_side_eye",CubeListBuilder.create().texOffs(160,32).addBox(2F,-2.85F,-1.7F,0.035F,0.75F,0.55F),PartPose.ZERO);
         }
         case GOLDFINCH -> {
         left_leg.addOrReplaceChild("cube_0",CubeListBuilder.create().texOffs(224,64).addBox(-0.5F,2F,-1.8F,1F,0.5F,2.5F),PartPose.ZERO);
@@ -96,8 +92,6 @@ public final class ForestBirdGeometry {
         head.addOrReplaceChild("black_cap",CubeListBuilder.create().texOffs(160,64).addBox(-2.015F,-4.035F,-2.015F,4.03F,0.04F,4.03F),PartPose.ZERO);
         head.addOrReplaceChild("left_front_eye",CubeListBuilder.create().texOffs(160,64).addBox(-1.65F,-2.85F,-2.065F,0.6F,0.75F,0.04F),PartPose.ZERO);
         head.addOrReplaceChild("right_front_eye",CubeListBuilder.create().texOffs(160,64).addBox(1.05F,-2.85F,-2.065F,0.6F,0.75F,0.04F),PartPose.ZERO);
-        head.addOrReplaceChild("left_side_eye",CubeListBuilder.create().texOffs(160,64).addBox(-2.035F,-2.85F,-1.7F,0.035F,0.75F,0.55F),PartPose.ZERO);
-        head.addOrReplaceChild("right_side_eye",CubeListBuilder.create().texOffs(160,64).addBox(2F,-2.85F,-1.7F,0.035F,0.75F,0.55F),PartPose.ZERO);
         }
         case CROW -> {
         left_leg.addOrReplaceChild("cube_0",CubeListBuilder.create().texOffs(128,96).addBox(-0.5F,2F,-1.8F,1F,0.5F,2.5F),PartPose.ZERO);
@@ -118,8 +112,6 @@ public final class ForestBirdGeometry {
         right_wing.addOrReplaceChild("cube_15",CubeListBuilder.create().texOffs(64,96).addBox(3F,0F,2F,1F,1F,1F),PartPose.ZERO);
         head.addOrReplaceChild("left_front_eye",CubeListBuilder.create().texOffs(160,96).addBox(-1.65F,-2.85F,-2.065F,0.6F,0.75F,0.04F),PartPose.ZERO);
         head.addOrReplaceChild("right_front_eye",CubeListBuilder.create().texOffs(160,96).addBox(1.05F,-2.85F,-2.065F,0.6F,0.75F,0.04F),PartPose.ZERO);
-        head.addOrReplaceChild("left_side_eye",CubeListBuilder.create().texOffs(160,96).addBox(-2.035F,-2.85F,-1.7F,0.035F,0.75F,0.55F),PartPose.ZERO);
-        head.addOrReplaceChild("right_side_eye",CubeListBuilder.create().texOffs(160,96).addBox(2F,-2.85F,-1.7F,0.035F,0.75F,0.55F),PartPose.ZERO);
         }
         }
         return LayerDefinition.create(mesh,256,128);

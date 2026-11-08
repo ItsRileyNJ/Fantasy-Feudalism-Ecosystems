@@ -28,9 +28,18 @@ public final class ForestBird extends PathfinderMob implements FlyingAnimal {
     private final PathNavigation groundNavigation,airNavigation;
     private final MoveControl groundControl,airControl;
     private float oldFlight,flight;
-    private UUID flock;
-    private long nextFlight,landingGrace;
-    private Vec3 flightHint;
+    private UUID flock,partnerId;
+    private ForestBird cachedPartner;
+    private long nextPairSearch,missingPartnerSince;
+    private long nextFlight,landingGrace,cruiseUntil;
+    public long cruiseUntil() { return cruiseUntil; }
+    public void setCruiseUntil(long value) { cruiseUntil=value; }
+    private Vec3 flightHint,landingDestination;
+    public Vec3 landingDestination() { return landingDestination; }
+    public void setLandingDestination(Vec3 value) { landingDestination=value; }
+    private boolean landingFlight;
+    public boolean landingFlight() { return landingFlight; }
+    public void setLandingFlight(boolean value) { landingFlight=value; }
     public ForestBird(EntityType<? extends ForestBird> type,Level level,BirdKind kind) {
         super(type,level);this.kind=kind;
         groundNavigation=navigation;groundControl=moveControl;
@@ -45,8 +54,40 @@ public final class ForestBird extends PathfinderMob implements FlyingAnimal {
                 .add(Attributes.MOVEMENT_SPEED,.18).add(Attributes.FLYING_SPEED,.6).add(Attributes.FOLLOW_RANGE,24);
     }
     public BirdKind kind() { return kind; }
-    @Override public int getMaxSpawnClusterSize() { return kind.flocking?6:1; }
+    @Override public int getMaxSpawnClusterSize() { return kind==BirdKind.ROBIN?2:kind.flocking?6:1; }
     public UUID flock() { return flock; }
+    /** Only loaded partners participate; pairing never loads another chunk. */
+    public ForestBird partner() {
+        if(kind!=BirdKind.ROBIN||partnerId==null||!(level() instanceof ServerLevel server))return null;
+        if(cachedPartner!=null&&(cachedPartner.getHealth()<=0||(cachedPartner.getRemovalReason()!=null&&cachedPartner.getRemovalReason().shouldDestroy()))) {
+            partnerId=null;cachedPartner=null;return null;
+        }
+        var found=server.getEntity(partnerId);
+        if(found instanceof ForestBird other&&other.isAlive()&&other.kind==BirdKind.ROBIN
+                &&getUUID().equals(other.partnerId)) {
+            cachedPartner=other;missingPartnerSince=0;return other;
+        }
+        long now=level().getGameTime();
+        if(missingPartnerSince==0)missingPartnerSince=now;
+        if(now-missingPartnerSince>=600) { partnerId=null;cachedPartner=null;missingPartnerSince=0; }
+        return null;
+    }
+    public void findPartner() {
+        if(kind!=BirdKind.ROBIN||level().isClientSide||partner()!=null||partnerId!=null)return;
+        var candidates=level().getEntitiesOfClass(ForestBird.class,getBoundingBox().inflate(16,6,16),
+                b->b!=this&&b.kind==BirdKind.ROBIN&&b.isAlive()&&!b.isNoAi()&&b.partnerId==null);
+        candidates.sort(java.util.Comparator.<ForestBird>comparingInt(b->flock!=null&&flock.equals(b.flock)?0:1)
+                .thenComparingDouble(this::distanceToSqr).thenComparing(ForestBird::getUUID));
+        if(!candidates.isEmpty()) {
+            var other=candidates.getFirst();partnerId=other.getUUID();other.partnerId=getUUID();
+            cachedPartner=other;other.cachedPartner=this;missingPartnerSince=other.missingPartnerSince=0;
+        }
+    }
+    public boolean pairCanFly() {
+        var other=partner();return other!=null&&!other.isNoAi()&&!other.isLeashed()&&!other.isPassenger()&&!other.isVehicle()
+                &&distanceToSqr(other)<=16*16;
+    }
+    public boolean followsPartner() { var other=partner();return other!=null&&getUUID().compareTo(other.getUUID())>0; }
     public long nextFlight() { return nextFlight; }
     public boolean settling() { return level().getGameTime()<landingGrace; }
     public void scheduleFlight() { nextFlight=level().getGameTime()+80+getRandom().nextInt(81);flightHint=null; }
@@ -68,6 +109,9 @@ public final class ForestBird extends PathfinderMob implements FlyingAnimal {
     public float flightAmount(float partial) { return Mth.lerp(partial,oldFlight,flight); }
     @Override public void aiStep() {
         super.aiStep();
+        if(!level().isClientSide&&kind==BirdKind.ROBIN&&!isNoAi()&&level().getGameTime()>=nextPairSearch) {
+            nextPairSearch=level().getGameTime()+100;findPartner();
+        }
         if(level().isClientSide) { oldFlight=flight;flight+=Mth.clamp((isFlying()?1:0)-flight,-.15F,.15F); }
     }
     @Override public void travel(Vec3 input) {
@@ -112,16 +156,16 @@ public final class ForestBird extends PathfinderMob implements FlyingAnimal {
     @Override public SpawnGroupData finalizeSpawn(ServerLevelAccessor level,DifficultyInstance difficulty,MobSpawnType reason,@Nullable SpawnGroupData data) {
         var result=super.finalizeSpawn(level,difficulty,reason,data);
         if(kind.flocking) {
-            FlockData group=data instanceof FlockData f&&f.kind==kind&&f.size<6?f:new FlockData(kind);
+            FlockData group=data instanceof FlockData f&&f.kind==kind&&f.size<getMaxSpawnClusterSize()?f:new FlockData(kind);
             flock=group.id;group.size++;return group;
         }
         return result;
     }
     @Override public void addAdditionalSaveData(CompoundTag tag) {
-        super.addAdditionalSaveData(tag);if(flock!=null)tag.putUUID("BirdFlock",flock);tag.putLong("NextBirdFlight",nextFlight);
+        super.addAdditionalSaveData(tag);if(flock!=null)tag.putUUID("BirdFlock",flock);tag.putLong("NextBirdFlight",nextFlight);if(partnerId!=null)tag.putUUID("BirdPartner",partnerId);
     }
     @Override public void readAdditionalSaveData(CompoundTag tag) {
-        super.readAdditionalSaveData(tag);flock=tag.hasUUID("BirdFlock")?tag.getUUID("BirdFlock"):null;
+        super.readAdditionalSaveData(tag);partnerId=tag.hasUUID("BirdPartner")?tag.getUUID("BirdPartner"):null;cachedPartner=null;missingPartnerSince=0;flock=tag.hasUUID("BirdFlock")?tag.getUUID("BirdFlock"):null;
         if(tag.contains("NextBirdFlight"))nextFlight=Math.min(tag.getLong("NextBirdFlight"),level().getGameTime()+160);else scheduleFlight();
         // An unloaded flight must resume through the flight goal, never remain saved in a hovering pose.
         setFlying(false);setNoGravity(false);

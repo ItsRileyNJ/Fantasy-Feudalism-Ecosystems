@@ -24,6 +24,7 @@ public final class DeepAuditTests {
         var player=new net.minecraft.server.level.ServerPlayer(h.getLevel().getServer(),h.getLevel(),cookie.gameProfile(),cookie.clientInformation());
         var connection=new net.minecraft.network.Connection(net.minecraft.network.protocol.PacketFlow.SERVERBOUND);
         new io.netty.channel.embedded.EmbeddedChannel(connection);
+        net.neoforged.neoforge.network.registration.NetworkRegistry.configureMockConnection(connection);
         h.getLevel().getServer().getPlayerList().placeNewPlayer(connection,player,cookie);
         player.setGameMode(GameType.SURVIVAL);player.moveTo(h.absoluteVec(new net.minecraft.world.phys.Vec3(4,2,8)));
         return player;

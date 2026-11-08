@@ -50,7 +50,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("jar", type=Path, help="User-supplied Mercenaries 1.15.7 JAR")
     parser.add_argument("--suite", choices=("all", "ecosystems", "mercenaries"), default="all")
+    parser.add_argument("--foliage", type=Path, help="Optional Passable Foliage NeoForge JAR")
+    parser.add_argument("--kiwi", type=Path, help="Kiwi dependency JAR required with --foliage")
     args = parser.parse_args()
+    if bool(args.foliage) != bool(args.kiwi):
+        parser.error("--foliage and --kiwi must be provided together")
     jar = args.jar.resolve(strict=True)
     expected = "32fba122dde2819abdd64a46ee350dc3e6f2533e34c8b7360700e2a8239d0a65"
     if hashlib.sha256(jar.read_bytes()).hexdigest() != expected:
@@ -62,7 +66,7 @@ def main():
     (root / "run").mkdir(exist_ok=True)
     output = Path(tempfile.mkdtemp(prefix="compatibility-", dir=root / "run"))
     print(f"Mercenaries SHA-256: {expected}\nFresh worlds and logs: {output}", flush=True)
-    suites = {"ecosystems": ("fantasy_feudalism_mobs", 256), "mercenaries": ("villagerscontract", 338)}
+    suites = {"ecosystems": ("fantasy_feudalism_mobs", 264), "mercenaries": ("villagerscontract", 338)}
     for name, (namespace, minimum) in suites.items():
         if args.suite not in ("all", name):
             continue
@@ -72,6 +76,8 @@ def main():
         command = gradle + ["--no-daemon", "runGameTestServer", "build", "multiplayerTestJar",
                             f"-PcompatibilityMod={jar}", f"-PgameTestNamespaces={namespace}",
                             f"-PgameTestDirectory={output / name}"]
+        if args.foliage:
+            command += [f"-PfoliageMod={args.foliage.resolve(strict=True)}",f"-PkiwiMod={args.kiwi.resolve(strict=True)}"]
         print(f"Running {name}; log: {log}", flush=True)
         returncode = run_suite(command, root, log)
         text = log.read_text()
