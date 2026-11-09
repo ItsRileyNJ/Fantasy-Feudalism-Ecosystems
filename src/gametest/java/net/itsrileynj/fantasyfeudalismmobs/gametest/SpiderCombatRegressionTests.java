@@ -111,8 +111,8 @@ public final class SpiderCombatRegressionTests {
                 h.assertTrue(spider.doHurtTarget(target), "Hostile hit succeeds");
                 for (var effect : List.of(MobEffects.MOVEMENT_SLOWDOWN, MobEffects.WEAKNESS)) {
                     var actual = target.getEffect(effect);
-                    h.assertTrue(actual != null && actual.getAmplifier() == 0 && actual.getDuration() == 120,
-                            "Eligible hostile receives six seconds of level I " + effect);
+                    h.assertTrue(actual != null && actual.getAmplifier() == 0 && actual.getDuration() == (cave?120:60),
+                            "Eligible hostile receives the species-specific duration of level I " + effect);
                 }
                 var poison = target.getEffect(MobEffects.POISON);
                 h.assertTrue(cave ? poison != null && poison.getAmplifier() == 0 && poison.getDuration() == 120 : poison == null,
@@ -139,4 +139,31 @@ public final class SpiderCombatRegressionTests {
                     && second.hasEffect(MobEffects.POISON), "Cave companion must reach and apply all three effects");
         });
     }
+    @GameTest(template="test_empty",batch="spider_all_hits")
+    public static void tamedNormalSpiderDebuffsEverySuccessfulTargetAndRefreshesThreeSeconds(GameTestHelper h) {
+        var pet=spider(h,1);
+        for(var type:List.of(EntityType.SKELETON,EntityType.ZOMBIE,EntityType.SPIDER,EntityType.COW)) {
+            var victim=h.spawn(type,7,2,4);victim.setNoAi(true);
+            h.assertTrue(pet.doHurtTarget(victim),"A permitted hit lands on "+type);
+            for(var effect:List.of(MobEffects.MOVEMENT_SLOWDOWN,MobEffects.WEAKNESS)) {
+                var applied=victim.getEffect(effect);h.assertTrue(applied!=null&&applied.getAmplifier()==0&&applied.getDuration()==60,"Every normal pet-spider hit applies three seconds at level I");
+            }
+            h.assertFalse(victim.hasEffect(MobEffects.POISON),"Normal pets never add cave-spider poison");victim.discard();
+        }
+        var victim=h.spawn(EntityType.COW,7,2,4);victim.setNoAi(true);pet.doHurtTarget(victim);
+        for(int i=0;i<20;i++)victim.tick();
+        h.assertTrue(victim.getEffect(MobEffects.WEAKNESS).getDuration()<60,"The first effect naturally counts down");
+        h.assertTrue(pet.doHurtTarget(victim),"The next hit lands after native hurt immunity expires");
+        h.assertTrue(victim.getEffect(MobEffects.WEAKNESS).getDuration()==60&&victim.getEffect(MobEffects.MOVEMENT_SLOWDOWN).getDuration()==60,"Each new hit refreshes both durations to three seconds");h.succeed();
+    }
+    @GameTest(template="test_empty",batch="spider_all_hits")
+    public static void wildSpidersAndRejectedPetHitsDoNotGainTheNewDebuffs(GameTestHelper h) {
+        for(int variant:new int[]{0,2}) {
+            var wild=spider(h,variant);var victim=h.spawn(EntityType.COW,7,2,4);victim.setNoAi(true);wild.doHurtTarget(victim);
+            h.assertTrue(!victim.hasEffect(MobEffects.WEAKNESS)&&!victim.hasEffect(MobEffects.MOVEMENT_SLOWDOWN),"Wild spiders retain their existing attack effects");wild.discard();victim.discard();
+        }
+        var pet=spider(h,1);var victim=h.spawn(EntityType.COW,7,2,4);victim.setInvulnerable(true);
+        h.assertFalse(pet.doHurtTarget(victim),"An invulnerable target rejects the attack");h.assertTrue(victim.getActiveEffects().isEmpty(),"Rejected attacks cannot apply either debuff");h.succeed();
+    }
+
 }

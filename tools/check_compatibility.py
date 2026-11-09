@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run both mods' unmodified GameTests against the supported Mercenaries JAR."""
+"""Run Ecosystems GameTests with supported real-mod fixtures and optional targeted filters."""
 import argparse
 import hashlib
 from pathlib import Path
@@ -49,9 +49,11 @@ def run_suite(command, root, log):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("jar", type=Path, help="User-supplied Mercenaries 1.15.7 JAR")
-    parser.add_argument("--suite", choices=("all", "ecosystems", "mercenaries"), default="all")
+    parser.add_argument("--suite", choices=("all", "ecosystems", "mercenaries"), default="ecosystems")
     parser.add_argument("--foliage", type=Path, help="Optional Passable Foliage NeoForge JAR")
     parser.add_argument("--kiwi", type=Path, help="Kiwi dependency JAR required with --foliage")
+    parser.add_argument("--filter", help="Run only GameTests whose names match this case-insensitive regex")
+    parser.add_argument("--min-tests", type=int, default=1, help="Minimum passing tests when --filter is used")
     args = parser.parse_args()
     if bool(args.foliage) != bool(args.kiwi):
         parser.error("--foliage and --kiwi must be provided together")
@@ -66,16 +68,20 @@ def main():
     (root / "run").mkdir(exist_ok=True)
     output = Path(tempfile.mkdtemp(prefix="compatibility-", dir=root / "run"))
     print(f"Mercenaries SHA-256: {expected}\nFresh worlds and logs: {output}", flush=True)
-    suites = {"ecosystems": ("fantasy_feudalism_mobs", 269), "mercenaries": ("villagerscontract", 338)}
+    suites = {"ecosystems": ("fantasy_feudalism_mobs", 272), "mercenaries": ("villagerscontract", 338)}
     for name, (namespace, minimum) in suites.items():
         if args.suite not in ("all", name):
             continue
+        if args.filter:
+            minimum=args.min_tests
         log = output / f"{name}.log"
         # A single-use daemon keeps the game JVM inside this invocation's process group,
         # so aborting a stalled run also stops its descendants rather than leaking a server.
         command = gradle + ["--no-daemon", "runGameTestServer", "build", "multiplayerTestJar",
                             f"-PcompatibilityMod={jar}", f"-PgameTestNamespaces={namespace}",
                             f"-PgameTestDirectory={output / name}"]
+        if args.filter:
+            command += [f"-PgameTestFilter={args.filter}"]
         if args.foliage:
             command += [f"-PfoliageMod={args.foliage.resolve(strict=True)}",f"-PkiwiMod={args.kiwi.resolve(strict=True)}"]
         print(f"Running {name}; log: {log}", flush=True)

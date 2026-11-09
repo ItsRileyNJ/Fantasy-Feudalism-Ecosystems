@@ -557,3 +557,16 @@ Use separate registered sound events for robin, blue jay, goldfinch and crow amb
 ## Validation scope preference
 
 Prefer relevant Ecosystems tests for each change. Run the full suite or companion-mod suites only when shared behavior or integration risk makes broader validation necessary. Do not repeat passing tests solely to commit or push.
+
+
+## Confirmed sitting spider abdomen adjustment (0.1.44)
+
+Increase the downward sitting-abdomen pitch from -0.18 to -0.25 radians for tamed spiders and cave spiders. Keep the adjustment limited to sitting, with the existing per-render reset preserving ordinary standing and walking poses.
+
+
+## Confirmed connected sitting pose and pet-spider debuffs (0.1.45)
+
+- Keep the sitting abdomen attached to the thorax by compensating its native pivot around the front-center attachment, six model units in front of the abdomen center. Retain the -0.25-radian downward angle. Reset pitch and both Y/Z offsets for every render so standing/walking and other spiders remain unaffected.
+- Every successful permitted attack by a tamed normal spider applies Slowness I and Weakness I for 60 ticks (three seconds), refreshing on later hits. Include targets previously excluded from normal-spider debuffs, such as skeletons, zombies and spiders, and permitted non-hostile targets. Respect owner/alliance/Creative/Spectator/PvP protections and native effect-strength rules. Rejected attacks apply neither effect. Wild spiders and existing cave-spider behavior are unchanged.
+- Field mice keep the three-cat minimum and one-mouse-per-three-cats saved population cap. Add one additional village census at morning tick 500 (25 seconds after dawn at 20 TPS), within the existing tick 0–999 morning window. Recompute missing slots from current loaded cats and saved residents. Save the second-check day stamp to prevent duplicate checks on reload. No extra daytime/nighttime census, per-tick farm scan or quota increase.
+- Test runs should default to Ecosystems. A name regex can select affected cases using the test-only filter; missing matches fail instead of reporting a misleading pass.

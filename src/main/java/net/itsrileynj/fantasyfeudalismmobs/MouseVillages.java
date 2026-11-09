@@ -17,12 +17,13 @@ import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.EntityLeaveLevelEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
 
-/** One bounded census each morning. Saved reservations include unloaded mice and survive restart. */
+/** Two bounded censuses each morning. Saved reservations include unloaded mice and survive restart. */
 public final class MouseVillages extends SavedData {
     private static final Factory<MouseVillages> FACTORY=new Factory<>(MouseVillages::new,MouseVillages::load);
     private final Map<UUID,BlockPos> residents=new HashMap<>();
     private final ArrayDeque<PendingVillage> pending=new ArrayDeque<>();
     private long lastMorning=Long.MIN_VALUE;
+    private long secondMorning=Long.MIN_VALUE;
     private long lastWorkTick=Long.MIN_VALUE;
     public static MouseVillages get(ServerLevel level){return level.getDataStorage().computeIfAbsent(FACTORY,"ffm_field_mice");}
     public static int quota(int cats){return Math.max(0,cats)/3;}
@@ -54,8 +55,14 @@ public final class MouseVillages extends SavedData {
         if(Math.floorMod(time,24000)>=1000){if(!pending.isEmpty()){pending.clear();setDirty();}return 0;}
         if(day<lastMorning)return 0;
         if(day>lastMorning){
-            pending.clear();lastMorning=day;setDirty();
+            pending.clear();lastMorning=day;if(Math.floorMod(time,24000)>=500)secondMorning=day;setDirty();
             if(level.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING))plan(level);
+        }
+        if(Math.floorMod(time,24000)>=500&&secondMorning<day) {
+            secondMorning=day;setDirty();
+            if(level.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING)) {
+                pending.clear();plan(level);
+            }
         }
         if(!level.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING)){
             if(!pending.isEmpty()){pending.clear();setDirty();}return 0;
@@ -132,6 +139,7 @@ public final class MouseVillages extends SavedData {
     public static MouseVillages load(CompoundTag tag,HolderLookup.Provider registries){
         var data=new MouseVillages();
         if(tag.contains("LastMorning"))data.lastMorning=tag.getLong("LastMorning");
+        if(tag.contains("SecondMorning"))data.secondMorning=tag.getLong("SecondMorning");
         for(Tag entry:tag.getList("Mice",Tag.TAG_COMPOUND)){
             var row=(CompoundTag)entry;if(row.hasUUID("Id"))data.residents.put(row.getUUID("Id"),BlockPos.of(row.getLong("Home")));
         }
@@ -147,7 +155,7 @@ public final class MouseVillages extends SavedData {
         return data;
     }
     @Override public CompoundTag save(CompoundTag tag,HolderLookup.Provider registries){
-        tag.putLong("LastMorning",lastMorning);var list=new ListTag();
+        tag.putLong("LastMorning",lastMorning);tag.putLong("SecondMorning",secondMorning);var list=new ListTag();
         residents.forEach((id,pos)->{var row=new CompoundTag();row.putUUID("Id",id);row.putLong("Home",pos.asLong());list.add(row);});
         tag.put("Mice",list);var jobs=new ListTag();
         for(var job:pending){

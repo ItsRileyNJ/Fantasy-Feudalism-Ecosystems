@@ -19,10 +19,15 @@ public abstract class SpiderModelMixin {
     @Inject(method = "setupAnim(Lnet/minecraft/world/entity/Entity;FFFFF)V", at = @At("TAIL"))
     private void ffm$tiltSittingAbdomen(Entity entity, float walk, float amplitude, float age, float yaw, float pitch, CallbackInfo ci) {
         ModelPart abdomen = root.getChild("body1");
-        // Reset on every entity: this model is shared by wild and tamed spiders.
-        abdomen.y = abdomen.getInitialPose().y;
-        // Negative pitch tips the rear (+Z) downward in model coordinates.
-        abdomen.xRot = abdomen.getInitialPose().xRot + (entity instanceof Spider spider
-                && SpiderCompanion.isTamed(spider) && SpiderCompanion.isSitting(spider) ? -0.18F : 0.0F);
+        // The abdomen's front center is six model units ahead of its native center pivot.
+        // Compensate the rotated pivot so that attachment stays fixed to the thorax.
+        var initial=abdomen.getInitialPose();
+        abdomen.y=initial.y;abdomen.z=initial.z;abdomen.xRot=initial.xRot;
+        if(entity instanceof Spider spider&&SpiderCompanion.isTamed(spider)&&SpiderCompanion.isSitting(spider)) {
+            float angle=initial.xRot-.25F;
+            abdomen.y-=6F*((float)Math.sin(angle)-(float)Math.sin(initial.xRot));
+            abdomen.z+=6F*((float)Math.cos(angle)-(float)Math.cos(initial.xRot));
+            abdomen.xRot=angle;
+        }
     }
 }

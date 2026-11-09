@@ -173,7 +173,7 @@ public final class FeudalGameTests {
             h.assertTrue(spider.doHurtTarget(target), "Attack must land");
             for (var effect : List.of(MobEffects.MOVEMENT_SLOWDOWN, MobEffects.WEAKNESS)) {
                 h.assertTrue(target.hasEffect(effect), "Required spider effect");
-                near(h, target.getEffect(effect).getDuration(), 120, "Six-second duration");
+                near(h, target.getEffect(effect).getDuration(), cave?120:60, "Species-specific effect duration");
                 near(h, target.getEffect(effect).getAmplifier(), 0, "Level I");
             }
             h.assertTrue(target.hasEffect(MobEffects.POISON) == cave, "Poison only for cave spiders");

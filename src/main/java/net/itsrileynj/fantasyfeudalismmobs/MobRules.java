@@ -116,12 +116,15 @@ public final class MobRules {
     }
 
     public static void afterHit(Mob attacker, Entity victim) {
-        if (attacker instanceof Spider spider && SpiderCompanion.isTamed(spider)
-                && victim instanceof LivingEntity target && target instanceof Enemy && !target.isAlliedTo(spider)
-                && !SpiderCompanion.effectExcluded(target)) {
-            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 0), spider);
-            target.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 120, 0), spider);
-            if (spider instanceof CaveSpider) target.addEffect(new MobEffectInstance(MobEffects.POISON, 120, 0), spider);
+        if (attacker instanceof Spider spider&&SpiderCompanion.isTamed(spider)&&victim instanceof LivingEntity target) {
+            if(!(spider instanceof CaveSpider)&&SpiderGoals.mayAttack(spider,target)) {
+                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,60,0),spider);
+                target.addEffect(new MobEffectInstance(MobEffects.WEAKNESS,60,0),spider);
+            } else if(spider instanceof CaveSpider&&target instanceof Enemy&&!target.isAlliedTo(spider)&&!SpiderCompanion.effectExcluded(target)) {
+                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,120,0),spider);
+                target.addEffect(new MobEffectInstance(MobEffects.WEAKNESS,120,0),spider);
+                target.addEffect(new MobEffectInstance(MobEffects.POISON,120,0),spider);
+            }
         }
         if (attacker instanceof EnderMan enderman && victim instanceof Player player) {
             enderman.stopBeingAngry();

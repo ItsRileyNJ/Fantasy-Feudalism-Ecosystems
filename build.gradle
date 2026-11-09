@@ -93,6 +93,9 @@ neoForge {
         // The gametest system is also enabled by default for other run configs under the /test command.
         gameTestServer {
             type = "gameTestServer"
+            if (providers.gradleProperty('gameTestFilter').isPresent()) {
+                systemProperty 'ffm.gameTestFilter', providers.gradleProperty('gameTestFilter').get()
+            }
             if (providers.gradleProperty('gameTestDirectory').isPresent()) {
                 gameDirectory = file(providers.gradleProperty('gameTestDirectory').get())
             }

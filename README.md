@@ -6,7 +6,17 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.43.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.45.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.45 changes
+
+- Every successful hit from a tamed normal spider applies Slowness I and Weakness I for three seconds, refreshing on each hit. Cave-spider effects are unchanged.
+- Field mice get another village spawning check later in the morning, keeping the one-mouse-per-three-cats population limit.
+- Sitting spider abdomens stay connected at the thorax while angling downward.
+
+## Version 0.1.44 changes
+
+- Pet spiders and cave spiders tilt their abdomen slightly farther downward when sitting.
 
 ## Version 0.1.43 changes
 

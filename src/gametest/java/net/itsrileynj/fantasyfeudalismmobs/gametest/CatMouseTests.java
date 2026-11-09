@@ -314,4 +314,21 @@ public final class CatMouseTests {
             h.assertTrue(data.save(new CompoundTag(),level.registryAccess()).getLong("LastMorning")==day+3,"Daily attempt stamp is saved");h.succeed();
         }finally{pois.remove(home);level.setDayTime(previous);level.getGameRules().getRule(GameRules.RULE_DOMOBSPAWNING).set(spawning,level.getServer());}
     }
+    @GameTest(template="test_empty",batch="mouse_second_morning")
+    public static void miceGetASecondMorningCheckWithoutRaisingTheCatLimit(GameTestHelper h) {
+        floor(h);var level=h.getLevel();long previous=level.getDayTime();boolean spawning=level.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING);
+        var home=bed(h,8);var pois=level.getPoiManager();pois.add(home,level.registryAccess().registryOrThrow(Registries.POINT_OF_INTEREST_TYPE).getHolderOrThrow(PoiTypes.HOME));pois.take(type->type.is(PoiTypes.HOME),(type,at)->at.equals(home),home,1);
+        for(int x=5;x<=11;x++)for(int z=11;z<=14;z++){h.setBlock(x,1,z,Blocks.FARMLAND);h.setBlock(x,2,z,Blocks.WHEAT.defaultBlockState());}
+        for(int i=0;i<2;i++){var cat=h.spawn(EntityType.CAT,6+i,2,6);cat.setNoAi(true);}
+        try {
+            var data=MouseVillages.get(level);long day=Math.max(data.lastMorning()+1,200);level.getGameRules().getRule(GameRules.RULE_DOMOBSPAWNING).set(true,level.getServer());level.setDayTime(day*24000);
+            h.assertTrue(data.morning(level)==0,"Two cats still produce no mice at dawn");var cat=h.spawn(EntityType.CAT,9,2,6);cat.setNoAi(true);
+            level.setDayTime(day*24000+499);h.assertTrue(data.morning(level)==0,"The additional census waits until later in the morning");
+            level.setDayTime(day*24000+500);h.assertTrue(data.morning(level)==1,"The second census notices a newly eligible village");
+            var saved=data.save(new CompoundTag(),level.registryAccess());h.assertTrue(saved.getLong("SecondMorning")==day,"The second check is saved against duplicate retries");
+            level.setDayTime(day*24000+700);h.assertTrue(data.morning(level)==0,"The one-mouse-per-three-cats cap is unchanged");
+            var loaded=MouseVillages.load(saved,level.registryAccess());h.assertTrue(loaded.morning(level)==0,"Reload cannot repeat the second census or duplicate mice");h.succeed();
+        } finally {pois.remove(home);level.setDayTime(previous);level.getGameRules().getRule(GameRules.RULE_DOMOBSPAWNING).set(spawning,level.getServer());}
+    }
+
 }
