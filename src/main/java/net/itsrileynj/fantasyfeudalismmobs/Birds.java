@@ -1,6 +1,9 @@
 package net.itsrileynj.fantasyfeudalismmobs;
 
 import java.util.List;
+import java.util.EnumMap;
+import java.util.Map;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -26,6 +29,16 @@ public final class Birds {
             egg(GOLDFINCH,"goldfinch",0xEFC62B,0x26262B),egg(CROW,"crow",0x25252E,0x565661));
     public static final TagKey<Biome> WARM_FORESTS=TagKey.create(Registries.BIOME,ResourceLocation.fromNamespaceAndPath(FantasyFeudalismMobs.MOD_ID,"warm_forest_birds"));
     public static final TagKey<Biome> SPRUCE_FORESTS=TagKey.create(Registries.BIOME,ResourceLocation.fromNamespaceAndPath(FantasyFeudalismMobs.MOD_ID,"spruce_forest_birds"));
+    public record Calls(DeferredHolder<SoundEvent,SoundEvent> ambient,DeferredHolder<SoundEvent,SoundEvent> hurt,DeferredHolder<SoundEvent,SoundEvent> death) {}
+    private static final Map<BirdKind,Calls> CALLS=new EnumMap<>(BirdKind.class);
+    static {
+        for(var kind:BirdKind.values())CALLS.put(kind,new Calls(sound(kind,"ambient"),sound(kind,"hurt"),sound(kind,"death")));
+    }
+    public static Calls calls(BirdKind kind) { return CALLS.get(kind); }
+    private static DeferredHolder<SoundEvent,SoundEvent> sound(BirdKind kind,String action) {
+        String name="entity."+kind.id+"."+action;
+        return FantasyFeudalismMobs.SOUNDS.register(name,()->SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(FantasyFeudalismMobs.MOD_ID,name)));
+    }
     private Birds() {}
     private static DeferredHolder<EntityType<?>,EntityType<ForestBird>> entity(BirdKind kind,float width,float height) {
         return FantasyFeudalismMobs.ENTITIES.register(kind.id,()->EntityType.Builder.<ForestBird>of((type,level)->new ForestBird(type,level,kind),MobCategory.CREATURE)

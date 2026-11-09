@@ -540,3 +540,8 @@ Blue jay wing materials also gain layered blue feather shading and darker edges,
 - Suitable ground must have an empty fluid state and a sturdy upper face, and be dirt/grass terrain, native overworld base stone, moss block, sand, red sand, gravel, cobblestone or stone bricks (including mossy full-block variants). Exclude crops, farmland, block entities, leaves and existing vegetation as supports. Never replace an occupied target or water, and never decorate waterlogged supports.
 - Retain the original 75% coverage chance and 50:35:15 moss-carpet/fern/grass weights, renormalized over plants that satisfy native survival checks. Short grass replaces tall grass to enforce the single-air-block limit. Repeated normal and charged-size blasts cannot stack growth.
 - Existing mossy block conversion and two-stage crop advancement run before the separate surface-vegetation pass. The moss-conversion toggle still governs block conversion only, as originally specified. Native mob-griefing permissions gate all effects; entity damage and block-destruction protection remain unchanged. Work is bounded to loaded positions within the explosion radius.
+
+
+## Confirmed species-specific bird subtitles (0.1.42)
+
+Use separate registered sound events for robin, blue jay, goldfinch and crow ambient, hurt and death calls. Give each event its own subtitle naming that species. Reuse native parrot audio through event aliases, preserving current pitches, volumes and call timing. Do not change vanilla parrot subtitles or unrelated sounds.

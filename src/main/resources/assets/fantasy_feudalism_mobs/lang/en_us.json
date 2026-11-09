@@ -54,5 +54,17 @@
   "entity.fantasy_feudalism_mobs.goldfinch": "Goldfinch",
   "item.fantasy_feudalism_mobs.goldfinch_spawn_egg": "Goldfinch Spawn Egg",
   "entity.fantasy_feudalism_mobs.crow": "Crow",
-  "item.fantasy_feudalism_mobs.crow_spawn_egg": "Crow Spawn Egg"
+  "item.fantasy_feudalism_mobs.crow_spawn_egg": "Crow Spawn Egg",
+  "subtitles.fantasy_feudalism_mobs.robin.ambient": "Robin chirps",
+  "subtitles.fantasy_feudalism_mobs.robin.hurt": "Robin hurts",
+  "subtitles.fantasy_feudalism_mobs.robin.death": "Robin dies",
+  "subtitles.fantasy_feudalism_mobs.blue_jay.ambient": "Blue Jay chirps",
+  "subtitles.fantasy_feudalism_mobs.blue_jay.hurt": "Blue Jay hurts",
+  "subtitles.fantasy_feudalism_mobs.blue_jay.death": "Blue Jay dies",
+  "subtitles.fantasy_feudalism_mobs.goldfinch.ambient": "Goldfinch chirps",
+  "subtitles.fantasy_feudalism_mobs.goldfinch.hurt": "Goldfinch hurts",
+  "subtitles.fantasy_feudalism_mobs.goldfinch.death": "Goldfinch dies",
+  "subtitles.fantasy_feudalism_mobs.crow.ambient": "Crow caws",
+  "subtitles.fantasy_feudalism_mobs.crow.hurt": "Crow hurts",
+  "subtitles.fantasy_feudalism_mobs.crow.death": "Crow dies"
 }

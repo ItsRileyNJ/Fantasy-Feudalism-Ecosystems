@@ -142,9 +142,9 @@ public final class ForestBird extends PathfinderMob implements FlyingAnimal {
     @Nullable public Player nearbyThreat() { return level().getNearestPlayer(getX(),getY(),getZ(),4,e->e instanceof Player p&&scares(p)); }
     @Override public boolean causeFallDamage(float distance,float multiplier,DamageSource source) { return false; }
     @Override protected void checkFallDamage(double distance,boolean ground,BlockState state,BlockPos pos) { }
-    @Override protected SoundEvent getAmbientSound() { return SoundEvents.PARROT_AMBIENT; }
-    @Override protected SoundEvent getHurtSound(DamageSource source) { return SoundEvents.PARROT_HURT; }
-    @Override protected SoundEvent getDeathSound() { return SoundEvents.PARROT_DEATH; }
+    @Override protected SoundEvent getAmbientSound() { return Birds.calls(kind).ambient().get(); }
+    @Override protected SoundEvent getHurtSound(DamageSource source) { return Birds.calls(kind).hurt().get(); }
+    @Override protected SoundEvent getDeathSound() { return Birds.calls(kind).death().get(); }
     @Override public int getAmbientSoundInterval() { return 180; }
     @Override public float getVoicePitch() { return super.getVoicePitch()*(kind==BirdKind.CROW?.7F:1.15F); }
     @Override protected float getSoundVolume() { return .35F; }

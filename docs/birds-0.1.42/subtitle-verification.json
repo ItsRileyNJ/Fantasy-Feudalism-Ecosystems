@@ -1,0 +1,14 @@
+{
+  "packagedSpeciesEventCount": 12,
+  "nativeClientCaptures": [
+    "robin",
+    "blue_jay",
+    "goldfinch",
+    "crow"
+  ],
+  "nativeHurtAndDeathTriggered": true,
+  "ambientAliasesPlayed": true,
+  "vanillaParrotControl": "Parrot talks",
+  "soundEngine": "OpenAL No Output (null driver)",
+  "screenshotsMayOmitEarlierCaptions": "Subtitles expire; later death captions can outlast ambient and hurt captions."
+}

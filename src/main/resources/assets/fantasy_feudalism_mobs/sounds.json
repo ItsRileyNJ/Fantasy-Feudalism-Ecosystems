@@ -16,5 +16,113 @@
       "fantasy_feudalism_mobs:entity/field_mouse/mouse_hurt_2",
       "fantasy_feudalism_mobs:entity/field_mouse/mouse_hurt_3"
     ]
+  },
+  "entity.robin.ambient": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.robin.ambient",
+    "sounds": [
+      {
+        "name": "minecraft:entity.parrot.ambient",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.robin.hurt": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.robin.hurt",
+    "sounds": [
+      {
+        "name": "minecraft:entity.parrot.hurt",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.robin.death": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.robin.death",
+    "sounds": [
+      {
+        "name": "minecraft:entity.parrot.death",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.blue_jay.ambient": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.blue_jay.ambient",
+    "sounds": [
+      {
+        "name": "minecraft:entity.parrot.ambient",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.blue_jay.hurt": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.blue_jay.hurt",
+    "sounds": [
+      {
+        "name": "minecraft:entity.parrot.hurt",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.blue_jay.death": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.blue_jay.death",
+    "sounds": [
+      {
+        "name": "minecraft:entity.parrot.death",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.goldfinch.ambient": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.goldfinch.ambient",
+    "sounds": [
+      {
+        "name": "minecraft:entity.parrot.ambient",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.goldfinch.hurt": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.goldfinch.hurt",
+    "sounds": [
+      {
+        "name": "minecraft:entity.parrot.hurt",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.goldfinch.death": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.goldfinch.death",
+    "sounds": [
+      {
+        "name": "minecraft:entity.parrot.death",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.crow.ambient": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.crow.ambient",
+    "sounds": [
+      {
+        "name": "minecraft:entity.parrot.ambient",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.crow.hurt": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.crow.hurt",
+    "sounds": [
+      {
+        "name": "minecraft:entity.parrot.hurt",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.crow.death": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.crow.death",
+    "sounds": [
+      {
+        "name": "minecraft:entity.parrot.death",
+        "type": "event"
+      }
+    ]
   }
 }
