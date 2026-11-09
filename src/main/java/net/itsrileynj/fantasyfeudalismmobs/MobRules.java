@@ -27,7 +27,7 @@ public final class MobRules {
     public static void initialize(Mob mob, boolean loadedFromDisk) {
         if (mob instanceof Spider spider) {
             SpiderCompanion.sync(spider);
-            spider.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(SpiderGoals.JUMP_POWER);
+            spider.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue(SpiderGoals.NORMAL_JUMP_POWER);
             if (SpiderCompanion.isTamed(spider)) SpiderCompanion.applyTameAttributes(spider);
         }
         if (mob instanceof AbstractSkeleton) {

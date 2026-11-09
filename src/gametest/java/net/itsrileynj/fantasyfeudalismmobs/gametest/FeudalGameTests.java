@@ -205,6 +205,7 @@ public final class FeudalGameTests {
     @GameTest(template = "test_empty", timeoutTicks = 80)
     public static void spiderJumpHeight(GameTestHelper h) {
         floor(h); Spider spider = mob(h, EntityType.SPIDER, 5, 5);
+        spider.setTarget(mob(h,EntityType.ZOMBIE,12,12));
         spider.setInvulnerable(true);
         spider.goalSelector.removeAllGoals(g -> true); spider.targetSelector.removeAllGoals(g -> true); spider.setNoAi(false);
         double[] start = {spider.getY()}, peak = {spider.getY()};
@@ -225,6 +226,7 @@ public final class FeudalGameTests {
         floor(h);
         for (int x = 8; x <= 12; x++) for (int y = 2; y <= 4; y++) for (int z = 2; z <= 12; z++) h.setBlock(new BlockPos(x, y, z), Blocks.STONE);
         Spider spider = mob(h, EntityType.SPIDER, 5, 6);
+        spider.setTarget(mob(h,EntityType.ZOMBIE,14,14));
         var path = spider.getNavigation().createPath(h.absolutePos(new BlockPos(10, 5, 6)), 0);
         h.assertTrue(path != null && path.canReach(), "Pathfinder must reach the three-block ledge");
         boolean jump = false;

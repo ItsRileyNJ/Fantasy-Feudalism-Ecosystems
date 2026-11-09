@@ -18,6 +18,8 @@ import net.minecraft.world.phys.Vec3;
 public final class SpiderGoals {
     // Discrete vanilla gravity/drag: peaks just above a three-block landing, below four blocks.
     public static final float JUMP_POWER = 0.68745F;
+    public static final float NORMAL_JUMP_POWER = 0.42F;
+    public static boolean combatJump(Spider spider) { return mayAttack(spider,spider.getTarget()); }
 
     public static void install(Spider spider, GoalSelector goals, GoalSelector targets) {
         goals.removeAllGoals(g -> g instanceof FloatGoal || g instanceof LeapAtTargetGoal || g instanceof WaterAvoidingRandomStrollGoal

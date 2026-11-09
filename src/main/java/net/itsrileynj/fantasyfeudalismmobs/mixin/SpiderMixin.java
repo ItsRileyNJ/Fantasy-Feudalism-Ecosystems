@@ -36,6 +36,12 @@ public abstract class SpiderMixin extends Monster implements SpiderState {
         builder.define(FFM_OWNER, Optional.empty());
         builder.define(FFM_SITTING, false);
     }
+    @Override protected float getJumpPower(float scale) {
+        float power=super.getJumpPower(scale);
+        // Keep native attribute modifiers, block jump factors and Jump Boost for ordinary movement.
+        return SpiderGoals.combatJump((Spider)(Object)this)
+                ?power+(SpiderGoals.JUMP_POWER-SpiderGoals.NORMAL_JUMP_POWER)*scale*getBlockJumpFactor():power;
+    }
     @Override protected boolean shouldDespawnInPeaceful() {
         return !SpiderCompanion.isTamed((Spider)(Object)this) && super.shouldDespawnInPeaceful();
     }

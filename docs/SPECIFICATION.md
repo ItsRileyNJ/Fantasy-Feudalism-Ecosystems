@@ -545,3 +545,15 @@ Blue jay wing materials also gain layered blue feather shading and darker edges,
 ## Confirmed species-specific bird subtitles (0.1.42)
 
 Use separate registered sound events for robin, blue jay, goldfinch and crow ambient, hurt and death calls. Give each event its own subtitle naming that species. Reuse native parrot audio through event aliases, preserving current pitches, volumes and call timing. Do not change vanilla parrot subtitles or unrelated sounds.
+
+
+## Confirmed non-combat spider jumps (0.1.43)
+
+- Wild and tamed spiders, including cave spiders, use native normal-strength jumps for wandering and following. Restore jump-strength base 0.42 on spawn and load so existing pets also lose the unconditional boost. Native attribute modifiers, block jump factors and Jump Boost remain active.
+- Add the higher jump impulse only while a living, permitted attack target exists. Dead targets, owner/friendly targets, Creative/Spectator players and sitting pets do not enable combat jumping. Existing attack pounces and elevated combat jumps remain unchanged.
+- Only advertise three-block jump edges and the increased pathfinding jump height during combat. Follow and wander paths use vanilla jump limits, preventing routes that expect the old unconditional three-block leap. Physical step height and wall climbing are unchanged.
+
+
+## Validation scope preference
+
+Prefer relevant Ecosystems tests for each change. Run the full suite or companion-mod suites only when shared behavior or integration risk makes broader validation necessary. Do not repeat passing tests solely to commit or push.
