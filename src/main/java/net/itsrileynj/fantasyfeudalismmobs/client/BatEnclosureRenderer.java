@@ -3,6 +3,11 @@ package net.itsrileynj.fantasyfeudalismmobs.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.itsrileynj.fantasyfeudalismmobs.BatEnclosureBlockEntity;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.BatRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.ambient.Bat;
+import net.itsrileynj.fantasyfeudalismmobs.FantasyFeudalismMobs;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -13,7 +18,16 @@ public final class BatEnclosureRenderer implements BlockEntityRenderer<BatEnclos
     private static final double[][] SINGLE={{.5,.42,5}};
     private static final double[][] PAIR={{.33,.32,-8},{.67,.49,10}};
     private static final double[][] TRIO={{.26,.31,-5},{.50,.50,12},{.74,.39,5}};
-    public BatEnclosureRenderer(BlockEntityRendererProvider.Context context){}
+    private static final ResourceLocation DISPLAY_TEXTURE=ResourceLocation.fromNamespaceAndPath(FantasyFeudalismMobs.MOD_ID,"textures/entity/bat/enclosure.png");
+    private final BatRenderer displayRenderer;
+    public BatEnclosureRenderer(BlockEntityRendererProvider.Context context){
+        var mc=Minecraft.getInstance();
+        var entityContext=new EntityRendererProvider.Context(context.getEntityRenderer(),context.getItemRenderer(),
+                context.getBlockRenderDispatcher(),mc.gameRenderer.itemInHandRenderer,mc.getResourceManager(),context.getModelSet(),context.getFont());
+        displayRenderer=new BatRenderer(entityContext){
+            @Override public ResourceLocation getTextureLocation(Bat bat){return DISPLAY_TEXTURE;}
+        };
+    }
     @Override public void render(BatEnclosureBlockEntity home,float partial,PoseStack poses,MultiBufferSource buffers,int light,int overlay){
         if(home.getLevel()!=null)light=net.minecraft.client.renderer.LevelRenderer.getLightColor(home.getLevel(),
                 home.getBlockPos().relative(home.getBlockState().getValue(net.itsrileynj.fantasyfeudalismmobs.BatEnclosureBlock.FACING)));
@@ -32,7 +46,7 @@ public final class BatEnclosureRenderer implements BlockEntityRenderer<BatEnclos
             // Render just the model: world-position shadows and debug hitboxes do not belong inside a display.
             // Display bats never tick. A world partial tick would replay interpolation every tick
             // and wind their animation clock backwards, making the hanging models shake.
-            Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(bats.get(i)).render(bats.get(i),0,0,poses,buffers,light);
+            displayRenderer.render(bats.get(i),0,0,poses,buffers,light);
             poses.popPose();
         }
     }

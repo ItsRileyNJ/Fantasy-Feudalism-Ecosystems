@@ -570,3 +570,8 @@ Increase the downward sitting-abdomen pitch from -0.18 to -0.25 radians for tame
 - Every successful permitted attack by a tamed normal spider applies Slowness I and Weakness I for 60 ticks (three seconds), refreshing on later hits. Include targets previously excluded from normal-spider debuffs, such as skeletons, zombies and spiders, and permitted non-hostile targets. Respect owner/alliance/Creative/Spectator/PvP protections and native effect-strength rules. Rejected attacks apply neither effect. Wild spiders and existing cave-spider behavior are unchanged.
 - Field mice keep the three-cat minimum and one-mouse-per-three-cats saved population cap. Add one additional village census at morning tick 500 (25 seconds after dawn at 20 TPS), within the existing tick 0–999 morning window. Recompute missing slots from current loaded cats and saved residents. Save the second-check day stamp to prevent duplicate checks on reload. No extra daytime/nighttime census, per-tick farm scan or quota increase.
 - Test runs should default to Ecosystems. A name regex can select affected cases using the test-only filter; missing matches fail instead of reporting a misleading pass.
+
+
+## Confirmed enclosure bat side-eye removal (0.1.46)
+
+Remove the side-eye highlights only on bats displayed inside the enclosure. Use an enclosure-only texture that replaces the vanilla side-head white pixels at (1,10) and (6,10) with opaque matching fur. Preserve all other pixels, including the front eyes and nose, and leave world bats on their normal renderer and texture. Keep native hanging models, roof attachment, slot staggering and fixed animation time.
