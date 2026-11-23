@@ -1,0 +1,49 @@
+{
+  "poses": {
+    "2": {
+      "legs": 8,
+      "maxIdlePincerAngle": 0.14,
+      "frames": 56,
+      "legRange": 0.0,
+      "finite": true,
+      "maxPincerOpen": 0.14,
+      "tailRange": 0.077925086,
+      "maxSting": 0.0,
+      "animationRanges": {
+        "maxAttackTailYaw": 0.0,
+        "walkingTailTipX": 0.0,
+        "walkingTailRoll": 0.0,
+        "idleTailYaw": 0.077516995,
+        "maxEating": 0.0,
+        "walkingFeelerPitch": 0.0,
+        "idleJaw": 0.10664895,
+        "maxArch": 0.0,
+        "minStrikeTipZ": 0.0,
+        "walkingTailYaw": 0.0
+      }
+    },
+    "3": {
+      "legs": 8,
+      "maxIdlePincerAngle": 0.14,
+      "frames": 56,
+      "legRange": 0.0,
+      "finite": true,
+      "maxPincerOpen": 0.14,
+      "tailRange": 0.060474038,
+      "maxSting": 0.0,
+      "animationRanges": {
+        "maxAttackTailYaw": 0.0,
+        "walkingTailTipX": 0.0,
+        "walkingTailRoll": 0.0,
+        "idleTailYaw": 0.07196498,
+        "maxEating": 0.0,
+        "walkingFeelerPitch": 0.0,
+        "idleJaw": 0.0,
+        "maxArch": 0.0,
+        "minStrikeTipZ": 0.0,
+        "walkingTailYaw": 0.0
+      }
+    }
+  },
+  "renderErrors": []
+}
