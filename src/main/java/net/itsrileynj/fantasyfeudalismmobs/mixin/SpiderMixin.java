@@ -18,6 +18,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Spider.class)
 public abstract class SpiderMixin extends Monster implements SpiderState {
@@ -25,6 +26,11 @@ public abstract class SpiderMixin extends Monster implements SpiderState {
     @Unique private static final EntityDataAccessor<Boolean> FFM_SITTING = SynchedEntityData.defineId(Spider.class, EntityDataSerializers.BOOLEAN);
     @Unique private double ffm$landingDistance = Double.NaN;
     protected SpiderMixin(EntityType<? extends Monster> type, Level level) { super(type, level); }
+
+    @Inject(method = "createNavigation", at = @At("RETURN"), cancellable = true)
+    private void ffm$dryNavigation(Level level, CallbackInfoReturnable<net.minecraft.world.entity.ai.navigation.PathNavigation> cir) {
+        cir.setReturnValue(new net.itsrileynj.fantasyfeudalismmobs.DrySpiderNavigation((Spider)(Object)this,level));
+    }
 
     @Inject(method = "registerGoals", at = @At("TAIL"))
     private void ffm$goals(CallbackInfo ci) {

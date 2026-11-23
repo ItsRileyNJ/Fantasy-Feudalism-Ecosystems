@@ -35,3 +35,7 @@ The Lava Scorpion eye mask now samples charcoal instead of gold, separating the 
 The latest Lava Scorpion atlas edit replaces the amber/gold accents with molten red-orange, darker red mottling and bright yellow-orange highlights. It was generated from the preceding atlas with the charcoal quadrant preserved. Source: `/workspace/generated_images/exec-54d9e29c-4a64-4ed2-9ba7-15e66098d884.png`.
 
 Version 0.1.60 adds client-side idle pincer/tail motion and gait-linked tail yaw/pitch through existing model pivots. Geometry and textures are unchanged.
+
+Version 0.1.62 raises and enlarges the feelers, removes the extra chelicera spur, steadies locomotion tail motion and adds a controlled abdomen arch and forward stinger sweep. Tail and rear-leg mounts follow the front-hinged abdomen. The Lava Scorpion atlas is recolored toward neutral deepslate gray using an image-generated edit; source `/workspace/generated_images/exec-bc0dcd49-75b7-413d-9300-988a47bf006c.png`.
+
+The final 0.1.62 feelers use connected upper joints for a gentle backward curve and walking sway; all final previews and native render observations are in `docs/scorpion-0.1.62/`.

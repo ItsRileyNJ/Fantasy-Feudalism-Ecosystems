@@ -1,0 +1,86 @@
+{
+  "walking": {
+    "2": {
+      "frames": 220,
+      "maxIdlePincerAngle": 0.14,
+      "legs": 8,
+      "animationRanges": {
+        "idleJaw": 0.11999984,
+        "maxEating": 0.0,
+        "minStrikeTipZ": 0.0,
+        "maxAttackTailYaw": 0.0,
+        "walkingFeelerPitch": 0.19489402,
+        "walkingTailYaw": 0.05827421,
+        "maxArch": 0.0,
+        "idleTailYaw": 0.08999373
+      },
+      "maxSting": 0.0,
+      "tailRange": 0.07999116,
+      "maxPincerOpen": 0.14,
+      "finite": true,
+      "legRange": 0.63657737
+    },
+    "3": {
+      "frames": 219,
+      "maxIdlePincerAngle": 0.14,
+      "legs": 8,
+      "animationRanges": {
+        "idleJaw": 0.107114226,
+        "maxEating": 0.0,
+        "minStrikeTipZ": 0.0,
+        "maxAttackTailYaw": 0.0,
+        "walkingFeelerPitch": 0.19440281,
+        "walkingTailYaw": 0.048744053,
+        "maxArch": 0.0,
+        "idleTailYaw": 0.08999534
+      },
+      "maxSting": 0.0,
+      "tailRange": 0.0768249,
+      "maxPincerOpen": 0.14,
+      "finite": true,
+      "legRange": 0.6368811
+    }
+  },
+  "strike": {
+    "4": {
+      "frames": 64,
+      "maxIdlePincerAngle": 0.14,
+      "legs": 8,
+      "animationRanges": {
+        "idleJaw": 0.0,
+        "maxEating": 0.0,
+        "minStrikeTipZ": -1.1324536,
+        "maxAttackTailYaw": 0.0,
+        "walkingFeelerPitch": 0.0,
+        "walkingTailYaw": 0.0,
+        "maxArch": 0.27944753,
+        "idleTailYaw": 0.056614906
+      },
+      "maxSting": 1.0,
+      "tailRange": 1.1378287,
+      "maxPincerOpen": 0.35605764,
+      "finite": true,
+      "legRange": 0.0
+    },
+    "5": {
+      "frames": 63,
+      "maxIdlePincerAngle": 0.14,
+      "legs": 8,
+      "animationRanges": {
+        "idleJaw": 0.0,
+        "maxEating": 0.0,
+        "minStrikeTipZ": -1.1314459,
+        "maxAttackTailYaw": 0.0,
+        "walkingFeelerPitch": 0.0,
+        "walkingTailYaw": 0.0,
+        "maxArch": 0.27893457,
+        "idleTailYaw": 0.025466591
+      },
+      "maxSting": 1.0,
+      "tailRange": 1.1358054,
+      "maxPincerOpen": 0.35114408,
+      "finite": true,
+      "legRange": 0.0
+    }
+  }
+}

@@ -11,12 +11,12 @@ public final class ScorpionModel extends HierarchicalModel<Scorpion> {
     public static final ModelLayerLocation LAYER=new ModelLayerLocation(ScorpionModule.id("scorpion"),"main");
     public static final ModelLayerLocation LAVA_LAYER=new ModelLayerLocation(ScorpionModule.id("lava_scorpion"),"main");
     private final ModelPart root,head,abdomen,bulb;
-    private final ModelPart[] legs=new ModelPart[8],knees=new ModelPart[8],arms=new ModelPart[2],palms=new ModelPart[2],jaws=new ModelPart[4],tail=new ModelPart[5],chelicerae=new ModelPart[2],cheliceraFangs=new ModelPart[2],feelers=new ModelPart[2];
+    private final ModelPart[] legs=new ModelPart[8],knees=new ModelPart[8],arms=new ModelPart[2],palms=new ModelPart[2],jaws=new ModelPart[4],tail=new ModelPart[5],chelicerae=new ModelPart[2],cheliceraFangs=new ModelPart[2],feelers=new ModelPart[2],feelerMiddles=new ModelPart[2],feelerTips=new ModelPart[2];
     public ScorpionModel(ModelPart root) {
         this.root=root;head=root.getChild("head");abdomen=root.getChild("abdomen");
         for(int i=0;i<8;i++){legs[i]=root.getChild("leg"+i);knees[i]=legs[i].getChild("knee");}
         for(int i=0;i<2;i++){arms[i]=root.getChild("arm"+i);palms[i]=arms[i].getChild("forearm").getChild("palm");for(int j=0;j<2;j++)jaws[i*2+j]=palms[i].getChild("finger"+j);}
-        for(int i=0;i<2;i++){chelicerae[i]=head.getChild("chelicera"+i);cheliceraFangs[i]=chelicerae[i].getChild("fang");feelers[i]=head.getChild("feeler"+i);}
+        for(int i=0;i<2;i++){chelicerae[i]=head.getChild("chelicera"+i);cheliceraFangs[i]=chelicerae[i].getChild("fang");feelers[i]=head.getChild("feeler"+i);feelerMiddles[i]=feelers[i].getChild("mid");feelerTips[i]=feelerMiddles[i].getChild("tip");}
         tail[0]=root.getChild("tail0");for(int i=1;i<5;i++)tail[i]=tail[i-1].getChild("tail"+i);bulb=tail[4].getChild("bulb");
     }
     public static LayerDefinition layer() {return layer(false);}
@@ -49,17 +49,18 @@ public final class ScorpionModel extends HierarchicalModel<Scorpion> {
         for(int i=0;i<2;i++) {
             int side=i==0?-1:1;
             var chelicera=head.addOrReplaceChild("chelicera"+i,CubeListBuilder.create().texOffs(lava?64:0,0)
-                    .addBox(-.95F,-.9F,-2.1F,1.9F,2,2.55F)
-                    .texOffs(lava?0:64,lava?64:0).addBox(-.275F+side*.45F,-.35F,-3.5F,.55F,1,1.8F),
+                    .addBox(-.95F,-.9F,-2.1F,1.9F,2,2.55F),
                     PartPose.offsetAndRotation(side*1.35F,.35F,-4.45F,0,-side*.15F,0));
             chelicera.addOrReplaceChild("fang",CubeListBuilder.create().texOffs(lava?0:64,lava?64:0)
                     .addBox(-.35F,-.55F,-1.9F,.7F,1.1F,2.1F)
                     .addBox(-.22F,-.2F,-2.7F,.44F,.7F,.95F),PartPose.offsetAndRotation(-side*.5F,.35F,-1.8F,.25F,-side*.35F,0));
-            // Paired tapered cheek feelers slope forward/downward beside the chelicerae.
-            head.addOrReplaceChild("feeler"+i,CubeListBuilder.create().texOffs(lava?0:64,lava?64:0)
-                    .addBox(-.38F,-.25F,-.32F,.76F,3.1F,.64F)
-                    .addBox(-.23F,2.6F,-.24F,.46F,2.3F,.48F)
-                    .addBox(-.1F,4.6F,-.1F,.2F,1.8F,.2F),PartPose.offsetAndRotation(side*4.65F,-1.8F,-4.05F,-.65F,0,side*.17F));
+            // Upright bases with progressively backward-curving upper segments.
+            var feeler=head.addOrReplaceChild("feeler"+i,CubeListBuilder.create().texOffs(lava?0:64,lava?64:0)
+                    .addBox(-.48F,-3.6F,-.4F,.96F,3.85F,.8F),PartPose.offsetAndRotation(side*4.65F,-1.8F,-4.05F,-.1F,0,side*.08F));
+            var middle=feeler.addOrReplaceChild("mid",CubeListBuilder.create().texOffs(lava?0:64,lava?64:0)
+                    .addBox(-.3F,-2.9F,-.3F,.6F,3.2F,.6F),PartPose.offsetAndRotation(0,-3.3F,0,-.2F,0,0));
+            middle.addOrReplaceChild("tip",CubeListBuilder.create().texOffs(lava?0:64,lava?64:0)
+                    .addBox(-.14F,-2.2F,-.14F,.28F,2.5F,.28F),PartPose.offsetAndRotation(0,-2.6F,0,-.28F,0,0));
         }
         float[] hipWidths={5.3F,5.2F,4.6F,3.8F};
         for(int pair=0;pair<4;pair++)for(int s=0;s<2;s++) {
@@ -112,7 +113,7 @@ public final class ScorpionModel extends HierarchicalModel<Scorpion> {
         root.getAllParts().forEach(ModelPart::resetPose);
         float move=Math.min(1,swingAmount*3),partial=Mth.clamp(age-scorpion.tickCount,0,1),sting=scorpion.getStingAmount(partial),pincerOpen=scorpion.getPincerOpenAmount(partial);
         float eating=scorpion.getEatAmount(partial);
-        float phaseOffset=(scorpion.getId()%31)*.71F,rest=1-move,free=(1-sting)*(1-eating);
+        float phaseOffset=(scorpion.getId()%31)*.71F,rest=1-move,free=(1-scorpion.getAttackBlend(partial))*(1-eating);
         // Connected joint rotations provide client-derived idle and gait-linked motion.
         for(int pair=0;pair<4;pair++)for(int s=0;s<2;s++) {
             int index=pair*2+s,side=s==0?-1:1;float phase=swing*1.9F+pair*Mth.PI+(s==0?0:Mth.PI);
@@ -122,8 +123,11 @@ public final class ScorpionModel extends HierarchicalModel<Scorpion> {
         }
         for(int i=0;i<2;i++) {
             int side=i==0?-1:1;
-            feelers[i].zRot+=side*Mth.sin(age*.09F)*.025F;
-            feelers[i].xRot+=Mth.sin(age*.12F+i)*.02F-sting*.08F;
+            float feelerPhase=age*.14F+phaseOffset+i*1.7F;
+            feelers[i].zRot+=side*(Mth.sin(age*.09F)*.025F*rest+Mth.sin(feelerPhase)*.02F*move)*free;
+            feelers[i].xRot+=(Mth.sin(age*.12F+i)*.02F*rest+Mth.sin(feelerPhase)*.035F*move)*free-sting*.08F;
+            feelerMiddles[i].xRot+=Mth.sin(feelerPhase-.35F)*.045F*move*free;
+            feelerTips[i].xRot+=Mth.sin(feelerPhase-.7F)*.055F*move*free;
             chelicerae[i].yRot+=side*(Mth.sin(age*.16F)*(.08F+eating*.22F)+sting*.12F);
             cheliceraFangs[i].yRot+=side*(.18F+Mth.sin(age*.18F)*.1F+Mth.sin(age*.53F)*eating*.2F+sting*.18F);
             float idleWave=Mth.sin(age*.045F+phaseOffset+i*2.7F);
@@ -137,12 +141,30 @@ public final class ScorpionModel extends HierarchicalModel<Scorpion> {
                 if(sign!=side)jaws[i*2+j].yRot-=sign*(pincerOpen*.5F+idleOpen);
             }
         }
+        // A slow shared clock avoids sharp direction changes as walking speed varies.
+        float walkSway=Mth.sin(age*.07F+phaseOffset),walkBob=Mth.sin(age*.07F+phaseOffset+1.1F);
         for(int i=0;i<tail.length;i++) {
+            float jointWeight=1F/(i+1);
             tail[i].xRot+=free*(Mth.sin(age*.045F+phaseOffset-i*.45F)*.04F*rest
-                    +Mth.sin(swing*1.9F-i*.5F)*.045F*move);
+                    +walkBob*.012F*jointWeight*move);
             tail[i].yRot+=free*(Mth.sin(age*.035F+phaseOffset-i*.35F)*.045F*rest
-                    +Mth.sin(swing*.95F-i*.4F)*.065F*move);
+                    +walkSway*.035F*jointWeight*move);
         }
-        tail[0].xRot+=.5F*sting;bulb.xRot-=.35F*sting;
+        // Hinge the abdomen at its front and carry the tail base with the raised rear.
+        float arch=.28F*sting,sin=Mth.sin(arch),cos=Mth.cos(arch);
+        abdomen.xRot+=arch;abdomen.y-=5.5F*sin;abdomen.z-=5.5F*(1-cos);
+        tail[0].y=abdomen.y-cos-7.5F*sin;
+        tail[0].z=abdomen.z-sin+7.5F*cos;
+        for(int i=2;i<legs.length;i++) {
+            float rearDistance=legs[i].getInitialPose().z+2;
+            legs[i].y=20+.5F*cos-rearDistance*sin;
+            legs[i].z=-2+.5F*sin+rearDistance*cos;
+            legs[i].xRot+=arch;
+        }
+        // One deliberate forward stroke, without secondary tail waves during the hit.
+        tail[0].xRot+=1.1F*sting;
+        tail[1].xRot-=.15F*sting;tail[2].xRot-=.35F*sting;
+        tail[3].xRot-=.2F*sting;tail[4].xRot-=.1F*sting;
+        bulb.xRot-=.3F*sting;
     }
 }

@@ -26,7 +26,9 @@ public final class SpiderGoals {
                 || g.getClass().getName().endsWith("Spider$SpiderAttackGoal"));
         targets.removeAllGoals(g -> true);
         spider.getNavigation().setCanFloat(false);
+        AvoidWaterGoal.configure(spider);
         goals.addGoal(0, new Sit(spider));
+        goals.addGoal(1, new AvoidWaterGoal(spider));
         goals.addGoal(3, new ForwardLeap(spider));
         goals.addGoal(4, new Attack(spider));
         goals.addGoal(5, new Follow(spider));
@@ -48,7 +50,16 @@ public final class SpiderGoals {
             LivingEntity target = spider.getTarget();
             if (target == null) return false;
             double distance = spider.distanceToSqr(target);
-            return distance >= 2.75 * 2.75 && distance <= 3.25 * 3.25;
+            if(distance<2.75*2.75||distance>3.25*3.25)return false;
+            // A combat pounce must not shortcut a dry walking route across water.
+            int samples=(int)Math.ceil(Math.sqrt(distance)*2);
+            for(int i=1;i<=samples;i++) {
+                Vec3 point=spider.position().lerp(target.position(),(double)i/samples);
+                BlockPos pos=BlockPos.containing(point);
+                if(!spider.level().hasChunkAt(pos)||!spider.level().getFluidState(pos).isEmpty()
+                        ||!spider.level().getFluidState(pos.below()).isEmpty())return false;
+            }
+            return true;
         }
         @Override public boolean canUse() {
             return inRange() && mayAttack(spider, spider.getTarget()) && super.canUse();
@@ -172,7 +183,8 @@ public final class SpiderGoals {
                 PathType type = WalkNodeEvaluator.getPathTypeStatic(spider, pos);
                 if (type != PathType.WALKABLE || !spider.level().getFluidState(pos).isEmpty()) continue;
                 Vec3 delta = Vec3.atBottomCenterOf(pos).subtract(spider.position());
-                if (spider.level().noCollision(spider, spider.getBoundingBox().move(delta))) {
+                if (!spider.level().containsAnyLiquid(spider.getBoundingBox().move(delta))
+                        && spider.level().noCollision(spider, spider.getBoundingBox().move(delta))) {
                     spider.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, spider.getYRot(), spider.getXRot());
                     spider.getNavigation().stop();
                     return;

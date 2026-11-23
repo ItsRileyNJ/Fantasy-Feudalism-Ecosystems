@@ -733,3 +733,29 @@ Lava Scorpions must not attack players, including when provoked. Refuse player t
 ### Large Scorpion arrow immunity
 
 Make only the larger normal Scorpion immune to arrow damage, including tipped and spectral arrows. Native arrow subclasses are covered, but thrown tridents remain damaging. Lava Scorpions remain vulnerable to arrows.
+
+## Confirmed Scorpion face revision (0.1.62)
+
+Apply to both variants: point the feelers upward, make them slightly longer and thicker, and remove the extra chelicera side spur so each mouthpart has only its single animated fang. Preserve the shared geometry builder, tapered feeler connections and existing feeding/sting animations. No commit or push requested.
+
+
+Reduce erratic tail movement while walking: replace the gait-driven waves with a slow shared clock, reduce root yaw to 0.035 radians and pitch to 0.012 radians, and reduce each later joint by its index weight. Preserve smooth movement blending and sting/eating priority.
+
+
+### Upright feelers, controlled sting and water avoidance
+
+Make feelers even more vertical on both variants. During a sting, arch the abdomen upward around its front joint, carry the tail base and rear leg mounts with it, and sweep the tail forward past the head. Suppress secondary tail waves during attacks; retain one planned forward stroke and recovery. Pincer attacks stay separate.
+
+All wild/tamed spiders, cave spiders and both scorpion variants avoid water. Forbid water path nodes on land, guard the spider climbing-navigation fallback and combat leaps against water shortcuts, and reject wet pet teleport destinations. Preserve existing non-swimming spiders and sitting orders. A bounded escape goal may temporarily permit water/shore nodes to seek a reachable dry bank after falling in, then restores the original path costs. No new swimming or terrain edits; skip unloaded candidate positions and avoid per-tick dry-land scans.
+
+
+### Lava Scorpion spawn availability and deepslate color
+
+The user reports difficulty finding natural spawns in Survival or Creative mode. The predicate already accepts lava light. Increase Lava Scorpion spawn weight from 3 to 12 and expand the nearby-lava window from six horizontal/three vertical blocks to eight horizontal/four vertical blocks. Keep covered caves below Y=0, pack attempts of 3–5, native spawn caps and player-distance rules. Validate the registered biome entries and native category spawning, without adding an independent per-tick spawn system.
+
+Recolor only the Lava Scorpion dark shell region toward neutral deepslate gray while retaining its rough plate texture, sparse orange fissures, fiery accents and separated eyes.
+
+
+### Backward-curving, animated feelers
+
+Keep the tall feelers based upright, but let their upper portions droop slightly backward. Use connected middle and tip pivots with a smooth, small walking sway. Apply to both variants through the shared model; suppress secondary feeler motion during attacks like the tail. This replaces the completely straight vertical shape.

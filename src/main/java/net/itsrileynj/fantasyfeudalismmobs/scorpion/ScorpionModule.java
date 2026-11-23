@@ -37,7 +37,7 @@ public final class ScorpionModule {
         if(pos.getY()>=0||!Monster.checkAnyLightMonsterSpawnRules(type,level,reason,pos,random)
                 ||level.canSeeSky(pos)||pos.getY()>=level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,pos.getX(),pos.getZ())-4)return false;
         // Search only during spawn attempts; never load neighboring chunks to find lava.
-        return net.minecraft.core.BlockPos.findClosestMatch(pos,6,3,p->level.getLevel().hasChunkAt(p)&&level.getFluidState(p).is(net.minecraft.tags.FluidTags.LAVA)).isPresent();
+        return net.minecraft.core.BlockPos.findClosestMatch(pos,8,4,p->level.getLevel().hasChunkAt(p)&&level.getFluidState(p).is(net.minecraft.tags.FluidTags.LAVA)).isPresent();
     }
     private static void creative(BuildCreativeModeTabContentsEvent e) {if(e.getTabKey().equals(CreativeModeTabs.SPAWN_EGGS)){e.accept(EGG.get());e.accept(LAVA_EGG.get());}}
     public static ResourceLocation id(String path) {return ResourceLocation.fromNamespaceAndPath(FantasyFeudalismMobs.MOD_ID,path);}

@@ -25,12 +25,13 @@ public final class Scorpion extends Monster {
     private static final EntityDataAccessor<Long> EATING_STARTED=SynchedEntityData.defineId(Scorpion.class,EntityDataSerializers.LONG);
     private UUID stingTarget;
     private boolean nextPincer;
-    public Scorpion(EntityType<? extends Scorpion> type,Level level) {super(type,level);xpReward=5;}
+    public Scorpion(EntityType<? extends Scorpion> type,Level level) {super(type,level);xpReward=5;net.itsrileynj.fantasyfeudalismmobs.AvoidWaterGoal.configure(this);}
     public static AttributeSupplier.Builder createAttributes() {return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH,16).add(Attributes.MOVEMENT_SPEED,.26).add(Attributes.ATTACK_DAMAGE,4).add(Attributes.FOLLOW_RANGE,16);}
     @Override protected void defineSynchedData(SynchedEntityData.Builder b) {super.defineSynchedData(b);b.define(STING_STARTED,-1000L);b.define(ATTACK_KIND,(byte)0);b.define(EATING_STARTED,-1000L);}
     @Override protected void registerGoals() {
         goalSelector.addGoal(0,new FloatGoal(this));
-        goalSelector.addGoal(1,new MeleeAttackGoal(this,1.1,true) {
+        goalSelector.addGoal(1,new net.itsrileynj.fantasyfeudalismmobs.AvoidWaterGoal(this));
+        goalSelector.addGoal(2,new MeleeAttackGoal(this,1.1,true) {
             @Override protected void checkAndPerformAttack(LivingEntity target) {
                 if(!isAttacking()&&!isEating()&&canPerformAttack(target)) {
                     resetAttackCooldown();
@@ -40,9 +41,9 @@ public final class Scorpion extends Monster {
             }
             @Override public void tick() {super.tick();if(isAttacking()||isEating())getNavigation().stop();}
         });
-        goalSelector.addGoal(2,new WaterAvoidingRandomStrollGoal(this,.8));
-        goalSelector.addGoal(3,new LookAtPlayerGoal(this,Player.class,8));
-        goalSelector.addGoal(4,new RandomLookAroundGoal(this));
+        goalSelector.addGoal(3,new WaterAvoidingRandomStrollGoal(this,.8));
+        goalSelector.addGoal(4,new LookAtPlayerGoal(this,Player.class,8));
+        goalSelector.addGoal(5,new RandomLookAroundGoal(this));
         targetSelector.addGoal(1,new HurtByTargetGoal(this));
         targetSelector.addGoal(2,new NearestAttackableTargetGoal<>(this,Spider.class,10,true,false,e->!isLava()));
         targetSelector.addGoal(3,new NearestAttackableTargetGoal<>(this,Player.class,true));
@@ -68,6 +69,13 @@ public final class Scorpion extends Monster {
         float elapsed=level().getGameTime()-entityData.get(STING_STARTED)+partialTick;
         int windup=isPincerAttack()?4:STING_WINDUP;
         return elapsed<0||elapsed>=windup?0:(float)Math.sin(Math.PI*elapsed/windup);
+    }
+    public float getAttackBlend(float partialTick) {
+        float elapsed=level().getGameTime()-entityData.get(STING_STARTED)+partialTick;
+        float duration=isPincerAttack()?10:STING_DURATION;
+        if(elapsed<0||elapsed>=duration)return 0;
+        float blend=net.minecraft.util.Mth.clamp(Math.min(elapsed,duration-elapsed)/3,0,1);
+        return blend*blend*(3-2*blend);
     }
     private boolean canHunt() {return isLava()||net.itsrileynj.fantasyfeudalismmobs.NightCycle.isNight(level());}
     @Override public boolean canAttack(LivingEntity target) {return canHunt()&&!(isLava()&&target instanceof Player)&&super.canAttack(target);}

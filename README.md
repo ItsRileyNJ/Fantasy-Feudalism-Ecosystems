@@ -6,7 +6,14 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.61.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.62.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.62 changes
+
+- Both scorpions have taller, thicker feelers that curve gently backward and sway while walking and one fang per chelicera.
+- Sting attacks raise the rear body and sweep the tail beyond the head in one controlled strike. Walking tail movement is slower and gentler.
+- Wild and pet spiders, cave spiders and both scorpion variants avoid water, including spider pounces and direct pursuit.
+- Lava Scorpions have deepslate-gray shells and better natural spawning near lava, while keeping their depth requirement and groups of 3–5.
 
 ## Version 0.1.61 changes
 

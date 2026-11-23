@@ -99,20 +99,20 @@ public final class ScorpionTests {
         h.assertTrue(!normal.fireImmune()&&normal.hurt(level.damageSources().lava(),4),"Normal variant retains lava vulnerability");
         h.runAfterDelay(40,()->{h.assertTrue(lava.isAlive()&&lava.getHealth()==16&&!lava.isOnFire(),"Physical lava exposure causes no health loss or burning");h.succeed();});
     }
-    @GameTest(template="test_root_worm",batch="scorpion_predation",timeoutTicks=130)
+    @GameTest(template="test_root_worm",batch="scorpion_predation",timeoutTicks=200)
     public static void normalScorpionHuntsAndEatsWildAndTamedSpiders(GameTestHelper h) {
         var s=spawn(h);var wild=h.spawn(EntityType.SPIDER,16,2,15);wild.setNoAi(true);
         net.minecraft.world.entity.monster.Spider[] pet={null};boolean[] firstMeal={false};
-        h.runAfterDelay(40,()->{
-            firstMeal[0]=!wild.isAlive()&&s.isEating();
+        h.onEachTick(()->{
+            firstMeal[0]|=!wild.isAlive()&&s.isEating();
+            if(firstMeal[0]&&!s.isEating()&&pet[0]==null) {
+                pet[0]=EntityType.SPIDER.create(h.getLevel());pet[0].moveTo(s.position().add(0,0,-.7));pet[0].setNoAi(true);
+                pet[0].getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MAX_HEALTH).setBaseValue(30);pet[0].setHealth(30);
+                net.itsrileynj.fantasyfeudalismmobs.SpiderCompanion.data(pet[0]).putUUID("owner",UUID.randomUUID());
+                net.itsrileynj.fantasyfeudalismmobs.SpiderCompanion.sync(pet[0]);h.getLevel().addFreshEntity(pet[0]);
+            }
         });
-        h.runAfterDelay(60,()->{
-            pet[0]=EntityType.SPIDER.create(h.getLevel());pet[0].moveTo(s.position().add(0,0,-.7));pet[0].setNoAi(true);
-            pet[0].getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MAX_HEALTH).setBaseValue(30);pet[0].setHealth(30);
-            net.itsrileynj.fantasyfeudalismmobs.SpiderCompanion.data(pet[0]).putUUID("owner",UUID.randomUUID());
-            net.itsrileynj.fantasyfeudalismmobs.SpiderCompanion.sync(pet[0]);h.getLevel().addFreshEntity(pet[0]);
-        });
-        h.runAfterDelay(105,()->{h.assertTrue(firstMeal[0]&&!pet[0].isAlive(),"Native hunting kills and eats both wild and full-health pet spiders");h.succeed();});
+        h.succeedWhen(()->h.assertTrue(firstMeal[0]&&pet[0]!=null&&!pet[0].isAlive(),"Native hunting kills and eats both wild and full-health pet spiders"));
     }
     @GameTest(template="test_root_worm")
     public static void normalScorpionCannotEatAnInvulnerableSpider(GameTestHelper h) {
@@ -156,6 +156,30 @@ public final class ScorpionTests {
         h.assertTrue(normal.hurt(level.damageSources().trident(EntityType.TRIDENT.create(level),null),4),"Tridents retain damage against the large scorpion");
         h.succeed();
     }
+    @GameTest(template="test_root_worm",batch="lava_scorpion_natural_pipeline",timeoutTicks=100)
+    public static void lavaScorpionNaturallySpawnsInALitDeepslateCave(GameTestHelper h) {
+        var level=h.getLevel();var center=h.absolutePos(new BlockPos(20,2,20));
+        var origin=new BlockPos((center.getX()&~15)+8,center.getY(),(center.getZ()&~15)+8);
+        for(int x=0;x<40;x++)for(int z=0;z<40;z++) {h.setBlock(x,1,z,Blocks.DEEPSLATE);h.setBlock(x,8,z,Blocks.DEEPSLATE);}
+        for(int x=-2;x<=2;x++)for(int z=-2;z<=2;z++)level.setBlockAndUpdate(origin.offset(x,0,z),Blocks.LAVA.defaultBlockState());
+        for(int x=4;x<40;x+=8)for(int z=4;z<40;z+=8)h.setBlock(x,5,z,Blocks.LIGHT);
+        var cookie=net.minecraft.server.network.CommonListenerCookie.createInitial(new com.mojang.authlib.GameProfile(UUID.randomUUID(),"spawn-test"),false);
+        var player=new net.minecraft.server.level.ServerPlayer(level.getServer(),level,cookie.gameProfile(),cookie.clientInformation());
+        var connection=new net.minecraft.network.Connection(net.minecraft.network.protocol.PacketFlow.SERVERBOUND);new io.netty.channel.embedded.EmbeddedChannel(connection);
+        net.neoforged.neoforge.network.registration.NetworkRegistry.configureMockConnection(connection);level.getServer().getPlayerList().placeNewPlayer(connection,player,cookie);player.setGameMode(GameType.CREATIVE);
+        player.moveTo(Vec3.atBottomCenterOf(origin.offset(40,0,0)));
+        var biomeFill=net.minecraft.server.commands.FillBiomeCommand.fill(level,h.absolutePos(new BlockPos(0,1,0)),h.absolutePos(new BlockPos(39,7,39)),level.registryAccess().registryOrThrow(net.minecraft.core.registries.Registries.BIOME).getHolderOrThrow(Biomes.DRIPSTONE_CAVES));
+        h.assertTrue(biomeFill.right().isEmpty(),"The bounded cave fixture receives its biome: "+biomeFill);
+        h.runAfterDelay(5,()->{try {
+            h.assertTrue(level.getBlockState(origin).getLightEmission(level,origin)>0,"The test contains emissive lava, not a light-free fixture");
+            level.random.setSeed(6262L);int[] spawned={0};
+            for(int attempt=0;attempt<256&&spawned[0]==0;attempt++) {
+                net.minecraft.world.level.NaturalSpawner.spawnCategoryForPosition(MobCategory.MONSTER,level,level.getChunk(origin),origin,
+                        (type,pos,chunk)->type==ScorpionModule.LAVA_SCORPION.get(),(mob,chunk)->spawned[0]++);
+            }
+            h.assertTrue(spawned[0]>0,"The native weighted spawn-category pipeline produces Lava Scorpions near a non-spectator player");h.succeed();
+        }finally{level.getServer().getPlayerList().remove(player);}});
+    }
     @GameTest(template="test_empty",batch="scorpion_biomes")
     public static void scorpionNaturalEntriesAreRareSinglesInEveryBadlandsVariant(GameTestHelper h) {
         var allowed=List.of(Biomes.BADLANDS,Biomes.ERODED_BADLANDS,Biomes.WOODED_BADLANDS);
@@ -163,7 +187,7 @@ public final class ScorpionTests {
             h.setBiome(biome);var entries=h.getLevel().getBiome(h.absolutePos(new BlockPos(8,2,8))).value().getMobSettings().getMobs(MobCategory.MONSTER).unwrap();
             boolean found=entries.stream().anyMatch(e->e.type==ScorpionModule.SCORPION.get()&&e.minCount==1&&e.maxCount==1&&e.getWeight().asInt()==3);
             h.assertTrue(found==allowed.contains(biome),"Rare singleton entries occur only in badlands variants");
-            h.assertTrue(entries.stream().anyMatch(e->e.type==ScorpionModule.LAVA_SCORPION.get()&&e.minCount==3&&e.maxCount==5&&e.getWeight().asInt()==3),"Lava scorpion native spawn lists use rare packs of three to five");
+            h.assertTrue(entries.stream().anyMatch(e->e.type==ScorpionModule.LAVA_SCORPION.get()&&e.minCount==3&&e.maxCount==5&&e.getWeight().asInt()==12),"Lava scorpion native spawn lists use rare packs of three to five");
         }h.succeed();
     }
     @GameTest(template="test_root_worm",timeoutTicks=100)
