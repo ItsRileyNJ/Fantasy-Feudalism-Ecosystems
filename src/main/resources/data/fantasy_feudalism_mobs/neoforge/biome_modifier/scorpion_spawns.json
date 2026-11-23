@@ -1,10 +1,13 @@
 {
   "type": "neoforge:add_spawns",
-  "biomes": "#fantasy_feudalism_mobs:scorpion_biomes",
+  "biomes": [
+    "minecraft:badlands",
+    "minecraft:eroded_badlands"
+  ],
   "spawners": [
     {
       "type": "fantasy_feudalism_mobs:scorpion",
-      "weight": 3,
+      "weight": 12,
       "minCount": 1,
       "maxCount": 1
     }

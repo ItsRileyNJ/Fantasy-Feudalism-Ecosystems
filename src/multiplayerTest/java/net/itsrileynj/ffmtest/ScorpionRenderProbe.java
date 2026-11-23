@@ -16,11 +16,12 @@ public final class ScorpionRenderProbe {
     }
     private static final class Probe {
         int frames;float maxArch,minStrikeTipZ,maxAttackTailYaw,maxEating,maxPincerOpen,maxIdlePincerAngle;boolean finite=true;float maxSting,minLeg=Float.POSITIVE_INFINITY,maxLeg=Float.NEGATIVE_INFINITY,minTail=Float.POSITIVE_INFINITY,maxTail=Float.NEGATIVE_INFINITY;
-        final Range idleJaw=new Range(),idleTailYaw=new Range(),walkingTailYaw=new Range(),walkingFeelerPitch=new Range();
+        final Range idleJaw=new Range(),idleTailYaw=new Range(),walkingTailYaw=new Range(),walkingFeelerPitch=new Range(),walkingTailRoll=new Range(),walkingTailTipX=new Range();
         void record(Scorpion scorpion,ScorpionModel model) {
             if(!scorpion.isAttacking()&&!scorpion.isEating()) {
                 float yaw=model.root().getChild("tail0").yRot;
                 if(scorpion.walkAnimation.speed()>.02F) {
+                    walkingTailRoll.add(model.root().getChild("tail0").zRot);walkingTailTipX.add(tipPosition(model).x);
                     walkingTailYaw.add(yaw);var feeler=model.root().getChild("head").getChild("feeler0");
                     walkingFeelerPitch.add(feeler.xRot+feeler.getChild("mid").xRot+feeler.getChild("mid").getChild("tip").xRot);
                 }
@@ -37,10 +38,7 @@ public final class ScorpionRenderProbe {
             if(scorpion.isStinging()) {
                 maxArch=Math.max(maxArch,model.root().getChild("abdomen").xRot);
                 if(scorpion.getAttackBlend(0)>.999F&&scorpion.getAttackBlend(1)>.999F)maxAttackTailYaw=Math.max(maxAttackTailYaw,Math.abs(model.root().getChild("tail0").yRot));
-                var pose=new com.mojang.blaze3d.vertex.PoseStack();var part=model.root().getChild("tail0");part.translateAndRotate(pose);
-                for(int i=1;i<5;i++){part=part.getChild("tail"+i);part.translateAndRotate(pose);}
-                for(String name:List.of("bulb","hook","venom_tip","needle_point")){part=part.getChild(name);part.translateAndRotate(pose);}
-                var tip=pose.last().pose().transformPosition(new org.joml.Vector3f(0,0,.125F));minStrikeTipZ=Math.min(minStrikeTipZ,tip.z);
+                minStrikeTipZ=Math.min(minStrikeTipZ,tipPosition(model).z);
             }
             maxEating=Math.max(maxEating,scorpion.getEatAmount(1));
             frames++;maxSting=Math.max(maxSting,scorpion.getStingAmount(1));float leg=model.root().getChild("leg0").yRot,tail=model.root().getChild("tail0").xRot;
@@ -48,6 +46,12 @@ public final class ScorpionRenderProbe {
             for(int i=0;i<8;i++)model.root().getChild("leg"+i).getChild("knee");
             model.root().getAllParts().forEach(p->{if(!Float.isFinite(p.x)||!Float.isFinite(p.y)||!Float.isFinite(p.z)||!Float.isFinite(p.xRot)||!Float.isFinite(p.yRot)||!Float.isFinite(p.zRot))finite=false;});
         }
-        Map<String,Object> snapshot() {return Map.of("frames",frames,"finite",finite,"legs",8,"maxSting",maxSting,"legRange",maxLeg-minLeg,"tailRange",maxTail-minTail,"maxPincerOpen",maxPincerOpen,"maxIdlePincerAngle",maxIdlePincerAngle,"animationRanges",Map.of("idleJaw",idleJaw.span(),"idleTailYaw",idleTailYaw.span(),"walkingTailYaw",walkingTailYaw.span(),"maxEating",maxEating,"maxArch",maxArch,"minStrikeTipZ",minStrikeTipZ,"maxAttackTailYaw",maxAttackTailYaw,"walkingFeelerPitch",walkingFeelerPitch.span()));}
+        private org.joml.Vector3f tipPosition(ScorpionModel model) {
+            var pose=new com.mojang.blaze3d.vertex.PoseStack();var part=model.root().getChild("tail0");part.translateAndRotate(pose);
+            for(int i=1;i<5;i++){part=part.getChild("tail"+i);part.translateAndRotate(pose);}
+            for(String name:List.of("bulb","hook","venom_tip","needle_point")){part=part.getChild(name);part.translateAndRotate(pose);}
+            return pose.last().pose().transformPosition(new org.joml.Vector3f(0,0,.125F));
+        }
+        Map<String,Object> snapshot() {return Map.of("frames",frames,"finite",finite,"legs",8,"maxSting",maxSting,"legRange",maxLeg-minLeg,"tailRange",maxTail-minTail,"maxPincerOpen",maxPincerOpen,"maxIdlePincerAngle",maxIdlePincerAngle,"animationRanges",Map.of("idleJaw",idleJaw.span(),"idleTailYaw",idleTailYaw.span(),"walkingTailYaw",walkingTailYaw.span(),"maxEating",maxEating,"maxArch",maxArch,"minStrikeTipZ",minStrikeTipZ,"maxAttackTailYaw",maxAttackTailYaw,"walkingFeelerPitch",walkingFeelerPitch.span(),"walkingTailRoll",walkingTailRoll.span(),"walkingTailTipX",walkingTailTipX.span()));}
     }
 }

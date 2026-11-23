@@ -146,10 +146,12 @@ public final class ScorpionModel extends HierarchicalModel<Scorpion> {
         for(int i=0;i<tail.length;i++) {
             float jointWeight=1F/(i+1);
             tail[i].xRot+=free*(Mth.sin(age*.045F+phaseOffset-i*.45F)*.04F*rest
-                    +walkBob*.012F*jointWeight*move);
+                    +walkBob*.018F*jointWeight*move);
             tail[i].yRot+=free*(Mth.sin(age*.035F+phaseOffset-i*.35F)*.045F*rest
                     +walkSway*.035F*jointWeight*move);
         }
+        // A slight whole-tail lean makes the small walking motion visible along the arch.
+        tail[0].zRot-=walkSway*.035F*move*free;
         // Hinge the abdomen at its front and carry the tail base with the raised rear.
         float arch=.28F*sting,sin=Mth.sin(arch),cos=Mth.cos(arch);
         abdomen.xRot+=arch;abdomen.y-=5.5F*sin;abdomen.z-=5.5F*(1-cos);

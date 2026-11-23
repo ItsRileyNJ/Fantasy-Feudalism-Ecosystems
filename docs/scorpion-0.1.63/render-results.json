@@ -1,0 +1,46 @@
+{
+  "2": {
+    "frames": 167,
+    "maxIdlePincerAngle": 0.14,
+    "legs": 8,
+    "animationRanges": {
+      "maxEating": 0.0,
+      "idleTailYaw": 0.089808404,
+      "walkingTailRoll": 0.05036872,
+      "walkingTailTipX": 0.084467046,
+      "maxAttackTailYaw": 0.0,
+      "walkingTailYaw": 0.05036872,
+      "minStrikeTipZ": 0.0,
+      "maxArch": 0.0,
+      "idleJaw": 0.11999992,
+      "walkingFeelerPitch": 0.25679588
+    },
+    "maxSting": 0.0,
+    "tailRange": 0.07349372,
+    "maxPincerOpen": 0.14,
+    "finite": true,
+    "legRange": 0.6356702
+  },
+  "3": {
+    "frames": 167,
+    "maxIdlePincerAngle": 0.14,
+    "legs": 8,
+    "animationRanges": {
+      "maxEating": 0.0,
+      "idleTailYaw": 0.086182,
+      "walkingTailRoll": 0.049827754,
+      "walkingTailTipX": 0.11189446,
+      "maxAttackTailYaw": 0.0,
+      "walkingTailYaw": 0.062989086,
+      "minStrikeTipZ": 0.0,
+      "maxArch": 0.0,
+      "idleJaw": 0.11999985,
+      "walkingFeelerPitch": 0.20909321
+    },
+    "maxSting": 0.0,
+    "tailRange": 0.073213995,
+    "maxPincerOpen": 0.14,
+    "finite": true,
+    "legRange": 0.63644063
+  }
+}

@@ -32,7 +32,15 @@ public final class ScorpionModule {
         bus.addListener(ScorpionModule::attributes);bus.addListener(ScorpionModule::placements);bus.addListener(ScorpionModule::creative);
     }
     private static void attributes(EntityAttributeCreationEvent e) {e.put(SCORPION.get(),Scorpion.createAttributes().build());e.put(LAVA_SCORPION.get(),Scorpion.createAttributes().build());}
-    private static void placements(RegisterSpawnPlacementsEvent e) {e.register(LAVA_SCORPION.get(),SpawnPlacementTypes.ON_GROUND,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,ScorpionModule::checkLavaSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);e.register(SCORPION.get(),SpawnPlacementTypes.ON_GROUND,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,Monster::checkMonsterSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);}
+    private static void placements(RegisterSpawnPlacementsEvent e) {e.register(LAVA_SCORPION.get(),SpawnPlacementTypes.ON_GROUND,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,ScorpionModule::checkLavaSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);e.register(SCORPION.get(),SpawnPlacementTypes.ON_GROUND,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,ScorpionModule::checkNormalSpawnRules,RegisterSpawnPlacementsEvent.Operation.REPLACE);}
+    public static boolean checkNormalSpawnRules(EntityType<? extends Scorpion> type,net.minecraft.world.level.ServerLevelAccessor level,MobSpawnType reason,net.minecraft.core.BlockPos pos,net.minecraft.util.RandomSource random) {
+        if(level.getBiome(pos).is(net.minecraft.world.level.biome.Biomes.WOODED_BADLANDS)) {
+            // Daylight is allowed here; retain the native block-light limit for spawnproofing.
+            return Monster.checkAnyLightMonsterSpawnRules(type,level,reason,pos,random)
+                    &&(MobSpawnType.ignoresLightRequirements(reason)||level.getBrightness(net.minecraft.world.level.LightLayer.BLOCK,pos)<=level.dimensionType().monsterSpawnBlockLightLimit());
+        }
+        return Monster.checkMonsterSpawnRules(type,level,reason,pos,random);
+    }
     public static boolean checkLavaSpawnRules(EntityType<? extends Scorpion> type,net.minecraft.world.level.ServerLevelAccessor level,MobSpawnType reason,net.minecraft.core.BlockPos pos,net.minecraft.util.RandomSource random) {
         if(pos.getY()>=0||!Monster.checkAnyLightMonsterSpawnRules(type,level,reason,pos,random)
                 ||level.canSeeSky(pos)||pos.getY()>=level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,pos.getX(),pos.getZ())-4)return false;

@@ -6,7 +6,19 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.62.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.65.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.65 changes
+
+- Normal scorpions can spawn in wooded badlands during the day as well as at night, while staying passive during daytime. Torch spawnproofing remains effective.
+
+## Version 0.1.64 changes
+
+- Normal scorpions are easier to encounter in badlands and eroded badlands, and spawn more commonly in wooded badlands.
+
+## Version 0.1.63 changes
+
+- Both scorpions have a small, visible whole-tail sway and gentle bob while walking.
 
 ## Version 0.1.62 changes
 

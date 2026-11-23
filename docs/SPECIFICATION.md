@@ -759,3 +759,20 @@ Recolor only the Lava Scorpion dark shell region toward neutral deepslate gray w
 ### Backward-curving, animated feelers
 
 Keep the tall feelers based upright, but let their upper portions droop slightly backward. Use connected middle and tip pivots with a smooth, small walking sway. Apply to both variants through the shared model; suppress secondary feeler motion during attacks like the tail. This replaces the completely straight vertical shape.
+
+## Confirmed small visible walking tail motion (0.1.63)
+
+The reduced walking animation is not visible enough. Add a small whole-tail lean at the root (0.035 radians) and slightly increase walking pitch from 0.012 to 0.018 radians, keeping the slow shared clock and connected joints. Apply to both variants and continue suppressing walking motion during attacks and feeding.
+
+
+## Confirmed normal Scorpion spawn availability (0.1.64)
+
+The user reports no normal Scorpion encounters at night while over twenty-four blocks away, and requests more common spawns in wooded badlands. Native category-spawn testing confirms the existing biome entries and placement work on red sand and terracotta in all three badlands variants. Increase the standard badlands/eroded badlands weight from 3 to 12 and use a separate wooded badlands entry at weight 30. Retain singleton packs, native hostile-mob darkness and cap rules, night-only hostility, and no desert entries. Ensure the wooded modifier does not duplicate the standard entry.
+
+
+Wooded badlands ground coverage must include grass blocks and coarse dirt, as well as terracotta and red sand. Keep generic native monster ground eligibility and explicitly test those two additional wooded surfaces.
+
+
+## Confirmed wooded badlands daytime spawning (0.1.65)
+
+Allow normal Scorpions to spawn during the day in wooded badlands too. Ignore sky light only in that biome while preserving the dimension’s native monster block-light limit, valid ground, non-Peaceful difficulty and native caps. Other badlands variants keep normal monster darkness rules. Daytime spawning does not change the existing night-only hostility. Keep the higher wooded weight and singleton groups.

@@ -1,0 +1,8 @@
+SCORPION_SURFACE_SPAWN biome=minecraft:badlands ground=Block{minecraft:red_sand} attempts=24 spawned=1
+SCORPION_SURFACE_SPAWN biome=minecraft:badlands ground=Block{minecraft:terracotta} attempts=24 spawned=1
+SCORPION_SURFACE_SPAWN biome=minecraft:eroded_badlands ground=Block{minecraft:red_sand} attempts=24 spawned=1
+SCORPION_SURFACE_SPAWN biome=minecraft:eroded_badlands ground=Block{minecraft:terracotta} attempts=24 spawned=1
+SCORPION_SURFACE_SPAWN biome=minecraft:wooded_badlands ground=Block{minecraft:red_sand} attempts=16 spawned=1
+SCORPION_SURFACE_SPAWN biome=minecraft:wooded_badlands ground=Block{minecraft:terracotta} attempts=16 spawned=1
+SCORPION_SURFACE_SPAWN biome=minecraft:wooded_badlands ground=Block{minecraft:grass_block} attempts=16 spawned=1
+SCORPION_SURFACE_SPAWN biome=minecraft:wooded_badlands ground=Block{minecraft:coarse_dirt} attempts=16 spawned=1

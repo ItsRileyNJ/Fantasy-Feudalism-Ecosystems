@@ -180,13 +180,63 @@ public final class ScorpionTests {
             h.assertTrue(spawned[0]>0,"The native weighted spawn-category pipeline produces Lava Scorpions near a non-spectator player");h.succeed();
         }finally{level.getServer().getPlayerList().remove(player);}});
     }
+    @GameTest(template="test_root_worm",batch="normal_scorpion_surface_pipeline",timeoutTicks=200)
+    public static void normalScorpionNaturallySpawnsOnBadlandsSurfaceMaterials(GameTestHelper h) {
+        var level=h.getLevel();level.setDayTime(18000);var base=h.absolutePos(BlockPos.ZERO);
+        var origin=new BlockPos(((base.getX()+20)&~15)+8,64,((base.getZ()+20)&~15)+8);
+        for(int x=0;x<40;x++)for(int z=0;z<40;z++)level.setBlockAndUpdate(new BlockPos(base.getX()+x,62,base.getZ()+z),Blocks.STONE.defaultBlockState());
+        var cookie=net.minecraft.server.network.CommonListenerCookie.createInitial(new com.mojang.authlib.GameProfile(UUID.randomUUID(),"mesa-spawn-test"),false);
+        var player=new net.minecraft.server.level.ServerPlayer(level.getServer(),level,cookie.gameProfile(),cookie.clientInformation());
+        var connection=new net.minecraft.network.Connection(net.minecraft.network.protocol.PacketFlow.SERVERBOUND);new io.netty.channel.embedded.EmbeddedChannel(connection);
+        net.neoforged.neoforge.network.registration.NetworkRegistry.configureMockConnection(connection);level.getServer().getPlayerList().placeNewPlayer(connection,player,cookie);player.setGameMode(GameType.CREATIVE);
+        player.moveTo(Vec3.atBottomCenterOf(origin.offset(40,0,0)));
+        h.runAfterDelay(5,()->{try {
+            for(var biome:List.of(Biomes.BADLANDS,Biomes.ERODED_BADLANDS,Biomes.WOODED_BADLANDS)) {
+                var fill=net.minecraft.server.commands.FillBiomeCommand.fill(level,new BlockPos(base.getX(),63,base.getZ()),new BlockPos(base.getX()+39,70,base.getZ()+39),level.registryAccess().registryOrThrow(net.minecraft.core.registries.Registries.BIOME).getHolderOrThrow(biome));
+                h.assertTrue(fill.right().isEmpty(),"Surface biome is installed: "+biome);
+                for(long time:biome==Biomes.WOODED_BADLANDS?new long[]{6000,18000}:new long[]{18000}) {
+                    level.setDayTime(time);
+                    for(var ground:biome==Biomes.WOODED_BADLANDS?List.of(Blocks.RED_SAND,Blocks.TERRACOTTA,Blocks.GRASS_BLOCK,Blocks.COARSE_DIRT):List.of(Blocks.RED_SAND,Blocks.TERRACOTTA)) {
+                        for(int x=0;x<40;x++)for(int z=0;z<40;z++)level.setBlockAndUpdate(new BlockPos(base.getX()+x,63,base.getZ()+z),ground.defaultBlockState());
+                        level.random.setSeed(6464L);int[] spawned={0};int attempts=0;
+                        while(attempts<1024&&spawned[0]==0) {
+                            attempts++;
+                            net.minecraft.world.level.NaturalSpawner.spawnCategoryForPosition(MobCategory.MONSTER,level,level.getChunk(origin),origin,
+                                    (type,pos,chunk)->type==ScorpionModule.SCORPION.get(),(mob,chunk)->{spawned[0]++;mob.discard();});
+                        }
+                        h.assertTrue(spawned[0]>0,"Native normal Scorpion spawning on "+ground+" in "+biome+" at time="+time);
+                        System.out.println("SCORPION_SURFACE_SPAWN biome="+biome.location()+" ground="+ground+" time="+time+" attempts="+attempts+" spawned="+spawned[0]);
+                    }
+                }
+            }h.succeed();
+        }finally{level.getServer().getPlayerList().remove(player);}});
+    }
+    @GameTest(template="test_empty",batch="scorpion_wooded_daylight")
+    public static void scorpionWoodedDaylightIgnoresSunlightButPreservesTorchProtectionAndPassiveDays(GameTestHelper h) {
+        var level=h.getLevel();level.setDayTime(6000);h.setBlock(8,1,8,Blocks.GRASS_BLOCK);var pos=h.absolutePos(new BlockPos(8,2,8));int[] blockLight={0};
+        var daylight=(net.minecraft.world.level.ServerLevelAccessor)java.lang.reflect.Proxy.newProxyInstance(net.minecraft.world.level.ServerLevelAccessor.class.getClassLoader(),new Class<?>[]{net.minecraft.world.level.ServerLevelAccessor.class},(proxy,method,args)->{
+            if(method.getName().equals("getBrightness"))return args[0]==net.minecraft.world.level.LightLayer.SKY?15:blockLight[0];
+            if(method.getName().equals("getMaxLocalRawBrightness"))return 15;
+            try{return method.invoke(level,args);}catch(java.lang.reflect.InvocationTargetException e){throw e.getCause();}
+        });
+        for(var biome:List.of(Biomes.BADLANDS,Biomes.ERODED_BADLANDS,Biomes.WOODED_BADLANDS)) {
+            h.setBiome(biome);boolean allowed=SpawnPlacements.checkSpawnRules(ScorpionModule.SCORPION.get(),daylight,MobSpawnType.NATURAL,pos,net.minecraft.util.RandomSource.create(65));
+            h.assertTrue(allowed==(biome==Biomes.WOODED_BADLANDS),"Full daylight spawning is enabled only in wooded badlands");
+        }
+        blockLight[0]=14;
+        h.assertTrue(!SpawnPlacements.checkSpawnRules(ScorpionModule.SCORPION.get(),daylight,MobSpawnType.NATURAL,pos,level.random),"Artificial block light still spawnproofs wooded badlands");
+        var scorpion=h.spawn(ScorpionModule.SCORPION.get(),8,2,8);scorpion.setNoAi(true);var victim=h.spawn(EntityType.PIG,8,2,7);victim.setNoAi(true);
+        scorpion.setTarget(victim);scorpion.beginSting(victim);
+        h.assertTrue(scorpion.getTarget()==null&&!scorpion.isAttacking()&&!scorpion.doHurtTarget(victim),"Wooded daylight spawns remain passive during the day");h.succeed();
+    }
     @GameTest(template="test_empty",batch="scorpion_biomes")
     public static void scorpionNaturalEntriesAreRareSinglesInEveryBadlandsVariant(GameTestHelper h) {
         var allowed=List.of(Biomes.BADLANDS,Biomes.ERODED_BADLANDS,Biomes.WOODED_BADLANDS);
         for(var biome:List.of(Biomes.DESERT,Biomes.BADLANDS,Biomes.ERODED_BADLANDS,Biomes.WOODED_BADLANDS,Biomes.PLAINS,Biomes.FOREST,Biomes.SAVANNA)) {
             h.setBiome(biome);var entries=h.getLevel().getBiome(h.absolutePos(new BlockPos(8,2,8))).value().getMobSettings().getMobs(MobCategory.MONSTER).unwrap();
-            boolean found=entries.stream().anyMatch(e->e.type==ScorpionModule.SCORPION.get()&&e.minCount==1&&e.maxCount==1&&e.getWeight().asInt()==3);
+            boolean found=entries.stream().anyMatch(e->e.type==ScorpionModule.SCORPION.get()&&e.minCount==1&&e.maxCount==1&&e.getWeight().asInt()==(biome==Biomes.WOODED_BADLANDS?30:12));
             h.assertTrue(found==allowed.contains(biome),"Rare singleton entries occur only in badlands variants");
+            h.assertTrue(entries.stream().filter(e->e.type==ScorpionModule.SCORPION.get()).count()==(allowed.contains(biome)?1:0),"One scorpion entry per eligible biome, without duplicates");
             h.assertTrue(entries.stream().anyMatch(e->e.type==ScorpionModule.LAVA_SCORPION.get()&&e.minCount==3&&e.maxCount==5&&e.getWeight().asInt()==12),"Lava scorpion native spawn lists use rare packs of three to five");
         }h.succeed();
     }
