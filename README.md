@@ -6,7 +6,13 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.58.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.59.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.59 changes
+
+- Normal scorpions now hunt only at night and stop attacking at dawn. Lava Scorpions stay hostile in caves throughout the day. Their six orange eyes are separated by a charcoal faceplate.
+
+- Added a Lava Scorpion with the same geometry and animations at one-quarter scale, mottled charcoal shell with orange fissures and fiery red-orange claws with yellow highlights. It spawns rarely and singly in covered Overworld caves within six blocks horizontally and three vertically of lava, including lava-lit caves. A separate spawn egg is included.
 
 ## Version 0.1.58 changes
 

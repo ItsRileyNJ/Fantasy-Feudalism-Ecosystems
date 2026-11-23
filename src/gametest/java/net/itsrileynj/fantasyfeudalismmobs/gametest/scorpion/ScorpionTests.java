@@ -19,7 +19,7 @@ import net.neoforged.neoforge.gametest.*;
 @GameTestHolder(FantasyFeudalismMobs.MOD_ID)
 @PrefixGameTestTemplate(false)
 public final class ScorpionTests {
-    private static Scorpion spawn(GameTestHelper h) {var s=h.spawn(ScorpionModule.SCORPION.get(),16,2,16);s.setOnGround(true);return s;}
+    private static Scorpion spawn(GameTestHelper h) {h.getLevel().setDayTime(18000);var s=h.spawn(ScorpionModule.SCORPION.get(),16,2,16);s.setOnGround(true);return s;}
     private static net.minecraft.world.entity.animal.Pig victim(GameTestHelper h,Scorpion s) {
         var p=h.spawn(EntityType.PIG,16,2,15);p.setNoAi(true);p.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MAX_HEALTH).setBaseValue(40);p.setHealth(40);return p;
     }
@@ -31,6 +31,45 @@ public final class ScorpionTests {
         var scorpions=h.getLevel().getEntitiesOfClass(Scorpion.class,new AABB(pos).inflate(3));h.assertTrue(scorpions.size()==1,"One egg makes one scorpion");
         var s=scorpions.getFirst();h.assertTrue(Math.abs(s.getBbWidth()-1.4)<.001&&Math.abs(s.getBbHeight()-.9)<.001&&s.getMaxHealth()==16,"Scorpion has vanilla spider dimensions and eight hearts");
         h.assertTrue(!(((Entity)s) instanceof net.minecraft.world.entity.monster.Spider),"Scorpion does not inherit pet-spider mechanics");h.succeed();
+    }
+    @GameTest(template="test_empty")
+    public static void lavaScorpionEggHasQuarterSizeAndRetainsVariantOnReload(GameTestHelper h) {
+        h.setBlock(8,1,8,Blocks.SAND);var player=h.makeMockPlayer(GameType.CREATIVE);player.getAbilities().instabuild=true;
+        var egg=new ItemStack(ScorpionModule.LAVA_EGG.get());player.setItemInHand(InteractionHand.MAIN_HAND,egg);var pos=h.absolutePos(new BlockPos(8,1,8));
+        egg.useOn(new UseOnContext(player,InteractionHand.MAIN_HAND,new BlockHitResult(Vec3.atCenterOf(pos).add(0,.5,0),Direction.UP,pos,false)));
+        var matches=h.getLevel().getEntitiesOfClass(Scorpion.class,new AABB(pos).inflate(3));
+        h.assertTrue(matches.size()==1,"One lava egg spawns one mob");var small=matches.getFirst();
+        h.assertTrue(small.isLava()&&small.visualScale()==.25F&&Math.abs(small.getBbWidth()-.35)<.001&&Math.abs(small.getBbHeight()-.225)<.001,"Variant has quarter-scale rendering and collision");
+        h.assertTrue(small.getType().is(net.minecraft.tags.EntityTypeTags.ARTHROPOD),"Small variant retains native arthropod rules");
+        var saved=new net.minecraft.nbt.CompoundTag();small.save(saved);var restored=EntityType.loadEntityRecursive(saved,h.getLevel(),e->e);
+        h.assertTrue(restored instanceof Scorpion copy&&copy.isLava()&&copy.visualScale()==.25F,"Independent variant identity and scale survive reload");
+        h.assertTrue(ScorpionModule.SCORPION.get().create(h.getLevel()).visualScale()==1,"Original scorpion remains full-sized");h.succeed();
+    }
+    @GameTest(template="test_empty",batch="lava_scorpion_habitat")
+    public static void lavaScorpionRequiresCoveredCaveAndNearbyLava(GameTestHelper h) {
+        var pos=h.absolutePos(new BlockPos(8,2,8));var level=h.getLevel();var type=ScorpionModule.LAVA_SCORPION.get();
+        h.setBlock(8,1,8,Blocks.STONE);h.setBlock(8,7,8,Blocks.STONE);
+        h.runAfterDelay(3,()->{
+            h.assertTrue(!SpawnPlacements.checkSpawnRules(type,level,MobSpawnType.NATURAL,pos,level.random),"Covered cave without lava rejects spawning");
+            h.setBlock(11,2,8,Blocks.LAVA);
+        });
+        h.runAfterDelay(6,()->{
+            h.assertTrue(SpawnPlacements.checkSpawnRules(type,level,MobSpawnType.NATURAL,pos,level.random),"Nearby lava permits a covered cave spawn despite lava light: sky="+level.canSeeSky(pos)+" height="+level.getHeight(net.minecraft.world.level.levelgen.Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,pos.getX(),pos.getZ())+" pos="+pos+" difficulty="+level.getDifficulty());
+            h.setBlock(8,7,8,Blocks.AIR);
+        });
+        h.runAfterDelay(9,()->{h.assertTrue(!SpawnPlacements.checkSpawnRules(type,level,MobSpawnType.NATURAL,pos,level.random),"Surface lava does not qualify as a cave");h.succeed();});
+    }
+    @GameTest(template="test_root_worm",batch="scorpion_daylight")
+    public static void normalScorpionIsPassiveByDayAndCancelsItsStingAtDawn(GameTestHelper h) {
+        var s=spawn(h);s.setNoAi(true);var p=victim(h,s);var level=h.getLevel();
+        level.setDayTime(6000);s.setTarget(p);s.beginSting(p);
+        h.assertTrue(s.getTarget()==null&&!s.isStinging()&&!s.doHurtTarget(p)&&p.getHealth()==40,"Normal scorpion refuses daytime targets and damage");
+        level.setDayTime(13000);s.setTarget(p);s.beginSting(p);
+        h.assertTrue(s.getTarget()==p&&s.isStinging(),"Normal scorpion can hunt at night");
+        level.setDayTime(23000);s.aiStep();
+        h.assertTrue(s.getTarget()==null&&!s.isStinging()&&p.getHealth()==40&&!p.hasEffect(MobEffects.POISON),"Dawn cancels a pending sting before damage");
+        var lava=ScorpionModule.LAVA_SCORPION.get().create(level);lava.setPos(s.position());level.addFreshEntity(lava);lava.setNoAi(true);
+        level.setDayTime(6000);h.assertTrue(lava.doHurtTarget(p)&&p.hasEffect(MobEffects.POISON),"Lava scorpion remains hostile during the day");h.succeed();
     }
     @GameTest(template="test_empty",batch="scorpion_biomes")
     public static void scorpionNaturalEntriesAreRareSinglesInEveryBadlandsVariant(GameTestHelper h) {

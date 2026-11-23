@@ -77,5 +77,7 @@
   "subtitles.fantasy_feudalism_mobs.scorpion.hurt": "Scorpion hurts",
   "subtitles.fantasy_feudalism_mobs.scorpion.death": "Scorpion dies",
   "subtitles.fantasy_feudalism_mobs.scorpion.step": "Scorpion scuttles",
-  "subtitles.fantasy_feudalism_mobs.scorpion.sting": "Scorpion stings"
+  "subtitles.fantasy_feudalism_mobs.scorpion.sting": "Scorpion stings",
+  "entity.fantasy_feudalism_mobs.lava_scorpion": "Lava Scorpion",
+  "item.fantasy_feudalism_mobs.lava_scorpion_spawn_egg": "Lava Scorpion Spawn Egg"
 }

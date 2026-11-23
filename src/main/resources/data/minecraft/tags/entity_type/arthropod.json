@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "fantasy_feudalism_mobs:scorpion"
+    "fantasy_feudalism_mobs:scorpion",
+    "fantasy_feudalism_mobs:lava_scorpion"
   ]
 }

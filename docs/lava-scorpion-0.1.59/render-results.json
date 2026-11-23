@@ -1,0 +1,10 @@
+{
+  "maxPincerOpen": 0.35998458,
+  "maxSting": 1.0,
+  "tailRange": 0.52719164,
+  "finite": true,
+  "legRange": 0.6344867,
+  "maxIdlePincerAngle": 0.14,
+  "legs": 8,
+  "frames": 872
+}

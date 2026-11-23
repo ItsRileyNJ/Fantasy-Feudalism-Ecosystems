@@ -689,3 +689,26 @@ Restore the original black finger width, height, total reach and pivot spacing. 
 ## Confirmed rare badlands Scorpion spawning (0.1.58)
 
 The user approved the final stepped pincer model and authorized committing. Restrict natural Scorpion spawning to Badlands, Eroded Badlands and Wooded Badlands; replace the earlier desert/badlands setting with a rare weight of 3 and group size exactly one. Use the existing native hostile spawn checks. Spawn eggs remain available. No push requested.
+
+## Confirmed quarter-scale Scorpion (0.1.59)
+
+Create a second, independent mob using the exact same Scorpion geometry and animations at one-quarter of the original linear size. Recolor it to match the supplied charcoal-and-orange/gold reference without adding geometry. The user specified caves around lava as its natural habitat. Use the working name Lava Scorpion, a separate registry identity and spawn egg, a 0.35 by 0.225 collider, quarter shadow/eye height/culling margin, and the existing combat attributes and synchronized attack animation.
+
+Rare singleton Overworld spawn entries have weight 3. Require a covered cave position at least four blocks below the local non-leaf surface and lava within six blocks horizontally and three vertically, in loaded chunks. Check only on spawn attempts. Allow block light from lava while preserving native non-Peaceful, valid ground, collision, liquid, player-distance and population checks. The original badlands Scorpion retains its existing spawn rules, size and materials. No commit or push requested for this addition.
+
+
+### Lava Scorpion body texture detail
+
+Increase the Lava Scorpion shell texture detail with mottled charcoal plates, gray highlights, pits and sparse burnt-orange fissures. Use a dedicated texture while retaining the exact geometry and animations.
+
+
+### Separate eyes and nocturnal normal Scorpions
+
+Use the charcoal material for the Lava Scorpion eye mask so its six orange eyes are separated by dark shell, rather than sitting on one continuous orange strip. Geometry remains unchanged.
+
+Normal Scorpions are hostile only during world-clock night (13,000 through 22,999), independent of weather or cave darkness. Reject daytime targets and damage, including retaliation, stop pursuit and cancel an unfinished sting at dawn. Lava Scorpions retain their existing all-day hostility. Reuse the existing NightCycle utility.
+
+
+### Fiery Lava Scorpion accents
+
+Recolor the amber/gold accent material to fiery red-orange with bright yellow-orange highlights, including the eye swatch. Retain the mottled charcoal shell and dark eye-mask gaps. No geometry or gameplay changes.

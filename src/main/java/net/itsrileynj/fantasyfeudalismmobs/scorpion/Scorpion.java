@@ -52,7 +52,15 @@ public final class Scorpion extends Monster {
         float elapsed=level().getGameTime()-entityData.get(STING_STARTED)+partialTick;
         return elapsed<0||elapsed>=STING_WINDUP?0:(float)Math.sin(Math.PI*elapsed/STING_WINDUP);
     }
+    private boolean canHunt() {return isLava()||net.itsrileynj.fantasyfeudalismmobs.NightCycle.isNight(level());}
+    @Override public boolean canAttack(LivingEntity target) {return canHunt()&&super.canAttack(target);}
+    @Override public void setTarget(@javax.annotation.Nullable LivingEntity target) {super.setTarget(canHunt()?target:null);}
     @Override public void aiStep() {
+        if(!level().isClientSide&&!canHunt()) {
+            if(getTarget()!=null||stingTarget!=null||isStinging())getNavigation().stop();
+            super.setTarget(null);stingTarget=null;
+            if(isStinging())entityData.set(STING_STARTED,-1000L);
+        }
         super.aiStep();
         if(level() instanceof ServerLevel server) {
             long elapsed=level().getGameTime()-entityData.get(STING_STARTED);
@@ -77,5 +85,7 @@ public final class Scorpion extends Monster {
     @Override protected SoundEvent getHurtSound(DamageSource source) {return ScorpionModule.HURT.get();}
     @Override protected SoundEvent getDeathSound() {return ScorpionModule.DEATH.get();}
     @Override protected void playStepSound(BlockPos pos,BlockState state) {playSound(ScorpionModule.STEP.get(),.15F,1);}
-    @Override public net.minecraft.world.phys.AABB getBoundingBoxForCulling() {return getBoundingBox().inflate(1.4,1,1.4);}
+    public boolean isLava() {return getType()==ScorpionModule.LAVA_SCORPION.get();}
+    public float visualScale() {return isLava()?.25F:1;}
+    @Override public net.minecraft.world.phys.AABB getBoundingBoxForCulling() {float scale=visualScale();return getBoundingBox().inflate(1.4*scale,scale,1.4*scale);}
 }

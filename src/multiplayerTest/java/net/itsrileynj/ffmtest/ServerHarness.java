@@ -82,8 +82,9 @@ public final class ServerHarness {
             case "scorpion": {
                 String phase=q.get("phase").getAsString();
                 if(phase.equals("fixture")) {
-                    var scorpion=net.itsrileynj.fantasyfeudalismmobs.scorpion.ScorpionModule.SCORPION.get().create(level);
-                    scorpion.moveTo(8.5,64,9.5,180,0);scorpion.setYBodyRot(180);scorpion.setYHeadRot(180);scorpion.setNoAi(true);scorpion.setPersistenceRequired();level.addFreshEntity(scorpion);return ControlFiles.entity(scorpion);
+                    boolean lava=q.has("lava")&&q.get("lava").getAsBoolean();
+                    var scorpion=(lava?net.itsrileynj.fantasyfeudalismmobs.scorpion.ScorpionModule.LAVA_SCORPION:net.itsrileynj.fantasyfeudalismmobs.scorpion.ScorpionModule.SCORPION).get().create(level);
+                    scorpion.moveTo(lava?10.5:8.5,64,9.5,180,0);scorpion.setYBodyRot(180);scorpion.setYHeadRot(180);scorpion.setNoAi(true);scorpion.setPersistenceRequired();level.addFreshEntity(scorpion);return ControlFiles.entity(scorpion);
                 }
                 var scorpion=(net.itsrileynj.fantasyfeudalismmobs.scorpion.Scorpion)entity(level,q);
                 if(phase.equals("walk")){scorpion.goalSelector.removeAllGoals(g->true);scorpion.targetSelector.removeAllGoals(g->true);scorpion.setNoAi(false);scorpion.getNavigation().moveTo(scorpion.getX()+5,64,scorpion.getZ(),1);}
