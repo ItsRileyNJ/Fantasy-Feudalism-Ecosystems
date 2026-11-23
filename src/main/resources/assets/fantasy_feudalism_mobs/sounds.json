@@ -180,5 +180,50 @@
         "type": "event"
       }
     ]
+  },
+  "entity.crystapid.ambient": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.crystapid.ambient",
+    "sounds": [
+      {
+        "name": "minecraft:entity.spider.ambient",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.crystapid.hurt": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.crystapid.hurt",
+    "sounds": [
+      {
+        "name": "minecraft:entity.spider.hurt",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.crystapid.death": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.crystapid.death",
+    "sounds": [
+      {
+        "name": "minecraft:entity.spider.death",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.crystapid.step": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.crystapid.step",
+    "sounds": [
+      {
+        "name": "minecraft:entity.spider.step",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.crystapid.sting": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.crystapid.sting",
+    "sounds": [
+      {
+        "name": "minecraft:entity.bee.sting",
+        "type": "event"
+      }
+    ]
   }
 }

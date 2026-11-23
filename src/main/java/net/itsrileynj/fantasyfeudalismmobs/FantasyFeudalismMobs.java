@@ -71,7 +71,7 @@ public final class FantasyFeudalismMobs {
                     output.accept(BAT_ENCLOSURE_ITEM.get());
                     output.accept(FIELD_MOUSE_SPAWN_EGG.get());
                     output.accept(net.itsrileynj.fantasyfeudalismmobs.scorpion.ScorpionModule.EGG.get());
-                    output.accept(net.itsrileynj.fantasyfeudalismmobs.scorpion.ScorpionModule.LAVA_EGG.get());
+                    output.accept(net.itsrileynj.fantasyfeudalismmobs.scorpion.ScorpionModule.CRYSTAPID_EGG.get());
                     for(var egg:Birds.EGGS)output.accept(egg.get());
                     output.accept(net.itsrileynj.fantasyfeudalismmobs.rootworm.RootWormModule.ROOT_WORM_EGG.get());
                 })

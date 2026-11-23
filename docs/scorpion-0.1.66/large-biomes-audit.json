@@ -1,0 +1,382 @@
+{
+  "biomes": {
+    "forest": {
+      "geodeFeature": true,
+      "spawns": [
+        {
+          "weight": 6,
+          "max": 2,
+          "min": 2,
+          "type": "robin"
+        },
+        {
+          "weight": 6,
+          "max": 6,
+          "min": 3,
+          "type": "goldfinch"
+        },
+        {
+          "weight": 3,
+          "max": 1,
+          "min": 1,
+          "type": "blue_jay"
+        },
+        {
+          "weight": 12,
+          "max": 5,
+          "min": 3,
+          "type": "lava_scorpion"
+        }
+      ]
+    },
+    "flower_forest": {
+      "geodeFeature": true,
+      "spawns": [
+        {
+          "weight": 6,
+          "max": 2,
+          "min": 2,
+          "type": "robin"
+        },
+        {
+          "weight": 6,
+          "max": 6,
+          "min": 3,
+          "type": "goldfinch"
+        },
+        {
+          "weight": 3,
+          "max": 1,
+          "min": 1,
+          "type": "blue_jay"
+        },
+        {
+          "weight": 12,
+          "max": 5,
+          "min": 3,
+          "type": "lava_scorpion"
+        }
+      ]
+    },
+    "birch_forest": {
+      "geodeFeature": true,
+      "spawns": [
+        {
+          "weight": 6,
+          "max": 2,
+          "min": 2,
+          "type": "robin"
+        },
+        {
+          "weight": 6,
+          "max": 6,
+          "min": 3,
+          "type": "goldfinch"
+        },
+        {
+          "weight": 3,
+          "max": 1,
+          "min": 1,
+          "type": "blue_jay"
+        },
+        {
+          "weight": 12,
+          "max": 5,
+          "min": 3,
+          "type": "lava_scorpion"
+        }
+      ]
+    },
+    "old_growth_birch_forest": {
+      "geodeFeature": true,
+      "spawns": [
+        {
+          "weight": 6,
+          "max": 2,
+          "min": 2,
+          "type": "robin"
+        },
+        {
+          "weight": 6,
+          "max": 6,
+          "min": 3,
+          "type": "goldfinch"
+        },
+        {
+          "weight": 3,
+          "max": 1,
+          "min": 1,
+          "type": "blue_jay"
+        },
+        {
+          "weight": 12,
+          "max": 5,
+          "min": 3,
+          "type": "lava_scorpion"
+        }
+      ]
+    },
+    "dark_forest": {
+      "geodeFeature": true,
+      "spawns": [
+        {
+          "weight": 6,
+          "max": 2,
+          "min": 2,
+          "type": "robin"
+        },
+        {
+          "weight": 6,
+          "max": 6,
+          "min": 3,
+          "type": "goldfinch"
+        },
+        {
+          "weight": 3,
+          "max": 1,
+          "min": 1,
+          "type": "blue_jay"
+        },
+        {
+          "weight": 12,
+          "max": 5,
+          "min": 3,
+          "type": "lava_scorpion"
+        }
+      ]
+    },
+    "cherry_grove": {
+      "geodeFeature": true,
+      "spawns": [
+        {
+          "weight": 6,
+          "max": 2,
+          "min": 2,
+          "type": "robin"
+        },
+        {
+          "weight": 6,
+          "max": 6,
+          "min": 3,
+          "type": "goldfinch"
+        },
+        {
+          "weight": 3,
+          "max": 1,
+          "min": 1,
+          "type": "blue_jay"
+        },
+        {
+          "weight": 12,
+          "max": 5,
+          "min": 3,
+          "type": "lava_scorpion"
+        }
+      ]
+    },
+    "taiga": {
+      "geodeFeature": true,
+      "spawns": [
+        {
+          "weight": 4,
+          "max": 1,
+          "min": 1,
+          "type": "crow"
+        },
+        {
+          "weight": 12,
+          "max": 5,
+          "min": 3,
+          "type": "lava_scorpion"
+        }
+      ]
+    },
+    "snowy_taiga": {
+      "geodeFeature": true,
+      "spawns": [
+        {
+          "weight": 4,
+          "max": 1,
+          "min": 1,
+          "type": "crow"
+        },
+        {
+          "weight": 12,
+          "max": 5,
+          "min": 3,
+          "type": "lava_scorpion"
+        }
+      ]
+    },
+    "old_growth_pine_taiga": {
+      "geodeFeature": true,
+      "spawns": [
+        {
+          "weight": 4,
+          "max": 1,
+          "min": 1,
+          "type": "crow"
+        },
+        {
+          "weight": 12,
+          "max": 5,
+          "min": 3,
+          "type": "lava_scorpion"
+        }
+      ]
+    },
+    "old_growth_spruce_taiga": {
+      "geodeFeature": true,
+      "spawns": [
+        {
+          "weight": 4,
+          "max": 1,
+          "min": 1,
+          "type": "crow"
+        },
+        {
+          "weight": 12,
+          "max": 5,
+          "min": 3,
+          "type": "lava_scorpion"
+        }
+      ]
+    },
+    "savanna": {
+      "geodeFeature": true,
+      "spawns": [
+        {
+          "weight": 6,
+          "max": 4,
+          "min": 2,
+          "type": "root_worm"
+        },
+        {
+          "weight": 12,
+          "max": 5,
+          "min": 3,
+          "type": "lava_scorpion"
+        }
+      ]
+    },
+    "savanna_plateau": {
+      "geodeFeature": true,
+      "spawns": [
+        {
+          "weight": 6,
+          "max": 4,
+          "min": 2,
+          "type": "root_worm"
+        },
+        {
+          "weight": 12,
+          "max": 5,
+          "min": 3,
+          "type": "lava_scorpion"
+        }
+      ]
+    },
+    "windswept_savanna": {
+      "geodeFeature": true,
+      "spawns": [
+        {
+          "weight": 6,
+          "max": 4,
+          "min": 2,
+          "type": "root_worm"
+        },
+        {
+          "weight": 12,
+          "max": 5,
+          "min": 3,
+          "type": "lava_scorpion"
+        }
+      ]
+    },
+    "badlands": {
+      "geodeFeature": true,
+      "spawns": [
+        {
+          "weight": 12,
+          "max": 1,
+          "min": 1,
+          "type": "scorpion"
+        },
+        {
+          "weight": 12,
+          "max": 5,
+          "min": 3,
+          "type": "lava_scorpion"
+        }
+      ]
+    },
+    "eroded_badlands": {
+      "geodeFeature": true,
+      "spawns": [
+        {
+          "weight": 12,
+          "max": 1,
+          "min": 1,
+          "type": "scorpion"
+        },
+        {
+          "weight": 12,
+          "max": 5,
+          "min": 3,
+          "type": "lava_scorpion"
+        }
+      ]
+    },
+    "wooded_badlands": {
+      "geodeFeature": true,
+      "spawns": [
+        {
+          "weight": 30,
+          "max": 1,
+          "min": 1,
+          "type": "scorpion"
+        },
+        {
+          "weight": 12,
+          "max": 5,
+          "min": 3,
+          "type": "lava_scorpion"
+        }
+      ]
+    },
+    "dripstone_caves": {
+      "geodeFeature": true,
+      "spawns": [
+        {
+          "weight": 12,
+          "max": 5,
+          "min": 3,
+          "type": "lava_scorpion"
+        }
+      ]
+    },
+    "lush_caves": {
+      "geodeFeature": true,
+      "spawns": [
+        {
+          "weight": 12,
+          "max": 5,
+          "min": 3,
+          "type": "lava_scorpion"
+        }
+      ]
+    },
+    "deep_dark": {
+      "geodeFeature": true,
+      "spawns": [
+        {
+          "weight": 12,
+          "max": 5,
+          "min": 3,
+          "type": "lava_scorpion"
+        }
+      ]
+    }
+  },
+  "noiseSettings": "minecraft:large_biomes"
+}

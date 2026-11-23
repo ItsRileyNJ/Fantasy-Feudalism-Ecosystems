@@ -33,31 +33,35 @@ public final class ScorpionTests {
         h.assertTrue(!(((Entity)s) instanceof net.minecraft.world.entity.monster.Spider),"Scorpion does not inherit pet-spider mechanics");h.succeed();
     }
     @GameTest(template="test_empty")
-    public static void lavaScorpionEggHasQuarterSizeAndRetainsVariantOnReload(GameTestHelper h) {
+    public static void crystapidEggHasQuarterSizeAndRetainsVariantOnReload(GameTestHelper h) {
         h.setBlock(8,1,8,Blocks.SAND);var player=h.makeMockPlayer(GameType.CREATIVE);player.getAbilities().instabuild=true;
-        var egg=new ItemStack(ScorpionModule.LAVA_EGG.get());player.setItemInHand(InteractionHand.MAIN_HAND,egg);var pos=h.absolutePos(new BlockPos(8,1,8));
+        var egg=new ItemStack(ScorpionModule.CRYSTAPID_EGG.get());player.setItemInHand(InteractionHand.MAIN_HAND,egg);var pos=h.absolutePos(new BlockPos(8,1,8));
         egg.useOn(new UseOnContext(player,InteractionHand.MAIN_HAND,new BlockHitResult(Vec3.atCenterOf(pos).add(0,.5,0),Direction.UP,pos,false)));
         var matches=h.getLevel().getEntitiesOfClass(Scorpion.class,new AABB(pos).inflate(3));
-        h.assertTrue(matches.size()==1,"One lava egg spawns one mob");var small=matches.getFirst();
-        h.assertTrue(small.isLava()&&small.visualScale()==.25F&&Math.abs(small.getBbWidth()-.35)<.001&&Math.abs(small.getBbHeight()-.225)<.001,"Variant has quarter-scale rendering and collision");
+        h.assertTrue(matches.size()==1,"One Crystapid egg spawns one mob");var small=matches.getFirst();
+        h.assertTrue(small.isCrystapid()&&small.visualScale()==.25F&&Math.abs(small.getBbWidth()-.35)<.001&&Math.abs(small.getBbHeight()-.225)<.001,"Variant has quarter-scale rendering and collision");
         h.assertTrue(small.getType().is(net.minecraft.tags.EntityTypeTags.ARTHROPOD),"Small variant retains native arthropod rules");
-        var saved=new net.minecraft.nbt.CompoundTag();small.save(saved);var restored=EntityType.loadEntityRecursive(saved,h.getLevel(),e->e);
-        h.assertTrue(restored instanceof Scorpion copy&&copy.isLava()&&copy.visualScale()==.25F,"Independent variant identity and scale survive reload");
+        var saved=new net.minecraft.nbt.CompoundTag();small.save(saved);h.assertTrue(saved.getString("id").equals("fantasy_feudalism_mobs:lava_scorpion"),"Legacy entity IDs remain loadable after the display rename");var restored=EntityType.loadEntityRecursive(saved,h.getLevel(),e->e);
+        h.assertTrue(restored instanceof Scorpion copy&&copy.isCrystapid()&&copy.visualScale()==.25F,"Independent variant identity and scale survive reload");
         h.assertTrue(ScorpionModule.SCORPION.get().create(h.getLevel()).visualScale()==1,"Original scorpion remains full-sized");h.succeed();
     }
-    @GameTest(template="test_empty",batch="lava_scorpion_habitat")
-    public static void lavaScorpionRequiresCoveredCaveAndNearbyLava(GameTestHelper h) {
-        var pos=h.absolutePos(new BlockPos(8,2,8));var level=h.getLevel();var type=ScorpionModule.LAVA_SCORPION.get();
-        h.setBlock(8,1,8,Blocks.STONE);h.setBlock(8,7,8,Blocks.STONE);
+    @GameTest(template="test_empty",batch="crystapid_habitat")
+    public static void crystapidRequiresAmethystOrGeodeInteriorInCoveredCaves(GameTestHelper h) {
+        var pos=h.absolutePos(new BlockPos(8,2,8));var level=h.getLevel();var type=ScorpionModule.CRYSTAPID.get();
+        h.setBlock(8,1,8,Blocks.STONE);h.setBlock(8,7,8,Blocks.STONE);h.setBlock(11,2,8,Blocks.LAVA);
         h.runAfterDelay(3,()->{
-            h.assertTrue(!SpawnPlacements.checkSpawnRules(type,level,MobSpawnType.NATURAL,pos,level.random),"Covered cave without lava rejects spawning");
-            h.setBlock(11,2,8,Blocks.LAVA);
+            h.assertTrue(!SpawnPlacements.checkSpawnRules(type,level,MobSpawnType.NATURAL,pos,level.random),"A lava-only cave no longer qualifies");
+            for(var floor:List.of(Blocks.AMETHYST_BLOCK,Blocks.BUDDING_AMETHYST)) {
+                h.setBlock(8,1,8,floor);
+                h.assertTrue(SpawnPlacements.checkSpawnRules(type,level,MobSpawnType.NATURAL,pos,level.random),"Amethyst cave floors qualify, including placed blocks");
+            }
+            h.setBlock(8,1,8,Blocks.CALCITE);h.setBlock(6,2,8,Blocks.AMETHYST_BLOCK);h.setBlock(10,2,8,Blocks.BUDDING_AMETHYST);
+            h.assertTrue(SpawnPlacements.checkSpawnRules(type,level,MobSpawnType.NATURAL,pos,level.random),"An enclosed amethyst and calcite geode interior qualifies on calcite");
+            h.setBlock(6,2,8,Blocks.STONE);
+            h.assertTrue(!SpawnPlacements.checkSpawnRules(type,level,MobSpawnType.NATURAL,pos,level.random),"One isolated crystal side does not make an ordinary cave a geode");
+            h.setBlock(8,1,8,Blocks.AMETHYST_BLOCK);h.setBlock(8,7,8,Blocks.AIR);
         });
-        h.runAfterDelay(6,()->{
-            h.assertTrue(SpawnPlacements.checkSpawnRules(type,level,MobSpawnType.NATURAL,pos,level.random),"Nearby lava permits a covered cave spawn despite lava light: sky="+level.canSeeSky(pos)+" height="+level.getHeight(net.minecraft.world.level.levelgen.Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,pos.getX(),pos.getZ())+" pos="+pos+" difficulty="+level.getDifficulty());
-            h.setBlock(8,7,8,Blocks.AIR);
-        });
-        h.runAfterDelay(9,()->{h.assertTrue(!SpawnPlacements.checkSpawnRules(type,level,MobSpawnType.NATURAL,pos,level.random),"Surface lava does not qualify as a cave");h.succeed();});
+        h.runAfterDelay(7,()->{h.assertTrue(!SpawnPlacements.checkSpawnRules(type,level,MobSpawnType.NATURAL,pos,level.random),"Exposed surface amethyst is excluded");h.succeed();});
     }
     @GameTest(template="test_root_worm",batch="scorpion_daylight")
     public static void normalScorpionIsPassiveByDayAndCancelsItsStingAtDawn(GameTestHelper h) {
@@ -68,30 +72,29 @@ public final class ScorpionTests {
         h.assertTrue(s.getTarget()==p&&s.isStinging(),"Normal scorpion can hunt at night");
         level.setDayTime(23000);s.aiStep();
         h.assertTrue(s.getTarget()==null&&!s.isStinging()&&p.getHealth()==40&&!p.hasEffect(MobEffects.POISON),"Dawn cancels a pending sting before damage");
-        var lava=ScorpionModule.LAVA_SCORPION.get().create(level);lava.setPos(s.position());level.addFreshEntity(lava);lava.setNoAi(true);
-        level.setDayTime(6000);h.assertTrue(lava.doHurtTarget(p)&&p.hasEffect(MobEffects.POISON),"Lava scorpion remains hostile during the day");h.succeed();
+        var lava=ScorpionModule.CRYSTAPID.get().create(level);lava.setPos(s.position());level.addFreshEntity(lava);lava.setNoAi(true);
+        level.setDayTime(6000);h.assertTrue(lava.doHurtTarget(p)&&p.hasEffect(MobEffects.POISON),"Crystapid retains non-player combat during the day");h.succeed();
     }
-    @GameTest(template="test_empty",batch="lava_scorpion_depth")
-    public static void lavaScorpionSpawnBoundaryRequiresNegativeY(GameTestHelper h) {
+    @GameTest(template="test_empty",batch="crystapid_height")
+    public static void crystapidAmethystCavesWorkAcrossNaturalGeodeHeights(GameTestHelper h) {
         var level=h.getLevel();var origin=h.absolutePos(new BlockPos(8,2,8));
         for(int y:new int[]{-1,0,20}) {
             var pos=new BlockPos(origin.getX()+(y+1)*16,y,origin.getZ());
-            level.setBlockAndUpdate(pos.below(),Blocks.DEEPSLATE.defaultBlockState());
+            level.setBlockAndUpdate(pos.below(),Blocks.AMETHYST_BLOCK.defaultBlockState());
             level.setBlockAndUpdate(pos,Blocks.AIR.defaultBlockState());
             level.setBlockAndUpdate(pos.above(6),Blocks.DEEPSLATE.defaultBlockState());
-            level.setBlockAndUpdate(pos.offset(3,0,0),Blocks.LAVA.defaultBlockState());
         }
         h.runAfterDelay(4,()->{
             for(int y:new int[]{-1,0,20}) {
                 var pos=new BlockPos(origin.getX()+(y+1)*16,y,origin.getZ());
-                h.assertTrue(SpawnPlacements.checkSpawnRules(ScorpionModule.LAVA_SCORPION.get(),level,MobSpawnType.NATURAL,pos,level.random)==(y<0),"Lava cave spawn boundary at Y="+y+" sky="+level.canSeeSky(pos)+" height="+level.getHeight(net.minecraft.world.level.levelgen.Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,pos.getX(),pos.getZ())+" lava="+level.getFluidState(pos.offset(3,0,0))+" ground="+level.getBlockState(pos.below()));
+                h.assertTrue(SpawnPlacements.checkSpawnRules(ScorpionModule.CRYSTAPID.get(),level,MobSpawnType.NATURAL,pos,level.random),"Amethyst caves qualify above and below Y=0, including Y="+y);
             }h.succeed();
         });
     }
     @GameTest(template="test_empty",batch="lava_scorpion_fire",timeoutTicks=80)
-    public static void lavaScorpionResistsNativeFireAndLavaWhileNormalScorpionDoesNot(GameTestHelper h) {
+    public static void crystapidResistsNativeFireAndLavaWhileNormalScorpionDoesNot(GameTestHelper h) {
         h.setBlock(8,1,8,Blocks.DEEPSLATE);h.setBlock(8,2,8,Blocks.LAVA);
-        var lava=h.spawn(ScorpionModule.LAVA_SCORPION.get(),8,2,8);lava.setNoAi(true);var level=h.getLevel();
+        var lava=h.spawn(ScorpionModule.CRYSTAPID.get(),8,2,8);lava.setNoAi(true);var level=h.getLevel();
         h.assertTrue(lava.fireImmune()&&lava.getMaxSpawnClusterSize()==5,"Lava variant has native fire immunity and permits full packs of five");
         for(var damage:List.of(level.damageSources().inFire(),level.damageSources().onFire(),level.damageSources().lava()))
             h.assertTrue(!lava.hurt(damage,4)&&lava.getHealth()==16,"Native fire/lava damage is rejected");
@@ -134,34 +137,34 @@ public final class ScorpionTests {
             var nausea=p.getEffect(MobEffects.CONFUSION);h.assertTrue(plain[0]&&p.getHealth()<20&&nausea!=null&&nausea.getDuration()>=190&&!p.hasEffect(MobEffects.POISON),"Pincers do plain damage; stings apply ten seconds of Nausea without poison: plain="+plain[0]+" health="+p.getHealth()+" nausea="+nausea+" player="+p.position()+" scorpion="+s.position());h.succeed();
         }finally{h.getLevel().getServer().getPlayerList().remove(p);}});
     }
-    @GameTest(template="test_empty",batch="lava_scorpion_contact")
-    public static void lavaScorpionContactMatchesMagmaAndNeverTargetsPlayers(GameTestHelper h) {
-        var lava=h.spawn(ScorpionModule.LAVA_SCORPION.get(),8,2,8);lava.setNoAi(true);var p=h.makeMockPlayer(GameType.SURVIVAL);p.setPos(lava.position());
-        lava.setTarget(p);lava.beginSting(p);h.assertTrue(lava.getTarget()==null&&!lava.isAttacking()&&!lava.doHurtTarget(p),"Lava scorpions refuse all player attacks");
-        lava.playerTouch(p);h.assertTrue(p.getHealth()==19&&!p.hasEffect(MobEffects.POISON)&&!p.hasEffect(MobEffects.CONFUSION),"Touch deals one point of hot-floor damage without venom");
-        p.invulnerableTime=0;p.setHealth(20);p.setShiftKeyDown(true);lava.playerTouch(p);h.assertTrue(p.getHealth()==20,"Careful stepping protects like a magma block");
-        p.setShiftKeyDown(false);p.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE,100,0));lava.playerTouch(p);h.assertTrue(p.getHealth()==20,"Native fire resistance protects from contact heat");
-        for(var mode:List.of(GameType.CREATIVE,GameType.SPECTATOR)){var protectedPlayer=h.makeMockPlayer(mode);protectedPlayer.setPos(lava.position());lava.playerTouch(protectedPlayer);h.assertTrue(protectedPlayer.getHealth()==20,"Creative and spectator contact is safe");}
-        h.succeed();
+    @GameTest(template="test_empty",batch="crystapid_contact")
+    public static void crystapidContactIsHarmlessAndPlayersAreNeverAttacked(GameTestHelper h) {
+        var crystal=h.spawn(ScorpionModule.CRYSTAPID.get(),8,2,8);crystal.setNoAi(true);var player=h.makeMockPlayer(GameType.SURVIVAL);player.setPos(crystal.position());
+        crystal.setTarget(player);crystal.beginSting(player);
+        h.assertTrue(crystal.getTarget()==null&&!crystal.isAttacking()&&!crystal.doHurtTarget(player),"Crystapids refuse player attacks");
+        for(int i=0;i<20;i++){player.invulnerableTime=0;crystal.playerTouch(player);}
+        h.assertTrue(player.getHealth()==20&&!player.isOnFire()&&!player.hasEffect(MobEffects.POISON)&&!player.hasEffect(MobEffects.CONFUSION),"Ordinary survival contact causes no heat, damage or effects");
+        crystal.hurt(h.getLevel().damageSources().playerAttack(player),1);crystal.setNoAi(false);
+        h.runAfterDelay(25,()->{h.assertTrue(crystal.getTarget()==null&&!crystal.isAttacking()&&player.getHealth()==20,"Crystapids do not retaliate against players");h.succeed();});
     }
     @GameTest(template="test_empty",batch="scorpion_arrows")
-    public static void largeScorpionRejectsArrowsButLavaScorpionAndOtherWeaponsRemainNormal(GameTestHelper h) {
+    public static void largeScorpionRejectsArrowsButCrystapidAndOtherWeaponsRemainNormal(GameTestHelper h) {
         var normal=h.spawn(ScorpionModule.SCORPION.get(),8,2,8);normal.setNoAi(true);var level=h.getLevel();
         for(var type:List.of(EntityType.ARROW,EntityType.SPECTRAL_ARROW)) {
             var arrow=(net.minecraft.world.entity.projectile.AbstractArrow)type.create(level);
             h.assertTrue(!normal.hurt(level.damageSources().arrow(arrow,null),4)&&normal.getHealth()==16,"Large scorpion rejects normal and spectral arrow damage");
         }
-        var lava=h.spawn(ScorpionModule.LAVA_SCORPION.get(),12,2,8);lava.setNoAi(true);
-        h.assertTrue(lava.hurt(level.damageSources().arrow(EntityType.ARROW.create(level),null),4),"Lava scorpion remains vulnerable to arrows");
+        var lava=h.spawn(ScorpionModule.CRYSTAPID.get(),12,2,8);lava.setNoAi(true);
+        h.assertTrue(lava.hurt(level.damageSources().arrow(EntityType.ARROW.create(level),null),4),"Crystapid remains vulnerable to arrows");
         h.assertTrue(normal.hurt(level.damageSources().trident(EntityType.TRIDENT.create(level),null),4),"Tridents retain damage against the large scorpion");
         h.succeed();
     }
-    @GameTest(template="test_root_worm",batch="lava_scorpion_natural_pipeline",timeoutTicks=100)
-    public static void lavaScorpionNaturallySpawnsInALitDeepslateCave(GameTestHelper h) {
+    @GameTest(template="test_root_worm",batch="crystapid_natural_pipeline",timeoutTicks=100)
+    public static void crystapidNaturallySpawnsOnAmethystAndInsideAGeode(GameTestHelper h) {
         var level=h.getLevel();var center=h.absolutePos(new BlockPos(20,2,20));
         var origin=new BlockPos((center.getX()&~15)+8,center.getY(),(center.getZ()&~15)+8);
-        for(int x=0;x<40;x++)for(int z=0;z<40;z++) {h.setBlock(x,1,z,Blocks.DEEPSLATE);h.setBlock(x,8,z,Blocks.DEEPSLATE);}
-        for(int x=-2;x<=2;x++)for(int z=-2;z<=2;z++)level.setBlockAndUpdate(origin.offset(x,0,z),Blocks.LAVA.defaultBlockState());
+        for(int x=0;x<40;x++)for(int z=0;z<40;z++) {h.setBlock(x,1,z,Blocks.AMETHYST_BLOCK);h.setBlock(x,8,z,Blocks.DEEPSLATE);}
+        for(int x=-2;x<=2;x++)for(int z=-2;z<=2;z++)level.setBlockAndUpdate(origin.offset(x,-1,z),Blocks.BUDDING_AMETHYST.defaultBlockState());
         for(int x=4;x<40;x+=8)for(int z=4;z<40;z+=8)h.setBlock(x,5,z,Blocks.LIGHT);
         var cookie=net.minecraft.server.network.CommonListenerCookie.createInitial(new com.mojang.authlib.GameProfile(UUID.randomUUID(),"spawn-test"),false);
         var player=new net.minecraft.server.level.ServerPlayer(level.getServer(),level,cookie.gameProfile(),cookie.clientInformation());
@@ -171,13 +174,21 @@ public final class ScorpionTests {
         var biomeFill=net.minecraft.server.commands.FillBiomeCommand.fill(level,h.absolutePos(new BlockPos(0,1,0)),h.absolutePos(new BlockPos(39,7,39)),level.registryAccess().registryOrThrow(net.minecraft.core.registries.Registries.BIOME).getHolderOrThrow(Biomes.DRIPSTONE_CAVES));
         h.assertTrue(biomeFill.right().isEmpty(),"The bounded cave fixture receives its biome: "+biomeFill);
         h.runAfterDelay(5,()->{try {
-            h.assertTrue(level.getBlockState(origin).getLightEmission(level,origin)>0,"The test contains emissive lava, not a light-free fixture");
-            level.random.setSeed(6262L);int[] spawned={0};
-            for(int attempt=0;attempt<256&&spawned[0]==0;attempt++) {
-                net.minecraft.world.level.NaturalSpawner.spawnCategoryForPosition(MobCategory.MONSTER,level,level.getChunk(origin),origin,
-                        (type,pos,chunk)->type==ScorpionModule.LAVA_SCORPION.get(),(mob,chunk)->spawned[0]++);
-            }
-            h.assertTrue(spawned[0]>0,"The native weighted spawn-category pipeline produces Lava Scorpions near a non-spectator player");h.succeed();
+            for(boolean geode:new boolean[]{false,true}) {
+                if(geode) {
+                    for(int x=-6;x<=6;x++)for(int z=-6;z<=6;z++) {
+                        level.setBlockAndUpdate(origin.offset(x,-1,z),Blocks.CALCITE.defaultBlockState());
+                        level.setBlockAndUpdate(origin.offset(x,6,z),Blocks.AMETHYST_BLOCK.defaultBlockState());
+                        if(Math.abs(x)==6||Math.abs(z)==6)for(int y=0;y<6;y++)level.setBlockAndUpdate(origin.offset(x,y,z),Blocks.AMETHYST_BLOCK.defaultBlockState());
+                    }
+                }
+                level.random.setSeed(6262L);int[] spawned={0};
+                for(int attempt=0;attempt<512&&spawned[0]==0;attempt++) {
+                    net.minecraft.world.level.NaturalSpawner.spawnCategoryForPosition(MobCategory.MONSTER,level,level.getChunk(origin),origin,
+                            (type,pos,chunk)->type==ScorpionModule.CRYSTAPID.get()&&(!geode||Math.abs(pos.getX()-origin.getX())<6&&Math.abs(pos.getZ()-origin.getZ())<6&&level.getBlockState(pos.below()).is(Blocks.CALCITE)),(mob,chunk)->{spawned[0]++;mob.discard();});
+                }
+                h.assertTrue(spawned[0]>0,"Native Crystapid spawning succeeds for "+(geode?"calcite-floored geode interiors":"amethyst cave floors"));
+            }h.succeed();
         }finally{level.getServer().getPlayerList().remove(player);}});
     }
     @GameTest(template="test_root_worm",batch="normal_scorpion_surface_pipeline",timeoutTicks=200)
@@ -237,7 +248,7 @@ public final class ScorpionTests {
             boolean found=entries.stream().anyMatch(e->e.type==ScorpionModule.SCORPION.get()&&e.minCount==1&&e.maxCount==1&&e.getWeight().asInt()==(biome==Biomes.WOODED_BADLANDS?30:12));
             h.assertTrue(found==allowed.contains(biome),"Rare singleton entries occur only in badlands variants");
             h.assertTrue(entries.stream().filter(e->e.type==ScorpionModule.SCORPION.get()).count()==(allowed.contains(biome)?1:0),"One scorpion entry per eligible biome, without duplicates");
-            h.assertTrue(entries.stream().anyMatch(e->e.type==ScorpionModule.LAVA_SCORPION.get()&&e.minCount==3&&e.maxCount==5&&e.getWeight().asInt()==12),"Lava scorpion native spawn lists use rare packs of three to five");
+            h.assertTrue(entries.stream().anyMatch(e->e.type==ScorpionModule.CRYSTAPID.get()&&e.minCount==3&&e.maxCount==5&&e.getWeight().asInt()==12),"Crystapid native spawn lists use rare packs of three to five");
         }h.succeed();
     }
     @GameTest(template="test_root_worm",timeoutTicks=100)

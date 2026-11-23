@@ -6,7 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public final class ScorpionRenderer extends MobRenderer<Scorpion,ScorpionModel> {
     public ScorpionRenderer(EntityRendererProvider.Context context) {this(context,false);}
-    public ScorpionRenderer(EntityRendererProvider.Context context,boolean lava) {super(context,new ScorpionModel(context.bakeLayer(lava?ScorpionModel.LAVA_LAYER:ScorpionModel.LAYER)),lava?.1625F:.65F);}
+    public ScorpionRenderer(EntityRendererProvider.Context context,boolean crystapid) {super(context,new ScorpionModel(context.bakeLayer(crystapid?ScorpionModel.CRYSTAPID_LAYER:ScorpionModel.LAYER)),crystapid?.1625F:.65F);}
     @Override protected void scale(Scorpion scorpion,com.mojang.blaze3d.vertex.PoseStack pose,float partialTick) {float scale=scorpion.visualScale();pose.scale(scale,scale,scale);}
-    @Override public ResourceLocation getTextureLocation(Scorpion scorpion) {return ScorpionModule.id(scorpion.isLava()?"textures/entity/lava_scorpion.png":"textures/entity/scorpion.png");}
+    @Override public ResourceLocation getTextureLocation(Scorpion scorpion) {return ScorpionModule.id(scorpion.isCrystapid()?"textures/entity/crystapid.png":"textures/entity/scorpion.png");}
 }

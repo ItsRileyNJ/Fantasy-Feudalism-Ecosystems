@@ -78,6 +78,11 @@
   "subtitles.fantasy_feudalism_mobs.scorpion.death": "Scorpion dies",
   "subtitles.fantasy_feudalism_mobs.scorpion.step": "Scorpion scuttles",
   "subtitles.fantasy_feudalism_mobs.scorpion.sting": "Scorpion stings",
-  "entity.fantasy_feudalism_mobs.lava_scorpion": "Lava Scorpion",
-  "item.fantasy_feudalism_mobs.lava_scorpion_spawn_egg": "Lava Scorpion Spawn Egg"
+  "entity.fantasy_feudalism_mobs.lava_scorpion": "Crystapid",
+  "item.fantasy_feudalism_mobs.lava_scorpion_spawn_egg": "Crystapid Spawn Egg",
+  "subtitles.fantasy_feudalism_mobs.crystapid.ambient": "Crystapid clicks",
+  "subtitles.fantasy_feudalism_mobs.crystapid.hurt": "Crystapid hurts",
+  "subtitles.fantasy_feudalism_mobs.crystapid.death": "Crystapid dies",
+  "subtitles.fantasy_feudalism_mobs.crystapid.step": "Crystapid scuttles",
+  "subtitles.fantasy_feudalism_mobs.crystapid.sting": "Crystapid stings"
 }

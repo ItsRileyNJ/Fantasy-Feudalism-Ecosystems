@@ -1,0 +1,93 @@
+{
+  "poses": {
+    "198": {
+      "legRange": 0.6342498,
+      "finite": true,
+      "maxPincerOpen": 0.14,
+      "tailRange": 0.079999626,
+      "maxSting": 0.0,
+      "animationRanges": {
+        "idleTailYaw": 0.08999654,
+        "maxEating": 0.0,
+        "walkingFeelerPitch": 0.19950318,
+        "idleJaw": 0.12,
+        "maxArch": 0.0,
+        "minStrikeTipZ": 0.0,
+        "walkingTailYaw": 0.11770548,
+        "maxAttackTailYaw": 0.0,
+        "walkingTailTipX": 0.20011306,
+        "walkingTailRoll": 0.11770548
+      },
+      "legs": 8,
+      "maxIdlePincerAngle": 0.14,
+      "frames": 652
+    },
+    "199": {
+      "legRange": 0.6364893,
+      "finite": true,
+      "maxPincerOpen": 0.14,
+      "tailRange": 0.07999873,
+      "maxSting": 0.0,
+      "animationRanges": {
+        "idleTailYaw": 0.08999381,
+        "maxEating": 0.0,
+        "walkingFeelerPitch": 0.20205379,
+        "idleJaw": 0.11999999,
+        "maxArch": 0.0,
+        "minStrikeTipZ": 0.0,
+        "walkingTailYaw": 0.109696954,
+        "maxAttackTailYaw": 0.0,
+        "walkingTailTipX": 0.19492991,
+        "walkingTailRoll": 0.07997827
+      },
+      "legs": 8,
+      "maxIdlePincerAngle": 0.14,
+      "frames": 652
+    },
+    "285": {
+      "legRange": 0.6386479,
+      "finite": true,
+      "maxPincerOpen": 0.35384434,
+      "tailRange": 1.1370425,
+      "maxSting": 1.0,
+      "animationRanges": {
+        "idleTailYaw": 0.08999452,
+        "maxEating": 0.0,
+        "walkingFeelerPitch": 0.2241413,
+        "idleJaw": 0.11998534,
+        "maxArch": 0.27924806,
+        "minStrikeTipZ": -1.1320606,
+        "walkingTailYaw": 0.111518495,
+        "maxAttackTailYaw": 0.0,
+        "walkingTailTipX": 0.14506286,
+        "walkingTailRoll": 0.07926916
+      },
+      "legs": 8,
+      "maxIdlePincerAngle": 0.14,
+      "frames": 207
+    },
+    "286": {
+      "legRange": 0.6379905,
+      "finite": true,
+      "maxPincerOpen": 0.14,
+      "tailRange": 0.07999414,
+      "maxSting": 0.0,
+      "animationRanges": {
+        "idleTailYaw": 0.08999349,
+        "maxEating": 0.0,
+        "walkingFeelerPitch": 0.16172624,
+        "idleJaw": 0.11999998,
+        "maxArch": 0.0,
+        "minStrikeTipZ": 0.0,
+        "walkingTailYaw": 0.073120415,
+        "maxAttackTailYaw": 0.0,
+        "walkingTailTipX": 0.08433196,
+        "walkingTailRoll": 0.079584
+      },
+      "legs": 8,
+      "maxIdlePincerAngle": 0.14,
+      "frames": 205
+    }
+  },
+  "renderErrors": []
+}

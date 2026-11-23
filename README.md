@@ -6,7 +6,13 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.65.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.66.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.66 changes
+
+- Lava Scorpions are now **Crystapids**, with amethyst-purple accents. They spawn in covered amethyst geodes or on amethyst/budding amethyst in caves, in groups of 3–5. They stay passive to players and no longer hurt or burn them on contact.
+- Both scorpions have a more visible, smooth tail sway while walking.
+- Large Biomes uses the same habitat rules and biome spawn entries. Existing small scorpions and spawn eggs keep working after the rename.
 
 ## Version 0.1.65 changes
 

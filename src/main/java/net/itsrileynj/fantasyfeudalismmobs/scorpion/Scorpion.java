@@ -35,7 +35,7 @@ public final class Scorpion extends Monster {
             @Override protected void checkAndPerformAttack(LivingEntity target) {
                 if(!isAttacking()&&!isEating()&&canPerformAttack(target)) {
                     resetAttackCooldown();
-                    if(!isLava()&&!(target instanceof Spider)&&nextPincer)beginPincer(target);else beginSting(target);
+                    if(!isCrystapid()&&!(target instanceof Spider)&&nextPincer)beginPincer(target);else beginSting(target);
                     nextPincer=!nextPincer;
                 }
             }
@@ -45,11 +45,11 @@ public final class Scorpion extends Monster {
         goalSelector.addGoal(4,new LookAtPlayerGoal(this,Player.class,8));
         goalSelector.addGoal(5,new RandomLookAroundGoal(this));
         targetSelector.addGoal(1,new HurtByTargetGoal(this));
-        targetSelector.addGoal(2,new NearestAttackableTargetGoal<>(this,Spider.class,10,true,false,e->!isLava()));
+        targetSelector.addGoal(2,new NearestAttackableTargetGoal<>(this,Spider.class,10,true,false,e->!isCrystapid()));
         targetSelector.addGoal(3,new NearestAttackableTargetGoal<>(this,Player.class,true));
     }
     public void beginSting(LivingEntity target) {beginAttack(target,false);}
-    public void beginPincer(LivingEntity target) {if(!isLava())beginAttack(target,true);}
+    public void beginPincer(LivingEntity target) {if(!isCrystapid())beginAttack(target,true);}
     private void beginAttack(LivingEntity target,boolean pincer) {
         if(level().isClientSide||!validTarget(target)||isAttacking()||isEating())return;
         stingTarget=target.getUUID();entityData.set(ATTACK_KIND,(byte)(pincer?1:0));entityData.set(STING_STARTED,level().getGameTime());getNavigation().stop();
@@ -77,9 +77,9 @@ public final class Scorpion extends Monster {
         float blend=net.minecraft.util.Mth.clamp(Math.min(elapsed,duration-elapsed)/3,0,1);
         return blend*blend*(3-2*blend);
     }
-    private boolean canHunt() {return isLava()||net.itsrileynj.fantasyfeudalismmobs.NightCycle.isNight(level());}
-    @Override public boolean canAttack(LivingEntity target) {return canHunt()&&!(isLava()&&target instanceof Player)&&super.canAttack(target);}
-    @Override public void setTarget(@javax.annotation.Nullable LivingEntity target) {super.setTarget(canHunt()&&!(isLava()&&target instanceof Player)?target:null);}
+    private boolean canHunt() {return isCrystapid()||net.itsrileynj.fantasyfeudalismmobs.NightCycle.isNight(level());}
+    @Override public boolean canAttack(LivingEntity target) {return canHunt()&&!(isCrystapid()&&target instanceof Player)&&super.canAttack(target);}
+    @Override public void setTarget(@javax.annotation.Nullable LivingEntity target) {super.setTarget(canHunt()&&!(isCrystapid()&&target instanceof Player)?target:null);}
     @Override public void aiStep() {
         if(!level().isClientSide&&!canHunt()) {
             if(getTarget()!=null||stingTarget!=null||isAttacking())getNavigation().stop();
@@ -93,7 +93,7 @@ public final class Scorpion extends Monster {
             if(stingTarget!=null&&elapsed==(isPincerAttack()?4:STING_WINDUP)) {
                 var entity=server.getEntity(stingTarget);
                 if(entity instanceof LivingEntity victim&&validTarget(victim)&&isWithinMeleeAttackRange(victim)&&hasLineOfSight(victim)) {
-                    if(isPincerAttack())doHurtTarget(victim);else if(sting(victim))playSound(ScorpionModule.STING.get(),.8F,1);
+                    if(isPincerAttack())doHurtTarget(victim);else if(sting(victim))playSound(isCrystapid()?ScorpionModule.CRYSTAPID_STING.get():ScorpionModule.STING.get(),.8F,1);
                 }
                 stingTarget=null;
             }
@@ -103,36 +103,30 @@ public final class Scorpion extends Monster {
     @Override public boolean doHurtTarget(Entity victim) {
         if(!(victim instanceof LivingEntity living)||!validTarget(living))return false;
         if(!super.doHurtTarget(victim))return false;
-        if(isLava())living.addEffect(new MobEffectInstance(MobEffects.POISON,100,0),this);return true;
+        if(isCrystapid())living.addEffect(new MobEffectInstance(MobEffects.POISON,100,0),this);return true;
     }
     private boolean sting(LivingEntity victim) {
-        if(!isLava()&&victim instanceof Spider spider) {
+        if(!isCrystapid()&&victim instanceof Spider spider) {
             if(!spider.hurt(damageSources().mobAttack(this),Math.max(1000,spider.getHealth()+spider.getAbsorptionAmount()*2)))return false;
             if(!spider.isAlive()){entityData.set(EATING_STARTED,level().getGameTime());getNavigation().stop();setTarget(null);}
             return true;
         }
         if(!doHurtTarget(victim))return false;
-        if(!isLava())victim.addEffect(new MobEffectInstance(victim instanceof Player?MobEffects.CONFUSION:MobEffects.POISON,victim instanceof Player?200:100,0),this);
+        if(!isCrystapid())victim.addEffect(new MobEffectInstance(victim instanceof Player?MobEffects.CONFUSION:MobEffects.POISON,victim instanceof Player?200:100,0),this);
         return true;
     }
-    @Override public void playerTouch(Player player) {
-        super.playerTouch(player);
-        if(!level().isClientSide&&isLava()&&isAlive()&&!player.isCreative()&&!player.isSpectator()
-                &&!player.isSteppingCarefully()&&getBoundingBox().inflate(.02).intersects(player.getBoundingBox()))
-            player.hurt(damageSources().hotFloor(),1);
-    }
     @Override public boolean isInvulnerableTo(DamageSource source) {
-        return !isLava()&&source.getDirectEntity() instanceof net.minecraft.world.entity.projectile.AbstractArrow
+        return !isCrystapid()&&source.getDirectEntity() instanceof net.minecraft.world.entity.projectile.AbstractArrow
                 &&!(source.getDirectEntity() instanceof net.minecraft.world.entity.projectile.ThrownTrident)
                 ||super.isInvulnerableTo(source);
     }
     @Override public boolean canBeAffected(MobEffectInstance effect) {return !effect.is(MobEffects.POISON)&&super.canBeAffected(effect);}
-    @Override public int getMaxSpawnClusterSize() {return isLava()?5:2;}
-    @Override protected SoundEvent getAmbientSound() {return ScorpionModule.AMBIENT.get();}
-    @Override protected SoundEvent getHurtSound(DamageSource source) {return ScorpionModule.HURT.get();}
-    @Override protected SoundEvent getDeathSound() {return ScorpionModule.DEATH.get();}
-    @Override protected void playStepSound(BlockPos pos,BlockState state) {playSound(ScorpionModule.STEP.get(),.15F,1);}
-    public boolean isLava() {return getType()==ScorpionModule.LAVA_SCORPION.get();}
-    public float visualScale() {return isLava()?.25F:1;}
+    @Override public int getMaxSpawnClusterSize() {return isCrystapid()?5:2;}
+    @Override protected SoundEvent getAmbientSound() {return isCrystapid()?ScorpionModule.CRYSTAPID_AMBIENT.get():ScorpionModule.AMBIENT.get();}
+    @Override protected SoundEvent getHurtSound(DamageSource source) {return isCrystapid()?ScorpionModule.CRYSTAPID_HURT.get():ScorpionModule.HURT.get();}
+    @Override protected SoundEvent getDeathSound() {return isCrystapid()?ScorpionModule.CRYSTAPID_DEATH.get():ScorpionModule.DEATH.get();}
+    @Override protected void playStepSound(BlockPos pos,BlockState state) {playSound(isCrystapid()?ScorpionModule.CRYSTAPID_STEP.get():ScorpionModule.STEP.get(),.15F,1);}
+    public boolean isCrystapid() {return getType()==ScorpionModule.CRYSTAPID.get();}
+    public float visualScale() {return isCrystapid()?.25F:1;}
     @Override public net.minecraft.world.phys.AABB getBoundingBoxForCulling() {float scale=visualScale();return getBoundingBox().inflate(1.4*scale,scale,1.4*scale);}
 }

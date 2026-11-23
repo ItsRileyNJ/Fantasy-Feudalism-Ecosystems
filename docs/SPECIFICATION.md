@@ -776,3 +776,12 @@ Wooded badlands ground coverage must include grass blocks and coarse dirt, as we
 ## Confirmed wooded badlands daytime spawning (0.1.65)
 
 Allow normal Scorpions to spawn during the day in wooded badlands too. Ignore sky light only in that biome while preserving the dimension’s native monster block-light limit, valid ground, non-Peaceful difficulty and native caps. Other badlands variants keep normal monster darkness rules. Daytime spawning does not change the existing night-only hostility. Keep the higher wooded weight and singleton groups.
+
+
+## Confirmed Crystapid conversion and Large Biomes support (0.1.66)
+
+Rename the Lava Scorpion to Crystapid and replace fiery accents with amethyst colors. Preserve the quarter-size model, passive behavior toward players, fire immunity and groups of 3–5. Remove contact damage entirely. Replace lava proximity/deepslate depth with a covered-cave habitat: amethyst or budding-amethyst ground qualifies directly; other ground qualifies only inside an amethyst-and-calcite geode shell. Above-zero underground geodes are valid. Keep the legacy entity/item IDs so saved mobs, existing eggs and external references continue to load.
+
+Verify the biome-based mechanics with the vanilla Large Biomes preset, including bird habitats, savannas for Root Worms, badlands Scorpions and cave Crystapids. Large Biomes changes biome scale, not habitat identity. Do not add generation overrides or an independent spawning loop.
+
+Increase both scorpions’ walking tail sway and gentle bob beyond 0.1.63, retaining a smooth shared clock and suppressing secondary tail motion during attacks.

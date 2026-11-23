@@ -1,0 +1,11 @@
+{
+  "globalCapsIsolated": true,
+  "position": [
+    136,
+    20,
+    136
+  ],
+  "attempts": 15,
+  "biome": "minecraft:deep_cold_ocean",
+  "spawned": 4
+}

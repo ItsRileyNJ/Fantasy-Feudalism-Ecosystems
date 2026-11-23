@@ -19,7 +19,7 @@ import net.neoforged.neoforge.gametest.*;
 public final class ArthropodWaterTests {
     private static Mob mob(GameTestHelper h,int variant,int x,int z) {
         Mob mob=variant<2?h.spawn(EntityType.SPIDER,x,2,z):variant<4?h.spawn(EntityType.CAVE_SPIDER,x,2,z)
-                :h.spawn(variant==4?ScorpionModule.SCORPION.get():ScorpionModule.LAVA_SCORPION.get(),x,2,z);
+                :h.spawn(variant==4?ScorpionModule.SCORPION.get():ScorpionModule.CRYSTAPID.get(),x,2,z);
         mob.setNoAi(true);mob.setOnGround(true);
         if(variant<4&&variant%2==1){SpiderCompanion.tame((Spider)mob,UUID.randomUUID());SpiderCompanion.setSitting((Spider)mob,false);}
         return mob;
