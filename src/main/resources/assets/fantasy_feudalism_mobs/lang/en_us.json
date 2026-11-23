@@ -68,5 +68,7 @@
   "subtitles.fantasy_feudalism_mobs.crow.hurt": "Crow hurts",
   "subtitles.fantasy_feudalism_mobs.crow.death": "Crow dies",
   "entity.fantasy_feudalism_mobs.root_worm": "Root Worm",
-  "item.fantasy_feudalism_mobs.root_worm_spawn_egg": "Root Worm Spawn Egg"
+  "item.fantasy_feudalism_mobs.root_worm_spawn_egg": "Root Worm Spawn Egg",
+  "item.fantasy_feudalism_mobs.bark": "Bark",
+  "subtitles.fantasy_feudalism_mobs.root_worm.ambient": "Rootworm clicks"
 }

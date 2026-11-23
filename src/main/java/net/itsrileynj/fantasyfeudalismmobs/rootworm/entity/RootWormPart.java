@@ -40,7 +40,7 @@ public final class RootWormPart extends PartEntity<RootWorm> {
 
     @Override public EntityDimensions getDimensions(Pose pose) { var search = getParent().getSearchPose(segment, 0);
         return EntityDimensions.scalable(RootWormSearchPose.width(segment, search), RootWormSearchPose.height(segment, search)).scale(getParent().getScale()); }
-    @Override public boolean isPickable() { return getParent().isAlive(); }
+    @Override public boolean isPickable() { return getParent().isAlive() && !getParent().isBurrowing(); }
     @Override public boolean isPushable() { return false; }
     @Override public float getPickRadius() { return 0.025F; }
     @Override public boolean is(Entity entity) { return this == entity || getParent() == entity; }

@@ -86,6 +86,15 @@ public final class ServerHarness {
                     worm.moveTo(8.5,64,9.5,180,0);worm.setYBodyRot(180);worm.setYHeadRot(180);worm.setNoAi(true);worm.setOnGround(true);worm.setPersistenceRequired();level.addFreshEntity(worm);return ControlFiles.entity(worm);
                 }
                 var worm=(net.itsrileynj.fantasyfeudalismmobs.rootworm.entity.RootWorm)entity(level,q);
+                if(phase.equals("burrow")) {
+                    for(int x=-4;x<=28;x++)for(int z=-4;z<=20;z++) {
+                        level.setBlockAndUpdate(new BlockPos(x,62,z),Blocks.DIRT.defaultBlockState());
+                        level.setBlockAndUpdate(new BlockPos(x,63,z),Blocks.GRASS_BLOCK.defaultBlockState());
+                    }
+                    worm.goalSelector.removeAllGoals(g->true);worm.targetSelector.removeAllGoals(g->true);
+                    worm.setNoAi(false);worm.setOnGround(true);worm.setHealth(8);worm.invulnerableTime=0;
+                    worm.hurt(level.damageSources().playerAttack(player(server,q)),1);
+                }
                 if(phase.equals("hear")){worm.setNoAi(false);worm.getNavigation().stop();worm.hearSound(player(server,q),worm.position(),1);}
                 if(phase.equals("bite"))worm.beginBite();
                 if(phase.equals("walk")){worm.goalSelector.removeAllGoals(g->true);worm.setSearching(false);worm.getNavigation().moveTo(worm.getX()+5,64,worm.getZ(),1);}

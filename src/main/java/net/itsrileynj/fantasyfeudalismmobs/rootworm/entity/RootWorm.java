@@ -28,7 +28,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
 
-/** A neutral creature with no biome or custom-block requirements. Feeding is purely cosmetic and never changes a block. */
+/** A neutral creature with no biome or custom-block requirements. Idle nibbling is cosmetic; players can feed Bark to heal it. */
 public final class RootWorm extends PathfinderMob {
     private static final EntityDataAccessor<Integer> BITE_TICKS = SynchedEntityData.defineId(RootWorm.class, EntityDataSerializers.INT);
     private static final int BITE_DURATION = 9;
@@ -38,6 +38,8 @@ public final class RootWorm extends PathfinderMob {
     private static final EntityDataAccessor<Long> SEARCH_STARTED_AT = SynchedEntityData.defineId(RootWorm.class, EntityDataSerializers.LONG);
     private static final EntityDataAccessor<Boolean> FEEDING = SynchedEntityData.defineId(RootWorm.class, EntityDataSerializers.BOOLEAN);
 
+    private static final EntityDataAccessor<Boolean> BURROWING = SynchedEntityData.defineId(RootWorm.class, EntityDataSerializers.BOOLEAN);
+    private final RootWormBurrow burrow = new RootWormBurrow(this);
     private float mouthOpen, previousMouthOpen;
     private final net.minecraft.world.level.gameevent.DynamicGameEventListener<RootWormHearing> hearing;
     private java.util.UUID heardActor;
@@ -57,6 +59,20 @@ public final class RootWorm extends PathfinderMob {
         // Reserve consecutive IDs, as NeoForge does for the dragon, so spawn packets resolve every part.
         setId(ENTITY_COUNTER.getAndAdd(bodyParts.length + 1) + 1);
         positionBodyParts();
+    }
+
+    @Override public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player player, net.minecraft.world.InteractionHand hand) {
+        var stack=player.getItemInHand(hand);
+        if(stack.is(net.itsrileynj.fantasyfeudalismmobs.BarkCompatibility.food()) && !isBurrowing() && isAlive() && getHealth()<getMaxHealth()) {
+            if(!level().isClientSide) {
+                heal(4);
+                stack.consume(1,player);
+                gameEvent(net.minecraft.world.level.gameevent.GameEvent.EAT,player);
+                playSound(net.minecraft.sounds.SoundEvents.GENERIC_EAT,0.7F,1.0F);
+            }
+            return net.minecraft.world.InteractionResult.sidedSuccess(level().isClientSide);
+        }
+        return super.mobInteract(player,hand);
     }
 
     @Override public boolean isMultipartEntity() { return true; }
@@ -80,6 +96,7 @@ public final class RootWorm extends PathfinderMob {
     @Override public void tick() {
         for (int i = 0; i < bodyParts.length; i++) previousPartPositions[i] = bodyParts[i].position();
         super.tick();
+        if(!level().isClientSide)burrow.tick();
         positionBodyParts();
         for (int i = 0; i < bodyParts.length; i++) {
             var part = bodyParts[i];
@@ -126,6 +143,7 @@ public final class RootWorm extends PathfinderMob {
 
     @Override protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
+        builder.define(BURROWING, false);
         builder.define(FEEDING, false);
         builder.define(BITE_TICKS, 0);
         builder.define(SEARCHING, false);
@@ -135,6 +153,7 @@ public final class RootWorm extends PathfinderMob {
     }
 
     @Override public void aiStep() {
+        if(isBurrowing() && !level().isClientSide) {setDeltaMovement(Vec3.ZERO);return;}
         super.aiStep();
         if (!level().isClientSide) {
             if (isSearching() && !canSearchHere()) setSearching(false);
@@ -149,6 +168,23 @@ public final class RootWorm extends PathfinderMob {
             mouthOpen = Mth.approach(mouthOpen, biteOpenAmount(0), 0.4F);
         }
     }
+
+    public boolean isBurrowing() { return entityData.get(BURROWING); }
+    void setBurrowing(boolean value) { entityData.set(BURROWING,value); }
+    void clearBurrowActions() {
+        setSearching(false);entityData.set(BITE_TICKS,0);entityData.set(FEEDING,false);
+        heardPosition=null;heardActor=null;getNavigation().stop();
+    }
+    @Override public boolean isInWall() { return !isBurrowing() && super.isInWall(); }
+    @Override public boolean isNoGravity() { return isBurrowing() || super.isNoGravity(); }
+    @Override public boolean isPickable() { return !isBurrowing() && super.isPickable(); }
+    @Override public void addAdditionalSaveData(net.minecraft.nbt.CompoundTag tag) { super.addAdditionalSaveData(tag);burrow.save(tag); }
+    @Override public void readAdditionalSaveData(net.minecraft.nbt.CompoundTag tag) { super.readAdditionalSaveData(tag);burrow.load(tag); }
+
+    @Override protected net.minecraft.sounds.SoundEvent getAmbientSound() {
+        return net.itsrileynj.fantasyfeudalismmobs.FantasyFeudalismMobs.ROOT_WORM_AMBIENT.get();
+    }
+    @Override public int getAmbientSoundInterval() { return 120; }
 
     public boolean isFeeding() { return entityData.get(FEEDING); }
 
@@ -173,6 +209,7 @@ public final class RootWorm extends PathfinderMob {
         }
         boolean accepted = super.hurt(source, damage);
         if (accepted && source.getEntity() instanceof LivingEntity attacker) hearSound(attacker, attacker.position(), 1.0);
+        if(accepted)burrow.tryStart(source);
         return accepted;
     }
 
@@ -182,7 +219,7 @@ public final class RootWorm extends PathfinderMob {
 
     public boolean hearSound(LivingEntity actor, Vec3 position, double volume) {
         double radius = RootWormConfig.HEARING_RADIUS.get() * volume;
-        if (actor == this || actor instanceof RootWorm || !actor.isAlive() || actor.isSpectator()
+        if (isBurrowing() || actor == this || actor instanceof RootWorm || !actor.isAlive() || actor.isSpectator()
                 || actor.level() != level() || distanceToSqr(position) > radius * radius) return false;
         heardActor = actor.getUUID();
         heardPosition = position;
@@ -192,7 +229,7 @@ public final class RootWorm extends PathfinderMob {
     public boolean hasRecentSound() { return heardPosition != null && tickCount - heardAt <= RootWormConfig.SOUND_MEMORY_TICKS.get(); }
     public boolean hasRecentSoundFrom(LivingEntity actor) { return hasRecentSound() && actor.getUUID().equals(heardActor); }
     public Vec3 lastHeardPosition() { return heardPosition; }
-    public void beginBite() { setSearching(false); entityData.set(BITE_TICKS, BITE_DURATION); }
+    public void beginBite() { if(isBurrowing())return; setSearching(false); entityData.set(BITE_TICKS, BITE_DURATION); }
     public boolean sensesCloseTarget(LivingEntity actor) {
         for (var part : bodyParts) if (part.getBoundingBox().inflate(0.35, 0.35, 0.35).intersects(actor.getBoundingBox())) return true;
         return false;
@@ -208,6 +245,7 @@ public final class RootWorm extends PathfinderMob {
     }
 
     public boolean canBite(LivingEntity actor) {
+        if(isBurrowing())return false;
         var head = getParts()[0].getBoundingBox();
         var target = actor.getBoundingBox();
         if (!head.inflate(0.22, 0.15, 0.22).intersects(target)) return false;
@@ -259,7 +297,7 @@ public final class RootWorm extends PathfinderMob {
                 getZ() + Mth.cos(yaw) * forward - Mth.sin(yaw) * side);
     }
     public boolean canSearchHere() {
-        if (!onGround() || isNoAi() || !isAlive() || isOnFire() || isInWaterOrBubble() || isInLava()
+        if (isBurrowing() || !onGround() || isNoAi() || !isAlive() || isOnFire() || isInWaterOrBubble() || isInLava()
                 || isBiting() || !getNavigation().isDone()) return false;
         // Check the complete lifting envelope, including side-to-side sweep; never raise through a ceiling.
         float scale = getScale();

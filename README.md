@@ -6,7 +6,20 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.47.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.50.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.50 changes
+
+- Root Worms randomly play six supplied clicking sounds with the subtitle “Rootworm clicks.”
+
+## Version 0.1.49 changes
+
+- Root Worms damaged below half health dive into soft ground and retreat 4–6 blocks, leaving a trail of dirt particles before resurfacing. Stone, shallow soil over rock, water and blocked exits prevent burrowing. Terrain is left intact.
+
+## Version 0.1.48 changes
+
+- Stripping wood drops one Bark. Craft one Bark into one stick, or feed it to an injured Root Worm to restore two hearts. Full-health worms do not consume Bark; Creative feeding does not consume items.
+- With Farmer's Delight installed, its Tree Bark feeds Root Worms instead. Ecosystems' bark drops, stick recipe and recipe-book unlock are disabled; its Bark is hidden from creative and common-tag-aware recipe viewers. Farmer's Delight's native bark system stays in charge.
 
 ## Version 0.1.47 changes
 

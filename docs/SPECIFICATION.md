@@ -585,3 +585,33 @@ Remove the side-eye highlights only on bats displayed inside the enclosure. Use 
 - Keep the independent COMMON behavior config at fantasy_feudalism_mobs-root-worm-common.toml. Keep the existing host entry point and renderer event wiring; do not add the kit's example mod or build files.
 
 - Listening-pose refinement: keep the rear five of nine segments planted and lift only the front four. Preserve the head scan, smooth transitions, connected body spacing and matching multipart hitboxes.
+
+
+## Confirmed Bark item (0.1.48)
+
+- Add Bark, obtained as one dropped item after a successful axe-strip of a vanilla or NeoForge data-map strippable block. Preserve native block-state properties, permissions and axe interaction behavior. Award the drop only after NeoForge completes its placement/protection checks; cancelled changes, already stripped wood, scraping and wax removal produce none. Native block-drop rules apply.
+- One Bark crafts into one vanilla stick with a shapeless recipe. Add the recipe-book unlock and Bark to the Ecosystems creative tab.
+- Bark can be hand-fed through any Root Worm body segment. Confirmed feeding behavior restores four health (two hearts), capped at maximum health, consuming one item in Survival. Creative feeding preserves the stack. Full-health worms consume nothing. Feeding does not tame or breed worms.
+
+
+## Confirmed Farmer's Delight bark compatibility (0.1.48)
+
+- When `farmersdelight` is installed, use `farmersdelight:tree_bark` as Root Worm food with the same four-health healing and consumption rules. No hard dependency or imports of Farmer's Delight classes.
+- Completely bypass Ecosystems' stripping reward, deferring bark acquisition to Farmer's Delight's native system, including its cutting-board recipes. Do not add substitute drops or alter Farmer's Delight recipes.
+- Disable the Ecosystems Bark-to-stick recipe and its recipe-book advancement through NeoForge load conditions. Omit Ecosystems Bark from creative contents and add it to `c:hidden_from_recipe_viewers` through a forced-active built-in compatibility data pack registered only when Farmer's Delight is present. Keep its registry entry so existing saved stacks are not deleted; it is inactive as worm food while Farmer's Delight is installed. Other Ecosystems recipes remain available.
+- Without Farmer's Delight, retain the standalone Bark item, strip drops, stick recipe, recipe-book unlock, creative visibility and Root Worm feeding.
+
+
+## Confirmed Root Worm frightened burrowing (0.1.49)
+
+- Accepted damage leaving a living Root Worm strictly below half its maximum health triggers a short retreat through soft ground. At normal scale it sinks 1.15 blocks over 12 ticks, travels 4–6 horizontal blocks over 36 ticks and resurfaces over 12 ticks. Prefer a route away from the damage source; use a bounded fan search when blocked. A successful retreat starts a 400-tick cooldown.
+- Use `fantasy_feudalism_mobs:root_worm_burrowable` (vanilla dirt and sand tags, gravel, farmland). Check the whole body footprint and sufficient soil depth along a flat route, dry surface and collision-free exit. Stone and other untagged blocks, thin soil over rock, water, obstructed exits and unloaded chunks reject the route. No block edits or chunk loading. Recheck each next occupied column; changed terrain aborts travel and resurfaces at a validated point.
+- Pause combat, listening, feeding and ordinary movement while burrowing. Move the actual entity and multipart hitboxes underground with native position and metadata synchronization. Prevent in-wall suffocation and gravity only during retreat. Keep other native damage behavior; do not add blanket invulnerability. Underground bodies cannot be hand-targeted or fed. Dirt block particles mark the surface route.
+- Require a grounded, active AI mob that is not riding, carrying passengers, leashed or in water/lava. Rejected or lethal damage and damage leaving exactly half health do not trigger burrowing. Persist remaining cooldown; saving mid-retreat reloads on the surface at its current horizontal location.
+
+
+## Confirmed Root Worm ambient clicks (0.1.50)
+
+- Use all six supplied Ogg clips from Rootworm Sounds.zip as equally weighted variants of `fantasy_feudalism_mobs:entity.root_worm.ambient`. Keep the original mono Vorbis audio unchanged.
+- Play them through the native mob ambient scheduler, with the same 120-tick ambient cooldown as field mice, normal positional audio and native randomized pitch/cadence. Respect the entity's Silent flag.
+- The English subtitle must read exactly **Rootworm clicks**. Do not change hurt, death or feeding sounds.

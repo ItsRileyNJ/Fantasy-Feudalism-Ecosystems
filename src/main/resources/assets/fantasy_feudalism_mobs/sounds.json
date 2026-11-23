@@ -124,5 +124,16 @@
         "type": "event"
       }
     ]
+  },
+  "entity.root_worm.ambient": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.root_worm.ambient",
+    "sounds": [
+      "fantasy_feudalism_mobs:entity/root_worm/ambient_1",
+      "fantasy_feudalism_mobs:entity/root_worm/ambient_2",
+      "fantasy_feudalism_mobs:entity/root_worm/ambient_3",
+      "fantasy_feudalism_mobs:entity/root_worm/ambient_4",
+      "fantasy_feudalism_mobs:entity/root_worm/ambient_5",
+      "fantasy_feudalism_mobs:entity/root_worm/ambient_6"
+    ]
   }
 }

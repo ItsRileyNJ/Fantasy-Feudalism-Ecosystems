@@ -155,6 +155,9 @@ dependencies {
         localRuntime files(providers.gradleProperty('foliageMod').get())
         localRuntime files(providers.gradleProperty('kiwiMod').get())
     }
+    if (providers.gradleProperty('farmersDelightMod').isPresent()) {
+        localRuntime files(providers.gradleProperty('farmersDelightMod').get())
+    }
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"

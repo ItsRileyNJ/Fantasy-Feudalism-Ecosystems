@@ -42,7 +42,8 @@
     "MercenaryDefenderMixin",
     "MercenaryKitingMixin",
     "MercenaryMenuMixin",
-    "ZombieAttackGoalMixin"
+    "ZombieAttackGoalMixin",
+    "BarkStrippingMixin"
   ],
   "client": [
     "WolfModelMixin",

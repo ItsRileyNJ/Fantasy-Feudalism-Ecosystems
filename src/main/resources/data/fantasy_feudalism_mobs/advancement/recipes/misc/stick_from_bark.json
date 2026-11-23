@@ -1,0 +1,41 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_bark": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "fantasy_feudalism_mobs:bark"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "fantasy_feudalism_mobs:stick_from_bark"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bark",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "fantasy_feudalism_mobs:stick_from_bark"
+    ]
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:mod_loaded",
+        "modid": "farmersdelight"
+      }
+    }
+  ]
+}

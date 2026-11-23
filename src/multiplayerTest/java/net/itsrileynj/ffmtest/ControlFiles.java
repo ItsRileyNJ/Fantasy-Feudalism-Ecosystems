@@ -109,7 +109,7 @@ public final class ControlFiles {
             info.put("lying",cat.isLying());info.put("tamed",cat.isTame());info.put("owner",String.valueOf(cat.getOwnerUUID()));info.put("sitting",cat.isOrderedToSit());
         }
         if(entity instanceof net.itsrileynj.fantasyfeudalismmobs.rootworm.entity.RootWorm worm) {
-            info.put("searching",worm.isSearching());info.put("searchAmount",worm.getSearchAmount(1));info.put("mouth",worm.getMouthOpenAmount(1));
+            info.put("burrowing",worm.isBurrowing());info.put("searching",worm.isSearching());info.put("searchAmount",worm.getSearchAmount(1));info.put("mouth",worm.getMouthOpenAmount(1));
             info.put("rootWormParts",java.util.Arrays.stream(worm.getParts()).map(p->Map.of("id",p.getId(),"position",List.of(p.getX(),p.getY(),p.getZ()),"registered",worm.level().getPartEntities().contains(p))).toList());
         }
         if(entity instanceof ForestBird bird) {

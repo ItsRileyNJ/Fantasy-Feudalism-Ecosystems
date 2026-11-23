@@ -26,6 +26,8 @@ public final class FantasyFeudalismMobs {
     public static final DeferredRegister<net.minecraft.sounds.SoundEvent> SOUNDS=DeferredRegister.create(Registries.SOUND_EVENT,MOD_ID);
     public static final DeferredHolder<net.minecraft.sounds.SoundEvent,net.minecraft.sounds.SoundEvent> MOUSE_AMBIENT=SOUNDS.register("entity.field_mouse.ambient",()->
             net.minecraft.sounds.SoundEvent.createVariableRangeEvent(net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(MOD_ID,"entity.field_mouse.ambient")));
+    public static final DeferredHolder<net.minecraft.sounds.SoundEvent,net.minecraft.sounds.SoundEvent> ROOT_WORM_AMBIENT=SOUNDS.register("entity.root_worm.ambient",()->
+            net.minecraft.sounds.SoundEvent.createVariableRangeEvent(net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(MOD_ID,"entity.root_worm.ambient")));
     public static final DeferredHolder<net.minecraft.sounds.SoundEvent,net.minecraft.sounds.SoundEvent> MOUSE_HURT=SOUNDS.register("entity.field_mouse.hurt",()->
             net.minecraft.sounds.SoundEvent.createVariableRangeEvent(net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(MOD_ID,"entity.field_mouse.hurt")));
     public static final DeferredRegister<net.minecraft.world.entity.EntityType<?>> ENTITIES=DeferredRegister.create(Registries.ENTITY_TYPE,MOD_ID);
@@ -44,6 +46,7 @@ public final class FantasyFeudalismMobs {
     public static final DeferredItem<Item> FERTILIZER=ITEMS.register("fertilizer",()->new FertilizerItem(new Item.Properties()));
     public static final DeferredItem<Item> BAT_NET=ITEMS.register("bat_net",()->new BatNetItem(new Item.Properties()));
     public static final DeferredItem<BlockItem> BAT_ENCLOSURE_ITEM=ITEMS.register("bat_enclosure",()->new BlockItem(BAT_ENCLOSURE.get(),new Item.Properties()));
+    public static final DeferredItem<Item> BARK = ITEMS.registerSimpleItem("bark");
     public static final DeferredItem<Item> BEE_BOTTLE = ITEMS.registerSimpleItem("bee_bottle");
     public static final DeferredItem<net.neoforged.neoforge.common.DeferredSpawnEggItem> FIELD_MOUSE_SPAWN_EGG=
             ITEMS.register("field_mouse_spawn_egg",()->new net.neoforged.neoforge.common.DeferredSpawnEggItem(
@@ -60,6 +63,7 @@ public final class FantasyFeudalismMobs {
                 .icon(() -> BEE_BOTTLE.get().getDefaultInstance())
                 .displayItems((parameters, output) -> {
                     output.accept(BEE_BOTTLE.get());
+                    if(!BarkCompatibility.usesFarmersDelight())output.accept(BARK.get());
                     output.accept(RAW_HORSE.get());
                     output.accept(COOKED_HORSE.get());
                     output.accept(FERTILIZER.get());
@@ -74,6 +78,7 @@ public final class FantasyFeudalismMobs {
 
     public FantasyFeudalismMobs(IEventBus modEventBus, ModContainer container) {
         net.itsrileynj.fantasyfeudalismmobs.rootworm.RootWormModule.register(modEventBus,container);
+        modEventBus.addListener(BarkCompatibility::addPacks);
         BLOCKS.register(modEventBus);
         BLOCK_ENTITIES.register(modEventBus);
         ITEMS.register(modEventBus);

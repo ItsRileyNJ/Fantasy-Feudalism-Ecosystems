@@ -52,6 +52,7 @@ def main():
     parser.add_argument("--suite", choices=("all", "ecosystems", "mercenaries"), default="ecosystems")
     parser.add_argument("--foliage", type=Path, help="Optional Passable Foliage NeoForge JAR")
     parser.add_argument("--kiwi", type=Path, help="Kiwi dependency JAR required with --foliage")
+    parser.add_argument("--farmers-delight", type=Path, help="Optional Farmer's Delight NeoForge JAR")
     parser.add_argument("--filter", help="Run only GameTests whose names match this case-insensitive regex")
     parser.add_argument("--min-tests", type=int, default=1, help="Minimum passing tests when --filter is used")
     args = parser.parse_args()
@@ -68,7 +69,7 @@ def main():
     (root / "run").mkdir(exist_ok=True)
     output = Path(tempfile.mkdtemp(prefix="compatibility-", dir=root / "run"))
     print(f"Mercenaries SHA-256: {expected}\nFresh worlds and logs: {output}", flush=True)
-    suites = {"ecosystems": ("fantasy_feudalism_mobs", 296), "mercenaries": ("villagerscontract", 338)}
+    suites = {"ecosystems": ("fantasy_feudalism_mobs", 313), "mercenaries": ("villagerscontract", 338)}
     for name, (namespace, minimum) in suites.items():
         if args.suite not in ("all", name):
             continue
@@ -80,6 +81,8 @@ def main():
         command = gradle + ["--no-daemon", "runGameTestServer", "build", "multiplayerTestJar",
                             f"-PcompatibilityMod={jar}", f"-PgameTestNamespaces={namespace}",
                             f"-PgameTestDirectory={output / name}"]
+        if args.farmers_delight:
+            command += [f"-PfarmersDelightMod={args.farmers_delight.resolve(strict=True)}"]
         if args.filter:
             command += [f"-PgameTestFilter={args.filter}"]
         if args.foliage:
