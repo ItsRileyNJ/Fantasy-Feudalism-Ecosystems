@@ -84,13 +84,17 @@ public final class ServerHarness {
                 if(phase.equals("fixture")) {
                     boolean lava=q.has("lava")&&q.get("lava").getAsBoolean();
                     var scorpion=(lava?net.itsrileynj.fantasyfeudalismmobs.scorpion.ScorpionModule.LAVA_SCORPION:net.itsrileynj.fantasyfeudalismmobs.scorpion.ScorpionModule.SCORPION).get().create(level);
-                    scorpion.moveTo(lava?10.5:8.5,64,9.5,180,0);scorpion.setYBodyRot(180);scorpion.setYHeadRot(180);scorpion.setNoAi(true);scorpion.setPersistenceRequired();level.addFreshEntity(scorpion);return ControlFiles.entity(scorpion);
+                    scorpion.moveTo(lava?10.5:8.5,64,9.5,180,0);scorpion.setYBodyRot(180);scorpion.setYHeadRot(180);scorpion.setNoAi(true);scorpion.setOnGround(true);scorpion.setPersistenceRequired();level.addFreshEntity(scorpion);return ControlFiles.entity(scorpion);
                 }
                 var scorpion=(net.itsrileynj.fantasyfeudalismmobs.scorpion.Scorpion)entity(level,q);
                 if(phase.equals("walk")){scorpion.goalSelector.removeAllGoals(g->true);scorpion.targetSelector.removeAllGoals(g->true);scorpion.setNoAi(false);scorpion.getNavigation().moveTo(scorpion.getX()+5,64,scorpion.getZ(),1);}
-                if(phase.equals("sting")) {
+                if(phase.equals("predation")) {
+                    var spider=EntityType.SPIDER.create(level);spider.moveTo(scorpion.getX(),64,scorpion.getZ()-.9);spider.setNoAi(true);level.addFreshEntity(spider);
+                    scorpion.beginSting(spider);return Map.of("scorpion",ControlFiles.entity(scorpion),"victim",ControlFiles.entity(spider));
+                }
+                if(phase.equals("sting")||phase.equals("pincer")) {
                     var pig=EntityType.PIG.create(level);pig.moveTo(scorpion.getX(),64,scorpion.getZ()-1.1);pig.setNoAi(true);pig.getAttribute(Attributes.MAX_HEALTH).setBaseValue(40);pig.setHealth(40);level.addFreshEntity(pig);
-                    scorpion.setNoAi(true);scorpion.getNavigation().stop();scorpion.beginSting(pig);return Map.of("scorpion",ControlFiles.entity(scorpion),"victim",ControlFiles.entity(pig));
+                    scorpion.setNoAi(true);scorpion.getNavigation().stop();if(phase.equals("pincer"))scorpion.beginPincer(pig);else scorpion.beginSting(pig);return Map.of("scorpion",ControlFiles.entity(scorpion),"victim",ControlFiles.entity(pig));
                 }
                 return ControlFiles.entity(scorpion);
             }

@@ -71,6 +71,91 @@ public final class ScorpionTests {
         var lava=ScorpionModule.LAVA_SCORPION.get().create(level);lava.setPos(s.position());level.addFreshEntity(lava);lava.setNoAi(true);
         level.setDayTime(6000);h.assertTrue(lava.doHurtTarget(p)&&p.hasEffect(MobEffects.POISON),"Lava scorpion remains hostile during the day");h.succeed();
     }
+    @GameTest(template="test_empty",batch="lava_scorpion_depth")
+    public static void lavaScorpionSpawnBoundaryRequiresNegativeY(GameTestHelper h) {
+        var level=h.getLevel();var origin=h.absolutePos(new BlockPos(8,2,8));
+        for(int y:new int[]{-1,0,20}) {
+            var pos=new BlockPos(origin.getX()+(y+1)*16,y,origin.getZ());
+            level.setBlockAndUpdate(pos.below(),Blocks.DEEPSLATE.defaultBlockState());
+            level.setBlockAndUpdate(pos,Blocks.AIR.defaultBlockState());
+            level.setBlockAndUpdate(pos.above(6),Blocks.DEEPSLATE.defaultBlockState());
+            level.setBlockAndUpdate(pos.offset(3,0,0),Blocks.LAVA.defaultBlockState());
+        }
+        h.runAfterDelay(4,()->{
+            for(int y:new int[]{-1,0,20}) {
+                var pos=new BlockPos(origin.getX()+(y+1)*16,y,origin.getZ());
+                h.assertTrue(SpawnPlacements.checkSpawnRules(ScorpionModule.LAVA_SCORPION.get(),level,MobSpawnType.NATURAL,pos,level.random)==(y<0),"Lava cave spawn boundary at Y="+y+" sky="+level.canSeeSky(pos)+" height="+level.getHeight(net.minecraft.world.level.levelgen.Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,pos.getX(),pos.getZ())+" lava="+level.getFluidState(pos.offset(3,0,0))+" ground="+level.getBlockState(pos.below()));
+            }h.succeed();
+        });
+    }
+    @GameTest(template="test_empty",batch="lava_scorpion_fire",timeoutTicks=80)
+    public static void lavaScorpionResistsNativeFireAndLavaWhileNormalScorpionDoesNot(GameTestHelper h) {
+        h.setBlock(8,1,8,Blocks.DEEPSLATE);h.setBlock(8,2,8,Blocks.LAVA);
+        var lava=h.spawn(ScorpionModule.LAVA_SCORPION.get(),8,2,8);lava.setNoAi(true);var level=h.getLevel();
+        h.assertTrue(lava.fireImmune()&&lava.getMaxSpawnClusterSize()==5,"Lava variant has native fire immunity and permits full packs of five");
+        for(var damage:List.of(level.damageSources().inFire(),level.damageSources().onFire(),level.damageSources().lava()))
+            h.assertTrue(!lava.hurt(damage,4)&&lava.getHealth()==16,"Native fire/lava damage is rejected");
+        var normal=h.spawn(ScorpionModule.SCORPION.get(),12,2,8);normal.setNoAi(true);
+        h.assertTrue(!normal.fireImmune()&&normal.hurt(level.damageSources().lava(),4),"Normal variant retains lava vulnerability");
+        h.runAfterDelay(40,()->{h.assertTrue(lava.isAlive()&&lava.getHealth()==16&&!lava.isOnFire(),"Physical lava exposure causes no health loss or burning");h.succeed();});
+    }
+    @GameTest(template="test_root_worm",batch="scorpion_predation",timeoutTicks=130)
+    public static void normalScorpionHuntsAndEatsWildAndTamedSpiders(GameTestHelper h) {
+        var s=spawn(h);var wild=h.spawn(EntityType.SPIDER,16,2,15);wild.setNoAi(true);
+        net.minecraft.world.entity.monster.Spider[] pet={null};boolean[] firstMeal={false};
+        h.runAfterDelay(40,()->{
+            firstMeal[0]=!wild.isAlive()&&s.isEating();
+        });
+        h.runAfterDelay(60,()->{
+            pet[0]=EntityType.SPIDER.create(h.getLevel());pet[0].moveTo(s.position().add(0,0,-.7));pet[0].setNoAi(true);
+            pet[0].getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MAX_HEALTH).setBaseValue(30);pet[0].setHealth(30);
+            net.itsrileynj.fantasyfeudalismmobs.SpiderCompanion.data(pet[0]).putUUID("owner",UUID.randomUUID());
+            net.itsrileynj.fantasyfeudalismmobs.SpiderCompanion.sync(pet[0]);h.getLevel().addFreshEntity(pet[0]);
+        });
+        h.runAfterDelay(105,()->{h.assertTrue(firstMeal[0]&&!pet[0].isAlive(),"Native hunting kills and eats both wild and full-health pet spiders");h.succeed();});
+    }
+    @GameTest(template="test_root_worm")
+    public static void normalScorpionCannotEatAnInvulnerableSpider(GameTestHelper h) {
+        var s=spawn(h);s.setNoAi(true);var spider=h.spawn(EntityType.SPIDER,16,2,15);spider.setNoAi(true);spider.setInvulnerable(true);s.beginSting(spider);
+        h.runAfterDelay(20,()->{h.assertTrue(spider.isAlive()&&spider.getHealth()==spider.getMaxHealth()&&!s.isEating(),"Protected spider neither dies nor triggers feeding");h.succeed();});
+    }
+    @GameTest(template="test_root_worm",batch="scorpion_player_attacks",timeoutTicks=120)
+    public static void normalScorpionPincerIsPlainDamageAndStingGivesTenSecondsOfNausea(GameTestHelper h) {
+        var cookie=net.minecraft.server.network.CommonListenerCookie.createInitial(new com.mojang.authlib.GameProfile(UUID.randomUUID(),"sting-test"),false);
+        var p=new net.minecraft.server.level.ServerPlayer(h.getLevel().getServer(),h.getLevel(),cookie.gameProfile(),cookie.clientInformation());
+        var connection=new net.minecraft.network.Connection(net.minecraft.network.protocol.PacketFlow.SERVERBOUND);new io.netty.channel.embedded.EmbeddedChannel(connection);
+        net.neoforged.neoforge.network.registration.NetworkRegistry.configureMockConnection(connection);h.getLevel().getServer().getPlayerList().placeNewPlayer(connection,p,cookie);p.setGameMode(GameType.SURVIVAL);
+        var s=spawn(h);s.setNoAi(true);p.setNoGravity(true);p.moveTo(s.position().add(0,0,-.5));p.setDeltaMovement(Vec3.ZERO);boolean[] plain={false};
+        // Real players have sixty ticks of native join protection; exercise damage after it expires.
+        h.runAfterDelay(65,()->{p.moveTo(s.position().add(0,0,-.5));p.setDeltaMovement(Vec3.ZERO);s.beginPincer(p);});
+        h.runAfterDelay(71,()->{plain[0]=p.getHealth()<20&&!p.hasEffect(MobEffects.CONFUSION)&&!p.hasEffect(MobEffects.POISON);});
+        h.runAfterDelay(77,()->{p.invulnerableTime=0;p.setHealth(20);p.moveTo(s.position().add(0,0,-.5));p.setDeltaMovement(Vec3.ZERO);s.beginSting(p);});
+        h.runAfterDelay(88,()->{try {
+            var nausea=p.getEffect(MobEffects.CONFUSION);h.assertTrue(plain[0]&&p.getHealth()<20&&nausea!=null&&nausea.getDuration()>=190&&!p.hasEffect(MobEffects.POISON),"Pincers do plain damage; stings apply ten seconds of Nausea without poison: plain="+plain[0]+" health="+p.getHealth()+" nausea="+nausea+" player="+p.position()+" scorpion="+s.position());h.succeed();
+        }finally{h.getLevel().getServer().getPlayerList().remove(p);}});
+    }
+    @GameTest(template="test_empty",batch="lava_scorpion_contact")
+    public static void lavaScorpionContactMatchesMagmaAndNeverTargetsPlayers(GameTestHelper h) {
+        var lava=h.spawn(ScorpionModule.LAVA_SCORPION.get(),8,2,8);lava.setNoAi(true);var p=h.makeMockPlayer(GameType.SURVIVAL);p.setPos(lava.position());
+        lava.setTarget(p);lava.beginSting(p);h.assertTrue(lava.getTarget()==null&&!lava.isAttacking()&&!lava.doHurtTarget(p),"Lava scorpions refuse all player attacks");
+        lava.playerTouch(p);h.assertTrue(p.getHealth()==19&&!p.hasEffect(MobEffects.POISON)&&!p.hasEffect(MobEffects.CONFUSION),"Touch deals one point of hot-floor damage without venom");
+        p.invulnerableTime=0;p.setHealth(20);p.setShiftKeyDown(true);lava.playerTouch(p);h.assertTrue(p.getHealth()==20,"Careful stepping protects like a magma block");
+        p.setShiftKeyDown(false);p.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE,100,0));lava.playerTouch(p);h.assertTrue(p.getHealth()==20,"Native fire resistance protects from contact heat");
+        for(var mode:List.of(GameType.CREATIVE,GameType.SPECTATOR)){var protectedPlayer=h.makeMockPlayer(mode);protectedPlayer.setPos(lava.position());lava.playerTouch(protectedPlayer);h.assertTrue(protectedPlayer.getHealth()==20,"Creative and spectator contact is safe");}
+        h.succeed();
+    }
+    @GameTest(template="test_empty",batch="scorpion_arrows")
+    public static void largeScorpionRejectsArrowsButLavaScorpionAndOtherWeaponsRemainNormal(GameTestHelper h) {
+        var normal=h.spawn(ScorpionModule.SCORPION.get(),8,2,8);normal.setNoAi(true);var level=h.getLevel();
+        for(var type:List.of(EntityType.ARROW,EntityType.SPECTRAL_ARROW)) {
+            var arrow=(net.minecraft.world.entity.projectile.AbstractArrow)type.create(level);
+            h.assertTrue(!normal.hurt(level.damageSources().arrow(arrow,null),4)&&normal.getHealth()==16,"Large scorpion rejects normal and spectral arrow damage");
+        }
+        var lava=h.spawn(ScorpionModule.LAVA_SCORPION.get(),12,2,8);lava.setNoAi(true);
+        h.assertTrue(lava.hurt(level.damageSources().arrow(EntityType.ARROW.create(level),null),4),"Lava scorpion remains vulnerable to arrows");
+        h.assertTrue(normal.hurt(level.damageSources().trident(EntityType.TRIDENT.create(level),null),4),"Tridents retain damage against the large scorpion");
+        h.succeed();
+    }
     @GameTest(template="test_empty",batch="scorpion_biomes")
     public static void scorpionNaturalEntriesAreRareSinglesInEveryBadlandsVariant(GameTestHelper h) {
         var allowed=List.of(Biomes.BADLANDS,Biomes.ERODED_BADLANDS,Biomes.WOODED_BADLANDS);
@@ -78,6 +163,7 @@ public final class ScorpionTests {
             h.setBiome(biome);var entries=h.getLevel().getBiome(h.absolutePos(new BlockPos(8,2,8))).value().getMobSettings().getMobs(MobCategory.MONSTER).unwrap();
             boolean found=entries.stream().anyMatch(e->e.type==ScorpionModule.SCORPION.get()&&e.minCount==1&&e.maxCount==1&&e.getWeight().asInt()==3);
             h.assertTrue(found==allowed.contains(biome),"Rare singleton entries occur only in badlands variants");
+            h.assertTrue(entries.stream().anyMatch(e->e.type==ScorpionModule.LAVA_SCORPION.get()&&e.minCount==3&&e.maxCount==5&&e.getWeight().asInt()==3),"Lava scorpion native spawn lists use rare packs of three to five");
         }h.succeed();
     }
     @GameTest(template="test_root_worm",timeoutTicks=100)

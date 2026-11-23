@@ -712,3 +712,24 @@ Normal Scorpions are hostile only during world-clock night (13,000 through 22,99
 ### Fiery Lava Scorpion accents
 
 Recolor the amber/gold accent material to fiery red-orange with bright yellow-orange highlights, including the eye swatch. Retain the mottled charcoal shell and dark eye-mask gaps. No geometry or gameplay changes.
+
+## Confirmed Scorpion idle and walking animations (0.1.60)
+
+Add idle tail and pincer movement while standing, with occasional gentle inner-jaw flexes. Add tail movement during walking using connected joint rotations. Apply to both variants. Smoothly reduce idle movement when walking and secondary motion during the sting. Client-derived animation requires no extra entity metadata. No commit or push requested.
+
+
+## Confirmed Lava Scorpion immunity and deep packs (0.1.61)
+
+Give only Lava Scorpions native fire immunity, including lava and ongoing burning. Restrict their natural spawn positions to below Y=0 (deepslate level), keeping the covered-cave and nearby-lava requirements. Change native spawn group entries to 3–5 and the entity cluster cap to five so vanilla spawning can produce the full group. Keep rarity weight 3. Normal Scorpion immunity and spawn rules are unchanged. Spawn eggs and commands remain usable outside the natural habitat. No commit or push requested.
+
+
+### Confirmed scorpion predation, venom and contact heat
+
+Normal Scorpions hunt every Spider, including tamed pet spiders, while retaining night-only hostility. Use the telegraphed stinger to kill an ordinary or tamed spider in one successful hit, with native damage protections intact, followed by a short eating animation. Prioritize spiders over unprovoked players. Against players, alternate stings and pincer hits: stings apply ten seconds of vanilla Nausea instead of poison, and pincers deal normal damage without venom. Keep existing range, visibility and protected-player checks.
+
+Lava Scorpions must not attack players, including when provoked. Refuse player targets and direct or timed player attacks; instead, touching one applies one point of native hot-floor damage, like magma blocks. Native damage immunity, fire resistance and careful stepping protections apply. Contact heat is server-owned and does not apply poison or Nausea. This supersedes the previous all-day player-hostility behavior.
+
+
+### Large Scorpion arrow immunity
+
+Make only the larger normal Scorpion immune to arrow damage, including tipped and spectral arrows. Native arrow subclasses are covered, but thrown tridents remain damaging. Lava Scorpions remain vulnerable to arrows.

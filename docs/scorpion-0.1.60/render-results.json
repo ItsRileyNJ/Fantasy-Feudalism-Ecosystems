@@ -1,0 +1,32 @@
+{
+  "2": {
+    "animationRanges": {
+      "idleTailYaw": 0.08999683,
+      "idleJaw": 0.12,
+      "walkingTailYaw": 0.12991326
+    },
+    "legs": 8,
+    "maxIdlePincerAngle": 0.14,
+    "frames": 293,
+    "legRange": 0.636352,
+    "finite": true,
+    "maxPincerOpen": 0.14,
+    "tailRange": 0.0891875,
+    "maxSting": 0.0
+  },
+  "3": {
+    "animationRanges": {
+      "idleTailYaw": 0.089993745,
+      "idleJaw": 0.11999996,
+      "walkingTailYaw": 0.12922755
+    },
+    "legs": 8,
+    "maxIdlePincerAngle": 0.14,
+    "frames": 293,
+    "legRange": 0.63954234,
+    "finite": true,
+    "maxPincerOpen": 0.14,
+    "tailRange": 0.0896194,
+    "maxSting": 0.0
+  }
+}

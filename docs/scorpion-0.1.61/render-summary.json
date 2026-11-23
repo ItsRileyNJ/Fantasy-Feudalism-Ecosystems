@@ -1,0 +1,8 @@
+{
+  "finite": true,
+  "legs": 8,
+  "maxSting": 1.0,
+  "maxEating": 1.0,
+  "pincerVictimHealth": 36.0,
+  "pincerVictimEffects": []
+}

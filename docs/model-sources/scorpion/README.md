@@ -33,3 +33,5 @@ The Lava Scorpion now uses `lava_scorpion.png`, an image-generated edit of the o
 The Lava Scorpion eye mask now samples charcoal instead of gold, separating the six orange eyes without altering model geometry.
 
 The latest Lava Scorpion atlas edit replaces the amber/gold accents with molten red-orange, darker red mottling and bright yellow-orange highlights. It was generated from the preceding atlas with the charcoal quadrant preserved. Source: `/workspace/generated_images/exec-54d9e29c-4a64-4ed2-9ba7-15e66098d884.png`.
+
+Version 0.1.60 adds client-side idle pincer/tail motion and gait-linked tail yaw/pitch through existing model pivots. Geometry and textures are unchanged.

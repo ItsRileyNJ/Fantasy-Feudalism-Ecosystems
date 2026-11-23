@@ -6,7 +6,16 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.59.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.61.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.61 changes
+
+- Lava Scorpions are immune to fire and lava. They spawn in groups of 3–5 only below Y=0 in covered caves near lava. They do not attack players; touching them deals magma-style heat damage.
+- Normal Scorpions hunt and eat all spiders at night, including pets, with one lethal sting, and are immune to arrows. Player stings apply 10 seconds of Nausea instead of poison; pincer attacks deal plain damage.
+
+## Version 0.1.60 changes
+
+- Both scorpion variants now sway their tails and occasionally flex their pincers while idle. Walking adds a gentle side-to-side tail sway and bob, with attack poses taking priority.
 
 ## Version 0.1.59 changes
 

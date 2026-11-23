@@ -111,7 +111,9 @@ public final class ScorpionModel extends HierarchicalModel<Scorpion> {
     @Override public void setupAnim(Scorpion scorpion,float swing,float swingAmount,float age,float headYaw,float headPitch) {
         root.getAllParts().forEach(ModelPart::resetPose);
         float move=Math.min(1,swingAmount*3),partial=Mth.clamp(age-scorpion.tickCount,0,1),sting=scorpion.getStingAmount(partial),pincerOpen=scorpion.getPincerOpenAmount(partial);
-        // The simplified carapace stays rigid; its mouthparts animate independently.
+        float eating=scorpion.getEatAmount(partial);
+        float phaseOffset=(scorpion.getId()%31)*.71F,rest=1-move,free=(1-sting)*(1-eating);
+        // Connected joint rotations provide client-derived idle and gait-linked motion.
         for(int pair=0;pair<4;pair++)for(int s=0;s<2;s++) {
             int index=pair*2+s,side=s==0?-1:1;float phase=swing*1.9F+pair*Mth.PI+(s==0?0:Mth.PI);
             legs[index].yRot+=Mth.cos(phase)*.32F*move;
@@ -122,16 +124,25 @@ public final class ScorpionModel extends HierarchicalModel<Scorpion> {
             int side=i==0?-1:1;
             feelers[i].zRot+=side*Mth.sin(age*.09F)*.025F;
             feelers[i].xRot+=Mth.sin(age*.12F+i)*.02F-sting*.08F;
-            chelicerae[i].yRot+=side*(Mth.sin(age*.16F)*.08F+sting*.12F);
-            cheliceraFangs[i].yRot+=side*(.18F+Mth.sin(age*.18F)*.1F+sting*.18F);
-            arms[i].yRot+=side*(Mth.sin(age*.07F)*.04F-sting*.15F);palms[i].xRot+=sting*.12F;
+            chelicerae[i].yRot+=side*(Mth.sin(age*.16F)*(.08F+eating*.22F)+sting*.12F);
+            cheliceraFangs[i].yRot+=side*(.18F+Mth.sin(age*.18F)*.1F+Mth.sin(age*.53F)*eating*.2F+sting*.18F);
+            float idleWave=Mth.sin(age*.045F+phaseOffset+i*2.7F);
+            float pulse=Mth.clamp((idleWave-.75F)*4,0,1);
+            float idleOpen=pulse*pulse*(3-2*pulse)*.12F*rest*free;
+            arms[i].yRot+=side*(Mth.sin(age*.05F+phaseOffset+i)*.04F*rest*free-sting*.15F);
+            palms[i].xRot+=idleWave*.025F*rest*free+sting*.12F;
             for(int j=0;j<2;j++) {
                 int sign=j==0?-1:1;
                 // Crab-style chela: the larger outer jaw stays fixed; the inner jaw hinges open.
-                if(sign!=side)jaws[i*2+j].yRot-=sign*pincerOpen*.5F;
+                if(sign!=side)jaws[i*2+j].yRot-=sign*(pincerOpen*.5F+idleOpen);
             }
         }
-        for(int i=0;i<tail.length;i++)tail[i].xRot+=Mth.sin(age*.065F-i*.35F)*.025F;
+        for(int i=0;i<tail.length;i++) {
+            tail[i].xRot+=free*(Mth.sin(age*.045F+phaseOffset-i*.45F)*.04F*rest
+                    +Mth.sin(swing*1.9F-i*.5F)*.045F*move);
+            tail[i].yRot+=free*(Mth.sin(age*.035F+phaseOffset-i*.35F)*.045F*rest
+                    +Mth.sin(swing*.95F-i*.4F)*.065F*move);
+        }
         tail[0].xRot+=.5F*sting;bulb.xRot-=.35F*sting;
     }
 }
