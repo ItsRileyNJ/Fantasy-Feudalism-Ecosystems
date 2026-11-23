@@ -66,5 +66,7 @@
   "subtitles.fantasy_feudalism_mobs.goldfinch.death": "Goldfinch dies",
   "subtitles.fantasy_feudalism_mobs.crow.ambient": "Crow caws",
   "subtitles.fantasy_feudalism_mobs.crow.hurt": "Crow hurts",
-  "subtitles.fantasy_feudalism_mobs.crow.death": "Crow dies"
+  "subtitles.fantasy_feudalism_mobs.crow.death": "Crow dies",
+  "entity.fantasy_feudalism_mobs.root_worm": "Root Worm",
+  "item.fantasy_feudalism_mobs.root_worm_spawn_egg": "Root Worm Spawn Egg"
 }

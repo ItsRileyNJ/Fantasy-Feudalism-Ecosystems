@@ -79,6 +79,18 @@ public final class ServerHarness {
     public static Object execute(MinecraftServer server, JsonObject q) {
         ServerLevel level = server.overworld(); String action = q.get("action").getAsString();
         switch (action) {
+            case "rootWorm": {
+                String phase=q.get("phase").getAsString();
+                if(phase.equals("fixture")) {
+                    var worm=net.itsrileynj.fantasyfeudalismmobs.rootworm.RootWormModule.ROOT_WORM.get().create(level);
+                    worm.moveTo(8.5,64,9.5,180,0);worm.setYBodyRot(180);worm.setYHeadRot(180);worm.setNoAi(true);worm.setOnGround(true);worm.setPersistenceRequired();level.addFreshEntity(worm);return ControlFiles.entity(worm);
+                }
+                var worm=(net.itsrileynj.fantasyfeudalismmobs.rootworm.entity.RootWorm)entity(level,q);
+                if(phase.equals("hear")){worm.setNoAi(false);worm.getNavigation().stop();worm.hearSound(player(server,q),worm.position(),1);}
+                if(phase.equals("bite"))worm.beginBite();
+                if(phase.equals("walk")){worm.goalSelector.removeAllGoals(g->true);worm.setSearching(false);worm.getNavigation().moveTo(worm.getX()+5,64,worm.getZ(),1);}
+                return ControlFiles.entity(worm);
+            }
             case "birdFoliage": {
                 String phase=q.get("phase").getAsString();
                 var result=new ArrayList<Map<String,Object>>();

@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.itsrileynj.fantasyfeudalismmobs.rootworm.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "RootWormArrowMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -6,7 +6,12 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.46.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.47.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.47 changes
+
+- Added Root Worms and their spawn egg. They spawn in Savanna, Savanna Plateau and Windswept Savanna in groups of 2–4.
+- Root Worms listen for nearby activity, raise their front body to investigate, retaliate when hurt and avoid fire and lava. Native animations and multipart hitboxes require no animation-library dependency.
 
 ## Version 0.1.46 changes
 

@@ -575,3 +575,13 @@ Increase the downward sitting-abdomen pitch from -0.18 to -0.25 radians for tame
 ## Confirmed enclosure bat side-eye removal (0.1.46)
 
 Remove the side-eye highlights only on bats displayed inside the enclosure. Use an enclosure-only texture that replaces the vanilla side-head white pixels at (1,10) and (6,10) with opaque matching fur. Preserve all other pixels, including the front eyes and nose, and leave world bats on their normal renderer and texture. Keep native hanging models, roof attachment, slot staggering and fixed animation time.
+
+
+## Confirmed Root Worm integration (0.1.47)
+
+- Integrate the user-supplied RootWorm-Integration-Kit-NeoForge-1.21.1.zip into Ecosystems. Preserve its native Java model, supplied texture, procedural animations, hearing, neutral retaliation, fire/lava vulnerability and avoidance, and nine multipart hitboxes. No GeckoLib dependency. Uploaded kit documentation is reference material.
+- Add the Root Worm spawn egg to the Ecosystems and vanilla spawn-egg creative tabs. Natural spawning uses all three vanilla savanna biomes: Savanna, Savanna Plateau and Windswept Savanna. Default weight 6, group size 2–4, native ground-spawn checks and creature population limits. No custom habitat or world generation.
+- Preserve the kit's eight hearts, two attack damage, cosmetic idle nibbling, 16-block loud-action hearing / eight-block footsteps, ignored sneaking footsteps, raised searching pose, nine-tick bite animation with three-tick windup and twenty-tick cooldown. Hearing alone does not provoke aggression. Default fire and lava damage multiplier is two.
+- Keep the independent COMMON behavior config at fantasy_feudalism_mobs-root-worm-common.toml. Keep the existing host entry point and renderer event wiring; do not add the kit's example mod or build files.
+
+- Listening-pose refinement: keep the rear five of nine segments planted and lift only the front four. Preserve the head scan, smooth transitions, connected body spacing and matching multipart hitboxes.

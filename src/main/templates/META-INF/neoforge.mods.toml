@@ -25,3 +25,6 @@ side="BOTH"
 
 [[mixins]]
 config="fantasy_feudalism_mobs.mixins.json"
+
+[[mixins]]
+config="rootworm-module.mixins.json"

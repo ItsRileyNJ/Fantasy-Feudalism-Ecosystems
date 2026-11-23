@@ -37,6 +37,7 @@ sourceSets.main.resources.srcDir('src/gametest/resources')
 tasks.named('jar', Jar).configure {
     exclude('net/itsrileynj/fantasyfeudalismmobs/gametest/**')
     exclude('data/fantasy_feudalism_mobs/structure/test_empty.nbt')
+    exclude('data/fantasy_feudalism_mobs/structure/test_root_worm.nbt')
 }
 
 // A separate, opt-in test mod for real-client/dedicated-server integration tests.

@@ -67,11 +67,13 @@ public final class FantasyFeudalismMobs {
                     output.accept(BAT_ENCLOSURE_ITEM.get());
                     output.accept(FIELD_MOUSE_SPAWN_EGG.get());
                     for(var egg:Birds.EGGS)output.accept(egg.get());
+                    output.accept(net.itsrileynj.fantasyfeudalismmobs.rootworm.RootWormModule.ROOT_WORM_EGG.get());
                 })
                 .build());
     }
 
     public FantasyFeudalismMobs(IEventBus modEventBus, ModContainer container) {
+        net.itsrileynj.fantasyfeudalismmobs.rootworm.RootWormModule.register(modEventBus,container);
         BLOCKS.register(modEventBus);
         BLOCK_ENTITIES.register(modEventBus);
         ITEMS.register(modEventBus);

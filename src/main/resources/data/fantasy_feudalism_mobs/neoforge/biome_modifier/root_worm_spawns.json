@@ -1,0 +1,12 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#fantasy_feudalism_mobs:root_worm_savannas",
+  "spawners": [
+    {
+      "type": "fantasy_feudalism_mobs:root_worm",
+      "weight": 6,
+      "minCount": 2,
+      "maxCount": 4
+    }
+  ]
+}
