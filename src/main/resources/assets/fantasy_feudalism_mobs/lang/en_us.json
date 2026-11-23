@@ -70,5 +70,12 @@
   "entity.fantasy_feudalism_mobs.root_worm": "Root Worm",
   "item.fantasy_feudalism_mobs.root_worm_spawn_egg": "Root Worm Spawn Egg",
   "item.fantasy_feudalism_mobs.bark": "Bark",
-  "subtitles.fantasy_feudalism_mobs.root_worm.ambient": "Rootworm clicks"
+  "subtitles.fantasy_feudalism_mobs.root_worm.ambient": "Rootworm clicks",
+  "entity.fantasy_feudalism_mobs.scorpion": "Scorpion",
+  "item.fantasy_feudalism_mobs.scorpion_spawn_egg": "Scorpion Spawn Egg",
+  "subtitles.fantasy_feudalism_mobs.scorpion.ambient": "Scorpion clicks",
+  "subtitles.fantasy_feudalism_mobs.scorpion.hurt": "Scorpion hurts",
+  "subtitles.fantasy_feudalism_mobs.scorpion.death": "Scorpion dies",
+  "subtitles.fantasy_feudalism_mobs.scorpion.step": "Scorpion scuttles",
+  "subtitles.fantasy_feudalism_mobs.scorpion.sting": "Scorpion stings"
 }

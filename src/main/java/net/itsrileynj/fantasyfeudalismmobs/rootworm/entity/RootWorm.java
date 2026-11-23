@@ -41,6 +41,7 @@ public final class RootWorm extends PathfinderMob {
     private static final EntityDataAccessor<Boolean> BURROWING = SynchedEntityData.defineId(RootWorm.class, EntityDataSerializers.BOOLEAN);
     private final RootWormBurrow burrow = new RootWormBurrow(this);
     private float mouthOpen, previousMouthOpen;
+    private float feedingBlend, previousFeedingBlend, lookYaw, previousLookYaw;
     private final net.minecraft.world.level.gameevent.DynamicGameEventListener<RootWormHearing> hearing;
     private java.util.UUID heardActor;
     private Vec3 heardPosition;
@@ -167,6 +168,10 @@ public final class RootWorm extends PathfinderMob {
             previousMouthOpen = mouthOpen;
             mouthOpen = Mth.approach(mouthOpen, biteOpenAmount(0), 0.4F);
         }
+        previousFeedingBlend=feedingBlend;
+        feedingBlend=Mth.approach(feedingBlend,isFeeding()?1:0,0.125F);
+        previousLookYaw=lookYaw;
+        lookYaw=Mth.rotLerp(0.25F,lookYaw,Mth.wrapDegrees(getYHeadRot()-yBodyRot));
     }
 
     public boolean isBurrowing() { return entityData.get(BURROWING); }
@@ -187,6 +192,13 @@ public final class RootWorm extends PathfinderMob {
     @Override public int getAmbientSoundInterval() { return 120; }
 
     public boolean isFeeding() { return entityData.get(FEEDING); }
+    public float getFeedingAmount(float partialTick) {
+        float amount=Mth.lerp(Mth.clamp(partialTick,0,1),previousFeedingBlend,feedingBlend);
+        return amount*amount*(3-2*amount);
+    }
+    public float getVisualLookYaw(float partialTick) {
+        return Mth.rotLerp(Mth.clamp(partialTick,0,1),previousLookYaw,lookYaw);
+    }
 
     public boolean isBiting() { return entityData.get(BITE_TICKS) > 0; }
 

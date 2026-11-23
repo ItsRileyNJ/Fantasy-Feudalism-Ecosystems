@@ -70,6 +70,7 @@ public final class FantasyFeudalismMobs {
                     output.accept(BAT_NET.get());
                     output.accept(BAT_ENCLOSURE_ITEM.get());
                     output.accept(FIELD_MOUSE_SPAWN_EGG.get());
+                    output.accept(net.itsrileynj.fantasyfeudalismmobs.scorpion.ScorpionModule.EGG.get());
                     for(var egg:Birds.EGGS)output.accept(egg.get());
                     output.accept(net.itsrileynj.fantasyfeudalismmobs.rootworm.RootWormModule.ROOT_WORM_EGG.get());
                 })
@@ -79,6 +80,7 @@ public final class FantasyFeudalismMobs {
     public FantasyFeudalismMobs(IEventBus modEventBus, ModContainer container) {
         net.itsrileynj.fantasyfeudalismmobs.rootworm.RootWormModule.register(modEventBus,container);
         modEventBus.addListener(BarkCompatibility::addPacks);
+        net.itsrileynj.fantasyfeudalismmobs.scorpion.ScorpionModule.register(modEventBus);
         BLOCKS.register(modEventBus);
         BLOCK_ENTITIES.register(modEventBus);
         ITEMS.register(modEventBus);

@@ -24,8 +24,6 @@ public final class RootWormModel extends HierarchicalModel<RootWorm> {
     private final ModelPart leftJaw;
     private final ModelPart rightJaw;
     private final ModelPart eyes;
-    private final ModelPart[] eyeSides = new ModelPart[2];
-    private final ModelPart[] pupils = new ModelPart[2];
 
     public RootWormModel(ModelPart root) {
         this.root = root;
@@ -35,12 +33,7 @@ public final class RootWormModel extends HierarchicalModel<RootWorm> {
         leftJaw = segments[0].getChild("left_jaw");
         rightJaw = segments[0].getChild("right_jaw");
         eyes = segments[0].getChild("eyes");
-        eyeSides[0] = eyes.getChild("left_eye");
-        eyeSides[1] = eyes.getChild("right_eye");
-        for (int i = 0; i < 2; i++) {
-            pupils[i] = eyeSides[i].getChild("pupil");
-            pupils[i].visible = false; // Render separately with true black, retaining the parent's blink scale.
-        }
+
     }
 
     public static LayerDefinition createLayer() {
@@ -65,8 +58,7 @@ public final class RootWormModel extends HierarchicalModel<RootWorm> {
                     var eye = eyeRoot.addOrReplaceChild(side < 0 ? "left_eye" : "right_eye", CubeListBuilder.create().texOffs(112, 0)
                             .addBox(0, -0.325F, -0.55F, 0.25F, 0.65F, 1.1F),
                             PartPose.offsetAndRotation(side * 3.9F, 0, 0, 0, side < 0 ? Mth.PI : 0, 0));
-                    eye.addOrReplaceChild("pupil", CubeListBuilder.create().texOffs(96, 16)
-                            .addBox(0.255F, -0.16F, -0.2F, 0.04F, 0.32F, 0.4F), PartPose.ZERO);
+
                 }
                 // The throat is behind the closed overlapping plates; it becomes visible as they spread.
                 segment.addOrReplaceChild("throat", CubeListBuilder.create().texOffs(96, 16)
@@ -104,21 +96,16 @@ public final class RootWormModel extends HierarchicalModel<RootWorm> {
     @Override public ModelPart root() { return root; }
 
     @Override public void renderToBuffer(PoseStack pose, VertexConsumer consumer, int light, int overlay, int color) {
-        super.renderToBuffer(pose, consumer, light, overlay, color);
-        if (!root.visible || !segments[0].visible || !eyes.visible) return;
+        // Draw the eye boxes in a separate solid-black pass, preserving their native blink transform.
+        boolean visible=eyes.visible;
+        eyes.visible=false;
+        try { super.renderToBuffer(pose,consumer,light,overlay,color); }
+        finally { eyes.visible=visible; }
+        if(!root.visible || !segments[0].visible || !visible)return;
         pose.pushPose();
         root.translateAndRotate(pose);
         segments[0].translateAndRotate(pose);
-        eyes.translateAndRotate(pose); // Includes the original blinking yScale for both pupils.
-        for (int i = 0; i < 2; i++) {
-            if (!eyeSides[i].visible) continue;
-            pose.pushPose();
-            eyeSides[i].translateAndRotate(pose);
-            pupils[i].visible = true;
-            pupils[i].render(pose, consumer, light, overlay, color & 0xFF000000);
-            pupils[i].visible = false;
-            pose.popPose();
-        }
+        eyes.render(pose,consumer,light,overlay,color & 0xFF000000);
         pose.popPose();
     }
 
@@ -137,16 +124,19 @@ public final class RootWormModel extends HierarchicalModel<RootWorm> {
             segments[i].y -= pose.lift() + Math.abs(Mth.cos(wave)) * 0.5F * movement;
             segments[i].y -= Mth.sin(ageInTicks * 0.08F - i * 0.6F) * 0.06F * (1 - search);
         }
-        segments[0].yRot += netHeadYaw * Mth.DEG_TO_RAD * 0.3F * (1 - search);
+        segments[0].yRot += worm.getVisualLookYaw(partialTick) * Mth.DEG_TO_RAD * 0.3F * (1 - search);
         eyes.yScale = ageInTicks % 140 > 136 ? 0.15F : 1.0F;
         float mouth = worm.getMouthOpenAmount(ageInTicks - worm.tickCount);
         upperJaw.xRot = -mouth * 0.75F;
         lowerJaw.xRot = mouth * 0.72F;
         leftJaw.yRot = mouth * 0.58F;
         rightJaw.yRot = -mouth * 0.58F;
-        if (worm.isFeeding()) {
-            segments[0].xRot += (0.06F + Mth.sin(ageInTicks * 0.5F) * 0.05F) * (1 - search);
-            // Root nibbling remains a small head motion with the mouth closed.
-        }
+        segments[0].xRot += (0.06F + Mth.sin(ageInTicks * 0.5F) * 0.05F) * worm.getFeedingAmount(partialTick) * (1 - search);
+        // Resolve the head from a shared neck joint after every look, nod and listening rotation.
+        var offset=net.itsrileynj.fantasyfeudalismmobs.rootworm.entity.RootWormSearchPose.headAttachmentOffset(
+                -segments[0].xRot,segments[0].yRot,-segments[1].xRot,segments[1].yRot);
+        segments[0].x=segments[1].x+(float)offset.x;
+        segments[0].y=segments[1].y+(float)offset.y;
+        segments[0].z=segments[1].z+(float)offset.z;
     }
 }

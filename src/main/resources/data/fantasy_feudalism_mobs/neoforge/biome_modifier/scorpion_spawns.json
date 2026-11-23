@@ -1,0 +1,12 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#fantasy_feudalism_mobs:scorpion_biomes",
+  "spawners": [
+    {
+      "type": "fantasy_feudalism_mobs:scorpion",
+      "weight": 3,
+      "minCount": 1,
+      "maxCount": 1
+    }
+  ]
+}

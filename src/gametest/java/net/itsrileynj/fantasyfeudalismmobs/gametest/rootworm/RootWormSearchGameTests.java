@@ -27,7 +27,7 @@ public final class RootWormSearchGameTests {
         Vec3[] raisedHead = {null};
         helper.runAfterDelay(15, () -> {
             helper.assertTrue(worm.isSearching() && worm.getSearchAmount(0) > 0.99F, "Hearing should trigger a smoothly raised listening pose");
-            helper.assertTrue(worm.getParts()[0].getY() - worm.getY() > 0.5, "The head damage box must rise with the visible head");
+            helper.assertTrue(worm.getParts()[0].getY() - worm.getY() > 0.4, "The head damage box must rise with the visible head");
             helper.assertTrue(worm.getBoundingBoxForCulling().contains(worm.getParts()[0].getBoundingBox().getCenter()),
                     "Rendering bounds must include the raised head");
             for (int i = 4; i < 9; i++) helper.assertTrue(Math.abs(worm.getParts()[i].getY() - worm.getY()) < 0.025,
@@ -131,11 +131,31 @@ public final class RootWormSearchGameTests {
                 double spacing = new Vec3(pose.x(), pose.lift(), pose.z()).distanceTo(new Vec3(next.x(), next.lift(), next.z()));
                 double resting = net.itsrileynj.fantasyfeudalismmobs.rootworm.entity.RootWormShape.SEGMENTS.get(i + 1).z()
                         - net.itsrileynj.fantasyfeudalismmobs.rootworm.entity.RootWormShape.SEGMENTS.get(i).z();
-                helper.assertTrue(Math.abs(spacing - resting) < 0.001, "Raising and scanning must not stretch or separate the body segments");
+                if(i==0) {
+                    var headJoint=new org.joml.Vector3f(0,-2.5F,2).rotate(new org.joml.Quaternionf().rotationZYX(0,pose.yaw(),-pose.pitch())).add(pose.x(),-pose.lift(),pose.z());
+                    var neckJoint=new org.joml.Vector3f(0,-2.5F,-2.5F).rotate(new org.joml.Quaternionf().rotationZYX(0,next.yaw(),-next.pitch())).add(next.x(),-next.lift(),next.z());
+                    helper.assertTrue(headJoint.distance(neckJoint)<.001,"The visible rear head joint stays attached throughout raising, scanning and lowering");
+                } else helper.assertTrue(Math.abs(spacing - resting) < 0.001, "Raising and scanning must not stretch or separate the body segments");
                 if (i >= 4) helper.assertTrue(pose.lift() == 0 && pose.x() == 0 && pose.pitch() == 0 && pose.yaw() == 0,
                         "The tail must stay anchored throughout the animation");
             }
         }
         helper.succeed();
     }
+    @GameTest(template="test_root_worm",timeoutTicks=150)
+    public static void rootWormFlatNoddingEasesInAndOutOfTheNativeIdleCycle(GameTestHelper helper) {
+        var worm=helper.spawn(RootWormModule.ROOT_WORM.get(),16,2,16);worm.setNoAi(true);
+        float[] previous={0};boolean[] observed={false,false};
+        helper.onEachTick(()->{
+            float amount=worm.getFeedingAmount(1);
+            if(amount>previous[0]+.001F)observed[0]=true;
+            if(amount<previous[0]-.001F)observed[1]=true;
+            helper.assertTrue(Math.abs(amount-previous[0])<.2F,"Idle nod transitions cannot snap from full strength to zero or back in one tick");
+            float partial=worm.getFeedingAmount(.5F);
+            helper.assertTrue(partial>=Math.min(previous[0],amount)-.001F&&partial<=Math.max(previous[0],amount)+.001F,"Rendered idle nod amount interpolates between game ticks");
+            previous[0]=amount;
+        });
+        helper.runAfterDelay(120,()->{helper.assertTrue(observed[0]&&observed[1],"The native flat idle cycle must both enter and leave its nod smoothly");helper.succeed();});
+    }
+
 }

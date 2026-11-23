@@ -10,3 +10,5 @@ User-supplied archive: `RootWorm-Integration-Kit-NeoForge-1.21.1.zip`.
 - Adapted the 22 supplied native GameTests to the host test package, template name and focused-test naming. Added two host integration tests covering the spawn egg and biome lists. Test sources and the kit arena are excluded from release artifacts.
 
 The module retains the kit's model, behavior and arrow-part correction mixin. The listening curve was subsequently shortened at the user's request: the rear five segments stay grounded while the front four rise and scan. Rendering and multipart hitboxes share this curve. `RootWormClient` is a source helper; host renderer/layer registration is wired directly through `EcosystemsClient`, once.
+
+Version 0.1.51 further anchors the head at its rear neck joint, eases the separate flat idle nod and renders both eye boxes solid black at the user's request. The original supplied texture remains unchanged.

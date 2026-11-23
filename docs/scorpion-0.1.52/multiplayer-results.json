@@ -1,0 +1,24 @@
+{
+  "owner": {
+    "maxSting": 1.0,
+    "legs": 8,
+    "legRange": 0.609288,
+    "finite": true,
+    "frames": 1804,
+    "tailRange": 1.4503734
+  },
+  "guest": {
+    "frames": 1809,
+    "finite": true,
+    "legRange": 0.61748093,
+    "legs": 8,
+    "maxSting": 1.0,
+    "tailRange": 1.4479146
+  },
+  "victim": {
+    "health": 36.0,
+    "effects": [
+      "minecraft:poison"
+    ]
+  }
+}

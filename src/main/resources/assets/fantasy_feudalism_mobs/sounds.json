@@ -135,5 +135,50 @@
       "fantasy_feudalism_mobs:entity/root_worm/ambient_5",
       "fantasy_feudalism_mobs:entity/root_worm/ambient_6"
     ]
+  },
+  "entity.scorpion.ambient": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.scorpion.ambient",
+    "sounds": [
+      {
+        "name": "minecraft:entity.spider.ambient",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.scorpion.hurt": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.scorpion.hurt",
+    "sounds": [
+      {
+        "name": "minecraft:entity.spider.hurt",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.scorpion.death": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.scorpion.death",
+    "sounds": [
+      {
+        "name": "minecraft:entity.spider.death",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.scorpion.step": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.scorpion.step",
+    "sounds": [
+      {
+        "name": "minecraft:entity.spider.step",
+        "type": "event"
+      }
+    ]
+  },
+  "entity.scorpion.sting": {
+    "subtitle": "subtitles.fantasy_feudalism_mobs.scorpion.sting",
+    "sounds": [
+      {
+        "name": "minecraft:entity.bee.sting",
+        "type": "event"
+      }
+    ]
   }
 }

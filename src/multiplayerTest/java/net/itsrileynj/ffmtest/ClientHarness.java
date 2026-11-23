@@ -78,6 +78,8 @@ public final class ClientHarness {
     private static final Map<Integer,Map<String,Object>> SPIDER_POSES=new HashMap<>();
     @SubscribeEvent public static void frame(RenderFrameEvent.Post event) { frames++; }
     @SubscribeEvent public static void rendered(RenderLivingEvent.Post<?,?> event) {
+        if(event.getEntity() instanceof net.itsrileynj.fantasyfeudalismmobs.scorpion.Scorpion scorpion
+                &&event.getRenderer().getModel() instanceof net.itsrileynj.fantasyfeudalismmobs.scorpion.client.ScorpionModel model)ScorpionRenderProbe.record(scorpion,model);
         if(event.getEntity() instanceof net.itsrileynj.fantasyfeudalismmobs.rootworm.entity.RootWorm worm
                 &&event.getRenderer().getModel() instanceof net.itsrileynj.fantasyfeudalismmobs.rootworm.client.RootWormModel model)RootWormRenderProbe.record(worm,model);
         if(event.getEntity() instanceof net.itsrileynj.fantasyfeudalismmobs.ForestBird bird
@@ -279,7 +281,7 @@ public final class ClientHarness {
         result.put("guiWidth",mc.getWindow().getGuiScaledWidth());result.put("guiHeight",mc.getWindow().getGuiScaledHeight());
         result.put("screen",mc.screen==null?"":mc.screen.getClass().getSimpleName());result.put("frames",frames);
         result.put("mouseRenderFrames",new HashMap<>(MOUSE_RENDER_FRAMES));
-        result.put("birdPoses",BirdRenderProbe.snapshot());result.put("rootWormPoses",RootWormRenderProbe.snapshot());
+        result.put("birdPoses",BirdRenderProbe.snapshot());result.put("rootWormPoses",RootWormRenderProbe.snapshot());result.put("scorpionPoses",ScorpionRenderProbe.snapshot());
         result.put("sheepRenderFrames",new HashMap<>(SHEEP_RENDER_FRAMES));
         result.put("sheepPoses",new HashMap<>(SHEEP_POSES));
         result.put("pigPoses",new HashMap<>(PIG_POSES));

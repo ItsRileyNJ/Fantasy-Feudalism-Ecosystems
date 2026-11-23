@@ -15,11 +15,12 @@ public final class EcosystemsClient {
         event.registerBlockEntityRenderer(FantasyFeudalismMobs.BAT_ENCLOSURE_ENTITY.get(),BatEnclosureRenderer::new);
         event.registerEntityRenderer(FantasyFeudalismMobs.FIELD_MOUSE.get(),FieldMouseRenderer::new);
         event.registerEntityRenderer(net.itsrileynj.fantasyfeudalismmobs.rootworm.RootWormModule.ROOT_WORM.get(),net.itsrileynj.fantasyfeudalismmobs.rootworm.client.RootWormRenderer::new);
+        event.registerEntityRenderer(net.itsrileynj.fantasyfeudalismmobs.scorpion.ScorpionModule.SCORPION.get(),net.itsrileynj.fantasyfeudalismmobs.scorpion.client.ScorpionRenderer::new);
         for(var type:Birds.TYPES) {
             BirdKind kind=Birds.kind(type.get());event.registerEntityRenderer(type.get(),context->new ForestBirdRenderer(context,kind));
         }
     }
-    @SubscribeEvent public static void layers(EntityRenderersEvent.RegisterLayerDefinitions event){event.registerLayerDefinition(net.itsrileynj.fantasyfeudalismmobs.rootworm.client.RootWormModel.LAYER,net.itsrileynj.fantasyfeudalismmobs.rootworm.client.RootWormModel::createLayer);event.registerLayerDefinition(FieldMouseRenderer.LAYER,FieldMouseModel::layer);
+    @SubscribeEvent public static void layers(EntityRenderersEvent.RegisterLayerDefinitions event){event.registerLayerDefinition(net.itsrileynj.fantasyfeudalismmobs.scorpion.client.ScorpionModel.LAYER,net.itsrileynj.fantasyfeudalismmobs.scorpion.client.ScorpionModel::layer);event.registerLayerDefinition(net.itsrileynj.fantasyfeudalismmobs.rootworm.client.RootWormModel.LAYER,net.itsrileynj.fantasyfeudalismmobs.rootworm.client.RootWormModel::createLayer);event.registerLayerDefinition(FieldMouseRenderer.LAYER,FieldMouseModel::layer);
         for(BirdKind kind:BirdKind.values())event.registerLayerDefinition(ForestBirdRenderer.layer(kind),()->ForestBirdGeometry.layer(kind));}
     @SubscribeEvent public static void colors(net.neoforged.neoforge.client.event.RegisterColorHandlersEvent.Item event){
         event.register((stack,tint)->0xFFE3C447,FantasyFeudalismMobs.FERTILIZER.get());

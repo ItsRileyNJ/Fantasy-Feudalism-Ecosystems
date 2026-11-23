@@ -1,0 +1,18 @@
+{
+  "render": {
+    "maxSting": 1.0,
+    "tailRange": 0.53990483,
+    "finite": true,
+    "legRange": 0.6074388,
+    "maxIdlePincerAngle": 0.14,
+    "legs": 8,
+    "frames": 113,
+    "maxPincerOpen": 0.35845846
+  },
+  "victim": {
+    "health": 36.0,
+    "effects": [
+      "minecraft:poison"
+    ]
+  }
+}

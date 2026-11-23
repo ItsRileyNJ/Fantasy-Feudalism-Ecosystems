@@ -26,7 +26,7 @@ public final class RootWormBurrowTests {
         var worm=fixture(h,Blocks.DIRT);var from=worm.position();frighten(h,worm);
         h.assertTrue(worm.isBurrowing(),"Accepted damage below half health triggers retreat");
         h.runAfterDelay(25,()->{
-            h.assertTrue(worm.isBurrowing()&&worm.getY()<from.y-1,"The worm physically travels below the surface");
+            h.assertTrue(worm.isBurrowing()&&worm.getY()<from.y-.7,"The worm physically travels below the surface");
             h.assertTrue(worm.getHealth()==7&&!worm.isInWall()&&!worm.canBite(worm),"Burrowing prevents suffocation and interrupts attacks");
             h.assertTrue(!worm.getParts()[0].isPickable(),"Underground body cannot be hand-targeted");
         });
@@ -47,10 +47,16 @@ public final class RootWormBurrowTests {
         worm.setInvulnerable(false);frighten(h,worm);h.assertTrue(worm.isBurrowing(),"A later accepted hit below half starts the retreat");h.succeed();
     }
     @GameTest(template="test_root_worm")
-    public static void rootWormBurrowCannotEnterStoneOrThinSoilOverStone(GameTestHelper h) {
+    public static void rootWormBurrowStaysWithinOneSoilLayerAboveStone(GameTestHelper h) {
         var worm=fixture(h,Blocks.STONE);frighten(h,worm);h.assertTrue(!worm.isBurrowing(),"Stone is not diggable");
         for(int x=2;x<=29;x++)for(int z=2;z<=29;z++)h.setBlock(x,1,z,Blocks.GRASS_BLOCK);
-        frighten(h,worm);h.assertTrue(!worm.isBurrowing(),"A thin dirt cap over stone is not enough for an underground route");h.succeed();
+        frighten(h,worm);h.assertTrue(worm.isBurrowing(),"A shallow retreat can use a single soil layer without digging into the stone below");
+        double surface=worm.getY();
+        h.runAfterDelay(25,()->{
+            h.assertTrue(worm.isBurrowing()&&worm.getY()<surface-.7,"The worm still hides beneath the soil");
+            for(var part:worm.getParts())h.assertTrue(part.getBoundingBox().minY>surface-1,"Every part stays above the underlying stone");
+            h.succeed();
+        });
     }
     @GameTest(template="test_root_worm")
     public static void rootWormBurrowCannotCrossStoneWallsOrUseWetBlockedExits(GameTestHelper h) {
@@ -93,4 +99,15 @@ public final class RootWormBurrowTests {
             h.assertTrue(worm.position().distanceTo(h.absoluteVec(new Vec3(16.5,2,16.5)))<2,"Retreat stops before crossing the new barrier");h.succeed();
         });
     }
+    @GameTest(template="test_root_worm",timeoutTicks=130)
+    public static void rootWormBurrowRetriesOnLandingAfterAnAirborneHit(GameTestHelper h) {
+        var worm=fixture(h,Blocks.DIRT);worm.setPos(worm.getX(),worm.getY()+2,worm.getZ());worm.setOnGround(false);frighten(h,worm);
+        h.assertTrue(!worm.isBurrowing(),"The worm cannot dig while airborne");
+        boolean[] seen={false};h.onEachTick(()->{if(worm.isBurrowing())seen[0]=true;});
+        h.runAfterDelay(90,()->{
+            h.assertTrue(seen[0]&&!worm.isBurrowing(),"An airborne hit queues a retreat which starts after landing and finishes normally");
+            h.assertTrue(worm.getHealth()==7,"Landing and the shallow escape do not inflict extra damage");h.succeed();
+        });
+    }
+
 }

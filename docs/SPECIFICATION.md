@@ -615,3 +615,77 @@ Remove the side-eye highlights only on bats displayed inside the enclosure. Use 
 - Use all six supplied Ogg clips from Rootworm Sounds.zip as equally weighted variants of `fantasy_feudalism_mobs:entity.root_worm.ambient`. Keep the original mono Vorbis audio unchanged.
 - Play them through the native mob ambient scheduler, with the same 120-tick ambient cooldown as field mice, normal positional audio and native randomized pitch/cadence. Respect the entity's Silent flag.
 - The English subtitle must read exactly **Rootworm clicks**. Do not change hurt, death or feeding sounds.
+
+## Confirmed Root Worm head, eyes and burrowing fixes (0.1.51)
+
+- The head separates during the raised listening pose. Keep a shared rear neck joint attached to the next body segment across raised scanning, lowering, flat looking and locomotion. Place the head from its joint after all render rotations; use the same attachment in the shared listening curve so damage parts follow the corrected head. Retain the rear five grounded segments.
+- Separately, the small idle head-nod while flat is too abrupt. Keep it, but blend its strength in/out over eight ticks with smooth easing and partial-tick interpolation. Smooth the return of visual head yaw. Keep the nod's mouth closed and distinct from raised listening.
+- Make both eyes solid black, retaining their placement and blink. Render the complete eye boxes with a black tint; remove separate white-eye/pupil detailing.
+- Make low-health burrowing reliable after an airborne damage hit: queue a retreat for up to eighty ticks and attempt it after landing, with route attempts at most once every ten ticks. Healing above the threshold cancels the pending retreat. Keep existing cooldown, accepted-damage, alive, AI and safety requirements.
+- Replace the 1.15-block burrow depth with a shallower 0.8-block depth at normal scale, checking sufficient soil for that actual body depth. A single soil layer above stone is usable when the complete body and all parts stay above the rock. Stone itself remains undiggable. Preserve block states, particles, safe exits, cooldown and save behavior.
+
+
+## Confirmed Scorpion mob (0.1.52)
+
+- Create a Minecraft scorpion from the user-supplied visual reference, about the size of a vanilla spider. Use an original native model with a bronze/gold segmented carapace, dark pointed armor and pincers, amber eyes, eight articulated legs, a jointed curled tail and green venom stinger. Collider dimensions are 1.4 by 0.9 blocks.
+- The user confirmed hostile behavior, spawning in deserts and badlands, and a poisonous sting. Use native monster darkness/difficulty/population conditions and add the Desert, Badlands, Eroded Badlands and Wooded Badlands spawn entries, weight 12 and groups 1–2. Include a spawn egg in the mod and vanilla egg creative tabs.
+- Defaults: sixteen health, movement speed 0.26, four raw melee damage, sixteen-block follow range. Native melee AI starts an eighteen-tick sting animation with an eight-tick wind-up. Recheck target validity, range and line of sight when damage lands. Successful damage adds Poison I for one hundred ticks. Rejected hits apply no poison; Creative, Spectator and allied targets are protected.
+- Use the native arthropod entity-type tag for enchantments. Scorpions resist poison, retain other effect rules and ordinary monster peaceful/despawn behavior, and award five experience. No new material drops are introduced. The mob is independent of spider companion classes.
+- Use native Java rendering and procedural walking, pincers, idle tail movement and sting poses. Alias existing native sounds through scorpion-specific events/subtitles. No animation-library dependency.
+- The user explicitly said **do not commit or push until asked**. Keep the Scorpion and all pending changes local until a new explicit commit/push request.
+
+
+## Confirmed wider Scorpion arms (0.1.53)
+
+Spread both arms farther outward: increase the shoulder splay from 0.3 to 0.7 radians per side and reduce the inward forearm angle from 0.25 to 0.1 radians. Keep the existing connected child pivots, pincer animation, body dimensions and combat behavior. The no-commit/no-push instruction remains active.
+
+Also widen the front carapace from ten to twelve model pixels. Replace the rectangular abdomen with five overlapping sections tapering from 11.5 to 5.7 pixels toward the tail. Match armor plates, undersides, spines and leg mounts to the taper; keep all shoulder/leg/tail joints connected.
+
+
+## Confirmed anatomical Scorpion silhouette (0.1.54)
+
+- Match the shape of the user's new real-scorpion reference: a low segmented body, splayed bent arms, larger rounded/tapered claw palms with curved closing fingers, slender bent legs and a tail arching forward above the back. Preserve the established bronze/dark-shell palette and spider-sized collider. Replace the tall decorative spines with low shell edges to follow the reference silhouette.
+- Make the stinger normal shell colors, not green. Use the existing brown/black material regions on the venom bulb, hook and pointed tip. This is a visual change; the poisonous attack remains active.
+- Keep all leg, arm, claw and tail parts parented at their joints. Adjust the tail strike to the new arch so it drops forward rather than folding through the ground. Keep the existing sting timing, damage, poisoning and spawning behavior. No commit or push until the user asks.
+
+
+## Confirmed simpler Scorpion mesh and mouth (0.1.55)
+
+- Reduce individual torso cubes while retaining the broad front and tapered segmented silhouette. Use five plain, butt-joined abdomen sections and one head shell, replacing the layered armor, edge strips and brow. Keep the carapace rigid so adjacent torso pieces stay aligned.
+- Remove the tail's overlapping cap/collar layers to eliminate coincident faces. Use one shell cube per articulated tail link and one for the venom bulb; retain the arch and dark stinger.
+- Make the outer finger of each large pincer eighteen percent thicker and eight percent longer than the inner finger, mirrored correctly on both arms. Keep the fingers curved and articulated.
+- Give the scorpion eight amber eyes: two median eyes and three lateral eyes on each side. Add a dark mouth opening and paired chelicerae with fixed/movable fingers, separately articulated from the large pedipalps. Idle mouth movement and sting articulation are cosmetic; existing combat behavior is unchanged.
+- Do not commit or push these model edits unless asked.
+
+
+## Confirmed Scorpion face reference (0.1.56)
+
+- Follow the user's latest reference for the eye/mouth layout: a dark frontal face panel, a graduated row of six amber eyes with large slanted outer eyes and smaller eyes toward the center, and more prominent paired chelicerae below them. Replace the previous dorsal/lateral eight-eye layout.
+- Enlarge the cheliceral bases, fixed fingers and moving fangs while retaining their articulation. Add two long tapered whisker-like cheek feelers that slope down and forward beside the mouth, with subtle idle motion.
+- Preserve the current bronze/dark-shell palette, six-cube torso shell, dark stinger, enlarged outer pedipalp fingers and existing combat behavior. Keep changes local until asked to commit/push.
+
+Also bulk up the large pincers: expand palms from 5.6×4 to 6.8×4.8 model pixels, strengthen their necks and tips, and thicken/lengthen the hooked fingers. Preserve the larger outer finger on each side. Expand only the rendering envelope to cover the larger claws; keep the body collider unchanged.
+
+
+## Confirmed longer Scorpion arms (0.1.57)
+
+Lengthen the upper pedipalp segment from 5.2 to 6.8 model pixels and the forearm from 3.8 to 5.0. Move elbow and palm pivots to the new segment endpoints, preserving overlap at the joints and the current outward bend, larger claws and animations. Increase the rendering envelope to cover the extended claws. Keep the body collider and combat behavior unchanged; do not commit or push without being asked.
+
+Also make the stinger more menacing: enlarge the single-cube venom bulb, thicken the hook base and extend it through three curved, tapering sections to a thin needle point. Keep the dark shell colors and connected joints; do not reintroduce layered tail caps or change attack behavior.
+
+Redesign the pincers with a crab-like broad palm and shorter, heavier curved jaws. Rest fully closed without idle jaw twitching. Keep the larger outer finger fixed while the inner finger opens during the attack wind-up and closes as damage lands. Derive this visual motion from the existing synchronized sting clock; do not change damage or attack timing.
+
+
+## Confirmed pincer simplification (0.1.58)
+
+No plates on top of the pincers. Each palm is one plain cuboid and each pincer finger is one long cuboid, replacing the previous joined pieces. The outer finger remains larger, with fingers angled inward to rest closed. Existing attack opening is retained. No commit or push until asked.
+
+
+### Bulky pincers with one tapered step
+
+Restore the original black finger width, height, total reach and pivot spacing. Each finger has one bulky rear cuboid followed by one smaller end cuboid, sixty percent of its width and height. Keep a single size transition, no top plates, and the existing shared animated pivot. This supersedes the rejected half-size fingers.
+
+
+## Confirmed rare badlands Scorpion spawning (0.1.58)
+
+The user approved the final stepped pincer model and authorized committing. Restrict natural Scorpion spawning to Badlands, Eroded Badlands and Wooded Badlands; replace the earlier desert/badlands setting with a rare weight of 3 and group size exactly one. Use the existing native hostile spawn checks. Spawn eggs remain available. No push requested.

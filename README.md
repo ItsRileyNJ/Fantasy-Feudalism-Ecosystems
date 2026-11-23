@@ -6,7 +6,43 @@ This repository contains only the Fantasy Feudalism - Ecosystems project, its bu
 
 ## Install
 
-Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.50.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+Build with `./gradlew build --max-workers=2` (Windows: `gradlew.bat build`), then put `build/libs/fantasy_feudalism_ecosystems-0.1.58.jar` in the `mods` folder of a NeoForge 21.1.262 instance. Install the mod on both the client and the server for multiplayer. The NeoForge installer installs the loader; it is not the mod JAR.
+
+## Version 0.1.58 changes
+
+- Scorpions now spawn rarely and singly in badlands, eroded badlands and wooded badlands, using normal hostile-mob spawning conditions.
+
+- Removed the scorpion's pincer top plates. The original bulky black fingers now step down once into smaller tips, retaining the larger outer finger and closed resting pose.
+
+## Version 0.1.57 changes
+
+- Lengthened both segments of the scorpion's pincer arms by about 30%, keeping the elbows and claws connected. The stinger has a larger venom bulb and a longer, sharply curved dark needle. Crab-like pincers now have broad palms, shorter heavy jaws and a closed resting pose.
+
+## Version 0.1.56 changes
+
+- Scorpions now have a front-facing eye cluster with larger outer eyes, enlarged chelicerae and two tapered cheek feelers inspired by the new reference. Their large pincers have bulkier palms and thicker hooked fingers.
+
+## Version 0.1.55 changes
+
+- Simplified the scorpion torso and removed overlapping tail armor layers. Outer pincer fingers are larger, and the face now has eight eyes and moving chelicerae.
+
+## Version 0.1.54 changes
+
+- Reshaped the scorpion around the new anatomical reference: a flatter segmented body, bent arms, large curved pincers, slender jointed legs and a forward-arching tail. Its stinger is now shell-colored rather than green.
+
+## Version 0.1.53 changes
+
+- Scorpion arms and claws spread farther outward. The front of the body is wider, with armored sections tapering toward the tail and connected leg mounts following the narrower rear.
+
+## Version 0.1.52 changes
+
+- Added a spider-sized Scorpion inspired by the supplied reference: bronze armor, black claws and spines, amber eyes, eight articulated legs and a curled green-tipped venom tail.
+- Hostile scorpions spawn in deserts and all badlands variants under native monster spawning conditions. Their animated sting applies Poison I for five seconds. A spawn egg is included.
+
+## Version 0.1.51 changes
+
+- Root Worm heads stay attached while listening or looking around. The separate flat head-nod eases in and out, and the eyes are solid black.
+- Low-health burrowing now retries after landing from an airborne hit and can use a shallow soil layer above stone without digging into the rock.
 
 ## Version 0.1.50 changes
 

@@ -79,6 +79,20 @@ public final class ServerHarness {
     public static Object execute(MinecraftServer server, JsonObject q) {
         ServerLevel level = server.overworld(); String action = q.get("action").getAsString();
         switch (action) {
+            case "scorpion": {
+                String phase=q.get("phase").getAsString();
+                if(phase.equals("fixture")) {
+                    var scorpion=net.itsrileynj.fantasyfeudalismmobs.scorpion.ScorpionModule.SCORPION.get().create(level);
+                    scorpion.moveTo(8.5,64,9.5,180,0);scorpion.setYBodyRot(180);scorpion.setYHeadRot(180);scorpion.setNoAi(true);scorpion.setPersistenceRequired();level.addFreshEntity(scorpion);return ControlFiles.entity(scorpion);
+                }
+                var scorpion=(net.itsrileynj.fantasyfeudalismmobs.scorpion.Scorpion)entity(level,q);
+                if(phase.equals("walk")){scorpion.goalSelector.removeAllGoals(g->true);scorpion.targetSelector.removeAllGoals(g->true);scorpion.setNoAi(false);scorpion.getNavigation().moveTo(scorpion.getX()+5,64,scorpion.getZ(),1);}
+                if(phase.equals("sting")) {
+                    var pig=EntityType.PIG.create(level);pig.moveTo(scorpion.getX(),64,scorpion.getZ()-1.1);pig.setNoAi(true);pig.getAttribute(Attributes.MAX_HEALTH).setBaseValue(40);pig.setHealth(40);level.addFreshEntity(pig);
+                    scorpion.setNoAi(true);scorpion.getNavigation().stop();scorpion.beginSting(pig);return Map.of("scorpion",ControlFiles.entity(scorpion),"victim",ControlFiles.entity(pig));
+                }
+                return ControlFiles.entity(scorpion);
+            }
             case "rootWorm": {
                 String phase=q.get("phase").getAsString();
                 if(phase.equals("fixture")) {
@@ -88,13 +102,16 @@ public final class ServerHarness {
                 var worm=(net.itsrileynj.fantasyfeudalismmobs.rootworm.entity.RootWorm)entity(level,q);
                 if(phase.equals("burrow")) {
                     for(int x=-4;x<=28;x++)for(int z=-4;z<=20;z++) {
-                        level.setBlockAndUpdate(new BlockPos(x,62,z),Blocks.DIRT.defaultBlockState());
+                        level.setBlockAndUpdate(new BlockPos(x,62,z),q.has("thin")&&q.get("thin").getAsBoolean()?Blocks.STONE.defaultBlockState():Blocks.DIRT.defaultBlockState());
                         level.setBlockAndUpdate(new BlockPos(x,63,z),Blocks.GRASS_BLOCK.defaultBlockState());
                     }
                     worm.goalSelector.removeAllGoals(g->true);worm.targetSelector.removeAllGoals(g->true);
                     worm.setNoAi(false);worm.setOnGround(true);worm.setHealth(8);worm.invulnerableTime=0;
+                    if(q.has("airborne")&&q.get("airborne").getAsBoolean()){worm.setPos(worm.getX(),worm.getY()+1.5,worm.getZ());worm.setOnGround(false);}
                     worm.hurt(level.damageSources().playerAttack(player(server,q)),1);
                 }
+                if(phase.equals("idle")){worm.setNoAi(true);worm.setSearching(false);worm.getNavigation().stop();}
+                if(phase.equals("look"))worm.setYHeadRot((float)number(q,"yaw",180));
                 if(phase.equals("hear")){worm.setNoAi(false);worm.getNavigation().stop();worm.hearSound(player(server,q),worm.position(),1);}
                 if(phase.equals("bite"))worm.beginBite();
                 if(phase.equals("walk")){worm.goalSelector.removeAllGoals(g->true);worm.setSearching(false);worm.getNavigation().moveTo(worm.getX()+5,64,worm.getZ(),1);}

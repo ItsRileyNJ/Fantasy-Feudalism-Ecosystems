@@ -1,0 +1,9 @@
+{
+  "tail_pose_samples": 20,
+  "visible_coplanar_tail_face_overlaps": 0,
+  "tail_shell_cubes": 8,
+  "torso_shell_cubes": 6,
+  "total_cubes": 105,
+  "eyes": 8,
+  "mirrored_larger_outer_fingers": "passed"
+}

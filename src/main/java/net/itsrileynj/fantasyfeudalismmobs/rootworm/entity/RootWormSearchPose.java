@@ -12,6 +12,11 @@ public final class RootWormSearchPose {
     public static Pose sample(int segment, float amount, float age) {
         amount = Mth.clamp(amount, 0, 1);
         float scan = Mth.sin(age * 0.09F) * 0.45F * amount;
+        if(segment==0) {
+            var neck=sample(1,amount,age);
+            var offset=headAttachmentOffset(PITCH[0]*amount,scan,neck.pitch(),neck.yaw());
+            return new Pose(neck.x()+(float)offset.x,neck.lift()-(float)offset.y,neck.z()+(float)offset.z,PITCH[0]*amount,scan);
+        }
         float x = 0, lift = 0, z = RootWormShape.SEGMENTS.get(segment).z();
         if (segment < FIRST_GROUNDED_SEGMENT && amount > 0) {
             z = RootWormShape.SEGMENTS.get(FIRST_GROUNDED_SEGMENT).z();
@@ -26,6 +31,16 @@ public final class RootWormSearchPose {
             }
         }
         return new Pose(x, lift, z, PITCH[segment] * amount, scan * Math.max(0, FIRST_GROUNDED_SEGMENT - segment) / FIRST_GROUNDED_SEGMENT);
+    }
+
+    /** Rear head joint overlaps the next segment by half a pixel, even while pitching or scanning. */
+    public static net.minecraft.world.phys.Vec3 headAttachmentOffset(float headPitch,float headYaw,float neckPitch,float neckYaw) {
+        return joint(neckPitch,neckYaw,-2.5F).subtract(joint(headPitch,headYaw,2.0F));
+    }
+    private static net.minecraft.world.phys.Vec3 joint(float pitch,float yaw,float z) {
+        float y=-2.5F*Mth.cos(pitch)+z*Mth.sin(pitch);
+        float forward=2.5F*Mth.sin(pitch)+z*Mth.cos(pitch);
+        return new net.minecraft.world.phys.Vec3(forward*Mth.sin(yaw),y,forward*Mth.cos(yaw));
     }
 
     /** Extra AABB coverage for tilted body segments; unchanged when the worm is resting. */

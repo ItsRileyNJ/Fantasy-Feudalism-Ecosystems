@@ -1,0 +1,16 @@
+{
+  "render": {
+    "legs": 8,
+    "legRange": 0.6303818,
+    "finite": true,
+    "frames": 115,
+    "tailRange": 0.5343736,
+    "maxSting": 1.0
+  },
+  "victim": {
+    "health": 36.0,
+    "effects": [
+      "minecraft:poison"
+    ]
+  }
+}

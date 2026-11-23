@@ -17,15 +17,25 @@ import net.minecraft.world.phys.Vec3;
 public final class RootWormBurrow {
     public static final TagKey<Block> DIGGABLE=TagKey.create(Registries.BLOCK,ResourceLocation.fromNamespaceAndPath("fantasy_feudalism_mobs","root_worm_burrowable"));
     public static final int DURATION=60, COOLDOWN=400;
-    private static final double DEPTH=1.15;
+    private static final double DEPTH=0.8;
     private final RootWorm worm;
     private Vec3 start, end, surface;
-    private int elapsed, readyAt;
+    private int elapsed, readyAt, pendingUntil, nextAttempt;
+    private DamageSource pendingSource;
 
     RootWormBurrow(RootWorm worm) { this.worm=worm; }
     public boolean active() { return start!=null; }
     public Vec3 surface() { return surface; }
     public void tryStart(DamageSource source) {
+        if(worm.level().isClientSide || active() || !worm.isAlive() || worm.isNoAi()
+                || worm.getHealth()>=worm.getMaxHealth()*0.5F || worm.tickCount<readyAt)return;
+        pendingSource=source;pendingUntil=worm.tickCount+80;nextAttempt=worm.tickCount;
+        attemptPending();
+    }
+    private void attemptPending() {
+        nextAttempt=worm.tickCount+10;
+        var source=pendingSource;
+        if(source==null)return;
         if(worm.level().isClientSide || active() || !worm.isAlive() || worm.isNoAi() || !worm.onGround()
                 || worm.isPassenger() || worm.isVehicle() || worm.isLeashed() || worm.isInWaterOrBubble() || worm.isInLava()
                 || worm.getHealth()>=worm.getMaxHealth()*0.5F || worm.tickCount<readyAt) return;
@@ -39,7 +49,7 @@ public final class RootWormBurrow {
             for(int distance=6;distance>=4;distance--) {
                 var candidate=from.add(Math.cos(angle+turn)*distance,0,Math.sin(angle+turn)*distance);
                 if(!safeRoute(from,candidate))continue;
-                start=surface=from;end=candidate;elapsed=0;readyAt=worm.tickCount+COOLDOWN;
+                start=surface=from;end=candidate;elapsed=0;readyAt=worm.tickCount+COOLDOWN;pendingSource=null;
                 worm.goalSelector.getAvailableGoals().forEach(goal->{if(goal.isRunning())goal.stop();});
                 worm.targetSelector.getAvailableGoals().forEach(goal->{if(goal.isRunning())goal.stop();});
                 worm.setTarget(null);worm.setLastHurtByMob(null);worm.clearBurrowActions();worm.setBurrowing(true);
@@ -54,7 +64,7 @@ public final class RootWormBurrow {
         for(int i=1;i<=samples;i++)if(!safeColumn(from.lerp(to,(double)i/samples)))return false;
         return true;
     }
-    /** The whole body footprint needs two layers of soil and an unobstructed dry surface exit. */
+    /** Require enough soil for the shallow body depth, with an unobstructed dry surface exit. */
     public boolean safeColumn(Vec3 at) {
         double radius=1.65*worm.getScale();
         int ground=Mth.floor(at.y-.05);
@@ -71,7 +81,13 @@ public final class RootWormBurrow {
         return worm.level().noCollision(worm,new AABB(at.x-radius,at.y+.01,at.z-radius,at.x+radius,at.y+.8*worm.getScale(),at.z+radius));
     }
     public void tick() {
-        if(!active())return;
+        if(!active()) {
+            if(pendingSource!=null) {
+                if(!worm.isAlive() || worm.isNoAi() || worm.tickCount>pendingUntil || worm.getHealth()>=worm.getMaxHealth()*.5F)pendingSource=null;
+                else if(worm.onGround() && worm.tickCount>=nextAttempt)attemptPending();
+            }
+            return;
+        }
         if(!worm.isAlive()) { finish();return; }
         elapsed++;
         double travel=Mth.clamp((elapsed-12)/36.0,0,1);
