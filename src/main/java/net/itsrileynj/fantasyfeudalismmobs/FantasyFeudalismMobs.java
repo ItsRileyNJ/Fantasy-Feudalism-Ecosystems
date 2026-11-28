@@ -74,6 +74,7 @@ public final class FantasyFeudalismMobs {
                     output.accept(net.itsrileynj.fantasyfeudalismmobs.scorpion.ScorpionModule.CRYSTAPID_EGG.get());
                     for(var egg:Birds.EGGS)output.accept(egg.get());
                     output.accept(net.itsrileynj.fantasyfeudalismmobs.rootworm.RootWormModule.ROOT_WORM_EGG.get());
+                    SlimeVariants.addToCreativeTab(output);
                 })
                 .build());
     }
@@ -82,6 +83,7 @@ public final class FantasyFeudalismMobs {
         net.itsrileynj.fantasyfeudalismmobs.rootworm.RootWormModule.register(modEventBus,container);
         modEventBus.addListener(BarkCompatibility::addPacks);
         net.itsrileynj.fantasyfeudalismmobs.scorpion.ScorpionModule.register(modEventBus);
+        SlimeVariants.register(modEventBus);
         BLOCKS.register(modEventBus);
         BLOCK_ENTITIES.register(modEventBus);
         ITEMS.register(modEventBus);

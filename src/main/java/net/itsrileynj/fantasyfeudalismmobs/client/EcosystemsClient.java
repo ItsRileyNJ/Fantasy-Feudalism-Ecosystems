@@ -14,6 +14,8 @@ public final class EcosystemsClient {
     @SubscribeEvent public static void renderers(EntityRenderersEvent.RegisterRenderers event){
         event.registerBlockEntityRenderer(FantasyFeudalismMobs.BAT_ENCLOSURE_ENTITY.get(),BatEnclosureRenderer::new);
         event.registerEntityRenderer(FantasyFeudalismMobs.FIELD_MOUSE.get(),FieldMouseRenderer::new);
+        event.registerEntityRenderer(SlimeVariants.FLAME.get(), context -> new VariantSlimeRenderer(context, true));
+        event.registerEntityRenderer(SlimeVariants.SNOW.get(), context -> new VariantSlimeRenderer(context, false));
         event.registerEntityRenderer(net.itsrileynj.fantasyfeudalismmobs.rootworm.RootWormModule.ROOT_WORM.get(),net.itsrileynj.fantasyfeudalismmobs.rootworm.client.RootWormRenderer::new);
         event.registerEntityRenderer(net.itsrileynj.fantasyfeudalismmobs.scorpion.ScorpionModule.SCORPION.get(),net.itsrileynj.fantasyfeudalismmobs.scorpion.client.ScorpionRenderer::new);
         event.registerEntityRenderer(net.itsrileynj.fantasyfeudalismmobs.scorpion.ScorpionModule.CRYSTAPID.get(),context->new net.itsrileynj.fantasyfeudalismmobs.scorpion.client.ScorpionRenderer(context,true));
@@ -27,6 +29,7 @@ public final class EcosystemsClient {
         event.register((stack,tint)->0xFFE3C447,FantasyFeudalismMobs.FERTILIZER.get());
     }
     @SubscribeEvent public static void setup(FMLClientSetupEvent event){
+        event.enqueueWork(VariantSlimeRenderer::registerTextures);
         event.enqueueWork(()->net.minecraft.client.renderer.ItemBlockRenderTypes.setRenderLayer(FantasyFeudalismMobs.BAT_ENCLOSURE.get(),net.minecraft.client.renderer.RenderType.cutout()));
         event.enqueueWork(()->ItemProperties.register(FantasyFeudalismMobs.BAT_NET.get(),
                 ResourceLocation.fromNamespaceAndPath(FantasyFeudalismMobs.MOD_ID,"occupied"),

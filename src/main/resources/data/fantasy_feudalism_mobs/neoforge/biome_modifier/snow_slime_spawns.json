@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#fantasy_feudalism_mobs:snow_slime_biomes",
+  "spawners": {
+    "type": "fantasy_feudalism_mobs:snow_slime",
+    "weight": 8,
+    "minCount": 1,
+    "maxCount": 3
+  }
+}

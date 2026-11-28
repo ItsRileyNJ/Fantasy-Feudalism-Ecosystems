@@ -22,6 +22,7 @@
     "ChickenMixin",
     "CowMixin",
     "SheepMixin",
+    "FlameSlimeLavaMixin",
     "PigMixin",
     "SheepGrazingMixin",
     "HorseMixin",
