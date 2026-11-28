@@ -6,7 +6,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.animal.Sheep;
+import net.minecraft.world.entity.animal.Wolf;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,6 +21,13 @@ public abstract class SheepMixin implements SheepState {
     @Unique private static final EntityDataAccessor<Boolean> FFM_COLD=SynchedEntityData.defineId(Sheep.class,EntityDataSerializers.BOOLEAN);
     @Unique private int ffm$grazes;
     @Unique private long ffm$warmAt=-1;
+
+    @Inject(method = "registerGoals", at = @At("TAIL"))
+    private void ffm$fleeWildWolves(CallbackInfo ci) {
+        Sheep sheep = (Sheep)(Object)this;
+        sheep.goalSelector.addGoal(1, new AvoidEntityGoal<>(sheep, Wolf.class, 4.0F, 1.25, 1.25,
+                threat -> threat instanceof Wolf wolf && !wolf.isTame()));
+    }
 
     @Override public int ffm$grazes() { return ffm$grazes; }
     @Override public boolean ffm$isCold() { return ((Sheep)(Object)this).getEntityData().get(FFM_COLD); }

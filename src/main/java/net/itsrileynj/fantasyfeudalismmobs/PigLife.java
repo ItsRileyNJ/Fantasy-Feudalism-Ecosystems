@@ -13,8 +13,9 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public final class PigLife {
     public static final String NEXT_DIG="ffm_pig_next_dig";
+    private static final String FASTER_DIG_COOLDOWN = "ffm_pig_faster_dig_cooldown";
     public static final String PARENT="ffm_pig_parent",OTHER_PARENT="ffm_pig_other_parent";
-    public static final int DIG_INTERVAL=2400;
+    public static final int DIG_INTERVAL=1200;
     private PigLife() {}
 
     public static double mushroomChance(BlockState soil) {
@@ -25,11 +26,21 @@ public final class PigLife {
     }
     public static boolean mushroom(ItemStack stack) { return stack.is(Items.RED_MUSHROOM)||stack.is(Items.BROWN_MUSHROOM); }
     public static void schedule(Pig pig) {
-        pig.getPersistentData().putLong(NEXT_DIG,pig.level().getGameTime()+DIG_INTERVAL+pig.getRandom().nextInt(401)-200);
+        var data = pig.getPersistentData();
+        data.putLong(NEXT_DIG,pig.level().getGameTime()+DIG_INTERVAL+pig.getRandom().nextInt(201)-100);
+        data.putBoolean(FASTER_DIG_COOLDOWN, true);
     }
     public static long nextDig(Pig pig) {
-        if(!pig.getPersistentData().contains(NEXT_DIG))schedule(pig);
-        return pig.getPersistentData().getLong(NEXT_DIG);
+        var data = pig.getPersistentData();
+        if (!data.contains(NEXT_DIG)) {
+            schedule(pig);
+        } else if (!data.getBoolean(FASTER_DIG_COOLDOWN)) {
+            long now = pig.level().getGameTime();
+            long remaining = data.getLong(NEXT_DIG) - now;
+            if (remaining > 0) data.putLong(NEXT_DIG, now + (remaining + 1) / 2);
+            data.putBoolean(FASTER_DIG_COOLDOWN, true);
+        }
+        return data.getLong(NEXT_DIG);
     }
     public static boolean grow(Pig pig) {
         if(!pig.isAlive()||!pig.isBaby()||pig.level().isClientSide)return false;

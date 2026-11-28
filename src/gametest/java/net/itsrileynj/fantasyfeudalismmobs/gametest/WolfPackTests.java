@@ -5,6 +5,7 @@ import net.itsrileynj.fantasyfeudalismmobs.*;
 import net.minecraft.gametest.framework.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.animal.*;
 import net.minecraft.world.item.*;
@@ -20,12 +21,12 @@ public final class WolfPackTests {
     private static SpawnGroupData group(GameTestHelper h,Wolf w,SpawnGroupData group){return w.finalizeSpawn(h.getLevel(),h.getLevel().getCurrentDifficultyAt(w.blockPosition()),MobSpawnType.NATURAL,group);}
 
     @GameTest(template="test_empty")
-    public static void sheepDetectionUsesFifteenBlocksAndChargeIsSharedAtSeven(GameTestHelper h){
+    public static void sheepDetectionUsesTwentyFourBlocksAndChargeIsSharedAtSeven(GameTestHelper h){
         floor(h);var a=wolf(h,2,8);var b=wolf(h,6,8);a.setNoAi(true);b.setNoAi(true);
-        var target=sheep(h,17,8);target.moveTo(a.position().add(15.1,0,0));
-        h.assertTrue(WolfPacks.prey(a)==null,"A new sheep hunt does not start outside fifteen blocks");
-        target.moveTo(a.position().add(14.9,0,0));
-        h.assertTrue(WolfPacks.prey(a)==target,"A sheep inside fifteen blocks is detectable");
+        var target=sheep(h,17,8);target.moveTo(a.position().add(24.1,0,0));
+        h.assertTrue(WolfPacks.prey(a)==null,"A new sheep hunt does not start outside twenty-four blocks");
+        target.moveTo(a.position().add(23.9,0,0));
+        h.assertTrue(WolfPacks.prey(a)==target,"A sheep inside twenty-four blocks is detectable");
         WolfPacks.joinHunt(a,target);
         h.assertTrue(WolfPacks.prey(b)==target,"Pack members share one prey target");
         target.moveTo(b.position().add(7.1,0,0));
@@ -58,10 +59,34 @@ public final class WolfPackTests {
         h.assertTrue(WolfPacks.hungry(wolf),"A failed chase grants no meal cooldown");h.succeed();
     }
 
-    @GameTest(template="test_empty",timeoutTicks=420)
+    @GameTest(template = "test_empty")
+    public static void sheepRunFromWildWolvesWithinFourBlocks(GameTestHelper h) {
+        for (int x = 0; x < 38; x++) for (int z = 0; z < 38; z++) h.setBlock(x, 1, z, Blocks.STONE);
+        var sheep = sheep(h, 19, 19);
+        var wolf = wolf(h, 15, 19);
+        wolf.setNoAi(true);
+        sheep.setOnGround(true);
+        var flee = sheep.goalSelector.getAvailableGoals().stream().map(entry -> entry.getGoal())
+                .filter(AvoidEntityGoal.class::isInstance).findFirst().orElseThrow();
+        wolf.moveTo(sheep.position().add(-4.1, 0, 0));
+        h.assertFalse(flee.canUse(), "Sheep do not start fleeing beyond four blocks");
+        wolf.moveTo(sheep.position().add(-4, 0, 0));
+        wolf.setTame(true, true);
+        h.assertFalse(flee.canUse(), "Sheep do not flee from tame wolves");
+        wolf.setTame(false, true);
+        sheep.getRandom().setSeed(2026);
+        sheep.setNoAi(false);
+        h.succeedWhen(() -> h.assertTrue(wolf.distanceToSqr(sheep) > 25
+                        && sheep.goalSelector.getAvailableGoals().stream().anyMatch(entry -> entry.isRunning() && entry.getGoal() == flee),
+                "The installed flee goal moves the sheep away from a wild wolf that started four blocks away"));
+    }
+
+    @GameTest(template="test_empty",timeoutTicks=520)
     public static void realPackAiStalksThenKillsOneSheepAndStopsTogether(GameTestHelper h){
-        floor(h);var a=wolf(h,2,6);var b=wolf(h,2,10);var data=group(h,a,null);group(h,b,data);
-        a.setBaby(false);b.setBaby(false);var prey=sheep(h,15,8);var spare=sheep(h,16,12);
+        floor(h);
+        for (int x = 18; x < 29; x++) for (int z = 0; z < 18; z++) h.setBlock(x, 1, z, Blocks.STONE);
+        var a=wolf(h,2,6);var b=wolf(h,2,10);var data=group(h,a,null);group(h,b,data);
+        a.setBaby(false);b.setBaby(false);var prey=sheep(h,24,8);var spare=sheep(h,25,12);
         h.runAfterDelay(40,()->{
             for(var wolf:List.of(a,b)) {
                 h.assertTrue(wolf.getTarget()==prey,"Pack members select the same nearest sheep");
@@ -70,7 +95,7 @@ public final class WolfPackTests {
             }
             h.assertTrue(prey.getHealth()==prey.getMaxHealth(),"No attack hits occur during the distant stalk");
         });
-        h.runAfterDelay(330,()->{
+        h.runAfterDelay(460,()->{
             h.assertFalse(prey.isAlive(),"The pack eventually reaches and kills its prey under normal AI");
             h.assertTrue(spare.isAlive()&&spare.getHealth()==spare.getMaxHealth(),"A second sheep is left unharmed during the shared meal cooldown");
             for(var wolf:List.of(a,b)) {

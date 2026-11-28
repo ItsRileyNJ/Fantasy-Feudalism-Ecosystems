@@ -1,6 +1,8 @@
 package net.itsrileynj.fantasyfeudalismmobs.gametest;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.IntStream;
 import net.itsrileynj.fantasyfeudalismmobs.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.gametest.framework.*;
@@ -53,12 +55,22 @@ public final class PigBehaviorTests {
         floor(h);var p=pig(h,8,8);p.getPersistentData().putLong(PigLife.NEXT_DIG,0);
         var goal=new PigGoals.Dig(p);h.assertTrue(goal.canUse(),"Due adult on podzol can dig");goal.start();
         h.assertTrue(((PigState)p).ffm$digging(),"Starting digging synchronizes the animation flag");
-        long next=PigLife.nextDig(p)-h.getLevel().getGameTime();h.assertTrue(next>=2200&&next<=2600,"Dig attempts average two minutes with staggered timing");
+        long next=PigLife.nextDig(p)-h.getLevel().getGameTime();h.assertTrue(next>=1100&&next<=1300,"Dig attempts average one minute with staggered timing");
         goal.tick();goal.stop();for(int i=0;i<80;i++)goal.tick();
         h.assertTrue(drops(p).isEmpty()&&!((PigState)p).ffm$digging(),"Interrupted digging has no reward or stuck pose");
         var tag=p.saveWithoutId(new CompoundTag());p.discard();var loaded=EntityType.PIG.create(h.getLevel());loaded.load(tag);h.getLevel().addFreshEntity(loaded);
         h.assertTrue(PigLife.nextDig(loaded)==tag.getCompound("NeoForgeData").getLong(PigLife.NEXT_DIG),"The dig cooldown survives native save/load");
         h.assertFalse(new PigGoals.Dig(loaded).canUse(),"Reload does not grant a fresh dig");h.succeed();
+    }
+
+    @GameTest(template="test_empty")
+    public static void existingDigCooldownIsHalvedOnce(GameTestHelper h) {
+        var pig = pig(h, 8, 8);
+        long now = h.getLevel().getGameTime();
+        pig.getPersistentData().putLong(PigLife.NEXT_DIG, now + 800);
+        h.assertTrue(PigLife.nextDig(pig) == now + 400, "A saved dig cooldown has its remaining wait halved");
+        h.assertTrue(PigLife.nextDig(pig) == now + 400, "Later checks keep the migrated deadline");
+        h.succeed();
     }
 
     @GameTest(template="test_empty")
@@ -125,6 +137,27 @@ public final class PigBehaviorTests {
     }
 
     @GameTest(template="test_empty")
+    public static void looseHerdStopsRecruitingAtFive(GameTestHelper h) {
+        var pigs = IntStream.range(0, 6).mapToObj(i -> pig(h, 8 + i, 8))
+                .sorted(Comparator.comparing(Pig::getUUID)).toList();
+        var leader = pigs.getFirst();
+        var fifth = pigs.get(4);
+        var sixth = pigs.get(5);
+        fifth.moveTo(leader.position().add(16, 0, 0));
+        sixth.moveTo(leader.position().add(17, 0, 0));
+        var fifthGoal = new PigGoals.LooseHerd(fifth);
+        h.assertTrue(fifthGoal.canUse(), "The fifth adult can join");
+        fifthGoal.start();
+        h.assertFalse(new PigGoals.LooseHerd(sixth).canUse(), "Regrouping pigs reserve their spot on the way");
+        fifthGoal.stop();
+        fifth.moveTo(leader.position().add(8, 0, 0));
+        h.assertFalse(new PigGoals.LooseHerd(sixth).canUse(), "Five adults already together stop attracting more");
+        fifth.discard();
+        h.assertTrue(new PigGoals.LooseHerd(sixth).canUse(), "An open spot allows another pig to regroup");
+        h.succeed();
+    }
+
+    @GameTest(template="test_empty")
     public static void bredPigletsRememberBothParentsAndStopFollowingAsAdults(GameTestHelper h) {
         floor(h);var first=pig(h,5,8);var second=pig(h,6,8);first.setInLove(null);second.setInLove(null);
         first.spawnChildFromBreeding(h.getLevel(),second);
@@ -143,8 +176,16 @@ public final class PigBehaviorTests {
         // Native spawn placement starts above the floor; let it land before making the fixture due.
         h.runAfterDelay(10,()->p.getPersistentData().putLong(PigLife.NEXT_DIG,0));
         h.runAfterDelay(30,()->h.assertTrue(((PigState)p).ffm$digging(),"Native spawn-egg pigs run the digging goal: pos="+p.position()+" ground="+p.onGround()+" next="+PigLife.nextDig(p)+" now="+p.level().getGameTime()+" goals="+p.goalSelector.getAvailableGoals().stream().filter(g->g.isRunning()).map(g->g.getGoal().getClass().getSimpleName()).toList()));
+        h.runAfterDelay(31, () -> p.moveTo(p.position().add(1, 0, 0)));
+        h.runAfterDelay(45, () -> h.assertTrue(((PigState)p).ffm$digging(), "Shifting on podzol leaves the dig active"));
+        // This seed keeps the reward roll below the podzol chance despite incidental AI draws.
+        for (int tick = 50; tick <= 90; tick++) {
+            h.runAfterDelay(tick, () -> p.getRandom().setSeed(7214));
+        }
         h.runAfterDelay(105,()->{
             h.assertFalse(((PigState)p).ffm$digging(),"The native goal completes and clears its synchronized pose");
+            h.assertTrue(drops(p).stream().mapToInt(item -> item.getItem().getCount()).sum() == 1,
+                    "One mushroom drops when an adult finishes digging after shifting onto neighboring podzol");
             h.assertTrue(PigLife.nextDig(p)>h.getLevel().getGameTime(),"A finished dig enters its saved cooldown");h.succeed();
         });
     }

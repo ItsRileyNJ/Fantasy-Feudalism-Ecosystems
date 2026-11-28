@@ -1,6 +1,7 @@
 package net.itsrileynj.fantasyfeudalismmobs.mixin;
 
 import java.util.List;
+import javax.annotation.Nullable;
 import net.itsrileynj.fantasyfeudalismmobs.*;
 import net.minecraft.network.syncher.*;
 import net.minecraft.util.Mth;
@@ -24,12 +25,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class PigMixin extends Animal implements PigState {
     @Unique private static final EntityDataAccessor<Boolean> FFM_DIGGING=SynchedEntityData.defineId(Pig.class,EntityDataSerializers.BOOLEAN);
     @Unique private float ffm$oldDig,ffm$dig;
+    @Unique @Nullable private Pig ffm$herdTarget;
     protected PigMixin(EntityType<? extends Animal> type,Level level) { super(type,level); }
     @Inject(method="defineSynchedData",at=@At("TAIL"))
     private void ffm$defineDig(SynchedEntityData.Builder builder,CallbackInfo ci) { builder.define(FFM_DIGGING,false); }
     @Override public boolean ffm$digging() { return entityData.get(FFM_DIGGING); }
     @Override public void ffm$setDigging(boolean digging) { entityData.set(FFM_DIGGING,digging); }
     @Override public float ffm$digAmount(float partialTick) { return Mth.lerp(partialTick,ffm$oldDig,ffm$dig); }
+    @Override @Nullable public Pig ffm$herdTarget() { return ffm$herdTarget; }
+    @Override public void ffm$setHerdTarget(@Nullable Pig target) { ffm$herdTarget=target; }
     @Override public void aiStep() {
         // Passenger-controlled movement may skip ordinary server goal ticking.
         if(!level().isClientSide&&ffm$digging()&&(isVehicle()||isPassenger()||isInWater()))ffm$setDigging(false);

@@ -213,10 +213,10 @@ See the [shivering validation report](docs/RELEASE_0.1.27.md).
 
 ## Version 0.1.26 changes
 
-- Adult pigs dig on podzol, rooted dirt and coarse dirt about every two minutes, with a snout-down pawing animation.
+- Adult pigs dig on podzol, rooted dirt and coarse dirt about once a minute, with a snout-down pawing animation.
 - Dig success chances are 80%, 50% and 15%, respectively. Each success drops one mushroom: 80% brown, 20% red.
 - Piglets eat nearby dropped mushrooms or accept hand-fed mushrooms; each removes 20% of remaining growth time.
-- Adult pigs loosely regroup beyond about 15 blocks. Bred piglets remember both parents and follow family until adulthood.
+- Adult pigs loosely regroup beyond about 15 blocks and stop drawing in more adults when the group reaches five. Bred piglets remember both parents and follow family until adulthood.
 
 See the [pig behavior report](docs/RELEASE_0.1.26.md).
 
@@ -300,7 +300,7 @@ See the [plain-language changelog](CHANGELOG.md) for the latest bat, spider, per
 ## Version 0.1.15 changes
 
 - Hard-only wither skeleton archers (10%) with half-damage arrows and five-second Wither I/Slowness I. Half of sword users carry shields, advancing crouched before charging from five blocks.
-- Nighttime Eye of Ender phantom pacts protect against actual attackers until sunrise.
+- Nighttime Eye of Ender phantom pacts protect against actual attackers until sunrise. Flying guardians leave a white End Rod particle trail visible to their owner.
 - Reusable Bat Nets, wooden/glass Bat Enclosures holding up to three real bats, nightly roaming and morning returns. Visible hanging bats always match actual interior occupancy.
 - Apples heal housed bats and produce Fertilizer on independent five-minute cooldowns. Yellow Fertilizer instantly matures crops.
 
@@ -355,7 +355,7 @@ See [the validation report](docs/RELEASE_0.1.9.md).
 
 ## Version 0.1.8 changes
 
-- Wild wolf packs share a sheep target detected within 15 blocks, stalk slowly together, and charge at normal attack speed once a member gets within seven blocks. Their animated stalking pose lowers the body, head and tail, with shorter walking steps and smooth transitions.
+- Wild wolf packs share a sheep target detected within 24 blocks, stalk slowly together, and charge at normal attack speed once a member gets within seven blocks. Sheep run from visible wild wolves within four blocks. The wolves' animated stalking pose lowers the body, head and tail, with shorter walking steps and smooth transitions.
 - A wild wolf killing a sheep starts a **24,000-tick / one-Minecraft-day** hunting cooldown for its whole pack, including unloaded members. Pack identity and meal deadlines survive saves. Tamed wolf orders, owner defense, feeding and normal combat stay vanilla.
 - Baby villagers occasionally chase untamed village cats during their daytime play activity, for up to **160 ticks / eight seconds**. Cats run away playfully; neither participant attacks or damages the other. Danger interrupts play. Eligible children roll a 1-in-12 chance every ten seconds while idle, with at least two minutes between successful chases.
 
@@ -438,7 +438,7 @@ Choose a fresh test directory for each combined run: Mercenaries' built-in villa
 
 | Mob | Changes |
 | --- | --- |
-| Wild wolves | Cohesive packs stalk sheep from fifteen blocks, charge within seven, and share a one-day hunting cooldown after a kill. Crouched stalking uses animated body, head and tail poses. |
+| Wild wolves | Cohesive packs stalk sheep from up to 24 blocks, charge within seven, and share a one-day hunting cooldown after a kill. Crouched stalking uses animated body, head and tail poses. |
 | Tamed wolves and foxes | Sitting dogs guard sheep from wild wolves and chickens from foxes within 24 blocks. Stopped hunts start predator cooldowns and silently tire the nearest dog by one heart; feeding heals it. Foxes also rest after a prey kill. |
 | Frogs | Flee visible non-spectator players within six blocks by jumping toward nearby water, walking closer first if needed. |
 | Baby villagers | Occasionally chase wild village cats playfully for about eight seconds. |

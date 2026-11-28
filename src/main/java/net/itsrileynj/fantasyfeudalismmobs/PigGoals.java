@@ -20,54 +20,51 @@ public final class PigGoals {
     public static final class Dig extends Goal {
         private final Pig pig;
         private int remaining;
-        private BlockPos soil;
         public Dig(Pig pig) { this.pig=pig;setFlags(EnumSet.of(Flag.MOVE,Flag.LOOK,Flag.JUMP)); }
         @Override public boolean canUse() {
             if(pig.isBaby()||!free(pig)||!pig.onGround()||pig.level().getGameTime()<PigLife.nextDig(pig))return false;
-            soil=pig.blockPosition().below();
-            if(PigLife.mushroomChance(pig.level().getBlockState(soil))>0)return true;
-            // No area search: unsupported ground is checked at most once per second.
-            pig.getPersistentData().putLong(PigLife.NEXT_DIG,pig.level().getGameTime()+20);
+            if(PigLife.mushroomChance(pig.level().getBlockState(pig.getOnPos()))>0)return true;
+            // No area search: check the block underfoot again in half a second.
+            pig.getPersistentData().putLong(PigLife.NEXT_DIG,pig.level().getGameTime()+10);
             return false;
         }
         @Override public boolean requiresUpdateEveryTick() { return true; }
         @Override public boolean canContinueToUse() { return remaining>0&&((PigState)pig).ffm$digging()&&!pig.isBaby()&&free(pig)&&pig.onGround(); }
         @Override public void start() {
-            soil=pig.blockPosition().below();remaining=60;pig.getNavigation().stop();((PigState)pig).ffm$setDigging(true);
+            remaining=60;pig.getNavigation().stop();((PigState)pig).ffm$setDigging(true);
             // Persist the cooldown before any reward; reloading an interrupted dig cannot duplicate it.
             PigLife.schedule(pig);
         }
         @Override public void stop() { remaining=0;((PigState)pig).ffm$setDigging(false); }
         @Override public void tick() {
-            if(remaining<=0||!((PigState)pig).ffm$digging()||!free(pig)||pig.isBaby())return;
-            remaining--;
-            if(remaining%12==0&&soil.equals(pig.blockPosition().below())) {
-                var state=pig.level().getBlockState(soil);
-                if(PigLife.mushroomChance(state)>0) {
-                    pig.level().levelEvent(2001,soil,Block.getId(state));
-                    pig.playSound(state.getSoundType().getHitSound(),.35F,.8F);
-                }
-            }
-            if(remaining==12&&soil.equals(pig.blockPosition().below())) {
-                double chance=PigLife.mushroomChance(pig.level().getBlockState(soil));
-                if(pig.getRandom().nextDouble()<chance)
-                    pig.spawnAtLocation(pig.getRandom().nextFloat()<.8F?Items.BROWN_MUSHROOM:Items.RED_MUSHROOM);
+            if (!canContinueToUse() || --remaining % 12 != 0) return;
+            // Herd mates can nudge a digging pig. Use the soil supporting it now.
+            BlockPos soil = pig.getOnPos();
+            var state = pig.level().getBlockState(soil);
+            double chance = PigLife.mushroomChance(state);
+            if (chance <= 0) return;
+
+            pig.level().levelEvent(2001, soil, Block.getId(state));
+            pig.playSound(state.getSoundType().getHitSound(), .35F, .8F);
+            if (remaining == 12 && pig.getRandom().nextDouble() < chance) {
+                pig.spawnAtLocation(pig.getRandom().nextFloat() < .8F ? Items.BROWN_MUSHROOM : Items.RED_MUSHROOM);
             }
         }
     }
 
     public static final class EatMushroom extends Goal {
+        private static final int SEARCH_INTERVAL = 10;
         private final Pig pig;
         private ItemEntity food;
         private long nextScan,nextPath,finishAt;
-        public EatMushroom(Pig pig) { this.pig=pig;setFlags(EnumSet.of(Flag.MOVE,Flag.LOOK));nextScan=pig.getId()%20; }
+        public EatMushroom(Pig pig) { this.pig=pig;setFlags(EnumSet.of(Flag.MOVE,Flag.LOOK));nextScan=pig.getId()%SEARCH_INTERVAL; }
         private boolean edible(ItemEntity item) {
             return item!=null&&item.isAlive()&&!item.hasPickUpDelay()&&item.getTarget()==null&&PigLife.mushroom(item.getItem());
         }
         @Override public boolean canUse() {
             long now=pig.level().getGameTime();
             if(!pig.isBaby()||!free(pig)||now<nextScan)return false;
-            nextScan=now+20+Math.floorMod(pig.getId()-now,20);
+            nextScan=now+SEARCH_INTERVAL+Math.floorMod(pig.getId()-now,SEARCH_INTERVAL);
             food=pig.level().getEntitiesOfClass(ItemEntity.class,pig.getBoundingBox().inflate(6,2,6),this::edible)
                     .stream().min(Comparator.comparingDouble(pig::distanceToSqr)).orElse(null);
             return food!=null;
@@ -83,10 +80,10 @@ public final class PigGoals {
             if(now>=nextPath) { nextPath=now+20;pig.getNavigation().moveTo(food,1); }
             if(pig.distanceToSqr(food)<1.5&&PigLife.grow(pig)) {
                 food.getItem().shrink(1);if(food.getItem().isEmpty())food.discard();
-                food=null;finishAt=0;nextScan=now+20;
+                food=null;finishAt=0;
             }
         }
-        @Override public void stop() { food=null;pig.getNavigation().stop();nextScan=pig.level().getGameTime()+20; }
+        @Override public void stop() { food=null;pig.getNavigation().stop();nextScan=pig.level().getGameTime()+SEARCH_INTERVAL; }
     }
 
     public static final class FollowFamily extends Goal {
@@ -124,6 +121,9 @@ public final class PigGoals {
     }
 
     public static final class LooseHerd extends Goal {
+        private static final int MAX_HERD_SIZE = 5;
+        private static final int SEARCH_RANGE = 32;
+        private static final int REGROUP_DISTANCE_SQUARED = 15 * 15;
         private final Pig pig;
         private Pig leader;
         private long nextScan,nextPath;
@@ -132,19 +132,37 @@ public final class PigGoals {
             long now=pig.level().getGameTime();
             if(pig.isBaby()||!free(pig)||now<nextScan)return false;
             nextScan=now+100+Math.floorMod(pig.getId()-now,100);
-            leader=pig.level().getEntitiesOfClass(Pig.class,pig.getBoundingBox().inflate(32,6,32),p->!p.isBaby()&&free(p))
-                    .stream().min(Comparator.comparing(Pig::getUUID)).orElse(pig);
-            return leader!=pig&&pig.distanceToSqr(leader)>225;
+            leader = pig.level().getEntitiesOfClass(Pig.class, pig.getBoundingBox().inflate(SEARCH_RANGE, 6, SEARCH_RANGE),
+                    other -> !other.isBaby() && free(other) && ((PigState)other).ffm$herdTarget() == null
+                            && other.getUUID().compareTo(pig.getUUID()) < 0
+                            && pig.distanceToSqr(other) < SEARCH_RANGE * SEARCH_RANGE)
+                    .stream().min(Comparator.comparing(Pig::getUUID)).orElse(null);
+            return leader != null && pig.distanceToSqr(leader) > REGROUP_DISTANCE_SQUARED && leaderHasRoom();
+        }
+        private boolean leaderHasRoom() {
+            // Count pigs already near the leader and pigs on their way, reserving a slot as soon as a goal starts.
+            return pig.level().getEntitiesOfClass(Pig.class, leader.getBoundingBox().inflate(SEARCH_RANGE, 6, SEARCH_RANGE),
+                    other -> other != pig && other != leader && !other.isBaby() && other.isAlive()
+                            && (other.distanceToSqr(leader) <= REGROUP_DISTANCE_SQUARED
+                                    || ((PigState)other).ffm$herdTarget() == leader)).size() < MAX_HERD_SIZE - 1;
         }
         @Override public boolean canContinueToUse() {
             return !pig.isBaby()&&free(pig)&&leader!=null&&free(leader)&&!leader.isBaby()
-                    &&pig.distanceToSqr(leader)>121&&pig.distanceToSqr(leader)<32*32;
+                    &&((PigState)leader).ffm$herdTarget()==null
+                    &&pig.distanceToSqr(leader)>121&&pig.distanceToSqr(leader)<SEARCH_RANGE*SEARCH_RANGE;
         }
-        @Override public void start() { nextPath=0; }
+        @Override public void start() {
+            nextPath = 0;
+            ((PigState)pig).ffm$setHerdTarget(leader);
+        }
         @Override public void tick() {
             long now=pig.level().getGameTime();
             if(now>=nextPath) { nextPath=now+20;pig.getNavigation().moveTo(leader,1); }
         }
-        @Override public void stop() { leader=null;pig.getNavigation().stop(); }
+        @Override public void stop() {
+            ((PigState)pig).ffm$setHerdTarget(null);
+            leader = null;
+            pig.getNavigation().stop();
+        }
     }
 }

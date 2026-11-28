@@ -13,6 +13,7 @@
     "VillagerCatPlayMixin",
     "CatPlayMixin",
     "WolfMixin",
+    "WolfHuntNavigationMixin",
     "FrogMixin",
     "BatMixin",
     "PhantomMixin",

@@ -8,9 +8,10 @@ import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 
 public final class WolfPacks {
     public static final long MEAL_COOLDOWN=24000;
+    public static final int SHEEP_DETECTION_RANGE = 24;
     private static final String PACK="ffm_wolf_pack";
     private static final Map<SpawnGroupData,UUID> SPAWN_GROUPS=new WeakHashMap<>();
-    private static final TargetingConditions PREY=TargetingConditions.forNonCombat().range(15);
+    private static final TargetingConditions PREY=TargetingConditions.forNonCombat().range(SHEEP_DETECTION_RANGE);
     private WolfPacks() {}
 
     public static void spawned(Mob mob,SpawnGroupData group,MobSpawnType reason) {
@@ -52,7 +53,8 @@ public final class WolfPacks {
                 && wolf.distanceToSqr(sheep)<=32*32) {
             hunt.touched=level.getGameTime();return sheep;
         }
-        return level.getNearestEntity(Sheep.class,PREY,wolf,wolf.getX(),wolf.getY(),wolf.getZ(),wolf.getBoundingBox().inflate(15));
+        return level.getNearestEntity(Sheep.class, PREY, wolf, wolf.getX(), wolf.getY(), wolf.getZ(),
+                wolf.getBoundingBox().inflate(SHEEP_DETECTION_RANGE));
     }
 
     public static Sheep joinHunt(Wolf wolf,Sheep candidate) {
