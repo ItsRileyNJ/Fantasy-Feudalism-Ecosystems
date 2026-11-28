@@ -45,26 +45,34 @@ public final class LeviathanTests {
         var seen = new HuntObservation();
         h.succeedWhen(() -> {
             if (fish.getTarget() == player) seen.acquired = true;
+            if (fish.isFlaring() && fish.huntPhase() != Leviathan.STARE) seen.flaredOutsideStare = true;
             if (fish.huntPhase() == Leviathan.STARE) {
                 if (seen.bit) seen.secondStare = true;
                 else {
                     seen.stareTicks++;
+                    if (fish.isFlaring()) seen.flareTicks++;
+                    seen.flaredLastTick = fish.isFlaring();
                     seen.maximumStareMotion = Math.max(seen.maximumStareMotion, fish.getDeltaMovement().length());
                     var direction = player.position().subtract(fish.position()).multiply(1, 0, 1).normalize();
                     if (seen.stareTicks >= 6) seen.facing = Vec3.directionFromRotation(0, fish.getYRot()).dot(direction);
                 }
             }
-            if (fish.huntPhase() == Leviathan.LUNGE) seen.maximumLungeSpeed = Math.max(seen.maximumLungeSpeed, fish.getDeltaMovement().length());
+            if (fish.huntPhase() == Leviathan.LUNGE) {
+                if (!seen.bit) seen.flaredBeforeLunge |= seen.flaredLastTick;
+                seen.maximumLungeSpeed = Math.max(seen.maximumLungeSpeed, fish.getDeltaMovement().length());
+            }
             if (fish.huntPhase() == Leviathan.SNAP) seen.bit = true;
             h.assertTrue(seen.acquired && seen.secondStare,
                     "The fish should find a submerged player, bite, then begin a second hunt. Phase "
                             + fish.huntPhase() + ", acquired " + seen.acquired + ", stare ticks " + seen.stareTicks
                             + ", bite " + seen.bit + ", fish " + fish.position() + " (water " + fish.isInWater()
                             + "), prey " + player.position() + " (water " + player.isInWater() + ")");
-            h.assertTrue(seen.stareTicks >= 19 && seen.maximumStareMotion < .05 && seen.facing > .95,
-                    "The fish faces the player without drifting for about one second");
+            h.assertTrue(seen.stareTicks >= 43 && seen.maximumStareMotion < .05 && seen.facing > .95,
+                    "The fish faces the player without drifting for at least two seconds");
             h.assertTrue(seen.maximumLungeSpeed > .95 && player.getHealth() > 0 && player.getHealth() < 12,
                     "The fish accelerates and lands a single bite before the next lunge");
+            h.assertTrue(seen.flaredBeforeLunge && !seen.flaredOutsideStare && seen.flareTicks == 34,
+                    "The fish flares for the final thirty-four ticks before it lunges");
         });
     }
 
@@ -80,6 +88,10 @@ public final class LeviathanTests {
         boolean bit;
         boolean secondStare;
         int stareTicks;
+        int flareTicks;
+        boolean flaredLastTick;
+        boolean flaredBeforeLunge;
+        boolean flaredOutsideStare;
         double facing;
         double maximumStareMotion;
         double maximumLungeSpeed;

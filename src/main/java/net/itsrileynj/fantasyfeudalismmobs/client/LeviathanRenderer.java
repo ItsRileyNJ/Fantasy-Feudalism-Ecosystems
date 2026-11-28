@@ -24,6 +24,12 @@ final class LeviathanRenderer extends MobRenderer<Leviathan, LeviathanModel> {
     }
 
     @Override
+    protected void setupRotations(Leviathan fish, PoseStack pose, float age, float bodyYaw,
+                                  float partialTick, float scale) {
+        super.setupRotations(fish, pose, age, fish.swimHeading(partialTick, bodyYaw), partialTick, scale);
+    }
+
+    @Override
     protected void scale(Leviathan fish, PoseStack pose, float partialTick) {
         pose.scale(3F, 3F, 3F);
     }
