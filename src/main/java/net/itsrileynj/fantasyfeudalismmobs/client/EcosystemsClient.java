@@ -16,6 +16,7 @@ public final class EcosystemsClient {
         event.registerEntityRenderer(FantasyFeudalismMobs.FIELD_MOUSE.get(),FieldMouseRenderer::new);
         event.registerEntityRenderer(SlimeVariants.FLAME.get(), context -> new VariantSlimeRenderer(context, true));
         event.registerEntityRenderer(SlimeVariants.SNOW.get(), context -> new VariantSlimeRenderer(context, false));
+        event.registerEntityRenderer(Leviathans.ENTITY.get(), LeviathanRenderer::new);
         event.registerEntityRenderer(net.itsrileynj.fantasyfeudalismmobs.rootworm.RootWormModule.ROOT_WORM.get(),net.itsrileynj.fantasyfeudalismmobs.rootworm.client.RootWormRenderer::new);
         event.registerEntityRenderer(net.itsrileynj.fantasyfeudalismmobs.scorpion.ScorpionModule.SCORPION.get(),net.itsrileynj.fantasyfeudalismmobs.scorpion.client.ScorpionRenderer::new);
         event.registerEntityRenderer(net.itsrileynj.fantasyfeudalismmobs.scorpion.ScorpionModule.CRYSTAPID.get(),context->new net.itsrileynj.fantasyfeudalismmobs.scorpion.client.ScorpionRenderer(context,true));
@@ -24,7 +25,9 @@ public final class EcosystemsClient {
         }
     }
     @SubscribeEvent public static void layers(EntityRenderersEvent.RegisterLayerDefinitions event){event.registerLayerDefinition(net.itsrileynj.fantasyfeudalismmobs.scorpion.client.ScorpionModel.CRYSTAPID_LAYER,net.itsrileynj.fantasyfeudalismmobs.scorpion.client.ScorpionModel::crystapidLayer);event.registerLayerDefinition(net.itsrileynj.fantasyfeudalismmobs.scorpion.client.ScorpionModel.LAYER,net.itsrileynj.fantasyfeudalismmobs.scorpion.client.ScorpionModel::layer);event.registerLayerDefinition(net.itsrileynj.fantasyfeudalismmobs.rootworm.client.RootWormModel.LAYER,net.itsrileynj.fantasyfeudalismmobs.rootworm.client.RootWormModel::createLayer);event.registerLayerDefinition(FieldMouseRenderer.LAYER,FieldMouseModel::layer);
-        for(BirdKind kind:BirdKind.values())event.registerLayerDefinition(ForestBirdRenderer.layer(kind),()->ForestBirdGeometry.layer(kind));}
+        for(BirdKind kind:BirdKind.values())event.registerLayerDefinition(ForestBirdRenderer.layer(kind),()->ForestBirdGeometry.layer(kind));
+        event.registerLayerDefinition(LeviathanRenderer.LAYER, LeviathanGeometry::layer);
+    }
     @SubscribeEvent public static void colors(net.neoforged.neoforge.client.event.RegisterColorHandlersEvent.Item event){
         event.register((stack,tint)->0xFFE3C447,FantasyFeudalismMobs.FERTILIZER.get());
     }

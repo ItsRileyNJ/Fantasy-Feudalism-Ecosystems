@@ -75,6 +75,7 @@ public final class FantasyFeudalismMobs {
                     for(var egg:Birds.EGGS)output.accept(egg.get());
                     output.accept(net.itsrileynj.fantasyfeudalismmobs.rootworm.RootWormModule.ROOT_WORM_EGG.get());
                     SlimeVariants.addToCreativeTab(output);
+                    output.accept(Leviathans.EGG.get());
                 })
                 .build());
     }
@@ -84,6 +85,7 @@ public final class FantasyFeudalismMobs {
         modEventBus.addListener(BarkCompatibility::addPacks);
         net.itsrileynj.fantasyfeudalismmobs.scorpion.ScorpionModule.register(modEventBus);
         SlimeVariants.register(modEventBus);
+        Leviathans.register(modEventBus);
         BLOCKS.register(modEventBus);
         BLOCK_ENTITIES.register(modEventBus);
         ITEMS.register(modEventBus);
@@ -97,6 +99,7 @@ public final class FantasyFeudalismMobs {
         modEventBus.addListener((net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent event)->{
             if(event.getTabKey().equals(net.minecraft.world.item.CreativeModeTabs.SPAWN_EGGS)) {
                 event.accept(FIELD_MOUSE_SPAWN_EGG.get());for(var egg:Birds.EGGS)event.accept(egg.get());
+                event.accept(Leviathans.EGG.get());
             }
         });
         modEventBus.addListener(FeudalEvents::spawnPlacements);
