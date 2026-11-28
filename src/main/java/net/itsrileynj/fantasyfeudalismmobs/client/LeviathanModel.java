@@ -13,6 +13,8 @@ final class LeviathanModel extends HierarchicalModel<Leviathan> {
     private final ModelPart jaw;
     private final ModelPart throat;
     private final ModelPart tail;
+    private final ModelPart tailMid;
+    private final ModelPart tailRear;
     private final ModelPart tailTip;
     private final ModelPart leftFin;
     private final ModelPart rightFin;
@@ -29,7 +31,9 @@ final class LeviathanModel extends HierarchicalModel<Leviathan> {
         jaw = body.getChild("jaw");
         throat = body.getChild("throat");
         tail = body.getChild("tail");
-        tailTip = tail.getChild("tailTip");
+        tailMid = tail.getChild("tailMid");
+        tailRear = tailMid.getChild("tailRear");
+        tailTip = tailRear.getChild("tailTip");
         leftFin = body.getChild("leftFin");
         rightFin = body.getChild("rightFin");
         leftVentral = jaw.getChild("leftVentral");
@@ -56,7 +60,9 @@ final class LeviathanModel extends HierarchicalModel<Leviathan> {
         body.xRot = Mth.lerp(partialTick, fish.xRotO, fish.getXRot()) * Mth.DEG_TO_RAD;
         body.zRot = Mth.sin(stroke - .5F) * amplitude * .13F;
         tail.yRot = Mth.sin(stroke) * amplitude;
-        tailTip.yRot = Mth.sin(stroke - .75F) * amplitude * 1.5F;
+        tailMid.yRot = Mth.sin(stroke - .85F) * amplitude * 1.2F;
+        tailRear.yRot = Mth.sin(stroke - 1.7F) * amplitude * 1.35F;
+        tailTip.yRot = Mth.sin(stroke - 2.55F) * amplitude * 1.5F;
         leftFin.zRot += Mth.sin(stroke + .5F) * amplitude * .35F;
         rightFin.zRot -= Mth.sin(stroke + .5F) * amplitude * .35F;
         float gape = fish.gape(partialTick);

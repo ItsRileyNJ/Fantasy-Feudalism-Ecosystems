@@ -17,37 +17,23 @@ final class LeviathanGeometry {
         var body = mesh.getRoot().addOrReplaceChild("body", CubeListBuilder.create(), PartPose.offset(0, 18, 0));
         var upperJaw = body.addOrReplaceChild("upperJaw", CubeListBuilder.create(), PartPose.offset(0F, -2F, -13F));
         var jaw = body.addOrReplaceChild("jaw", CubeListBuilder.create(), PartPose.offset(0F, -1F, -13F));
-        var tail = body.addOrReplaceChild("tail", CubeListBuilder.create(), PartPose.offset(0F, -2F, 10F));
-        var tailTip = tail.addOrReplaceChild("tailTip", CubeListBuilder.create(), PartPose.offset(0F, 0F, 6F));
-        var rightFin = body.addOrReplaceChild("rightFin", CubeListBuilder.create(), PartPose.offsetAndRotation(3F, 0F, -5F, -0.1309F, 0F, 0.305433F));
-        var leftFin = body.addOrReplaceChild("leftFin", CubeListBuilder.create(), PartPose.offsetAndRotation(-3F, 0F, -5F, -0.1309F, 0F, -0.305433F));
+        var tail = body.addOrReplaceChild("tail", CubeListBuilder.create(),
+                PartPose.offsetAndRotation(0F, -2F, 9F, -.045F, 0F, 0F));
+        var tailMid = tail.addOrReplaceChild("tailMid", CubeListBuilder.create(),
+                PartPose.offsetAndRotation(0F, 0F, 8F, .035F, 0F, 0F));
+        var tailRear = tailMid.addOrReplaceChild("tailRear", CubeListBuilder.create(),
+                PartPose.offsetAndRotation(0F, 0F, 10F, .1F, 0F, 0F));
+        var tailTip = tailRear.addOrReplaceChild("tailTip", CubeListBuilder.create(),
+                PartPose.offsetAndRotation(0F, 0F, 10F, .125F, 0F, 0F));
+        var rightFin = body.addOrReplaceChild("rightFin", CubeListBuilder.create(), PartPose.offsetAndRotation(2.65F, 0F, -5F, -0.1309F, 0F, 0.418879F));
+        var leftFin = body.addOrReplaceChild("leftFin", CubeListBuilder.create(), PartPose.offsetAndRotation(-2.65F, 0F, -5F, -0.1309F, 0F, -0.418879F));
         cube(body, "original_0", 0, 0, -2F, -5F, -1F, 4F, 6F, 11F, PartPose.ZERO);
-        cube(tail, "original_1", 64, 0, -1F, -2F, 0F, 2F, 4F, 6F, PartPose.ZERO);
-        cube(tailTip, "original_2", 128, 0, -1F, -3F, 0F, 2F, 6F, 5F, PartPose.ZERO);
-        cube(tailTip, "original_3", 192, 0, -1F, -5F, 3F, 2F, 2F, 5F, PartPose.ZERO);
-        cube(tailTip, "original_4", 256, 0, -1F, 3F, 3F, 2F, 2F, 5F, PartPose.ZERO);
-        cube(tail, "original_5", 320, 0, -1F, -2.5F, 4F, 2F, 0.5F, 2F, PartPose.ZERO);
-        cube(tail, "original_6", 384, 0, -1F, 2F, 4F, 2F, 0.5F, 2F, PartPose.ZERO);
-        cube(tailTip, "original_7", 448, 0, -1F, -5.5F, 6F, 2F, 0.5F, 2F, PartPose.ZERO);
-        cube(tailTip, "original_8", 0, 32, -1F, 5F, 6F, 2F, 0.5F, 2F, PartPose.ZERO);
-        cube(tailTip, "original_9", 64, 32, -1F, -3F, 5F, 2F, 2F, 1F, PartPose.ZERO);
-        cube(tailTip, "original_10", 128, 32, -1F, 1F, 5F, 2F, 2F, 1F, PartPose.ZERO);
-        cube(tailTip, "original_11", 192, 32, -1F, -1F, 5F, 2F, 2F, 0.5F, PartPose.ZERO);
-        cube(tailTip, "original_12", 256, 32, -1F, -3.5F, 1F, 2F, 0.5F, 2F, PartPose.ZERO);
-        cube(tailTip, "original_13", 320, 32, -1F, 3F, 1F, 2F, 0.5F, 2F, PartPose.ZERO);
-        cube(tail, "original_14", 384, 32, -1F, -2.5F, 0F, 2F, 0.5F, 2F, PartPose.ZERO);
-        cube(tail, "original_15", 448, 32, -1F, 2F, 0F, 2F, 0.5F, 2F, PartPose.ZERO);
         cube(body, "original_16", 0, 64, 2F, -3F, -1F, 1F, 2F, 11F, PartPose.ZERO);
         cube(body, "original_17", 64, 64, -3F, -3F, -1F, 1F, 2F, 11F, PartPose.ZERO);
-        cube(tail, "original_18", 128, 64, -2F, -1F, 0F, 1F, 2F, 5F, PartPose.ZERO);
-        cube(tail, "original_19", 192, 64, 1F, -1F, 0F, 1F, 2F, 5F, PartPose.ZERO);
         cube(body, "original_20", 256, 64, -3F, -6F, -14F, 6F, 8F, 13F, PartPose.ZERO);
         cube(jaw, "original_21", 320, 64, -2F, -0.025F, -11F, 4F, 2.025F, 10F, PartPose.ZERO);
         cube(body, "original_22", 384, 64, 3F, -3F, -14F, 1F, 2F, 13F, PartPose.ZERO);
         cube(body, "original_23", 448, 64, -4F, -3F, -14F, 1F, 2F, 13F, PartPose.ZERO);
-        cube(body, "original_26", 128, 96, -0.5F, -2F, -1F, 1F, 2F, 1F, PartPose.offsetAndRotation(0F, -4F, 9F, -0.305433F, 0F, 0F));
-        cube(body, "original_27", 192, 96, -0.5F, -1F, -1F, 1F, 2F, 1F, PartPose.offsetAndRotation(0F, -5F, 5F, -0.305433F, 0F, 0F));
-        cube(body, "original_28", 256, 96, -0.5F, -1F, -1F, 1F, 2F, 1F, PartPose.offsetAndRotation(0F, -5F, 1F, -0.305433F, 0F, 0F));
         cube(body, "original_29", 320, 96, -0.5F, -10F, -9F, 1F, 4F, 4F, PartPose.ZERO);
         cube(body, "original_30", 384, 96, -0.5F, -10F, -5F, 1F, 4F, 1F, PartPose.ZERO);
         cube(body, "original_31", 448, 96, -0.5F, -8F, -10F, 1F, 2F, 1F, PartPose.ZERO);
@@ -56,19 +42,6 @@ final class LeviathanGeometry {
         cube(body, "original_34", 128, 128, -0.5F, -7F, -4F, 1F, 1F, 2F, PartPose.ZERO);
         cube(body, "original_35", 192, 128, -0.5F, -7F, -11F, 1F, 1F, 1F, PartPose.ZERO);
         cube(upperJaw, "original_36", 256, 128, -2F, -2F, -11F, 4F, 3F, 10F, PartPose.ZERO);
-        cube(leftFin, "original_37", 320, 128, -2F, -1F, -3F, 2F, 1F, 6F, PartPose.ZERO);
-        cube(rightFin, "original_38", 384, 128, 0F, -1F, -3F, 2F, 1F, 6F, PartPose.ZERO);
-        cube(rightFin, "original_39", 448, 128, 2F, -1F, -2F, 2F, 1F, 6F, PartPose.ZERO);
-        cube(leftFin, "original_40", 0, 160, -4F, -1F, -2F, 2F, 1F, 6F, PartPose.ZERO);
-        cube(rightFin, "original_41", 64, 160, 4F, -1F, 0F, 2F, 1F, 6F, PartPose.ZERO);
-        cube(leftFin, "original_42", 128, 160, -6F, -1F, 0F, 2F, 1F, 6F, PartPose.ZERO);
-        cube(leftFin, "original_43", 192, 160, -5F, -1F, -1F, 1F, 1F, 1F, PartPose.ZERO);
-        cube(rightFin, "original_44", 256, 160, 4F, -1F, -1F, 1F, 1F, 1F, PartPose.ZERO);
-        cube(rightFin, "original_45", 320, 160, 6F, -1F, 2F, 1F, 1F, 8F, PartPose.ZERO);
-        cube(leftFin, "original_46", 384, 160, -7F, -1F, 2F, 1F, 1F, 8F, PartPose.ZERO);
-        cube(body, "original_47", 448, 160, -1.5F, -3F, 15F, 0.5F, 2F, 5F, PartPose.ZERO);
-        cube(tailTip, "original_48", 0, 192, 1F, -1F, -1F, 0.5F, 2F, 5F, PartPose.ZERO);
-        cube(tail, "original_49", 64, 192, -1F, -3F, -31F, 2F, 1F, 5F, PartPose.ZERO);
         cube(upperJaw, "original_50", 128, 192, -1F, -2.5F, -11F, 2F, 0.5F, 3F, PartPose.ZERO);
         cube(upperJaw, "original_51", 192, 192, -1F, -3.5F, -3F, 2F, 1.5F, 2F, PartPose.ZERO);
         cube(upperJaw, "original_52", 256, 192, -0.5F, -9F, 9F, 1F, 1F, 1F, PartPose.ZERO);
@@ -139,8 +112,60 @@ final class LeviathanGeometry {
         cube(rightVentralTip, "sweep_4", 320, 416, -0.19F, -0.155F, -0.11F, 0.38F, 0.31F, 5.668541F, PartPose.offsetAndRotation(1F, 1F, 5.5F, -0.130682F, 0.027771F, 0F));
         cube(rightVentralTip, "sweep_5", 384, 416, -0.12F, -0.1F, -0.11F, 0.24F, 0.2F, 5.970652F, PartPose.offsetAndRotation(1.15F, 1.71F, 10.9F, -0.052192F, -0.122195F, 0F));
         cube(rightVentralTip, "sweep_6", 448, 416, -0.07F, -0.06F, -0.11F, 0.14F, 0.12F, 4.374323F, PartPose.offsetAndRotation(0.45F, 2.01F, 16.6F, 0.052982F, -0.268366F, 0F));
+        leftFin.addOrReplaceChild("pectoral_web", CubeListBuilder.create()
+                .texOffs(64, 0).addBox(-13F, 0F, -3F, 13F, 0F, 15F, Set.of(Direction.UP, Direction.DOWN)),
+                PartPose.ZERO);
+        rightFin.addOrReplaceChild("pectoral_web", CubeListBuilder.create()
+                .texOffs(128, 0).addBox(0F, 0F, -3F, 13F, 0F, 15F, Set.of(Direction.UP, Direction.DOWN)),
+                PartPose.ZERO);
+        cube(tail, "body_section_0", 192, 0, -1.8F, -2.2F, -0.3F, 3.6F, 4.4F, 3.3F, PartPose.ZERO);
+        cube(tail, "body_section_1", 256, 0, -1.5F, -1.9F, 2.8F, 3F, 3.8F, 3.2F, PartPose.ZERO);
+        cube(tail, "body_section_2", 320, 0, -1.2F, -1.575F, 5.8F, 2.4F, 3.15F, 2.8F, PartPose.ZERO);
+        cube(tailMid, "body_section_0", 384, 0, -1.06F, -1.425F, -0.6F, 2.12F, 2.85F, 4.4F, PartPose.ZERO);
+        cube(tailMid, "body_section_1", 448, 0, -0.91F, -1.255F, 3.5F, 1.82F, 2.51F, 3.6F, PartPose.ZERO);
+        cube(tailMid, "body_section_2", 0, 32, -0.765F, -1.09F, 6.8F, 1.53F, 2.18F, 4.05F, PartPose.ZERO);
+        cube(tailRear, "body_section_0", 64, 32, -0.67F, -0.98F, -0.7F, 1.34F, 1.96F, 4.3F, PartPose.ZERO);
+        cube(tailRear, "body_section_1", 128, 32, -0.56F, -0.855F, 3.35F, 1.12F, 1.71F, 3.75F, PartPose.ZERO);
+        cube(tailRear, "body_section_2", 192, 32, -0.44F, -0.695F, 6.9F, 0.88F, 1.39F, 3.9F, PartPose.ZERO);
+        cube(tailTip, "body_section_0", 256, 32, -0.37F, -0.595F, -0.65F, 0.74F, 1.19F, 3.8F, PartPose.ZERO);
+        cube(tailTip, "body_section_1", 320, 32, -0.27F, -0.455F, 2.9F, 0.54F, 0.91F, 3.45F, PartPose.ZERO);
+        cube(tailTip, "body_section_2", 384, 32, -0.18F, -0.325F, 6.1F, 0.36F, 0.65F, 3.2F, PartPose.ZERO);
+        cube(tailTip, "body_section_3", 448, 32, -0.08F, -0.18F, 9.1F, 0.16F, 0.36F, 2.9F, PartPose.ZERO);
+        body.addOrReplaceChild("dorsal_ribbon", CubeListBuilder.create()
+                .texOffs(128, 64).addBox(0F, -13F, -5F, 0F, 11F, 15F, Set.of(Direction.WEST, Direction.EAST)),
+                PartPose.ZERO);
+        body.addOrReplaceChild("ventral_ribbon", CubeListBuilder.create()
+                .texOffs(192, 64).addBox(0F, -2F, -5F, 0F, 11F, 15F, Set.of(Direction.WEST, Direction.EAST)),
+                PartPose.ZERO);
+        tail.addOrReplaceChild("dorsal_ribbon", CubeListBuilder.create()
+                .texOffs(0, 96).addBox(0F, -11F, 0F, 0F, 11F, 9F, Set.of(Direction.WEST, Direction.EAST)),
+                PartPose.ZERO);
+        tail.addOrReplaceChild("ventral_ribbon", CubeListBuilder.create()
+                .texOffs(64, 96).addBox(0F, 0F, 0F, 0F, 11F, 9F, Set.of(Direction.WEST, Direction.EAST)),
+                PartPose.ZERO);
+        tailMid.addOrReplaceChild("dorsal_ribbon", CubeListBuilder.create()
+                .texOffs(128, 96).addBox(0F, -11F, 0F, 0F, 11F, 11F, Set.of(Direction.WEST, Direction.EAST)),
+                PartPose.ZERO);
+        tailMid.addOrReplaceChild("ventral_ribbon", CubeListBuilder.create()
+                .texOffs(192, 96).addBox(0F, 0F, 0F, 0F, 11F, 11F, Set.of(Direction.WEST, Direction.EAST)),
+                PartPose.ZERO);
+        tailRear.addOrReplaceChild("dorsal_ribbon", CubeListBuilder.create()
+                .texOffs(256, 96).addBox(0F, -11F, 0F, 0F, 11F, 11F, Set.of(Direction.WEST, Direction.EAST)),
+                PartPose.ZERO);
+        tailRear.addOrReplaceChild("ventral_ribbon", CubeListBuilder.create()
+                .texOffs(320, 128).addBox(0F, 0F, 0F, 0F, 11F, 11F, Set.of(Direction.WEST, Direction.EAST)),
+                PartPose.ZERO);
+        tailTip.addOrReplaceChild("dorsal_ribbon", CubeListBuilder.create()
+                .texOffs(384, 128).addBox(0F, -11F, 0F, 0F, 11F, 12F, Set.of(Direction.WEST, Direction.EAST)),
+                PartPose.ZERO);
+        tailTip.addOrReplaceChild("ventral_ribbon", CubeListBuilder.create()
+                .texOffs(448, 128).addBox(0F, 0F, 0F, 0F, 11F, 12F, Set.of(Direction.WEST, Direction.EAST)),
+                PartPose.ZERO);
+        tailTip.addOrReplaceChild("tail_fin", CubeListBuilder.create()
+                .texOffs(0, 448).addBox(0F, -8F, 9.5F, 0F, 18F, 22F, Set.of(Direction.WEST, Direction.EAST)),
+                PartPose.ZERO);
         body.addOrReplaceChild("throat", CubeListBuilder.create()
-                .texOffs(0, 448).addBox(-2F, -2F, -14.02F, 4F, 4F, 0F, Set.of(Direction.NORTH)), PartPose.ZERO);
+                .texOffs(0, 160).addBox(-2F, -2F, -14.02F, 4F, 4F, 0F, Set.of(Direction.NORTH)), PartPose.ZERO);
         return LayerDefinition.create(mesh, 512, 512);
     }
 
