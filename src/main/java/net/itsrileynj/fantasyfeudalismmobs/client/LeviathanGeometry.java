@@ -161,9 +161,10 @@ final class LeviathanGeometry {
         tailTip.addOrReplaceChild("ventral_ribbon", CubeListBuilder.create()
                 .texOffs(448, 128).addBox(0F, 0F, 0F, 0F, 11F, 12F, Set.of(Direction.WEST, Direction.EAST)),
                 PartPose.ZERO);
+        // Counter the tail's resting rise so the two lobes lie flat when the fish is level.
         tailTip.addOrReplaceChild("tail_fin", CubeListBuilder.create()
-                .texOffs(0, 448).addBox(0F, -8F, 9.5F, 0F, 18F, 22F, Set.of(Direction.WEST, Direction.EAST)),
-                PartPose.ZERO);
+                .texOffs(0, 448).addBox(-10F, 0F, 0F, 20F, 0F, 22F, Set.of(Direction.UP, Direction.DOWN)),
+                PartPose.offsetAndRotation(0F, 0F, 9.5F, -.215F, 0F, 0F));
         body.addOrReplaceChild("throat", CubeListBuilder.create()
                 .texOffs(0, 160).addBox(-2F, -2F, -14.02F, 4F, 4F, 0F, Set.of(Direction.NORTH)), PartPose.ZERO);
         return LayerDefinition.create(mesh, 512, 512);
